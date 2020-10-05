@@ -2,6 +2,7 @@
 
 <main class="py-5">
      <section id="listado" class="mb-5">
+<<<<<<< HEAD
         <div class="content">
         	<div id="comments" >
         <h2>ADD NEW CINEMA</h2>
@@ -48,5 +49,8 @@
 
 
         <!--  AGREGAR COSITAS LINDAS -> !-->
+=======
+        <!--  AGREGAR COSITAS  MAS LINDAS -> !-->
+>>>>>>> 5ec5fe4edc19f63ba436fc89e1393dfcc8fbf650
      </section>
 </main>
