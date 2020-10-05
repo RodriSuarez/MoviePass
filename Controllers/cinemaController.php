@@ -31,6 +31,11 @@
             require_once(VIEWS_PATH."cinema-edit.php");
         }
 
+        public function EditOneCinema(){
+
+            
+        }
+
         public function Add($name, $address, $capacity, $priceTicket)
         {
             $cinema = new Cinema();
