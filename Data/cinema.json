@@ -1,33 +1,40 @@
 [
     {
-        "name" : "Cines del Paseo",
-        "priceTicket" : 320,
-        "capacity" : 200,
-        "address" : "Calle falsa 123"
+        "name": "Cines del Paseo",
+        "address": "Calle falsa 123",
+        "capacity": 200,
+        "priceTicket": 320
     },
     {
-        "name" : "Cines del Paseo Diagonal",
-        "priceTicket" : 320,
-        "capacity" : 750,
-        "address" : "Calle falsa 1233"
+        "name": "Cines del Paseo Diagonal",
+        "address": "Calle falsa 1233",
+        "capacity": 750,
+        "priceTicket": 320
     },
     {
-        "name" : "Cines del Paseo Hexagonal",
-        "priceTicket" : 120,
-        "capacity" : 2000,
-        "address" : "Calle falsa -123"
+        "name": "Cines del Paseo Hexagonal",
+        "address": "Calle falsa -123",
+        "capacity": 2000,
+        "priceTicket": 120
     },
     {
-        "name" : "Cines del Paseo Triangular",
-        "priceTicket" : 380,
-        "capacity" : 700,
-        "address" : "Calle falsa 5543"
+        "name": "Cines del Paseo Triangular",
+        "address": "Calle falsa 5543",
+        "capacity": 700,
+        "priceTicket": 380
     },
     {
-        "name" : "Cines del Paseo Colosal",
-        "priceTicket" : 380,
-        "capacity" : 700,
-        "address" : "Calle falsa 5543"
+        "name": "Cines del Paseo Colosal",
+        "address": "Calle falsa 5543",
+        "capacity": 700,
+        "priceTicket": 380
+    },
+    {
+        "name": "Cinema super hexagonal",
+        "address": "calle falsa 123456879",
+        "capacity": "123",
+        "priceTicket": "123"
     }
-
+ 
+  
 ]
