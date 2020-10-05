@@ -2,8 +2,9 @@
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
-               <h2 class="mb-4 text-center text-white oscuro">Listado de Cines</h2>
-               <table class="table text-white ">
+            
+               <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
+               <table class="table text-white bg-oscuro">
                     <thead>
                          <th>Nombre</th>
                          <th>Capacidad</th>

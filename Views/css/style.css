@@ -1,9 +1,10 @@
-/*.fondo{
+.fondo{
 
     background: url('../img/bg3.jpg') no-repeat center center fixed;
-  }*/
+  }
 
-.oscuro{
-  background-color: rgba(0, 0, 0,1 );
-  font-size: 150px;
+.bg-oscuro{
+  background-color: rgba(0, 0, 0, 0.4 );
+
+
 }
