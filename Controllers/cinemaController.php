@@ -25,6 +25,12 @@
             require_once(VIEWS_PATH."cinema-list.php");
         }
 
+        public function ShowEditView($name){
+
+            $cinema = $this->cinemaDao->GetOne($name);
+            require_once(VIEWS_PATH."cinema-edit.php");
+        }
+
         public function Add($name, $address, $capacity, $priceTicket)
         {
             $cinema = new Cinema();

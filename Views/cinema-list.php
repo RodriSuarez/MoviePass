@@ -2,13 +2,14 @@
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
-               <h2 class="mb-4">Listado de Cines</h2>
-               <table class="table bg-light-alpha">
+               <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
+               <table class="table text-white bg-gradient-light">
                     <thead>
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
                          <th>Precio</th>
+                         <th></th>
                     </thead>
                     <tbody>
                          <?php
@@ -20,6 +21,22 @@
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo '$'.$cinema->getPriceTicket() ?></td>
+                                             <td>
+                                             <form action="ShowEditView\<?= $cinema->getName() ?>" method="POST">
+
+                                    
+                                                  <!-- OJO este input es importante -->
+
+                                                  <input type="hidden" value="<?= $cinema->getName() //ACA VA GETID?>" name="name">
+
+                                                  <!-- OJO este input es importante -->
+
+
+                                                  <button type="submit" class="btn btn-danger">
+                                                       <span uk-icon="icon: trash">+</span>
+                                                  </button>
+                                                  </form>
+                                             </td>
                                         </tr>
                                    <?php
                               }

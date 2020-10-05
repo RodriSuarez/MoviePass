@@ -32,6 +32,17 @@
             $this->RetrieveData();
 
             return $this->cinemaList;
+        } 
+        public function GetOne($id)
+        {
+            $this->RetrieveData();
+          //  var_dump($id);
+            foreach($this->cinemaList as $cinema){
+                if($cinema->getName() == $id){
+                    return $cinema;
+                }
+            }
+
         }
 
         private function SaveData()
