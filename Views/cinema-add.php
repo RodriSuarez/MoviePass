@@ -1,6 +1,6 @@
 <?php require_once('nav.php'); ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
-        <!--  AGREGAR COSITAS LINDAS -> !-->
+        <!--  AGREGAR COSITAS  MAS LINDAS -> !-->
      </section>
 </main>
