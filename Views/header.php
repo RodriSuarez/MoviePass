@@ -9,7 +9,7 @@
     crossorigin="anonymous">
    
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="<?= ROOT . 'Views\css\style.css'?>">
+    <link rel="stylesheet" href="<?= CSS_PATH?>style.css">
     <title>MoviePass</title>
 </head>
-<body>
+<body class="fondo">

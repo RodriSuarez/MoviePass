@@ -16,6 +16,7 @@
 	session_start();
 
 	require_once(VIEWS_PATH."header.php");
+	
 	//Incluimos el nav para navegar en el sitio hasta que haya un logIn
 	require_once(VIEWS_PATH."nav.php");
 

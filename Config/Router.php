@@ -11,13 +11,15 @@
 
             $methodName = $request->getmethod();
 
+            /*print_r($methodName);
+            print_r($methodParameters);*/
+
             $methodParameters = $request->getparameters();          
 
             $controllerClassName = "Controllers\\". $controllerName;            
 
             $controller = new $controllerClassName;
             
-            //print_r($methodParameters);
 
             if(!isset($methodParameters))            
                 call_user_func(array($controller, $methodName));
