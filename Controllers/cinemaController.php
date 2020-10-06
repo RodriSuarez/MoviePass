@@ -15,6 +15,7 @@
 
         public function ShowAddView()
         {
+            $cinemaList=$this->cinemaDao->GetAll();
             require_once(VIEWS_PATH."cinema-add.php");
         }
 
