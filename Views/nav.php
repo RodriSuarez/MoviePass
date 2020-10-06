@@ -10,15 +10,10 @@
         <a class="nav-link" href="<?= FRONT_ROOT?>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-<<<<<<< HEAD
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowAddView'?>">Add Cinema</a>
         </li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">List Cinema</a>
-=======
-        <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowAddView'?>">Add Cinema</a>
-        </li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowListView' ?>">List Cinema</a>
->>>>>>> rodriBranch
+
       </li></li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowSearchView' ?>">Search Movies</a>
       </li>
