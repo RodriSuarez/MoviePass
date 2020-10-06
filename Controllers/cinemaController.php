@@ -5,7 +5,6 @@
     use models\cinema as Cinema;
    
     class CinemaController{
-<<<<<<< HEAD
         private $cinemaDao;
 
         public function __construct()
@@ -49,9 +48,7 @@
             $this->cinemaDao->Add($cinema);
 
             $this->ShowAddView();
-=======
->>>>>>> parent of 18b4230... Se agrego la funcionalidad de listar cines
-        
+        }
     }
 
 ?>

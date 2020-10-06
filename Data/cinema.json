@@ -46,5 +46,11 @@
         "address": "calle falsa 1234568792",
         "capacity": "123456788766",
         "priceTicket": "1232312344556"
+    },
+    {
+        "name": "Prueba",
+        "address": "cualquiera",
+        "capacity": "150",
+        "priceTicket": "888"
     }
 ]

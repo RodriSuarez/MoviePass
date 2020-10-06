@@ -76,7 +76,7 @@
                     $cinema->setName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);
-                    $cinema->setPassword($valuesArray["priceTicket"]);
+                    $cinema->setPriceTicket($valuesArray["priceTicket"]);
                  
 
                     array_push($this->cinemaList, $cinema);

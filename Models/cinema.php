@@ -33,10 +33,10 @@
         }
 
         public function setCapacity($capacity){
-            $this->$capacity = $capacity;
+            $this->capacity = $capacity;
         }
         public function getCapacity(){
-            return $this->capacity= $capacity;
+            return $this->capacity;
         }
 
         public function setPriceTicket($priceTicket){
