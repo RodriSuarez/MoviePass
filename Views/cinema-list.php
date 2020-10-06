@@ -10,7 +10,8 @@
                          <th>Capacidad</th>
                          <th>Dirección</th>
                          <th>Precio</th>
-                         <th></th>
+                         <th>Editar</th>
+                         <th>Eliminar</th>
                     </thead>
                     <tbody>
                          <?php
@@ -35,6 +36,22 @@
 
                                                   <button type="submit" class="btn btn-danger">
                                                        <span uk-icon="icon: trash">+</span>
+                                                  </button>
+                                                  </form>
+                                             </td>  
+                                              <td>
+                                             <form action="ShowDeleteView\<?= $cinema->getName() ?>" method="POST">
+
+                                    
+                                                  <!-- OJO este input es importante -->
+
+                                                  <input type="hidden" value="<?= $cinema->getName() //ACA VA GETID?>" name="name">
+
+                                                  <!-- OJO este input es importante -->
+
+
+                                                  <button type="submit" class="btn btn-danger">
+                                                       <span uk-icon="icon: trash">x</span>
                                                   </button>
                                                   </form>
                                              </td>
