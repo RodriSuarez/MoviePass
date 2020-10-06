@@ -40,7 +40,7 @@
                                                   </form>
                                              </td>  
                                               <td>
-                                             <form action="ShowDeleteView\<?= $cinema->getName() ?>" method="POST">
+                                             <form action="DeleteView\<?= $cinema->getName() ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->

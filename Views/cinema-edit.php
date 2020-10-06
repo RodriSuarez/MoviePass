@@ -1,4 +1,3 @@
-<?php var_dump($cinema) ?>
 <div class="d-flex justify-content-center m-5 min-vw-100">
 <form class="form" action="EditOneCinema">
   <div class="form-row">
