@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .fondo{
 
     background: url('../img/bg3.jpg') no-repeat center center fixed;
@@ -7,4 +8,14 @@
   background-color: rgba(0, 0, 0, 0.4 );
 
 
+=======
+body {
+    font-family: 'Montserrat', sans-serif;
+    /*background: url(../img/bg.png) no-repeat center center fixed;*/
+    background: url(../img/bg3.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+>>>>>>> parent of 18b4230... Se agrego la funcionalidad de listar cines
 }
