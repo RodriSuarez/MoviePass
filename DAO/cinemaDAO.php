@@ -41,12 +41,28 @@
                     }
                 }
 
-                
+                return null;
             
         
 
         }
 
+        public function EditOne($name, Cinema $cinemaModify){
+
+            $modify = $this->getOne($name);
+
+            $modify = $cinemaModify;
+
+            foreach($this->cinemaList as $key => $cinema){
+                if($cinema->getName() == $name){
+                    $cinemaList[$key] = $cinemaModify;
+                }
+            }
+
+            $this->SaveData();
+
+            
+        }
         public function DeleteOne($key){
             $this->RetrieveData();
           

@@ -41,14 +41,24 @@
             $this->ShowListView();
         }
 
-        public function EditOneCinema(){
+        public function EditOneCinema($oldname, $name, $address, $capacity, $priceTicket=''){
+                     
+            
+            $modify = new Cinema();
+            $modify->setName($name);
+            $modify->setAddress($address);
+            $modify->setCapacity($capacity);
+            $modify->setPriceTicket($priceTicket);
 
+            $this->cinemaDao->EditOne($name, $modify);
+
+            $this->ShowListView();
             
         }
 
         public function Add($name, $address, $capacity, $priceTicket)
         {   
-            if($cinemaDao->getOne($name) != null){
+           
                 
             $cinema = new Cinema();
             $cinema->setName($name);
@@ -58,7 +68,7 @@
             
             
             $this->cinemaDao->Add($cinema);
-            }
+            
 
             $this->ShowAddView();
         }

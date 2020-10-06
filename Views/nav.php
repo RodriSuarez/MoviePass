@@ -15,7 +15,7 @@
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">List Cinema</a>
 
       </li></li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowSearchView' ?>">Search Movies</a>
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowSearchView' ?>">Search Movies</a>
       </li>
     
   

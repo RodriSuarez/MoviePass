@@ -16,5 +16,11 @@
         "address": "Calle mas falsa que falsin 587",
         "capacity": "1280",
         "priceTicket": "755"
+    },
+    {
+        "name": "Lulu's Cinema",
+        "address": "San Lorenzon 3830",
+        "capacity": "2",
+        "priceTicket": "1850"
     }
 ]
