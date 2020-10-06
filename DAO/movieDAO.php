@@ -2,23 +2,23 @@
     namespace DAO;
 
 
-    use Models\Cinema as Cinema;
+    use Models\Movie as Movie;
 
-    class CinemaDao
+    class MovieaDao
     {        
-        private $cinemaList = array();
+        private $movieList = array();
         private $fileName;
 
         public function __construct()
         {
-            $this->fileName = dirname(__DIR__)."/Data/cinema.json";
+            $this->fileName = dirname(__DIR__)."/Data/movies.json";
         }
 
         public function Add(Cinema $cinema)
         {
             $this->RetrieveData();
             
-            array_push($this->cinemaList, $cinema);
+            array_push($this->movieList, $cinema);
 
             $this->SaveData();
         }
@@ -27,30 +27,28 @@
         {
             $this->RetrieveData();
 
-            return $this->cinemaList;
+            return $this->movieList;
         } 
         public function GetOne($id)
         {
-            
-                $this->RetrieveData();
-
-            //  var_dump($id);
-                foreach($this->cinemaList as $cinema){
-                    if($cinema->getName() == $id){
-                        return $cinema;
-                    }
+            $this->RetrieveData();
+          //  var_dump($id);
+            foreach($this->movieList as $cinema){
+                if($cinema->getName() == $id){
+                    return $cinema;
                 }
+            }
 
-                
-            
-        
+        }
+
+        public function getApiMovies(){
 
         }
 
         public function DeleteOne($key){
             $this->RetrieveData();
           
-            unset($this->cinemaList[$key]);
+            unset($this->movieList[$key]);
 
             $this->SaveData();
            
@@ -60,7 +58,7 @@
         {
             $arrayToEncode = array();
 
-            foreach($this->cinemaList as $cinema)
+            foreach($this->movieList as $cinema)
             {
                 $valuesArray["name"] = $cinema->getName();
                 $valuesArray["address"] = $cinema->getAddress();
@@ -77,7 +75,7 @@
      
         private function RetrieveData()
         {
-            $this->cinemaList = array();
+            $this->movieList = array();
 
             if(file_exists($this->fileName))
             {
@@ -94,7 +92,7 @@
                     $cinema->setPriceTicket($valuesArray["priceTicket"]);
                  
 
-                    array_push($this->cinemaList, $cinema);
+                    array_push($this->movieList, $cinema);
                 }
             }
         }

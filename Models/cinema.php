@@ -8,13 +8,17 @@
         private $address;
         private $capacity;
         private $priceTicket;
-
-        public function __construct($name='', $address='', $capacity='', $priceTicket=''){
+       // private $id;
+        
+        public function __construct($name='', $address='', $capacity='', $priceTicket=''/*, $id=''*/){
             $this->name = $name;
             $this->address = $address;
             $this->capacity = $capacity;
             $this->priceTicket = $priceTicket;
-
+           /* $this->id = $id;
+            if(empty($id)){
+                $this->id = microtime();
+            }*/
         }
 
         public function setName($name){

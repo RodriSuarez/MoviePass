@@ -29,17 +29,19 @@
         public function ShowEditView($name){
 
             $cinema = $this->cinemaDao->GetOne($name);
-            require_once(VIEWS_PATH."cinema-edit.php");
+          //  var_dump($cinema);
+            require_once(VIEWS_PATH."cinema-edit2.php");
         }
 
         public function DeleteOne($key){
 
             $this->cinemaDao->DeleteOne($key);
             
+            
             $this->ShowListView();
         }
 
-        public function EditOneCinema(){
+        public function EditOneCinema(Cinema $cinema){
 
             
         }
