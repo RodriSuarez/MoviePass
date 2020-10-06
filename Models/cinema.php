@@ -8,17 +8,13 @@
         private $address;
         private $capacity;
         private $priceTicket;
-       
-        
-        public function __construct($name='', $address='', $_capacity='', $priceTicket=''){
+
+        public function __construct($name='', $address='', $capacity='', $priceTicket=''){
             $this->name = $name;
             $this->address = $address;
-            $this->capacity = $_capacity;
+            $this->capacity = $capacity;
             $this->priceTicket = $priceTicket;
-            
-            
 
-          
         }
 
         public function setName($name){
@@ -37,11 +33,10 @@
         }
 
         public function setCapacity($capacity){
-            $this->capacity = $capacity;
+            $this->$capacity = $capacity;
         }
-        
         public function getCapacity(){
-            return $this->capacity;
+            return $this->capacity= $capacity;
         }
 
         public function setPriceTicket($priceTicket){
