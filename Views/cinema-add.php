@@ -5,7 +5,7 @@
         <div class="content">
         	<div id="comments" >
         <h2>ADD NEW CINEMA</h2>
-        <form action=" <?php echo FRONT_ROOT."Cinema/Add" ?>" method="GET"  style="background-color: #EAEDED;padding: 2rem !important;">
+        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/Add" ?>" method="GET"  style="background-color: #EAEDED;padding: 2rem !important;">
           <table> 
             
               <tr>
@@ -13,26 +13,26 @@
         private $address;
         private $capacity;
         private $priceTicket;!-->
-                <th>Name</th>
+                <th>Nombre</th>
                  <td>
                   <input type="text" name="name" size="30" required>
                 </td>
            
              </tr>
              <tr>
-                <th>Address</th>
+                <th>Direccion</th>
             <td>
                   <input type="text" name="address" size="20" required>
                 </td>
             </tr>
             <tr>
-                <th>Capacity</th>
+                <th>Capacidad</th>
                 <td>
                   <input type="number" name="capacity" size="20" required>
                 </td>
                 </tr>
                 <tr>
-                <th>Price of the Tickets</th>
+                <th>Precio de los Tickets</th>
                 <td>
                   <input type="number" name="priceTicket" size="10" required>
                 </td>

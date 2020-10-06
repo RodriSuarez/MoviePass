@@ -34,7 +34,17 @@
         "address": "calle falsa 123456879",
         "capacity": "123",
         "priceTicket": "123"
+    },
+    {
+        "name": "Cinema super hexagonal2",
+        "address": "calle falsa 1234568792",
+        "capacity": "12322",
+        "priceTicket": "12322"
+    },
+    {
+        "name": "Cinema super hexagonal2",
+        "address": "calle falsa 1234568792",
+        "capacity": "123456788766",
+        "priceTicket": "1232312344556"
     }
- 
-  
 ]
