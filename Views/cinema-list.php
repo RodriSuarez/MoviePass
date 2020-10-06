@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                          <?php
-                              foreach($cinemaList as $cinema)
+                              foreach($cinemaList as $key => $cinema)
                               {
                                    ?>
                                         <tr>
@@ -24,12 +24,12 @@
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo '$'.$cinema->getPriceTicket() ?></td>
                                              <td>
-                                             <form action="ShowEditView\<?= $cinema->getName() ?>" method="POST">
+                                             <form action="ShowEditView\<?= FRONT_ROOT. $cinema->getName() ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?= $cinema->getName() //ACA VA GETID?>" name="name">
+                                                  <input type="hidden" value="<?= FRONT_ROOT .$cinema->getName() //ACA VA GETID?>" name="name">
 
                                                   <!-- OJO este input es importante -->
 
@@ -40,12 +40,12 @@
                                                   </form>
                                              </td>  
                                               <td>
-                                             <form action="DeleteView\<?= $cinema->getName() ?>" method="POST">
+                                             <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\<?= ($key)  ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?= $cinema->getName() //ACA VA GETID?>" name="name">
+                                                  <input type="hidden" value="<?= ($key) //ACA VA GETID?>" name="delete">
 
                                                   <!-- OJO este input es importante -->
 

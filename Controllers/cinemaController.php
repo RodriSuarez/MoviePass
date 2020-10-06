@@ -32,6 +32,13 @@
             require_once(VIEWS_PATH."cinema-edit.php");
         }
 
+        public function DeleteOne($key){
+
+            $this->cinemaDao->DeleteOne($key);
+            
+            $this->ShowListView();
+        }
+
         public function EditOneCinema(){
 
             

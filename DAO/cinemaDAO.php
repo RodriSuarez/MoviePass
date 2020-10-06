@@ -41,6 +41,15 @@
 
         }
 
+        public function DeleteOne($key){
+            $this->RetrieveData();
+          
+            unset($this->cinemaList[$key]);
+
+            $this->SaveData();
+           
+        }
+
         private function SaveData()
         {
             $arrayToEncode = array();
