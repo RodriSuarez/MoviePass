@@ -10,17 +10,11 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-<<<<<<< HEAD
         <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowAddView'?>">Add Cinema</a>
         </li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowListView' ?>">List Cinema</a>
       </li></li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . CINEMA_ROOT .'ShowSearchView' ?>">Search Movies</a>
-=======
-        <a class="nav-link" href="#">Add Movie</a>
-      </li><li class="nav-item">
-        <a class="nav-link" href="#">List Movies</a>
->>>>>>> parent of 18b4230... Se agrego la funcionalidad de listar cines
       </li>
      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

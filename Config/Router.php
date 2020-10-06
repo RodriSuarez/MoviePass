@@ -20,11 +20,7 @@
 
             $controller = new $controllerClassName;
             
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of 18b4230... Se agrego la funcionalidad de listar cines
-            if(!isset($methodParameters))            
+            if(!isset($methodParameters))          
                 call_user_func(array($controller, $methodName));
             else
                 call_user_func_array(array($controller, $methodName), $methodParameters);

@@ -16,12 +16,9 @@
 	session_start();
 
 	require_once(VIEWS_PATH."header.php");
-<<<<<<< HEAD
 	
 	//Incluimos el nav para navegar en el sitio hasta que haya un logIn
 	require_once(VIEWS_PATH."nav.php");
-=======
->>>>>>> parent of 18b4230... Se agrego la funcionalidad de listar cines
 
 	Router::Route(new Request());
 
