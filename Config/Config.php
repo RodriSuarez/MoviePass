@@ -12,10 +12,11 @@ define("VIEWS_PATH", "Views\\");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css\\");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js\\");
 //Config of API 
-define("API_KEY", "5c5be0bb9aae8be870e50088603452ef");
-define("LANGUAGE", "ES-es");
-define("IMG_API", "https://image.tmdb.org/t/p/w500");
+define("API_KEY", "api_key=5c5be0bb9aae8be870e50088603452ef");
+define("LANGUAGE", "&language=es-ES");
+define("API_IMG", "https://image.tmdb.org/t/p/w500");
 define("API_URL" ,"https://api.themoviedb.org/3");
+define("NOW_PLAYING", "/movie/now_playing?");
 ?>
 
 
