@@ -30,7 +30,7 @@
 
             $cinema = $this->cinemaDao->GetOne($name);
           //  var_dump($cinema);
-            require_once(VIEWS_PATH."cinema-edit2.php");
+            require_once(VIEWS_PATH."cinema-edit.php");
         }
 
         public function DeleteOne($key){
@@ -49,7 +49,8 @@
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
             $modify->setPriceTicket($priceTicket);
-
+            
+            
             $this->cinemaDao->EditOne($name, $modify);
 
             $this->ShowListView();

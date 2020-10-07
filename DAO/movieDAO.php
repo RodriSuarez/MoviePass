@@ -38,7 +38,19 @@
                     return $cinema;
                 }
             }
+            return null;
+        }
 
+        public function EditOne($id, Cinema $modify)
+        {
+            $this->RetrieveData();
+          //  var_dump($id);
+            foreach($this->movieList as $cinema){
+                if($cinema->getName() == $id){
+                    $cinema = $modify;
+                }
+            }
+            $this->SaveData();
         }
 
         public function getApiMovies(){

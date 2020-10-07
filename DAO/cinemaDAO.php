@@ -49,16 +49,26 @@
 
         public function EditOne($name, Cinema $cinemaModify){
 
+            $this->RetrieveData();
+            
             $modify = $this->getOne($name);
 
-            $modify = $cinemaModify;
-
+            
+            $keyList = null;
+            
             foreach($this->cinemaList as $key => $cinema){
                 if($cinema->getName() == $name){
-                    $cinemaList[$key] = $cinemaModify;
+                    $keyList = $key;
                 }
             }
 
+
+            if($keyList != null || $keyList == 0){
+                $this->cinemaList[$keyList] = $cinemaModify;
+            }else{
+                echo '<h1> NOOO </h1>';
+            }
+           
             $this->SaveData();
 
             

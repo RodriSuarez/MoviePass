@@ -1,32 +1,53 @@
-<div class="d-flex justify-content-center m-5 min-vw-100">
-<form class="form" action="EditOneCinema">
-  <div class="form-row">
-    <div class="col-12">
-        <label for="">Nombre del Cine</label>
-        <input type="text" class="form-control" placeholder="" value="<?= $cinema->getName() ?>">
-      </div>
-      </div>
-      <div class="form-row">
-      <div class="col-12">
-      <label for="">Direccion</label>
-      <input type="text" class="form-control" placeholder="" value="<?= $cinema->getAddress() ?>">
-      </div>
-      </div>
- 
-  <div class="form-row">
-  <div class="col-12">
-  <label for="">Precio del Ticket</label>
-  <input type="numbre" class="form-control" placeholder="" value="<?= $cinema->getPriceTicket() ?>">
-  </div>
-    </div>
-    <div class="form-row">
-  <div class="col-12">
-  <label for="">Capacidad</label>
-  <input type="numbre" class="form-control" placeholder="" value="<?= $cinema->getCapacity() ?>">
-  </div>
-  </div>  
-  <button class="btn btn-primary" type="submit">Submit form</button>
-  
-</form>
+<?php require_once('nav.php'); ?>
 
-</div>
+<main class="py-5">
+     <section id="listado" class="mb-5">
+        <div class="container">
+        
+        <h2 class="mb-4 text-center text-white"> Editar <?= $cinema->getName()?></h2>
+        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/EditOneCinema/". $cinema->getName() ?>" method="GET"  >
+          <table class="table text-white bg-oscuro"> 
+            
+              <tr>
+              	   <!--  private $name;
+        private $address;
+        private $capacity;
+        private $priceTicket;!-->
+        <input type="hidden" value="<?= $cinema->getName() ?>"name="oldname" size="30" required>
+
+                <th>Nombre</th>
+                 <td>
+                  <input type="text" value="<?= $cinema->getName() ?>"name="name" size="30" readonly>
+                </td>
+           
+             </tr>
+             <tr>
+                <th>Direccion</th>
+            <td>
+                  <input type="text" name="address" size="30" value="<?= $cinema->getAddress()?>" required>
+                </td>
+            </tr>
+            <tr>
+                <th>Capacidad</th>
+                <td>
+                  <input type="number" name="capacity" size="20" value="<?= $cinema->getCapacity() ?>"required>
+                </td>
+                </tr>
+                <tr>
+                <th>Precio de los Tickets</th>
+                <td>
+                  <input type="number" name="priceTicket" size="10" value="<?= $cinema->getPriceTicket()?>" required>
+                </td>
+              </tr>     
+              </table>
+          <br>
+          <div>
+            <input type="submit" class="btn btn-danger" value="Modificar" "/>
+          </div>
+        </form>
+      
+    </div>
+        <!--  AGREGAR COSITAS LINDAS -> !-->
+     </section>
+</main>
+

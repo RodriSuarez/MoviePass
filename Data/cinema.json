@@ -2,14 +2,14 @@
     {
         "name": "Cines del Paseo Diagonal",
         "address": "Calle falsa 1233",
-        "capacity": 750,
-        "priceTicket": 320
+        "capacity": "750",
+        "priceTicket": "320"
     },
     {
         "name": "Cines del Paseo Hexagonal",
-        "address": "Calle falsa -123",
-        "capacity": 2000,
-        "priceTicket": 120
+        "address": "Calle falsa 15252",
+        "capacity": "1552",
+        "priceTicket": "1328"
     },
     {
         "name": "Cine Aldrey",
