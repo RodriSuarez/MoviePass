@@ -6,5 +6,11 @@
 .bg-oscuro{
   background-color: rgba(0, 0, 0, 0.4 );
 
-
+}
+.clickeable{
+  transform: scale(2);
+}
+.clickeable:hover{
+  cursor: pointer;
+  transform: scale(5);
 }

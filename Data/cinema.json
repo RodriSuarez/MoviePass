@@ -1,26 +1,38 @@
 [
     {
-        "name": "Cines del Paseo Diagonal",
-        "address": "Calle falsa 1233",
-        "capacity": "750",
-        "priceTicket": "320"
-    },
-    {
-        "name": "Cines del Paseo Hexagonal",
-        "address": "Calle falsa 15252",
-        "capacity": "1552",
-        "priceTicket": "1328"
-    },
-    {
         "name": "Cine Aldrey",
         "address": "Calle fantasma 587",
         "capacity": "1280",
         "priceTicket": "755"
     },
     {
-        "name": "Lulu's Cinema",
-        "address": "San Lorenzon 3830",
-        "capacity": "2",
-        "priceTicket": "1850"
+        "name": "Cines del Paseo Diagonal",
+        "address": "Diagonal perinola 1552",
+        "capacity": "250",
+        "priceTicket": "370"
+    },
+    {
+        "name": "Cines del Paseo 3",
+        "address": "Diagonal perinola 1352",
+        "capacity": "250",
+        "priceTicket": "370"
+    },
+    {
+        "name": "Cines del Paseo Hexagonal",
+        "address": "Av. perinola 722",
+        "capacity": "375",
+        "priceTicket": "370"
+    },
+    {
+        "name": "Cines del Paseo Diagonal",
+        "address": "Calle falsa 3772",
+        "capacity": "250",
+        "priceTicket": "370"
+    },
+    {
+        "name": "Cines del Paseo Diagonal",
+        "address": "Tu imaginacion 10",
+        "capacity": "1",
+        "priceTicket": "3700"
     }
 ]

@@ -5,21 +5,21 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="<?= FRONT_ROOT?>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowAddView'?>">Add Cinema</a>
+        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowAddView'?>">Agregar Cine</a>
         </li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">List Cinema</a>
+        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">Listar Cines</a>
 
         </li></li>
         <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>">Search Movies</a>
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>">Listar Peliculas</a>
       </li>
-      <li class="nav-item bg-danger">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Refresh Movies</a>
+      <li class="nav-item bg-danger rounded">
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Actualizar Peliculas</a>
       </li>
       
     

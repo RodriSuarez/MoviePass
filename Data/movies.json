@@ -1,59 +1,5 @@
 [
     {
-        "title": "El avi\u00f3n del dinero",
-        "id": 694919,
-        "poster_path": "\/v0BiswYPEZzZTYazvwktPTOTMpP.jpg",
-        "backdrop_path": "\/pq0JSpwyT2URytdFG0euztQPAyR.jpg",
-        "overview": "Un ladr\u00f3n profesional con una deuda de 40 millones de d\u00f3lares a sus espaldas y la vida de su familia en peligro, se ve obligado a realizar un \u00faltimo golpe: robar un futurista casino a\u00e9reo cuya que tiene por clientes a los criminales m\u00e1s peligrosos del mundo.",
-        "vote_average": 6,
-        "genres": [
-            28
-        ],
-        "release_date": "2020-09-29"
-    },
-    {
-        "title": "Mul\u00e1n",
-        "id": 337401,
-        "poster_path": "\/rd7ElSRYhN2CFqMcyH8rqrwLbd6.jpg",
-        "backdrop_path": "\/zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
-        "overview": "El emperador de China emite un decreto para reclutar a un var\u00f3n por cada familia que deber\u00e1 servir en el ej\u00e9rcito imperial para defender al pa\u00eds de los invasores del norte. Hua Mul\u00e1n, hija \u00fanica de un condecorado guerrero, se presenta para evitar que su anciano padre sea llamado a filas. Se hace pasar por un hombre, Hua Jun y se somete a todo tipo de pruebas. Para conseguirlo deber\u00e1 apelar a su fuerza interior y sacar a la luz todo su potencial. Se trata de una aventura \u00e9pica que la transformar\u00e1 en una guerrera laureada que la har\u00e1 merecedora del respeto de todo un pa\u00eds y motivo de orgullo para su padre.",
-        "vote_average": 7.4,
-        "genres": [
-            28,
-            12,
-            18,
-            14
-        ],
-        "release_date": "2020-09-04"
-    },
-    {
-        "title": "Rogue",
-        "id": 718444,
-        "poster_path": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
-        "backdrop_path": "\/x4UkhIQuHIJyeeOTdcbZ3t3gBSa.jpg",
-        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
-        "vote_average": 5.9,
-        "genres": [
-            28
-        ],
-        "release_date": "2020-08-20"
-    },
-    {
-        "title": "Ava",
-        "id": 539885,
-        "poster_path": "\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg",
-        "backdrop_path": "\/54yOImQgj8i85u9hxxnaIQBRUuo.jpg",
-        "overview": "Ava es una mort\u00edfera asesina a sueldo que trabaja para una organizaci\u00f3n de operaciones encubiertas, que viaja por todo el mundo acabando con aquellos objetivos que nadie m\u00e1s puede derribar. Cuando uno de sus encargos sale mal, Ava tendr\u00e1 que luchar por una vida.",
-        "vote_average": 6,
-        "genres": [
-            28,
-            80,
-            18,
-            53
-        ],
-        "release_date": "2020-07-02"
-    },
-    {
         "title": "Train To Busan 2: Peninsula",
         "id": 581392,
         "poster_path": "\/ew1lAU8yV66JbivBU1Zh4Wj4pOB.jpg",
@@ -277,5 +223,72 @@
             878
         ],
         "release_date": "2020-08-27"
+    },
+    {
+        "title": "El avi\u00f3n del dinero",
+        "id": 694919,
+        "poster_path": "\/v0BiswYPEZzZTYazvwktPTOTMpP.jpg",
+        "backdrop_path": "\/pq0JSpwyT2URytdFG0euztQPAyR.jpg",
+        "overview": "Un ladr\u00f3n profesional con una deuda de 40 millones de d\u00f3lares a sus espaldas y la vida de su familia en peligro, se ve obligado a realizar un \u00faltimo golpe: robar un futurista casino a\u00e9reo cuya que tiene por clientes a los criminales m\u00e1s peligrosos del mundo.",
+        "vote_average": 6,
+        "genres": [
+            28
+        ],
+        "release_date": "2020-09-29"
+    },
+    {
+        "title": "Mul\u00e1n",
+        "id": 337401,
+        "poster_path": "\/rd7ElSRYhN2CFqMcyH8rqrwLbd6.jpg",
+        "backdrop_path": "\/zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
+        "overview": "El emperador de China emite un decreto para reclutar a un var\u00f3n por cada familia que deber\u00e1 servir en el ej\u00e9rcito imperial para defender al pa\u00eds de los invasores del norte. Hua Mul\u00e1n, hija \u00fanica de un condecorado guerrero, se presenta para evitar que su anciano padre sea llamado a filas. Se hace pasar por un hombre, Hua Jun y se somete a todo tipo de pruebas. Para conseguirlo deber\u00e1 apelar a su fuerza interior y sacar a la luz todo su potencial. Se trata de una aventura \u00e9pica que la transformar\u00e1 en una guerrera laureada que la har\u00e1 merecedora del respeto de todo un pa\u00eds y motivo de orgullo para su padre.",
+        "vote_average": 7.4,
+        "genres": [
+            28,
+            12,
+            18,
+            14
+        ],
+        "release_date": "2020-09-04"
+    },
+    {
+        "title": "Rogue",
+        "id": 718444,
+        "poster_path": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
+        "backdrop_path": "\/x4UkhIQuHIJyeeOTdcbZ3t3gBSa.jpg",
+        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
+        "vote_average": 5.9,
+        "genres": [
+            28
+        ],
+        "release_date": "2020-08-20"
+    },
+    {
+        "title": "Ava",
+        "id": 539885,
+        "poster_path": "\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg",
+        "backdrop_path": "\/54yOImQgj8i85u9hxxnaIQBRUuo.jpg",
+        "overview": "Ava es una mort\u00edfera asesina a sueldo que trabaja para una organizaci\u00f3n de operaciones encubiertas, que viaja por todo el mundo acabando con aquellos objetivos que nadie m\u00e1s puede derribar. Cuando uno de sus encargos sale mal, Ava tendr\u00e1 que luchar por una vida.",
+        "vote_average": 6,
+        "genres": [
+            28,
+            80,
+            18,
+            53
+        ],
+        "release_date": "2020-07-02"
+    },
+    {
+        "title": "Monsoon",
+        "id": 605499,
+        "poster_path": "\/xIKVeH1iAKJOYYh9lvObD3hYIaf.jpg",
+        "backdrop_path": "\/48OhmVjmjqhB1TrevTMKwKUDetU.jpg",
+        "overview": "Kit no recuerda mucho de su Vietnam natal. Cuando regresa a la Tierra de la Estrella Dorada por primera vez en m\u00e1s de treinta a\u00f1os, contempla su entorno local como lo har\u00eda cualquier turista occidental, y el entorno es tan ex\u00f3tico como incomprensible el idioma. El objetivo de los viajes de Kit, encontrar un lugar para esparcir las cenizas de sus padres, se convierte as\u00ed en parte de un viaje de regreso a sus ra\u00edces y al descubrimiento de su identidad, que las circunstancias externas han vuelto ambiguas y complejas.",
+        "vote_average": 6,
+        "genres": [
+            18,
+            10749
+        ],
+        "release_date": "2020-09-25"
     }
 ]

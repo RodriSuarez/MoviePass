@@ -17,6 +17,8 @@ define("LANGUAGE", "&language=es-ES");
 define("API_IMG", "https://image.tmdb.org/t/p/w500");
 define("API_URL" ,"https://api.themoviedb.org/3");
 define("NOW_PLAYING", "/movie/now_playing?");
+//youtube
+define("YOUTUBE_URL", "https://www.youtube.com/watch?v=");
 ?>
 
 

@@ -22,7 +22,7 @@
             $movieList = $this->movieDao->GetAll();
             $genreList = $this->genreList;
 
-            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            require_once(ROOT. VIEWS_PATH . 'movie-lastest-2.php');
         }
 
         public function RefreshLastestMovies(){
@@ -31,7 +31,7 @@
             $movieList = $this->movieDao->GetAll();
             $genreList = $this->genreList;
             
-            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            require_once(ROOT. VIEWS_PATH . 'movie-lastest-2.php');
 
         }
     }
