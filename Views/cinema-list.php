@@ -65,7 +65,7 @@
                                                                  </button>
                                                                  </div>
                                                                  <div class="modal-body text-dark">
-                                                                      ¿Esta seguro que desea eliminar <?= var_dump($cinema) ?> ?
+                                                                      ¿Esta seguro que desea eliminar <?= $cinema->getName() ?> ?
                                                                  </div>
                                                                  <div class="modal-footer">
                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

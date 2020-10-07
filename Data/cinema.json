@@ -6,12 +6,6 @@
         "priceTicket": "755"
     },
     {
-        "name": "Cines del Paseo Diagonal",
-        "address": "Diagonal perinola 1552",
-        "capacity": "250",
-        "priceTicket": "370"
-    },
-    {
         "name": "Cines del Paseo 3",
         "address": "Diagonal perinola 1352",
         "capacity": "250",
@@ -28,11 +22,5 @@
         "address": "Calle falsa 3772",
         "capacity": "250",
         "priceTicket": "370"
-    },
-    {
-        "name": "Cines del Paseo Diagonal",
-        "address": "Tu imaginacion 10",
-        "capacity": "1",
-        "priceTicket": "3700"
     }
 ]
