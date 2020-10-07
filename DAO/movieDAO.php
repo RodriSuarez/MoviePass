@@ -4,7 +4,7 @@
 
     use Models\Movie as Movie;
 
-    class MovieaDao
+    class MovieDao
     {        
         private $movieList = array();
         private $fileName;
@@ -14,11 +14,11 @@
             $this->fileName = dirname(__DIR__)."/Data/movies.json";
         }
 
-        public function Add(Cinema $cinema)
+        public function Add(Movie $movie)
         {
             $this->RetrieveData();
             
-            array_push($this->movieList, $cinema);
+            array_push($this->movieList, $movie);
 
             $this->SaveData();
         }
@@ -32,8 +32,7 @@
         public function GetOne($id)
         {
             $this->RetrieveData();
-          //  var_dump($id);
-            foreach($this->movieList as $cinema){
+            foreach($this->movieList as $movie){
                 if($cinema->getName() == $id){
                     return $cinema;
                 }
@@ -41,19 +40,55 @@
             return null;
         }
 
-        public function EditOne($id, Cinema $modify)
+        public function EditOne($id, Movie $modify)
         {
             $this->RetrieveData();
-          //  var_dump($id);
-            foreach($this->movieList as $cinema){
-                if($cinema->getName() == $id){
-                    $cinema = $modify;
+            var_dump($id);
+            foreach($this->movieList as $movie){
+                if($movie->getName() == $id){
+                    $movie = $modify;
                 }
             }
             $this->SaveData();
         }
 
-        public function getApiMovies(){
+        public function exist(Movie $movie){
+
+            return in_array($movie, $this->movieList);
+        }
+
+
+
+        public function GetApiMovies(){
+           
+            $this->RetrieveData();
+
+            $newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE), true );
+ 
+            foreach($newArrivals['results'] as $movie){
+                
+
+                $joinMovie = new Movie();
+
+                $joinMovie ->setTitle($movie['title']);
+                $joinMovie ->setApi_id($movie['id']);
+                $joinMovie ->setPoster_path($movie['poster_path']);
+                $joinMovie ->setBackdrop_path($movie['backdrop_path']);
+                $joinMovie ->setOverview($movie['overview']);
+                $joinMovie ->setVote_average($movie['vote_average']);
+                $joinMovie ->setGenres($movie['genre_ids']);
+                $joinMovie ->setRealease_date($movie['release_date']);
+                                
+                
+                if(!$this->exist($joinMovie)){
+                   
+                    $this->Add($joinMovie);
+                    echo '<p class="text-white">Se agrego ' . $joinMovie->getTitle() . "<p>";
+                   
+                }
+
+            }
+
 
         }
 
@@ -69,13 +104,18 @@
         private function SaveData()
         {
             $arrayToEncode = array();
+                      
 
-            foreach($this->movieList as $cinema)
+            foreach($this->movieList as $movie)
             {
-                $valuesArray["name"] = $cinema->getName();
-                $valuesArray["address"] = $cinema->getAddress();
-                $valuesArray["capacity"] = $cinema->getCapacity();
-                $valuesArray["priceTicket"] = $cinema->getPriceTicket();
+                $valuesArray["title"] = $movie->getTitle();
+                $valuesArray["id"] = $movie->getApi_id();
+                $valuesArray["poster_path"] = $movie->getPoster_path();
+                $valuesArray["backdrop_path"] = $movie->getBackdrop_path();
+                $valuesArray["overview"] = $movie->getOverview();
+                $valuesArray["vote_average"] = $movie->getVote_average();
+                $valuesArray["genres"] = $movie->getGenres();
+                $valuesArray["release_date"] = $movie->getRealease_date();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -96,15 +136,20 @@
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
                 foreach($arrayToDecode as $valuesArray)
-                { //($name='', $address='', $capacity='', $priceTicket='')
-                    $cinema = new Cinema();
-                    $cinema->setName($valuesArray["name"]);
-                    $cinema->setAddress($valuesArray["address"]);
-                    $cinema->setCapacity($valuesArray["capacity"]);
-                    $cinema->setPriceTicket($valuesArray["priceTicket"]);
+                { 
+                    $movie = new Movie();
+
+                    $movie->setTitle($valuesArray["title"]);
+                    $movie->setApi_id($valuesArray["id"]);
+                    $movie->setPoster_path($valuesArray["poster_path"]);
+                    $movie->setBackdrop_path($valuesArray["backdrop_path"]);
+                    $movie->setOverview($valuesArray["overview"]);
+                    $movie->setVote_average($valuesArray["vote_average"]);
+                    $movie->setGenres($valuesArray["genres"]);
+                    $movie->setRealease_date($valuesArray["release_date"]);
                  
 
-                    array_push($this->movieList, $cinema);
+                    array_push($this->movieList, $movie);
                 }
             }
         }

@@ -2,7 +2,7 @@
     namespace Controllers;
 
     use DAO\cinemaDAO as CinemaDao;
-    use models\cinema as Cinema;
+    use Models\Cinema as Cinema;
    
     class CinemaController{
         private $cinemaDao;

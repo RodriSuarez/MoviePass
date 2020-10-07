@@ -112,7 +112,7 @@
                 $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
                 foreach($arrayToDecode as $valuesArray)
-                { //($name='', $address='', $capacity='', $priceTicket='')
+                { 
                     $cinema = new Cinema();
                     $cinema->setName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);

@@ -14,9 +14,14 @@
         </li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">List Cinema</a>
 
-      </li></li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowSearchView' ?>">Search Movies</a>
+        </li></li>
+        <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>">Search Movies</a>
       </li>
+      <li class="nav-item bg-danger">
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Refresh Movies</a>
+      </li>
+      
     
   
      

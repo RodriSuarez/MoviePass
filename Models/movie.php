@@ -16,8 +16,8 @@
         public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date=''){
             $this->title = $title;
             $this->api_id = $api_id;
-            $this->poster_path = IMG_API . $poster_path;
-            $this->backdrop_path = IMG_API . $backdrop_path;
+            $this->poster_path = $poster_path;
+            $this->backdrop_path = $backdrop_path;
             $this->overview = $overview;
             $this->vote_average = $vote_average;
             $this->genres = $genres;
