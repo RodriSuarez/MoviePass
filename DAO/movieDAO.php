@@ -64,7 +64,7 @@
             $this->RetrieveData();
 
             $newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE), true );
- 
+            
             foreach($newArrivals['results'] as $movie){
                 
 
@@ -79,7 +79,10 @@
                 $joinMovie ->setGenres($movie['genre_ids']);
                 $joinMovie ->setRealease_date($movie['release_date']);
                                 
-                
+                $youtubeLink = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results']['0']['key'];
+
+                $joinMovie ->setTrailer_link($youtubeLink);
+
                 if(!$this->exist($joinMovie)){
                    
                     $this->Add($joinMovie);
@@ -116,6 +119,7 @@
                 $valuesArray["vote_average"] = $movie->getVote_average();
                 $valuesArray["genres"] = $movie->getGenres();
                 $valuesArray["release_date"] = $movie->getRealease_date();
+                $valuesArray["trailer_link"] = $movie->getTrailer_link();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -147,7 +151,7 @@
                     $movie->setVote_average($valuesArray["vote_average"]);
                     $movie->setGenres($valuesArray["genres"]);
                     $movie->setRealease_date($valuesArray["release_date"]);
-                 
+                    $movie->setTrailer_link($valuesArray["trailer_link"]);
 
                     array_push($this->movieList, $movie);
                 }

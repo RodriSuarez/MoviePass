@@ -12,8 +12,8 @@
         private $vote_average;
         private $genres;
         private $realease_date;
-    
-        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date=''){
+        private $trailer_link;
+        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date='', $trailer_link=''){
             $this->title = $title;
             $this->api_id = $api_id;
             $this->poster_path = $poster_path;
@@ -22,6 +22,7 @@
             $this->vote_average = $vote_average;
             $this->genres = $genres;
             $this->realease_date = $realease_date;
+            $this->trailer_link = $trailer_link;
         }
     
     
@@ -182,6 +183,26 @@
         public function setRealease_date($realease_date)
         {
                 $this->realease_date = $realease_date;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of trailer_link
+         */ 
+        public function getTrailer_link()
+        {
+                return $this->trailer_link;
+        }
+
+        /**
+         * Set the value of trailer_link
+         *
+         * @return  self
+         */ 
+        public function setTrailer_link($trailer_link)
+        {
+                $this->trailer_link = $trailer_link;
 
                 return $this;
         }

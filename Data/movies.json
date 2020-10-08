@@ -1,5 +1,63 @@
 [
     {
+        "title": "El avi\u00f3n del dinero",
+        "id": 694919,
+        "poster_path": "\/v0BiswYPEZzZTYazvwktPTOTMpP.jpg",
+        "backdrop_path": "\/pq0JSpwyT2URytdFG0euztQPAyR.jpg",
+        "overview": "Un ladr\u00f3n profesional con una deuda de 40 millones de d\u00f3lares a sus espaldas y la vida de su familia en peligro, se ve obligado a realizar un \u00faltimo golpe: robar un futurista casino a\u00e9reo cuya que tiene por clientes a los criminales m\u00e1s peligrosos del mundo.",
+        "vote_average": 6,
+        "genres": [
+            28
+        ],
+        "release_date": "2020-09-29",
+        "trailer_link": "aETz_dRDEys"
+    },
+    {
+        "title": "Mul\u00e1n",
+        "id": 337401,
+        "poster_path": "\/rd7ElSRYhN2CFqMcyH8rqrwLbd6.jpg",
+        "backdrop_path": "\/zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
+        "overview": "El emperador de China emite un decreto para reclutar a un var\u00f3n por cada familia que deber\u00e1 servir en el ej\u00e9rcito imperial para defender al pa\u00eds de los invasores del norte. Hua Mul\u00e1n, hija \u00fanica de un condecorado guerrero, se presenta para evitar que su anciano padre sea llamado a filas. Se hace pasar por un hombre, Hua Jun y se somete a todo tipo de pruebas. Para conseguirlo deber\u00e1 apelar a su fuerza interior y sacar a la luz todo su potencial. Se trata de una aventura \u00e9pica que la transformar\u00e1 en una guerrera laureada que la har\u00e1 merecedora del respeto de todo un pa\u00eds y motivo de orgullo para su padre.",
+        "vote_average": 7.4,
+        "genres": [
+            28,
+            12,
+            18,
+            14
+        ],
+        "release_date": "2020-09-04",
+        "trailer_link": "01ON04GCwKs"
+    },
+    {
+        "title": "Ava",
+        "id": 539885,
+        "poster_path": "\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg",
+        "backdrop_path": "\/54yOImQgj8i85u9hxxnaIQBRUuo.jpg",
+        "overview": "Ava es una mort\u00edfera asesina a sueldo que trabaja para una organizaci\u00f3n de operaciones encubiertas, que viaja por todo el mundo acabando con aquellos objetivos que nadie m\u00e1s puede derribar. Cuando uno de sus encargos sale mal, Ava tendr\u00e1 que luchar por una vida.",
+        "vote_average": 6,
+        "genres": [
+            28,
+            80,
+            18,
+            53
+        ],
+        "release_date": "2020-07-02",
+        "trailer_link": "ozUuAcGOhPs"
+    },
+    {
+        "title": "Rogue",
+        "id": 718444,
+        "poster_path": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
+        "backdrop_path": "\/x4UkhIQuHIJyeeOTdcbZ3t3gBSa.jpg",
+        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
+        "vote_average": 5.9,
+        "genres": [
+            28
+        ],
+        "release_date": "2020-08-20",
+        "trailer_link": "IpSK2CsKULg"
+    },
+    {
         "title": "Train To Busan 2: Peninsula",
         "id": 581392,
         "poster_path": "\/ew1lAU8yV66JbivBU1Zh4Wj4pOB.jpg",
@@ -11,7 +69,8 @@
             27,
             53
         ],
-        "release_date": "2020-07-15"
+        "release_date": "2020-07-15",
+        "trailer_link": "yVucSRLLeIM"
     },
     {
         "title": "Como perros y gatos: La patrulla unida",
@@ -24,19 +83,8 @@
             28,
             35
         ],
-        "release_date": "2020-10-02"
-    },
-    {
-        "title": "Antebellum",
-        "id": 627290,
-        "poster_path": "\/kxekf7Ufxhubi00h02oWq6gbkWX.jpg",
-        "backdrop_path": "\/pGqBDYycGWsMYc57sYv5M9GAQoW.jpg",
-        "overview": "Ver\u00f3nica es una escritora de \u00e9xito que queda atrapada en una terror\u00edfica realidad cuyo misterio debe resolver antes de que sea demasiado tarde.",
-        "vote_average": 6,
-        "genres": [
-            27
-        ],
-        "release_date": "2020-09-02"
+        "release_date": "2020-10-02",
+        "trailer_link": "ct5mQYE3Xk4"
     },
     {
         "title": "After: en mil pedazos",
@@ -49,35 +97,8 @@
             18,
             10749
         ],
-        "release_date": "2020-09-02"
-    },
-    {
-        "title": "The Owners",
-        "id": 659986,
-        "poster_path": "\/gzFatNrw0lhKD5NxaU6zC7S2KjP.jpg",
-        "backdrop_path": "\/xUUtcxWC6H48UCrpRwwSPQz69XC.jpg",
-        "overview": "Un grupo de amigos cree que encuentran un blanco f\u00e1cil en una casa vac\u00eda con una caja fuerte llena de dinero en efectivo. Pero cuando la pareja de ancianos que vive all\u00ed llega temprano a casa, las cosas cambian de repente. Mientras se produce un juego mortal del gato y el rat\u00f3n, los posibles ladrones deben luchar para salvarse de una pesadilla que nunca hubieran imaginado.",
-        "vote_average": 5.7,
-        "genres": [
-            28,
-            27,
-            53
-        ],
-        "release_date": "2020-09-04"
-    },
-    {
-        "title": "Cr\u00edmenes de familia",
-        "id": 632618,
-        "poster_path": "\/5pe30v0z4ucVgwh5nR439cCzwwO.jpg",
-        "backdrop_path": "\/cVdYaAQmd5DZNdo0KFJruz7JpUs.jpg",
-        "overview": "Las vidas de Alicia e Ignacio, un matrimonio de uno de los barrios m\u00e1s lujosos de Buenos Aires, comienzan a alterarse cuando su propio hijo est\u00e1 muy cerca de quedar preso por una acusaci\u00f3n de intento de homicidio de su ex esposa.",
-        "vote_average": 6.5,
-        "genres": [
-            80,
-            18,
-            53
-        ],
-        "release_date": "2020-08-20"
+        "release_date": "2020-09-02",
+        "trailer_link": "u5B76cpkbfU"
     },
     {
         "title": "Trolls 2 Gira mundial",
@@ -94,7 +115,51 @@
             10402,
             10751
         ],
-        "release_date": "2020-03-12"
+        "release_date": "2020-03-12",
+        "trailer_link": "SyTg7RIn-X8"
+    },
+    {
+        "title": "Cr\u00edmenes de familia",
+        "id": 632618,
+        "poster_path": "\/5pe30v0z4ucVgwh5nR439cCzwwO.jpg",
+        "backdrop_path": "\/cVdYaAQmd5DZNdo0KFJruz7JpUs.jpg",
+        "overview": "Las vidas de Alicia e Ignacio, un matrimonio de uno de los barrios m\u00e1s lujosos de Buenos Aires, comienzan a alterarse cuando su propio hijo est\u00e1 muy cerca de quedar preso por una acusaci\u00f3n de intento de homicidio de su ex esposa.",
+        "vote_average": 6.5,
+        "genres": [
+            80,
+            18,
+            53
+        ],
+        "release_date": "2020-08-20",
+        "trailer_link": "u2ncERi6TgU"
+    },
+    {
+        "title": "Antebellum",
+        "id": 627290,
+        "poster_path": "\/kxekf7Ufxhubi00h02oWq6gbkWX.jpg",
+        "backdrop_path": "\/pGqBDYycGWsMYc57sYv5M9GAQoW.jpg",
+        "overview": "Ver\u00f3nica es una escritora de \u00e9xito que queda atrapada en una terror\u00edfica realidad cuyo misterio debe resolver antes de que sea demasiado tarde.",
+        "vote_average": 6,
+        "genres": [
+            27
+        ],
+        "release_date": "2020-09-02",
+        "trailer_link": "mXcZ7WDsVwk"
+    },
+    {
+        "title": "The Owners",
+        "id": 659986,
+        "poster_path": "\/gzFatNrw0lhKD5NxaU6zC7S2KjP.jpg",
+        "backdrop_path": "\/xUUtcxWC6H48UCrpRwwSPQz69XC.jpg",
+        "overview": "Un grupo de amigos cree que encuentran un blanco f\u00e1cil en una casa vac\u00eda con una caja fuerte llena de dinero en efectivo. Pero cuando la pareja de ancianos que vive all\u00ed llega temprano a casa, las cosas cambian de repente. Mientras se produce un juego mortal del gato y el rat\u00f3n, los posibles ladrones deben luchar para salvarse de una pesadilla que nunca hubieran imaginado.",
+        "vote_average": 5.7,
+        "genres": [
+            28,
+            27,
+            53
+        ],
+        "release_date": "2020-09-04",
+        "trailer_link": "yMvJSivVNrs"
     },
     {
         "title": "Onward",
@@ -110,20 +175,8 @@
             14,
             10751
         ],
-        "release_date": "2020-02-29"
-    },
-    {
-        "title": "I Am Not a Bird",
-        "id": 479259,
-        "poster_path": "\/vQgXwuJrlpzGDI8169tRQRy71Nv.jpg",
-        "backdrop_path": "\/wUP0KIAXcRevjjJpoSKT7LLhiaK.jpg",
-        "overview": "Margaret est\u00e1 haciendo todo lo que est\u00e1 a su alcance para olvidar su hogar, y la vida nocturna ex\u00f3tica de Tokio, repleta de bebidas, drogas y hoteles de amor de tres horas, le permite mantener sus demonios a raya. Trabajando como especialista inglesa en Air-Pro Stewardess Training Institute durante el d\u00eda y perdi\u00e9ndose en un olvido sexual y narcotizado por la noche, Margaret reprime recuerdos de su dolorosa infancia en Canad\u00e1 y el descenso de su hermano mayor Frank a la locura. -an\u00f3nimo",
-        "vote_average": 5.1,
-        "genres": [
-            18,
-            53
-        ],
-        "release_date": "2020-09-18"
+        "release_date": "2020-02-29",
+        "trailer_link": "x8DKg_fsacM"
     },
     {
         "title": "My Hero Academia: el despertar de los h\u00e9roes",
@@ -136,7 +189,23 @@
             28,
             16
         ],
-        "release_date": "2019-12-20"
+        "release_date": "2019-12-20",
+        "trailer_link": "_A-6qcgExA4"
+    },
+    {
+        "title": "La fuerza de la naturaleza",
+        "id": 619592,
+        "poster_path": "\/2gPe9cpLGRBbuTKjGBpGkzSGRRP.jpg",
+        "backdrop_path": "\/eIqyISB5j99OSRZUuvdN9g2bBsS.jpg",
+        "overview": "Una banda de ladrones planea un atraco durante un hurac\u00e1n y se encuentra con problemas cuando un polic\u00eda en desgracia intenta obligar a todos en el edificio a evacuar.",
+        "vote_average": 5.3,
+        "genres": [
+            28,
+            80,
+            18
+        ],
+        "release_date": "2020-07-02",
+        "trailer_link": "iQKaY8G9VpQ"
     },
     {
         "title": "The Outpost",
@@ -151,7 +220,8 @@
             36,
             10752
         ],
-        "release_date": "2020-06-24"
+        "release_date": "2020-06-24",
+        "trailer_link": "f4LM9a02q9Q"
     },
     {
         "title": "El diablo a todas horas",
@@ -165,7 +235,22 @@
             18,
             53
         ],
-        "release_date": "2020-09-11"
+        "release_date": "2020-09-11",
+        "trailer_link": "EIzazUv2gtI"
+    },
+    {
+        "title": "I Am Not a Bird",
+        "id": 479259,
+        "poster_path": "\/vQgXwuJrlpzGDI8169tRQRy71Nv.jpg",
+        "backdrop_path": "\/wUP0KIAXcRevjjJpoSKT7LLhiaK.jpg",
+        "overview": "Margaret est\u00e1 haciendo todo lo que est\u00e1 a su alcance para olvidar su hogar, y la vida nocturna ex\u00f3tica de Tokio, repleta de bebidas, drogas y hoteles de amor de tres horas, le permite mantener sus demonios a raya. Trabajando como especialista inglesa en Air-Pro Stewardess Training Institute durante el d\u00eda y perdi\u00e9ndose en un olvido sexual y narcotizado por la noche, Margaret reprime recuerdos de su dolorosa infancia en Canad\u00e1 y el descenso de su hermano mayor Frank a la locura. -an\u00f3nimo",
+        "vote_average": 5.1,
+        "genres": [
+            18,
+            53
+        ],
+        "release_date": "2020-09-18",
+        "trailer_link": "436179361"
     },
     {
         "title": "Pinocho",
@@ -180,7 +265,8 @@
             14,
             10751
         ],
-        "release_date": "2019-12-19"
+        "release_date": "2019-12-19",
+        "trailer_link": "v1VH-8ezqTw"
     },
     {
         "title": "Tenet",
@@ -194,89 +280,8 @@
             878,
             53
         ],
-        "release_date": "2020-08-22"
-    },
-    {
-        "title": "La fuerza de la naturaleza",
-        "id": 619592,
-        "poster_path": "\/2gPe9cpLGRBbuTKjGBpGkzSGRRP.jpg",
-        "backdrop_path": "\/eIqyISB5j99OSRZUuvdN9g2bBsS.jpg",
-        "overview": "Una banda de ladrones planea un atraco durante un hurac\u00e1n y se encuentra con problemas cuando un polic\u00eda en desgracia intenta obligar a todos en el edificio a evacuar.",
-        "vote_average": 5.3,
-        "genres": [
-            28,
-            80,
-            18
-        ],
-        "release_date": "2020-07-02"
-    },
-    {
-        "title": "Bill & Ted Face the Music",
-        "id": 501979,
-        "poster_path": "\/4V2nTPfeB59TcqJcUfQ9ziTi7VN.jpg",
-        "backdrop_path": "\/oazPqs1z78LcIOFslbKtJLGlueo.jpg",
-        "overview": "A dos aspirantes a rockeros de San Dimas, California, se les dijo una vez que salvar\u00edan el universo durante una aventura de viaje en el tiempo, pero se encuentran como padres de mediana edad que a\u00fan intentan poner en marcha una canci\u00f3n exitosa y cumplir su destino. Sin suerte e inspiraci\u00f3n, Bill y Ted emprendieron otra aventura de viaje en el tiempo para buscar la canci\u00f3n que establecer\u00e1 su mundo correcto y traer\u00e1 armon\u00eda al universo tal como lo conocemos.",
-        "vote_average": 6.4,
-        "genres": [
-            12,
-            35,
-            878
-        ],
-        "release_date": "2020-08-27"
-    },
-    {
-        "title": "El avi\u00f3n del dinero",
-        "id": 694919,
-        "poster_path": "\/v0BiswYPEZzZTYazvwktPTOTMpP.jpg",
-        "backdrop_path": "\/pq0JSpwyT2URytdFG0euztQPAyR.jpg",
-        "overview": "Un ladr\u00f3n profesional con una deuda de 40 millones de d\u00f3lares a sus espaldas y la vida de su familia en peligro, se ve obligado a realizar un \u00faltimo golpe: robar un futurista casino a\u00e9reo cuya que tiene por clientes a los criminales m\u00e1s peligrosos del mundo.",
-        "vote_average": 6,
-        "genres": [
-            28
-        ],
-        "release_date": "2020-09-29"
-    },
-    {
-        "title": "Mul\u00e1n",
-        "id": 337401,
-        "poster_path": "\/rd7ElSRYhN2CFqMcyH8rqrwLbd6.jpg",
-        "backdrop_path": "\/zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
-        "overview": "El emperador de China emite un decreto para reclutar a un var\u00f3n por cada familia que deber\u00e1 servir en el ej\u00e9rcito imperial para defender al pa\u00eds de los invasores del norte. Hua Mul\u00e1n, hija \u00fanica de un condecorado guerrero, se presenta para evitar que su anciano padre sea llamado a filas. Se hace pasar por un hombre, Hua Jun y se somete a todo tipo de pruebas. Para conseguirlo deber\u00e1 apelar a su fuerza interior y sacar a la luz todo su potencial. Se trata de una aventura \u00e9pica que la transformar\u00e1 en una guerrera laureada que la har\u00e1 merecedora del respeto de todo un pa\u00eds y motivo de orgullo para su padre.",
-        "vote_average": 7.4,
-        "genres": [
-            28,
-            12,
-            18,
-            14
-        ],
-        "release_date": "2020-09-04"
-    },
-    {
-        "title": "Rogue",
-        "id": 718444,
-        "poster_path": "\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg",
-        "backdrop_path": "\/x4UkhIQuHIJyeeOTdcbZ3t3gBSa.jpg",
-        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
-        "vote_average": 5.9,
-        "genres": [
-            28
-        ],
-        "release_date": "2020-08-20"
-    },
-    {
-        "title": "Ava",
-        "id": 539885,
-        "poster_path": "\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg",
-        "backdrop_path": "\/54yOImQgj8i85u9hxxnaIQBRUuo.jpg",
-        "overview": "Ava es una mort\u00edfera asesina a sueldo que trabaja para una organizaci\u00f3n de operaciones encubiertas, que viaja por todo el mundo acabando con aquellos objetivos que nadie m\u00e1s puede derribar. Cuando uno de sus encargos sale mal, Ava tendr\u00e1 que luchar por una vida.",
-        "vote_average": 6,
-        "genres": [
-            28,
-            80,
-            18,
-            53
-        ],
-        "release_date": "2020-07-02"
+        "release_date": "2020-08-22",
+        "trailer_link": "LdOM0x0XDMo"
     },
     {
         "title": "Monsoon",
@@ -289,6 +294,7 @@
             18,
             10749
         ],
-        "release_date": "2020-09-25"
+        "release_date": "2020-09-25",
+        "trailer_link": "a-phXZel83o"
     }
 ]

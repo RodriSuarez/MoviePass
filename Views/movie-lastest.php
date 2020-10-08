@@ -1,35 +1,15 @@
-<div class="container-fluid text-center justify-content align-middle">
-  
-  <div class="row mt-3 mb-3">
-      <?php foreach($movieList as $result) {?>
-          <div class="col">
-      <div class="card" style="width: 22rem;">
-  <img src="<?= API_IMG . $result->getPoster_path();?>" class="card-img-top" alt="Imagen no disponible">
-  <div class="card-body">
-      <h3 class="card-title"><?= $result->getTitle(); ?></h3>
-      <p class="card-text"><?= $result->getOverview(); ?></p>
-      <p class="card-text">
-      <iframe style"display: none" width="560" height="315" src="https://www.youtube.com/embed/<?= json_decode(file_get_contents(API_URL .'/movie/'. $result->getApi_id() .'/videos?'. API_KEY),
-      true)['results']['0']['key']?>" 
-      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
-      <?php foreach($result->getGenres() as $genre){
-          echo $genreList->getOne($genre) . '<br>';
-      } ?></p>
-      <a href="#" class="btn btn-primary">Añadir pelicula</a>
-      </div>
-  </div>
-  </div>
-    <!-- Grid row -->
-    <div class="row">
+<div class="text-center ">
+<div class="row d-flex ">
 
+      <?php foreach($movieList as $key => $result) { ?>
+ 
+          
 <!-- Grid column -->
-<div class="col-lg-4 col-md-12 mb-4">
+<div class="col-lg-2 col-md-12 m-4">
 
   <!--Modal: Name-->
-  <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modal<?=$key?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-
       <!--Content-->
       <div class="modal-content">
 
@@ -37,8 +17,7 @@
         <div class="modal-body mb-0 p-0">
 
           <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= json_decode(file_get_contents(API_URL .'/movie/'. $result->getApi_id() .'/videos?'. API_KEY),
-      true)['results']['0']['key']?>"
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?= $result->getTrailer_link()?>"
               allowfullscreen></iframe>
           </div>
 
@@ -46,24 +25,61 @@
 
         <!--Footer-->
         <div class="modal-footer justify-content-center">
-          <span class="mr-4">Spread the word!</span>
-          <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
-          <!--Twitter-->
-          <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
-          <!--Google +-->
-          <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
-          <!--Linkedin-->
-          <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
-
-          <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+          
+          <h3 class="mr-4"><?= $result->getTitle()?></h3>
+          
+          <div class="row">
+         
+              <div class="col-12">
+                <hr>
+              <h5>Fecha de estreno</h5>
+              <p><?php $date = new DateTime($result->getRealease_date());
+                    echo date_format($date, "d-m-Y");
+                ?></p>
+                <hr>
+                <h5>Descripción</h5>
+            <p class="text-center"><?= $result->getOverview() ?></p>
+            <hr>
+            <h5 class="font-style-bold" > Genero </h5>
+           <p><?= $genreList->getOne($result->getGenres()['0'])?></p>
+            <?php if(count($result->getGenres()) > 1){?>
+              <h6>Subgeneros</h6>
+              <?php
+              foreach($result->getGenres() as $index => $genre){
+                    if($index != 0){?>
+                <p><?= $genreList->getOne($genre) ?> </p>
+              <?php }
+              }
+              } ?>
+              <hr>
+            
+          </div>
+         </div>
+          <form action="">
+            <button class="btn btn-success clickeable" type=submit>Agregar pelicula a la cartelera</button>
+  
+          </form>
+          <button type="button" class="btn btn-danger btn-rounded btn-md ml-4" data-dismiss="modal">Cerrar</button>
 
         </div>
 
       </div>
-     </div>
+      <!--/.Content-->
+
+    </div>
+  </div>
+  <!--Modal: Name-->
+
+  <img class="img-fluid rounded-lg btn rounded shadow-sm z-depth-1" src="<?= API_IMG . $result->getPoster_path();?>" alt="video"
+      data-toggle="modal" data-target="#modal<?=$key?>">
+
 </div>
+<!-- Grid column -->
+            
+
+
+
   
   <?php } ?>
           
-      </div>
   </div>
