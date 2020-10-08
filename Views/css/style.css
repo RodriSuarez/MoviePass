@@ -9,6 +9,7 @@
 }
 .clickeable{
   transform: scale(1);
+  transition: 0.5s;
 }
 
 
@@ -20,5 +21,9 @@
 }
 
 .slider-ro{
-  transition: 2s;
+  transition: all .4s ease-in-out !important;
+}
+
+#appContainer{
+  width: 100% !important; 
 }
