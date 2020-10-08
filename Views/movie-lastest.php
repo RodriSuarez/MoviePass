@@ -1,3 +1,4 @@
+<?php require_once('nav.php'); ?>
 <div class="text-center"  id="appContainer">
   <div class="row ">
 
