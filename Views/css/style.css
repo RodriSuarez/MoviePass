@@ -12,7 +12,17 @@
   transition: 0.5s;
 }
 
+.bg-img-girl{
+  background: url("../img/bg-girl.jpg");
+   /* Full height */
+   height: 100%;
 
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+
+}
 .clickeable:hover{
   cursor: pointer;
   transition: 0.5s;

@@ -5,7 +5,7 @@
     {
         public function Index($message = "")
         {
-            require_once(ROOT. VIEWS_PATH."login.php");
+            require_once(ROOT. VIEWS_PATH."register.php");
         }        
     }
 ?>
