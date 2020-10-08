@@ -8,9 +8,17 @@
 
 }
 .clickeable{
-  transform: scale(2);
+  transform: scale(1);
 }
+
+
 .clickeable:hover{
   cursor: pointer;
-  transform: scale(5);
+  transition: 0.5s;
+  transform: scale(1.02,1.02);
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 1);
+}
+
+.slider-ro{
+  transition: 2s;
 }
