@@ -1,4 +1,5 @@
-<main>
+<?php //require_once("nav-no-login.php"); ?>
+<main class="fondo">
 
 
 <div class="container bg-img-girl text-white rounded aling-self-center justify-self-center">
@@ -54,7 +55,7 @@
                         </div>
                       
                         <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
-                    </div>.
+                    </div>
 
 
               

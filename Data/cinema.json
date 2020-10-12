@@ -22,5 +22,11 @@
         "address": "Calle falsa 3772",
         "capacity": "250",
         "priceTicket": "370"
+    },
+    {
+        "name": "Cine ilogico",
+        "address": "Direccion falsa",
+        "capacity": "123",
+        "priceTicket": "321"
     }
 ]
