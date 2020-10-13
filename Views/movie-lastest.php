@@ -1,7 +1,9 @@
 <?php require_once('nav.php'); ?>
 <div class="text-center"  id="appContainer">
-  <div class="row d-flex justify-content-center align-content-center ">
-
+<h1 class="text-white  mt-2 text-center">Listado de peliculas actuales</h1>
+    <br>  
+<div class="row d-flex justify-content-center align-content-center ">
+    
     <?php foreach($movieList as $key => $result) { ?>
 
       <!-- Grid column -->

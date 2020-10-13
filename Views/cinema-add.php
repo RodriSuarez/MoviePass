@@ -4,7 +4,7 @@
      <section id="listado" class="mb-5">
         <div class="container">
         
-        <h2 class="mb-4 text-center ">Agregar nuevo cine</h2>
+        <h2 class="mb-4 text-center text-white ">Agregar nuevo cine</h2>
         <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/Add" ?>" method="GET"  >
           <table class="table text-white bg-oscuro"> 
             

@@ -1,7 +1,11 @@
+body{
+  height: 100vh;
+}
+
 .fondo{
 
     /*background: url("../img/bg3.jpg") no-repeat center center fixed;*/
-    background-color: #eeeeee;
+    background-color: #222831;
 
   }
 
@@ -12,6 +16,18 @@
 .clickeable{
   transform: scale(1);
   transition: 0.5s;
+}
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; 
+}
+main{
+  height: 100vh;
 }
 
 .bg-img-girl{
