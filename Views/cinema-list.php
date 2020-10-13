@@ -3,7 +3,7 @@
      <section id="listado" class="mb-5">
           <div class="container">
                
-               <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
+               <h2 class="mb-4 text-center ">Listado de Cines</h2>
                <table class="table text-white bg-oscuro">
                     <thead>
                          <th>Nombre</th>

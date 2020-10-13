@@ -86,7 +86,7 @@
                 if(!$this->exist($joinMovie)){
                    
                     $this->Add($joinMovie);
-                    echo '<p class="text-white">Se agrego ' . $joinMovie->getTitle() . "<p>";
+                  // echo '<p class="text-white">Se agrego ' . $joinMovie->getTitle() . "<p>";
                    
                 }
 
