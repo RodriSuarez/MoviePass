@@ -19,5 +19,12 @@
         "capacity": "123",
         "priceTicket": "654",
         "id": 1602557173
+    },
+    {
+        "name": "Cine Aldrey",
+        "address": "Calle falsa 5000",
+        "capacity": "123",
+        "priceTicket": "321",
+        "id": 1602559560
     }
 ]

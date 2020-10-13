@@ -59,6 +59,7 @@
             
         }
 
+   
         public function Add($name, $address, $capacity, $priceTicket)
         {   
            
@@ -77,7 +78,7 @@
                 $message = '¡Se ha agregado a ' . $name . ' con exito!';
                 
             }else{
-                $message = '¡Error! No se ha agregado a ' . $name . '!';
+                $message = '¡Error inesperado! No se ha podido agregar a ' . $name;
             }
             
 
