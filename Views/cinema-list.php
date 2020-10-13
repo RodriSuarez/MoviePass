@@ -24,12 +24,12 @@
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo '$'.$cinema->getPriceTicket() ?></td>
                                              <td>
-                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema->getName() ?>" method="POST">
+                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema->getId() ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?=$cinema->getName() //ACA VA GETID?>" name="name">
+                                                  <input type="hidden" value="<?=$cinema->getId() //ACA VA GETID?>" name="id">
 
                                                   <!-- OJO este input es importante -->
 

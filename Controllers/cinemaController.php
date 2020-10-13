@@ -12,7 +12,7 @@
             $this->cinemaDao = new CinemaDao();
         }
 
-        public function ShowAddView()
+        public function ShowAddView($message='', $success='')
         {
             $cinemaList=$this->cinemaDao->GetAll();
             require_once(VIEWS_PATH."cinema-add.php");
@@ -41,7 +41,7 @@
             $this->ShowListView();
         }
 
-        public function EditOneCinema($oldname, $name, $address, $capacity, $priceTicket=''){
+        public function EditOneCinema($name, $address, $capacity, $priceTicket='',$id){
                      
             
             $modify = new Cinema();
@@ -49,9 +49,11 @@
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
             $modify->setPriceTicket($priceTicket);
+            $modify->setId($id);
             
+            var_dump($modify);
             
-            $this->cinemaDao->EditOne($name, $modify);
+            $this->cinemaDao->EditOne($id, $modify);
 
             $this->ShowListView();
             
@@ -66,12 +68,20 @@
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
             $cinema->setPriceTicket($priceTicket);
-            
-            
-            $this->cinemaDao->Add($cinema);
+            if(!$this->cinemaDao->exist($cinema)) 
+                $success = $this->cinemaDao->Add($cinema);
+            else
+                $success = false;
+           
+            if($success){
+                $message = '¡Se ha agregado a ' . $name . ' con exito!';
+                
+            }else{
+                $message = '¡Error! No se ha agregado a ' . $name . '!';
+            }
             
 
-            $this->ShowAddView();
+            $this->ShowAddView($message, $success);
         }
     }
 

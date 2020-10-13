@@ -43,8 +43,20 @@
             <input type="submit" class="btn" value="Agregar" style="background-color:#DC8E47;color:white;"/>
           </div>
         </form>
-      
+
+      <?php  if(!empty($message) && $success) {?>
+  
+      <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-success" role="alert">
+            <?= $message ?>
+      </div>    
+      <?php }elseif(!empty($message)){ ?>
+        <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-danger" role="alert">
+            <?= $message ?>
+      </div>    
+      <?php } ?>
     </div>
+
+  
         <!--  AGREGAR COSITAS LINDAS -> !-->
      </section>
 </main>

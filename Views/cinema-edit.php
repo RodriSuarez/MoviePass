@@ -5,19 +5,16 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white"> Editar <?= $cinema->getName()?></h2>
-        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/EditOneCinema/". $cinema->getName() ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/EditOneCinema/". $cinema->getId() ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>
-              	   <!--  private $name;
-        private $address;
-        private $capacity;
-        private $priceTicket;!-->
-        <input type="hidden" value="<?= $cinema->getName() ?>"name="oldname" size="30" required>
+              	   
+     
 
                 <th>Nombre</th>
                  <td>
-                  <input type="text" value="<?= $cinema->getName() ?>"name="name" size="30" readonly>
+                  <input type="text" value="<?= $cinema->getName() ?>"name="name" size="30" required>
                 </td>
            
              </tr>
@@ -38,6 +35,7 @@
                 <td>
                   <input type="number" name="priceTicket" size="10" value="<?= $cinema->getPriceTicket()?>" required>
                 </td>
+                <input type="hidden" value="<?= $cinema->getId() ?>"name="id" size="30" required>
               </tr>     
               </table>
           <br>

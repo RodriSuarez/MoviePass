@@ -20,7 +20,25 @@
             
             array_push($this->cinemaList, $cinema);
 
-            $this->SaveData();
+            return $this->SaveData();
+
+            
+
+        }
+
+        public function exist(Cinema $newOne){
+           
+            $this->RetrieveData();
+
+            foreach($this->cinemaList as $cinema){
+                if($cinema->getName() === $newOne->getName() && $cinema->getAddress() === $newOne->getAddress()){
+                    return true;
+                }
+            }
+
+            return false;
+
+
         }
 
         public function GetAll()
@@ -34,9 +52,8 @@
             
                 $this->RetrieveData();
 
-            //  var_dump($id);
                 foreach($this->cinemaList as $cinema){
-                    if($cinema->getName() == $id){
+                    if($cinema->getId() == $id){
                         return $cinema;
                     }
                 }
@@ -47,17 +64,17 @@
 
         }
 
-        public function EditOne($name, Cinema $cinemaModify){
+        public function EditOne($id, Cinema $cinemaModify){
 
             $this->RetrieveData();
             
-            $modify = $this->getOne($name);
+            $modify = $this->getOne($id);
 
             
             $keyList = null;
             
             foreach($this->cinemaList as $key => $cinema){
-                if($cinema->getName() == $name){
+                if($cinema->getId() == $id){
                     $keyList = $key;
                 }
             }
@@ -92,13 +109,16 @@
                 $valuesArray["address"] = $cinema->getAddress();
                 $valuesArray["capacity"] = $cinema->getCapacity();
                 $valuesArray["priceTicket"] = $cinema->getPriceTicket();
+                $valuesArray["id"] = $cinema->getId();
 
                 array_push($arrayToEncode, $valuesArray);
             }
 
             $jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
             
-            file_put_contents($this->fileName, $jsonContent);
+            return file_put_contents($this->fileName, $jsonContent);
+
+            
         }
      
         private function RetrieveData()
@@ -118,6 +138,7 @@
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);
                     $cinema->setPriceTicket($valuesArray["priceTicket"]);
+                    $cinema->setId($valuesArray["id"]);
                  
 
                     array_push($this->cinemaList, $cinema);
