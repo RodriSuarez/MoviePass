@@ -1,6 +1,6 @@
 <?php require_once('nav.php'); ?>
 <div class="text-center"  id="appContainer">
-  <div class="row ">
+  <div class="row d-flex justify-content-center align-content-center ">
 
     <?php foreach($movieList as $key => $result) { ?>
 
