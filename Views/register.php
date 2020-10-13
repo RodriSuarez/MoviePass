@@ -16,7 +16,7 @@
                 <div class="row">
 
                     <!-- First Name -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- Last Name -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
@@ -60,7 +60,7 @@
               
 
                     <!-- Password -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
@@ -70,7 +70,7 @@
                     </div>
 
                     <!-- Password Confirmation -->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
