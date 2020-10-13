@@ -54,7 +54,7 @@
                         </div>
                       
                         <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
-                    </div>.
+                    </div>
 
 
               
