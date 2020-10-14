@@ -21,10 +21,23 @@
         "id": 1602557173
     },
     {
+<<<<<<< HEAD
         "name": "Cine Aldrey",
         "address": "Calle falsa 5000",
         "capacity": "123",
         "priceTicket": "321",
         "id": 1602559560
+=======
+        "name": "Cines del Paseo Diagonal",
+        "address": "Calle falsa 3772",
+        "capacity": "250",
+        "priceTicket": "370"
+    },
+    {
+        "name": "Cine ilogico",
+        "address": "Direccion falsa",
+        "capacity": "123",
+        "priceTicket": "321"
+>>>>>>> pruebasRodri
     }
 ]

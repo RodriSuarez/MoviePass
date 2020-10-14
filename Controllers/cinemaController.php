@@ -1,7 +1,7 @@
 <?php
     namespace Controllers;
 
-    use DAO\cinemaDAO as CinemaDao;
+    use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
    
     class CinemaController{
@@ -69,6 +69,10 @@
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
             $cinema->setPriceTicket($priceTicket);
+<<<<<<< HEAD
+=======
+            
+>>>>>>> pruebasRodri
             if(!$this->cinemaDao->exist($cinema)) 
                 $success = $this->cinemaDao->Add($cinema);
             else

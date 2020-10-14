@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 <main class="bg-img-girl">
+=======
+<?php //require_once("nav-no-login.php"); ?>
+<main class="fondo">
+>>>>>>> pruebasRodri
 
 
 <div class="container text-white rounded aling-self-center justify-self-center">

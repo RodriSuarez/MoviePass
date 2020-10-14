@@ -1,9 +1,19 @@
 <?php require_once('nav.php'); ?>
+<<<<<<< HEAD
 <div class="text-center"  id="appContainer">
 <h1 class="text-white  mt-2 text-center">Listado de peliculas actuales</h1>
     <br>  
 <div class="row d-flex justify-content-center align-content-center ">
     
+=======
+<div class="m-5">
+  <?php include_once('login-button.php'); ?>
+</div>
+
+<div class="text-center mt-5"  id="appContainer">
+  <div class="row d-flex justify-content-center align-content-center ">
+
+>>>>>>> pruebasRodri
     <?php foreach($movieList as $key => $result) { ?>
 
       <!-- Grid column -->
@@ -11,7 +21,7 @@
         <!--Modal: Name-->
           <div class="clickeable bg-oscuro rounded" alt="video" data-toggle="modal" data-target="#modal<?=$key?>">
             <img class="img-fluid rounded   shadow-sm z-depth-1" src="<?= API_IMG . $result->getPoster_path();?>" alt="video" data-toggle="modal" data-target="#modal<?=$key?>">
-            <h4 class="text-white rounded-bottom font-weight-bold   pt-2 pb-2 p-1"><?= $result->getTitle()?></h4>
+            <h5 class="text-white rounded-bottom   pt-2 pb-2 p-1"><?= $result->getTitle()?></h5>
           </div>
       </div>
       <!-- Grid column -->
@@ -77,7 +87,10 @@
         </div>
       </div>
       
-    <?php } ?> 
+    <?php } 
+      include('login-form.php');
+    ?> 
             
   </div>
+  
 </div>

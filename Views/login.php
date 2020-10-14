@@ -1,13 +1,9 @@
 <main>
-
-
 <div class="container bg-img-girl text-white rounded justify-content-center align-content-center">
     <div class="row py-5 mt-4 align-items-center">
         <!-- For Demo Purpose -->
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0 text-center">
-            <img src="<?php // agregar imagen aca?>" alt="" class="img-fluid mb-3 d-none d-md-block">
-          
-          
+            <img src="<?php // agregar imagen aca?>" alt="" class="img-fluid mb-3 d-none d-md-block">          
         </div>
 
         <!-- Registeration Form -->

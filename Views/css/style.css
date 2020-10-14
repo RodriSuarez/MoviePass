@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
   height: 100vh;
 }
@@ -7,7 +8,32 @@ body{
     /*background: url("../img/bg3.jpg") no-repeat center center fixed;*/
     background-color: #222831;
 
+=======
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body{
+  margin: 0 !important ;
+  padding: 0 !important;
+  background-color: #e0e0e2 ;
+  height: 100vh;
+  
+}
+.fondo{
+    /*margin-top: -3rem;*/
+    height: 100vh;
+    background: url("../img/bg-girl.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+>>>>>>> pruebasRodri
   }
+
 
 .bg-oscuro{
   background-color: rgba(0, 0, 0, 0.4 );
@@ -31,7 +57,8 @@ main{
 }
 
 .bg-img-girl{
-  background: url("../img/bg-girl.jpg");
+  /*background: url("../img/bg-girl-png.png");
+
    /* Full height */
    height: 100%;
 
@@ -50,6 +77,18 @@ main{
 
 .slider-ro{
   transition: all .4s ease-in-out !important;
+}
+
+.second-color{
+  background-color: #222831;
+}
+
+.third-color{
+  background-color: #4f8a8b;
+}
+
+.fourth-color{
+  background-color: #fbd46d;
 }
 
 #appContainer{

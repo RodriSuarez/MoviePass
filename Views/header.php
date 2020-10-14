@@ -18,4 +18,5 @@
 
     <title>MoviePass</title>
 </head>
-<body class="fondo">
+
+<body class="">
