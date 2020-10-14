@@ -1,9 +1,9 @@
 <?php
     namespace Controllers;
 
-    use Models\Movie as Movie;
-    use DAO\MovieDao as MovieDao;
-    use DAO\GenreDAO as GenreDao;
+    use Models\movie as Movie;
+    use DAO\movie as MovieDAO;
+    use DAO\Genre as GenreDao;
 
     class MovieController{
 
@@ -11,8 +11,8 @@
         private $genreList;
 
         public function __construct(){
-            
-            $this->movieDao = new MovieDao();
+            echo 'asd';
+            $this->movieDao = new MovieDAO();
             $this->genreList = new GenreDao();
         }
 
@@ -23,6 +23,7 @@
             $genreList = $this->genreList;
 
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            
         }
 
         public function RefreshLastestMovies(){

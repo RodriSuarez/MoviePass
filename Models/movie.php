@@ -13,6 +13,7 @@
         private $genres;
         private $realease_date;
         private $trailer_link;
+        
         public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date='', $trailer_link=''){
             $this->title = $title;
             $this->api_id = $api_id;

@@ -2,9 +2,9 @@
     namespace DAO;
 
 
-    use Models\Movie as Movie;
+    use Models\Movie as _Movie;
 
-    class MovieDao
+    class Movie
     {        
         private $movieList = array();
         private $fileName;
@@ -14,7 +14,7 @@
             $this->fileName = dirname(__DIR__)."/Data/movies.json";
         }
 
-        public function Add(Movie $movie)
+        public function Add(_Movie $movie)
         {
             $this->RetrieveData();
             
@@ -40,7 +40,7 @@
             return null;
         }
 
-        public function EditOne($id, Movie $modify)
+        public function EditOne($id, _Movie $modify)
         {
             $this->RetrieveData();
             var_dump($id);
@@ -52,7 +52,7 @@
             $this->SaveData();
         }
 
-        public function exist(Movie $movie){
+        public function exist(_Movie  $movie){
 
             return in_array($movie, $this->movieList);
         }
@@ -68,7 +68,7 @@
             foreach($newArrivals['results'] as $movie){
                 
 
-                $joinMovie = new Movie();
+                $joinMovie = new _Movie ();
 
                 $joinMovie ->setTitle($movie['title']);
                 $joinMovie ->setApi_id($movie['id']);
@@ -141,7 +141,7 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 { 
-                    $movie = new Movie();
+                    $movie = new _Movie ();
 
                     $movie->setTitle($valuesArray["title"]);
                     $movie->setApi_id($valuesArray["id"]);
