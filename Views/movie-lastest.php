@@ -1,11 +1,4 @@
 <?php require_once('nav.php'); ?>
-<<<<<<< HEAD
-<div class="text-center"  id="appContainer">
-<h1 class="text-white  mt-2 text-center">Listado de peliculas actuales</h1>
-    <br>  
-<div class="row d-flex justify-content-center align-content-center ">
-    
-=======
 <div class="m-5">
   <?php include_once('login-button.php'); ?>
 </div>
@@ -13,7 +6,6 @@
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">
 
->>>>>>> pruebasRodri
     <?php foreach($movieList as $key => $result) { ?>
 
       <!-- Grid column -->
