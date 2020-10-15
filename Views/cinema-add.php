@@ -9,10 +9,7 @@
           <table class="table text-white bg-oscuro"> 
             
               <tr>
-              	   <!--  private $name;
-        private $address;
-        private $capacity;
-        private $priceTicket;!-->
+
                 <th>Nombre</th>
                  <td>
                   <input type="text" name="name" size="30" required>
