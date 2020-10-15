@@ -4,11 +4,7 @@
      <section id="listado" class="mb-5">
         <div class="container">
         
-<<<<<<< HEAD
-        <h2 class="mb-4 text-center "> Editar <?= $cinema->getName()?></h2>
-=======
         <h2 class="mb-4 text-center text-white "> Editar <?= $cinema->getName()?></h2>
->>>>>>> pruebasRodri
         <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/EditOneCinema/". $cinema->getId() ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
             

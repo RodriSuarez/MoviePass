@@ -1,8 +1,8 @@
 <?php
     namespace Controllers;
 
-    use Models\movie as Movie;
-    use DAO\movie as MovieDAO;
+    use Models\Movie as Movie;
+    use DAO\Movie as MovieDao;
     use DAO\Genre as GenreDao;
 
     class MovieController{
@@ -11,7 +11,6 @@
         private $genreList;
 
         public function __construct(){
-            echo 'asd';
             $this->movieDao = new MovieDAO();
             $this->genreList = new GenreDao();
         }

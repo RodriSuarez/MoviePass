@@ -2,7 +2,7 @@
     namespace DAO;
 
 
-    use Models\Cinema as _Cinema;
+    use Models\Cinema as CinemaModel;
 
     class Cinema
     {        
@@ -47,7 +47,7 @@
 
         }
 
-        public function EditOne($name, _Cinema $cinemaModify){
+        public function EditOne($name, CinemaModel $cinemaModify){
 
             $this->RetrieveData();
             
@@ -113,7 +113,7 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 { 
-                    $cinema = new _Cinema();
+                    $cinema = new CinemaModel();
                     $cinema->setName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);
