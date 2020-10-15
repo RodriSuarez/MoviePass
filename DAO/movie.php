@@ -33,7 +33,7 @@
         {
             $this->RetrieveData();
             foreach($this->movieList as $movie){
-                if($cinema->getName() == $id){
+                if($cinema->getId() == $id){
                     return $cinema;
                 }
             }
@@ -45,7 +45,7 @@
             $this->RetrieveData();
             var_dump($id);
             foreach($this->movieList as $movie){
-                if($movie->getName() == $id){
+                if($movie->getId() == $id){
                     $movie = $modify;
                 }
             }

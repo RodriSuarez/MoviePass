@@ -17,7 +17,7 @@ class user
 	public function __construct($firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='', $id_user='')
 	{
 		
-		$this->id_user = microtime();
+		$this->id_user = getdate()['0'];
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
 		$this->email = $email;

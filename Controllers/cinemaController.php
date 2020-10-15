@@ -69,10 +69,7 @@
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
             $cinema->setPriceTicket($priceTicket);
-<<<<<<< HEAD
-=======
             
->>>>>>> pruebasRodri
             if(!$this->cinemaDao->exist($cinema)) 
                 $success = $this->cinemaDao->Add($cinema);
             else
