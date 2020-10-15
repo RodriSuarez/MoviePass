@@ -2,9 +2,9 @@
     namespace DAO;
 
 
-    use Models\Cinema as Cinema;
+    use Models\Cinema as CinemaModel;
 
-    class CinemaDao
+    class Cinema
     {        
         private $cinemaList = array();
         private $fileName;
@@ -14,7 +14,7 @@
             $this->fileName = dirname(__DIR__)."/Data/cinema.json";
         }
 
-        public function Add(Cinema $cinema)
+        public function Add(CinemaModel $cinema)
         {
             $this->RetrieveData();
             
@@ -26,7 +26,7 @@
 
         }
 
-        public function exist(Cinema $newOne){
+        public function exist(CinemaModel $newOne){
            
             $this->RetrieveData();
 
@@ -64,7 +64,7 @@
 
         }
 
-        public function EditOne($id, Cinema $cinemaModify){
+        public function EditOne($id, CinemaModel $cinemaModify){
 
             $this->RetrieveData();
             
@@ -133,7 +133,7 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 { 
-                    $cinema = new Cinema();
+                    $cinema = new CinemaModel();
                     $cinema->setName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);

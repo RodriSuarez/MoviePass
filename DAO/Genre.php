@@ -1,8 +1,8 @@
 <?php
     namespace DAO;
-    use Models\Genre as Genre;
+    use Models\Genre as GenreModel;
 
-    class GenreDao
+    class Genre
     {        
         private $genreList = array();
         private $fileName;
@@ -13,7 +13,7 @@
          
         }
 
-        public function Add(Genre $genre)
+        public function Add(GenreModel $genre)
         {
             $this->RetrieveData();
             
@@ -67,7 +67,7 @@
 
                 foreach($arrayToDecode as $valuesArray)
                 {
-                    $genre = new Genre();
+                    $genre = new GenreModel();
                     $genre->setID($valuesArray["id"]);
                     $genre->setName($valuesArray["name"]);
                  

@@ -2,8 +2,8 @@
     namespace Controllers;
 
     use Models\Movie as Movie;
-    use DAO\MovieDao as MovieDao;
-    use DAO\GenreDAO as GenreDao;
+    use DAO\Movie as MovieDao;
+    use DAO\Genre as GenreDao;
 
     class MovieController{
 
