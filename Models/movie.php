@@ -13,8 +13,9 @@
         private $genres;
         private $realease_date;
         private $trailer_link;
+        private $id;
         
-        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date='', $trailer_link=''){
+        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date='', $trailer_link='', $id=''){
             $this->title = $title;
             $this->api_id = $api_id;
             $this->poster_path = $poster_path;
@@ -24,6 +25,7 @@
             $this->genres = $genres;
             $this->realease_date = $realease_date;
             $this->trailer_link = $trailer_link;
+            $this->id = $id;
         }
     
         public function getTitle()
@@ -119,6 +121,26 @@
         public function setTrailer_link($trailer_link)
         {
                 $this->trailer_link = $trailer_link;
+        }
+
+        /**
+         * Get the value of id
+         */ 
+        public function getId()
+        {
+                return $this->id;
+        }
+
+        /**
+         * Set the value of id
+         *
+         * @return  self
+         */ 
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
         }
     }
 

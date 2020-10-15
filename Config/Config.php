@@ -20,6 +20,16 @@ define("API_URL" ,"https://api.themoviedb.org/3");
 define("NOW_PLAYING", "/movie/now_playing?");
 //youtube
 define("YOUTUBE_URL", "https://www.youtube.com/watch?v=");
+
+//DataBase constantes
+
+define("DB_HOST", "localhost");
+define("DB_NAME", "movie_pass");
+define("DB_USER", "root");
+define("DB_PASS", "");
+
+
+
 ?>
 
 

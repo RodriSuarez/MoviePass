@@ -33,8 +33,8 @@
         {
             $this->RetrieveData();
             foreach($this->movieList as $movie){
-                if($cinema->getId() == $id){
-                    return $cinema;
+                if($movie->getApi_id() == $id){
+                    return $movie;
                 }
             }
             return null;
