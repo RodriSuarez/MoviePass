@@ -3,28 +3,18 @@
         "name": "Cine Aldrey",
         "address": "Por algun lugar",
         "capacity": "1280",
-        "priceTicket": "500",
-        "id": 1602556140
+        "priceTicket": "500"
     },
     {
         "name": "Cines del Paseo Diagonal",
         "address": "dsada",
         "capacity": "16",
-        "priceTicket": "651",
-        "id": "1602556165"
+        "priceTicket": "651"
     },
     {
         "name": "Cine pepito",
         "address": "alguna",
         "capacity": "123",
-        "priceTicket": "654",
-        "id": 1602557173
-    },
-    {
-        "name": "Cine Aldrey",
-        "address": "Calle falsa 5000",
-        "capacity": "123",
-        "priceTicket": "321",
-        "id": 1602559560
+        "priceTicket": "654"
     }
 ]
