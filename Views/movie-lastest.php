@@ -63,6 +63,14 @@
                       }
                       } ?>
                       <hr>
+                      <h5>Director</h5>
+                      <p><?= $result->getDirector() ?></p>
+                      <hr>
+                      <h5>Duración</h5>
+                      <p><?= $result->getDuration() . " minutos." ?></p>
+                      <hr>
+                      <h5>Valoracion</h5>
+                      <p><?= $result->getRating() ?></p>
                 
                   </div>
               </div>

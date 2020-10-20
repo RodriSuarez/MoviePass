@@ -14,10 +14,15 @@
         private $realease_date;
         private $trailer_link;
         private $id;
+        private $director;
+        private $rating;
+        private $duration;
         
-        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',$overview='', $vote_average='', $genres='', $realease_date='', $trailer_link='', $id=''){
+        public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',
+        $overview='', $vote_average='', $genres='', $realease_date='', $trailer_link='', $id='',
+        $director ='', $rating='', $duration=''){
           
-                $this->title = $title;
+            $this->title = $title;
             $this->api_id = $api_id;
             $this->poster_path = $poster_path;
             $this->backdrop_path = $backdrop_path;
@@ -27,7 +32,11 @@
             $this->realease_date = $realease_date;
             $this->trailer_link = $trailer_link;
             $this->id = $id;
-
+            $this->director = $director;
+            $this->duration = $duration;
+           $this->rating = $rating;
+            
+        
         }
     
         public function getTitle()
@@ -141,6 +150,66 @@
         public function setId($id)
         {
                 $this->id = $id;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of duration
+         */ 
+        public function getDuration()
+        {
+                return $this->duration;
+        }
+
+        /**
+         * Set the value of duration
+         *
+         * @return  self
+         */ 
+        public function setDuration($duration)
+        {
+                $this->duration = $duration;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of rating
+         */ 
+        public function getRating()
+        {
+                return $this->rating;
+        }
+
+        /**
+         * Set the value of rating
+         *
+         * @return  self
+         */ 
+        public function setRating($rating)
+        {
+                $this->rating = $rating;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of director
+         */ 
+        public function getDirector()
+        {
+                return $this->director;
+        }
+
+        /**
+         * Set the value of director
+         *
+         * @return  self
+         */ 
+        public function setDirector($director)
+        {
+                $this->director = $director;
 
                 return $this;
         }

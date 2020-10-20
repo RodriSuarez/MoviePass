@@ -69,7 +69,9 @@
                     $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);
-
+                    $movie->setRating($row['rating']);
+                    $movie->setDirector($row['director']);
+                    $movie->setDuration($row['duration']);
                     array_push($movieList, $movie);
                 }
 
@@ -104,13 +106,24 @@
             try{
             $newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE), true );
            
-            $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link)
-                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link);";
+            $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link, director, duration, rating)
+                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link, :director, :duration, :rating);";
 
             foreach($newArrivals['results'] as $movie){
                 
-                if(!$this->exist($movie['id']))
+               if(!$this->exist($movie['id']))
                 {
+                    //https://api.themoviedb.org/3/movie/718444?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES
+                    $movieCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id']  . "?" . API_KEY),true);
+                    $directorCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id'] . "/credits?" . API_KEY),true);
+                
+                  //  var_dump($directorCall);
+                     foreach($directorCall['crew'] as $crew){
+                        if($crew['job'] == "Director")
+                            $director = $crew['name'];
+                    }
+
+                    
                     $parameters["title"] = $movie['title'];
                     $parameters["id_api_movie"] = $movie['id'];
                     $parameters["poster_path"] = $movie['poster_path'];
@@ -119,7 +132,11 @@
                     $parameters["vote_average"] = $movie['vote_average'];
                     $parameters["genres_id"] = serialize($movie['genre_ids']);
                     $parameters["release_date"] = $movie['release_date'];
+                    $parameters["rating"] = $movie['vote_average'];
                     $parameters["trailer_link"] = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results']['0']['key'];
+                    
+                    $parameters["director"] = $director;
+                    $parameters["duration"] = $movieCall['runtime'];
 
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query, $parameters);
