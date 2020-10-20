@@ -3,6 +3,7 @@
 
     use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
+    use DAOBD\cinema as cinemaDB;
    
     class CinemaController{
         private $cinemaDao;

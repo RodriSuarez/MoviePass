@@ -20,14 +20,14 @@ namespace DAODB;
             try
             {
                 $query = "INSERT INTO ".$this->tableName." (cinema_name, address, capacity,  id_room)
-                 VALUES (:cinema_name, :address, :capacity, :room);";
+                 VALUES (:cinema_name, :address, :capacity, :id_room);";
                 
            
                 
                 $parameters["cinema_name"] = $cinema->getCinemaName();
                 $parameters["address"] = $cinema->getAddress();
                 $parameters["capacity"] = $cinema->getCapacity();
-                $parameters["room"] = serialize($cinema->getRoom());
+                $parameters["id_room"] = serialize($cinema->getRoom());
 
 
                 $this->connection = Connection::GetInstance();
@@ -46,7 +46,7 @@ namespace DAODB;
         {
             try
             {
-                $movieList = array();
+                $cinemaList = array();
 
                 $query = "SELECT * FROM ".$this->tableName;
 
@@ -56,23 +56,19 @@ namespace DAODB;
                 
                 foreach ($resultSet as $row)
                 {                
-                    $movie = new CinemaModel();
+                    $cinema = new CinemaModel();
                
-                    $movie->setTitle($row["title"]);
-                    $movie->setApi_id($row["id_api_movie"]);
-                    $movie->setPoster_path($row["poster_path"]);
-                    $movie->setBackdrop_path($row["backdrop_path"]);
-                    $movie->setOverview($row["overview"]);
-                    $movie->setVote_average($row["vote_average"]);
-                    $movie->setGenres(unserialize($row["genres_id"]));
-                    $movie->setRealease_date($row["release_date"]);
-                    $movie->setTrailer_link($row["trailer_link"]);
-                    $movie->setId($row["id_movie"]);
+                    $cinema->setCinemaName($row["cinema_name"]);
+                    $cinema->setAddress($row["address"]);
+                    $cinema->setCapacity($row["capacity"]);
+                    $cinema->setRoom(unserialize($row["id_room"]));
 
-                    array_push($movieList, $movie);
+
+                    
+                    array_push($cinmeaList, $cinema);
                 }
 
-                return $movieList;
+                return $cinemaList;
             }
             catch(Exception $ex)
             {
@@ -80,7 +76,7 @@ namespace DAODB;
             }
         }
 
-        public function exist($id){
+      /*  public function exist($id){
             try
             {
                 
@@ -135,5 +131,5 @@ namespace DAODB;
             }
 
 
-        }
+        }*/
     }
