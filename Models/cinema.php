@@ -4,30 +4,34 @@
 
     class Cinema{
 
-        private $name;
+        private $cinema_name;
         private $address;
         private $capacity;
-        private $priceTicket;
         private $id;
+        private $room;
         
-        public function __construct($name='', $address='', $capacity='', $priceTicket='', $id=''){
+        public function __construct($name='', $address='', $capacity='',  $room='', $id=''){
             $this->name = $name;
             $this->address = $address;
             $this->capacity = $capacity;
-            $this->priceTicket = $priceTicket;
             $this->id = $id;
-
+            $this->room= $room;
             if(empty($id)){
                 $this->id = getdate()['0'];
             }
         }
 
-        public function setName($name){
-            $this->name = $name;
-        }
-        public function getName(){
-            return $this->name;
-        }
+        public function getCinemaName()
+    {
+        return $this->cinema_name;
+    }
+
+    public function setCinemaName($cinema_name)
+    {
+        $this->cinema_name = $cinema_name;
+
+        
+    }
         
         public function setAddress($address){
             $this->address = $address;
@@ -44,14 +48,14 @@
             return $this->capacity;
         }
 
-        public function setPriceTicket($priceTicket){
+    /*    public function setPriceTicket($priceTicket){
             $this->priceTicket = $priceTicket;
         }
         public function getPriceTicket(){
             return $this->priceTicket;
         }
 
-
+*/
         public function getId()
         {
                 return $this->id;
@@ -61,6 +65,21 @@
         {
                 $this->id = $id;
         }
+ 
+    public function getRoom()
+    {
+        return $this->room;
     }
+
+ 
+    public function setRoom($room)
+    {
+        $this->room = $room;
+
+        
+    }
+
+   
+}
 
 ?>

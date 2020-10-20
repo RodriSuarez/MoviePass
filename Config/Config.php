@@ -9,7 +9,7 @@ define("ROOT_MANUAL","lab/MoviePass/");
 define("CINEMA_ROOT", "cinema\\");
 define("MOVIE_ROOT", "movie\\");
 define("VIEWS_PATH", "Views\\");
-define("USER_ROOT", "User\\");
+define("USER_ROOT", "user\\");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css\\");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js\\");
 //Config of API 
