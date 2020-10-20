@@ -34,8 +34,9 @@
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center slider-ro">
-              
+              <div class="modal-footer justify-content-center slider-ro">
+            <div class="row col-12 text-center">
+            </div>
               <h3 class="mr-4"><?= $result->getTitle()?></h3>
               
               <div class="row d-flex justify-content-center">

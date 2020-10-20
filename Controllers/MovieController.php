@@ -29,9 +29,10 @@
         }
 
         public function RefreshLastestMovies(){
+            
             $this->movieDB->GetApiMovies();
             
-            $movieList = $this->movieDao->GetAll();
+            $movieList = $this->movieDB->GetAll();
             $genreList = $this->genreList;
             
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');

@@ -36,7 +36,7 @@
 
             //  var_dump($id);
                 foreach($this->cinemaList as $cinema){
-                    if($cinema->getName() == $id){
+                    if($cinema->getId() == $id){
                         return $cinema;
                     }
                 }
@@ -47,17 +47,17 @@
 
         }
 
-        public function EditOne($name, CinemaModel $cinemaModify){
+        public function EditOne($id, Cinema $cinemaModify){
 
             $this->RetrieveData();
             
-            $modify = $this->getOne($name);
+            $modify = $this->getOne($id);
 
             
             $keyList = null;
             
             foreach($this->cinemaList as $key => $cinema){
-                if($cinema->getName() == $name){
+                if($cinema->getId() == $id){
                     $keyList = $key;
                 }
             }

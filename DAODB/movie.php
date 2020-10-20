@@ -84,8 +84,6 @@
         public function exist($id){
             try
             {
-                
-
                 $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
 
                 $this->connection = Connection::GetInstance();
