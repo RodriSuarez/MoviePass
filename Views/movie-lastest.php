@@ -37,7 +37,7 @@
               <div class="modal-footer justify-content-center slider-ro">
             <div class="row col-12 text-center">
             </div>
-              <h3 class="mr-4"><?= $result->getTitle()?></h3>
+              <h3 class="mr-4 col-12"><?= $result->getTitle()?></h3>
               
               <div class="row d-flex justify-content-center">
             
@@ -48,7 +48,7 @@
                             echo date_format($date, "d-m-Y");
                         ?></p>
                         <hr>
-                        <h5>Descripción</h5>
+                        <h5>Sinopsis</h5>
                     <p class="text-center"><?= $result->getOverview() ?></p>
                     <hr>
                     <h5 class="font-style-bold" > Genero </h5>
@@ -81,7 +81,7 @@
       </div>
       
     <?php } 
-      include('login-form.php');
+
     ?> 
             
   </div>
