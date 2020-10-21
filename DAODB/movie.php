@@ -83,6 +83,46 @@
             }
         }
 
+        public function SearchMovies($title)
+        {
+            try
+            {
+                $movieList = array();
+
+                $query = "SELECT * FROM ".$this->tableName . " WHERE title LIKE '%" . $title ."%';";
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                foreach ($resultSet as $row)
+                {                
+                    $movie = new MovieModel();
+               
+                    $movie->setTitle($row["title"]);
+                    $movie->setApi_id($row["id_api_movie"]);
+                    $movie->setPoster_path($row["poster_path"]);
+                    $movie->setBackdrop_path($row["backdrop_path"]);
+                    $movie->setOverview($row["overview"]);
+                    $movie->setVote_average($row["vote_average"]);
+                    $movie->setGenres(unserialize($row["genres_id"]));
+                    $movie->setRealease_date($row["release_date"]);
+                    $movie->setTrailer_link($row["trailer_link"]);
+                    $movie->setId($row["id_movie"]);
+                    $movie->setRating($row['rating']);
+                    $movie->setDirector($row['director']);
+                    $movie->setDuration($row['duration']);
+                    array_push($movieList, $movie);
+                }
+
+                return $movieList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
         public function exist($id){
             try
             {

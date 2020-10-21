@@ -28,6 +28,16 @@
             
         }
 
+        public function ShowSearchMoviesView($title){
+
+       
+            $movieList = $this->movieDB->SearchMovies($title);
+            $genreList = $this->genreList;
+
+            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            
+        }
+
         public function RefreshLastestMovies(){
             
             $this->movieDB->GetApiMovies();
