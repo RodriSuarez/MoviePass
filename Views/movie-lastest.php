@@ -39,7 +39,7 @@
             </div>
               <h3 class="mr-4 col-12"><?= $result->getTitle()?></h3>
               
-              <div class="row d-flex justify-content-center">
+              <div class="row d-flex col-12 justify-content-center">
             
                   <div class="col-12">
                     <hr>
@@ -51,7 +51,7 @@
                         <h5>Sinopsis</h5>
                     <p class="text-center"><?= $result->getOverview() ?></p>
                     <hr>
-                    <h5 class="font-style-bold" > Genero </h5>
+                    <h5 class="font-style-bold col-12 p-0" > Genero </h5>
                     <p><?= $genreList->getOne($result->getGenres()['0'])?></p>
                     <?php if(count($result->getGenres()) > 1){?>
                       <h6>Subgeneros</h6>
@@ -63,13 +63,13 @@
                       }
                       } ?>
                       <hr>
-                      <h5>Director</h5>
+                      <h5 class="col-12 text-center p-0">Director</h5>
                       <p><?= $result->getDirector() ?></p>
                       <hr>
-                      <h5>Duración</h5>
+                      <h5 class="col-12 text-center p-0">Duración</h5>
                       <p><?= $result->getDuration() . " minutos." ?></p>
                       <hr>
-                      <h5>Valoracion</h5>
+                      <h5 class="col-12 text-center p-0">Valoracion</h5>
                       <p><?= $result->getRating() ?></p>
                 
                   </div>

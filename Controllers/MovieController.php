@@ -34,13 +34,20 @@
             $movieList = $this->movieDB->SearchMovies($title);
             $genreList = $this->genreList;
 
+            if(!$movieList){
+              
+                $movieList = $this->movieDB->getApiMoviesByName($title);
+                $movieList = $this->movieDB->SearchMovies($title);
+               
+            }
+
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
             
         }
 
-        public function RefreshLastestMovies(){
+        public function RefreshLastestMovies($page='1'){
             
-            $this->movieDB->GetApiMovies();
+            $this->movieDB->GetApiMovies($page);
             
             $movieList = $this->movieDB->GetAll();
             $genreList = $this->genreList;

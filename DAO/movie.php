@@ -29,6 +29,7 @@
 
             return $this->movieList;
         } 
+        
         public function GetOne($id)
         {
             $this->RetrieveData();
