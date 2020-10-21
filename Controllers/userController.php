@@ -1,20 +1,28 @@
- <?php
+<?php
+    
     namespace Controllers;
+    
+    //use DAO\UserDAO as userDao;
+    use Models\user as User;
+    use DAODB\User as userDB;
 
-    use DAO\user as UserDao;
-    use Models\User as User;
-   
     class UserController{
-        private $userDao;
+      //  private $userDao;
+        private $userDB;
 
-        public function __construct()
-        {
-            $this->userDao = new UserDao();
-        }
+
+    public function __construct()
+    {
+        /*$this->userDao = new userDao();*/
+        $this->userDB = new userDB();
+    }
+
+       
+
 
         public function ShowAddView()
         {
-            $userList=$this->userDao->GetAll();
+            $userList=$this->userDB->GetAll();
             require_once(VIEWS_PATH."register.php");
             echo 'Registro con exito';
 
@@ -22,21 +30,21 @@
 
         public function ShowLogin()
         {
-            $userList=$this->userDao->GetAll();
-            require_once(VIEWS_PATH."login.php");
-
+            $userList=$this->userDB->GetAll();
+            require_once(VIEWS_PATH."movie-lastest.php");
+            //implementar session
         }
 
         public function ShowProfileView($name)
         {
-            $userList = $this->userDao->GetOne($name);
+            $userList = $this->userDB->GetOne($name);
             var_dump($user);
             require_once(VIEWS_PATH."user-profile.php");
         }
 
         public function ShowEditView($name){
 
-            $userList = $this->userDao->GetOne($name);
+            $userList = $this->userDB->GetOne($name);
           //  var_dump($cinema);
             require_once(VIEWS_PATH."user-edit.php");
         }
@@ -79,8 +87,7 @@
             $user->setPass($pass);
             
             
-            $this->userDao->Add($user);
-            
+            $this->userDB->Add($user);
 
             $this->ShowAddView();
         }

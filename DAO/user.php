@@ -1,12 +1,10 @@
- <?php
-
-
- namespace DAO;
+<?php
+    namespace DAO;
 
 
     use Models\User as user;
 
-    class UserDao
+    class UserDAO
     {        
         private $userList = array();
         private $fileName;

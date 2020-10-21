@@ -12,7 +12,7 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+            <form action=" <?php echo FRONT_ROOT.USER_ROOT."/Add" ?>" method="POST">
                 <div class="row">
 
                     <!-- First Name -->
@@ -81,8 +81,8 @@
 
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-primary btn-block py-2">
-                            <span class="font-weight-bold">Crea tu cuenta</span>
+                        <button type ="submit" class="btn btn-primary btn-block py-2">
+                            <span class="font-weight-bold">Registrarse</span>
                         </a>
                     </div>
 
