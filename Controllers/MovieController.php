@@ -20,7 +20,7 @@
 
         public function UpdateGenres(){
 
-            $this->genreList->GetApiGenres();
+            $this->genreDao->GetApiGenres();
             echo '<h1 class"text-white">Generos actualiados</h1>';
         }
 
@@ -29,21 +29,23 @@
        
             $movieList = $this->movieDB->GetAll();
             $genreList = $this->genreDao->GetAll();
-        //    var_dump($genreList);
+          # var_dump($movieList);
            
            // echo '<h1 class"text-white">'. $this->genreDao->getOne(14) .'</h1>';
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
             
         }
 
-        public function ShowSearchMoviesView($title){
+        public function ShowSearchMoviesView($title= ''){
 
+            if(isset($_POST['busqueda'])){
+                $title = $_POST['busqueda'];
+            }
        
             $movieList = $this->movieDB->SearchMovies($title);
             $genreList = $this->genreDao->GetAll();
-
+            //var_dump($movieList);
             if(!$movieList){
-              
                 $movieList = $this->movieDB->getApiMoviesByName($title);
                 $movieList = $this->movieDB->SearchMovies($title);
                
@@ -55,10 +57,10 @@
 
         public function RefreshLastestMovies($page='1'){
             
-            $this->movieDB->GetApiMovies(1);
+            $this->movieDB->GetApiMovies($page);
             
             $movieList = $this->movieDB->GetAll();
-            $genreList = $this->genreList;
+            //$genreList = $this->genreList;
             
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
 

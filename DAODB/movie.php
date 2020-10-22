@@ -80,7 +80,7 @@
                 throw $error;
             }
 
-        }
+        } 
 
         public function addGenreXmovie($idMovie, $genreList){
 
@@ -92,11 +92,12 @@
                 }
 
                 $movie = $this->GetOneByApiID($idMovie);
-                var_dump($movie);
+               # var_dump($movie);
 
                 $realIdMovie = $movie->getId();
 
-                var_dump($genreList);
+              # var_dump($genreList);
+              
                 
                 $query = "INSERT INTO " . $this->genre_x_movie . " (id_genre, id_movie) VALUES (:id_genre, :id_movie);";
 
@@ -104,7 +105,7 @@
                 
                     $parameters['id_genre'] = $genre;
                     $parameters['id_movie'] = $realIdMovie;
-                    var_dump($parameters);
+                    #var_dump($parameters);
 
                     $this->connection = Connection::GetInstance();
 
@@ -117,6 +118,41 @@
                 throw $e;
             }
 
+        }
+
+        public function GetGenreMovie($idMovie){
+
+            try{
+                    $query = "SELECT g.name, g.id_genre FROM  genre_x_movie gxm
+                        INNER JOIN movie m ON m.id_movie = gxm.id_movie
+                        INNER JOIN genre g ON g.id_genre = gxm.id_genre
+                        WHERE m.id_movie = ". $idMovie ." ORDER BY m.id_movie;";
+            
+                    $obj = $this->connection->Execute($query);
+                    $genreList = array();
+                   # var_dump($obj);
+                     if($obj){
+                        $genres = $obj['0'];
+
+                      $genreList =  array_map(function($gen){
+                            return new Genre($gen['name'], $gen['id_genre']);
+                        }, $obj);
+
+                       /* foreach($obj as $genre){
+                            
+                            array_push($genreList, $genre['name']);
+                        }*/
+                        #var_dump($genreList);
+                       return $genreList;
+                     }
+
+                    
+                
+                
+            }catch(Exception $error){
+                throw $error;
+            }
+        
         }
 
         public function GetAll()
@@ -141,7 +177,9 @@
                     $movie->setBackdrop_path($row["backdrop_path"]);
                     $movie->setOverview($row["overview"]);
                     $movie->setVote_average($row["vote_average"]);
-                 #   $movie->setGenres(unserialize($row["genres_id"]));
+                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
+                    #echo '<h1 class="text-white">ACA </h1> ';
+                   # var_dump($this->GetGenreMovie($row["id_movie"]));
                     $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);
@@ -158,6 +196,8 @@
                 throw $ex;
             }
         }
+
+
 
 
 
@@ -183,8 +223,8 @@
                     $movie->setBackdrop_path($row["backdrop_path"]);
                     $movie->setOverview($row["overview"]);
                     $movie->setVote_average($row["vote_average"]);
-                    $movie->setGenres(unserialize($row["genres_id"]));
-                    $movie->setRealease_date($row["release_date"]);
+                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
+                        $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);
                     $movie->setRating($row['rating']);
@@ -273,13 +313,15 @@
         }
 
         public function getApiMoviesByName($title){
-
+            $title = str_replace(' ','%20', $title);
+         //   var_dump($title);
+            $next = "https://api.themoviedb.org/3/search/movie?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES&query=".$title."&page=1&include_adult=false";
+            var_dump($next);
             try{
                 $newArrivals =  json_decode(file_get_contents("https://api.themoviedb.org/3/search/movie?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES&query=".$title."&page=1&include_adult=false"), true);
-
-               
-                $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link, director, duration, rating)
-                     VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link, :director, :duration, :rating);";
+            
+                $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average,  release_date, trailer_link, director, duration, rating)
+                     VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :release_date, :trailer_link, :director, :duration, :rating);";
     
                 foreach($newArrivals['results'] as $movie){
                     
@@ -302,16 +344,20 @@
                         $parameters["backdrop_path"] = $movie['backdrop_path'];
                         $parameters["overview"] = $movie['overview'];
                         $parameters["vote_average"] = $movie['vote_average'];
-                        $parameters["genres_id"] = serialize($movie['genre_ids']);
+                       # $parameters["genres_id"] = serialize($movie['genre_ids']);
                         $parameters["release_date"] = $movie['release_date'];
                         $parameters["rating"] = $movie['vote_average'];
-                        $parameters["trailer_link"] = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results']['0']['key'];
-                        
+                        #$parameters["trailer_link"] = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results']['0']['key'];
+                        $video = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results'];
+                        $parameters["trailer_link"] = !empty($video)  ? $video['0']['key'] : 'Video no disponible';
                         $parameters["director"] = $director;
                         $parameters["duration"] = $movieCall['runtime'];
     
                         $this->connection = Connection::GetInstance();
                         $this->connection->ExecuteNonQuery($query, $parameters);
+
+                        $this->addGenreXmovie($movie['id'], $movie['genre_ids']);
+
     
                     }
                        

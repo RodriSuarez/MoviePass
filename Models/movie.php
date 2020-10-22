@@ -111,9 +111,7 @@
 
         public function setGenres($genres)
         {       
-                foreach($genres as $genre){
-                        array_push($this->genres,$genre);
-                }
+               $this->genres = $genres;
               
         }
 

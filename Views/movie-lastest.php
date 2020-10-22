@@ -1,4 +1,5 @@
-<?php require_once('nav.php'); ?>
+<?php require_once('nav.php');
+#var_dump($movieList); ?>
 <div class="m-5">
   <?php include_once('login-button.php'); ?>
 </div>
@@ -52,15 +53,19 @@
                     <p class="text-center"><?= $result->getOverview() ?></p>
                     <hr>
                     <h5 class="font-style-bold col-12 p-0" > Genero </h5>
-                    <p><?= $genreList->getOne($result->getGenres()['0'])?></p>
-                    <?php if(count($result->getGenres()) > 1){?>
+                    <p><?php  $generos = $result->getGenres();
+                           if($generos){
+                           $genero = array_shift($generos);
+                            #var_dump($genero);
+                              echo $genero->getName() ?></p>
+                    <?php if(is_array($generos) && sizeof($generos) > 0 ){ ?>
                       <h6>Subgeneros</h6>
-                      <?php
-                      foreach($result->getGenres() as $index => $genre){
-                            if($index != 0){?>
-                        <p><?= $genreList->getOne($genre) ?> </p>
+                      <?php 
+                      foreach($generos as $genre){ ?>
+                          
+                        <p> <?= $genre->getName() ?> </p>
                       <?php }
-                      }
+                         }
                       } ?>
                       <hr>
                       <h5 class="col-12 text-center p-0">Director</h5>
