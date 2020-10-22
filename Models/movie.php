@@ -1,16 +1,17 @@
 <?php
 
     namespace Models;
-
+    use Models\Genre as Genre;
 
     class Movie{
+       
         private $title;
         private $api_id;
         private $poster_path;
         private $backdrop_path;
         private $overview;
         private $vote_average;
-        private /* Genre*/ $genres;
+        private /*Genre*/ $genres;
         private $realease_date;
         private $trailer_link;
         private $id;
@@ -19,7 +20,7 @@
         private $duration;
         
         public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',
-        $overview='', $vote_average='', $genres='', $realease_date='', $trailer_link='', $id='',
+        $overview='', $vote_average='', /*Genre*/ $genres= null, $realease_date='', $trailer_link='', $id='',
         $director ='', $rating='', $duration=''){
           
             $this->title = $title;
@@ -109,8 +110,16 @@
         }
 
         public function setGenres($genres)
-        {
-                $this->genres = $genres;
+        {       
+                foreach($genres as $genre){
+                        array_push($this->genres,$genre);
+                }
+              
+        }
+
+        public function addGenre(Genre $genre){
+                
+                array_push($this->genres,$genre);
         }
 
         public function getRealease_date()

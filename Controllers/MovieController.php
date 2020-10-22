@@ -3,27 +3,35 @@
 
     use Models\Movie as Movie;
     use DAO\Movie as MovieDao;
-    use DAO\Genre as GenreDao;
+    use DAODB\Genre as GenreDao;
     use DAODB\Movie as MovieDB;
 
     class MovieController{
 
         private $movieDao;
-        private $genreList;
+        private $genreDao;
         private $movieDB;
         
         public function __construct(){
             $this->movieDao = new MovieDAO();
-            $this->genreList = new GenreDao();
+            $this->genreDao = new GenreDao();
             $this->movieDB = new MovieDB();
+        }
+
+        public function UpdateGenres(){
+
+            $this->genreList->GetApiGenres();
+            echo '<h1 class"text-white">Generos actualiados</h1>';
         }
 
         public function ShowListMoviesView(){
 
        
             $movieList = $this->movieDB->GetAll();
-            $genreList = $this->genreList;
-
+            $genreList = $this->genreDao->GetAll();
+        //    var_dump($genreList);
+           
+           // echo '<h1 class"text-white">'. $this->genreDao->getOne(14) .'</h1>';
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
             
         }
@@ -32,7 +40,7 @@
 
        
             $movieList = $this->movieDB->SearchMovies($title);
-            $genreList = $this->genreList;
+            $genreList = $this->genreDao->GetAll();
 
             if(!$movieList){
               
@@ -47,7 +55,7 @@
 
         public function RefreshLastestMovies($page='1'){
             
-            $this->movieDB->GetApiMovies($page);
+            $this->movieDB->GetApiMovies(1);
             
             $movieList = $this->movieDB->GetAll();
             $genreList = $this->genreList;
