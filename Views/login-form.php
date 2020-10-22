@@ -12,14 +12,14 @@
           <h4>Login</h4>
         </div>
         <div class="d-flex flex-column text-center">
-          <form>
+          <form action ="<?=FRONT_ROOT.USER_ROOT."/login"?>" method="POST">
             <div class="form-group">
-              <input type="email" class="form-control" id="email1"placeholder="Your email address...">
+              <input type="email" class="form-control" id="email1" name =" email1"placeholder="Your email address...">
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="password1" placeholder="Your password...">
+              <input type="password" class="form-control" id="password1" name="pass1" placeholder="Your password...">
             </div>
-            <button type="button" class="btn btn-info btn-block btn-round">Ingresar</button>
+            <button type="submit" class="btn btn-info btn-block btn-round">Ingresar</button>
           </form>
           
         

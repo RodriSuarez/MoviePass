@@ -12,7 +12,7 @@ namespace DAODB;
 
         private $connection;
         private $tableName = "user";
- 
+
         public function Add(UserModel $user)
         {
             try
@@ -75,23 +75,40 @@ namespace DAODB;
             }
         }
 
-      /*  public function exist($id){
-            try
+       public function GetOne($email, $pass)
+        {
+             try
             {
-                
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
-
+  
+                $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'.$email.'";';
                 $this->connection = Connection::GetInstance();
-
-                $resultSet = $this->connection->Execute($query);
-                
-
-                return $resultSet;
+                $obj=$this->connection->Execute($query); 
+                $user=null;
+                if($obj)
+                {
+                    $row=$obj[0];
+                    $user= new UserModel();
+                    $user->setIdUser($row["id_user"]);
+                    $user->setFirstNAme($row["firstName"]);
+                    $user->setLastName($row["lastName"]);
+                    $user->setEmail($row["email"]);
+                    $user->setPhoneNumber($row["phoneNumber"]);
+                    $user->setPass($row["pass"]);
+                    if($pass== $user->getPass())
+                        return $user;
+                    else{
+                        return null;
+                    }
+                }
             }
+
             catch(Exception $ex)
             {
                 throw $ex;
-            }*/
+            }
+        }
+        
+
+    
         
         }

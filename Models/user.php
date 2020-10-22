@@ -17,7 +17,7 @@ class user
 	public function __construct($firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='', $id_user='')
 	{
 		
-		$this->id_user = getdate()['0'];
+		$this->id_user = $id_user;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
 		$this->email = $email;

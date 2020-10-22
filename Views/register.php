@@ -1,3 +1,7 @@
+<?php 
+include_once("nav.php");
+
+?>
 <main class="bg-img-girl">
 
 
@@ -94,10 +98,6 @@
                     </div>
 
 
-                    <!-- Already Registered -->
-                    <div class="text-center w-100">
-                        <p class="text-muted font-weight-bold">¿Ya estás registrado? - <a href="<?= FRONT_ROOT ?>user/login" class="text-primary ml-2">Login</a> -</p>
-                    </div>
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">¿Sos administrador y estas probando la pagina? -

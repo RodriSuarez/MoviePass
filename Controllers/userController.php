@@ -31,7 +31,7 @@
         public function ShowLogin()
         {
             $userList=$this->userDB->GetAll();
-            require_once(VIEWS_PATH."movie-lastest.php");
+            require_once(VIEWS_PATH."login-form.php");
             //implementar session
         }
 
@@ -47,6 +47,23 @@
             $userList = $this->userDB->GetOne($name);
           //  var_dump($cinema);
             require_once(VIEWS_PATH."user-edit.php");
+        }
+    
+        public function login($email1, $pass1){
+            
+            $user = $this->userDB->GetOne($email1, $pass1);
+
+            if(!$user)
+            {
+                echo "asd";       
+            }
+            else
+            {
+                
+                $_SESSION['loggedUser']['firstName'] = $user->getFirstName();
+                require_once(VIEWS_PATH."movie-lastest.php");
+            }
+
         }
 
 /*        public function DeleteOne($key){
