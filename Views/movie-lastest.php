@@ -54,9 +54,10 @@
                     <hr>
                     <h5 class="font-style-bold col-12 p-0" > Genero </h5>
                     <p><?php  $generos = $result->getGenres();
-                           if($generos){
-                           $genero = array_shift($generos);
-                            #var_dump($genero);
+                                                         
+
+                            if($generos){
+                              $genero = array_shift($generos);
                               echo $genero->getName() ?></p>
                     <?php if(is_array($generos) && sizeof($generos) > 0 ){ ?>
                       <h6>Subgeneros</h6>

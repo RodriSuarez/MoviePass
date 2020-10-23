@@ -186,7 +186,7 @@
                     $genre->setName($resultSet['0']["name"]);
                     $genre->setApi_id($resultSet['0']["id_api_genre"]);
                     $genre->setId($resultSet['0']["id_genre"]);
-                    return $genre->getName();
+                    return $genre;
                 }
                 else return 'Genero no encontrado';
             }
