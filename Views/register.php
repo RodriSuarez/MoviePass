@@ -1,5 +1,5 @@
 <?php 
-include_once("nav.php");
+include_once("nav-no-login.php");
 
 ?>
 <main class="bg-img-girl">
@@ -89,6 +89,7 @@ include_once("nav.php");
                             <span class="font-weight-bold">Registrarse</span>
                         </a>
                     </div>
+                    
 
                     <!-- Divider Text -->
                     <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -101,10 +102,8 @@ include_once("nav.php");
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">¿Sos administrador y estas probando la pagina? -
-                             <a href="<?= FRONT_ROOT . MOVIE_ROOT ?>ShowListMoviesView" class="text-primary ml-2">Es por aca rey</a> -</p>
-                    </div>
-                    
-                </div>
+                             <a href="<?= FRONT_ROOT . MOVIE_ROOT ?>ShowListMoviesViewAdm" class="text-primary ml-2">Es por aca rey</a> -</p>
+                    </div>                </div>
             </form>
         </div>
     </div>

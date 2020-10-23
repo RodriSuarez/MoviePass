@@ -21,10 +21,16 @@
 
 
 
+        public function ShowAdmListView()
+        {
+            $cinemaList = $this->cinemaDao->GetAll();
+            require_once(VIEWS_PATH."cinema-list-adm.php");
+        }
+
         public function ShowListView()
         {
             $cinemaList = $this->cinemaDao->GetAll();
-            require_once(VIEWS_PATH."cinema-list.php");
+            require_once(VIEWS_PATH."cinema-list-no-login.php");
         }
 
         public function ShowEditView($name){

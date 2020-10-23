@@ -18,13 +18,23 @@
             $this->movieDB = new MovieDB();
         }
 
-        public function ShowListMoviesView(){
+        public function ShowListMoviesViewAdm(){
 
        
             $movieList = $this->movieDB->GetAll();
             $genreList = $this->genreList;
 
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            
+        }
+
+        public function ShowListMoviesView(){
+
+       
+            $movieList = $this->movieDB->GetAll();
+            $genreList = $this->genreList;
+
+            require_once(ROOT. VIEWS_PATH . 'movie-latest-no-login.php');
             
         }
 

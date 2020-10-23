@@ -16,7 +16,7 @@
 
         </li></li>
         <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>">Listar Peliculas</a>
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesViewAdm' ?>">Listar Peliculas</a>
       </li>
       <li class="nav-item bg-danger rounded">
         <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Actualizar Peliculas</a>

@@ -114,7 +114,7 @@
                 foreach($arrayToDecode as $valuesArray)
                 { 
                     $cinema = new CinemaModel();
-                    $cinema->setName($valuesArray["name"]);
+                    $cinema->setCinemaName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);
                     $cinema->setPriceTicket($valuesArray["priceTicket"]);

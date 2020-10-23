@@ -20,7 +20,7 @@
                               {
                                    ?>
                                         <tr>
-                                             <td><?php echo $cinema->getName() ?></td>
+                                             <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo '$'.$cinema->getPriceTicket() ?></td>

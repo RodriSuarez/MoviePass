@@ -48,14 +48,14 @@
             return $this->capacity;
         }
 
-    /*    public function setPriceTicket($priceTicket){
+        public function setPriceTicket($priceTicket){
             $this->priceTicket = $priceTicket;
         }
         public function getPriceTicket(){
             return $this->priceTicket;
         }
 
-*/
+
         public function getId()
         {
                 return $this->id;
