@@ -8,17 +8,15 @@
         private $address;
         private $capacity;
         private $id;
-        private $room;
+        private $rooms;
         
-        public function __construct($name='', $address='', $capacity='',  $room='', $id=''){
-            $this->name = $name;
+        public function __construct($cinema_name='', $address='', $capacity='', $rooms='', $id=''){
+            $this->cinema_name = $cinema_name;
             $this->address = $address;
             $this->capacity = $capacity;
             $this->id = $id;
-            $this->room= $room;
-            if(empty($id)){
-                $this->id = getdate()['0'];
-            }
+            $this->rooms= $rooms;
+         
         }
 
         public function getCinemaName()
@@ -32,6 +30,8 @@
 
         
     }
+
+    voy a preparar el mate!!
         
         public function setAddress($address){
             $this->address = $address;
@@ -66,20 +66,20 @@
                 $this->id = $id;
         }
  
-    public function getRoom()
+    public function getRooms()
     {
-        return $this->room;
+        return $this->rooms;
     }
 
  
-    public function setRoom($room)
+    public function setRooms($rooms)
     {
-        $this->room = $room;
+        $this->rooms = $rooms;
 
         
     }
 
-   
+  
 }
 
 ?>

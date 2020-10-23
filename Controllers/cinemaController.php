@@ -48,14 +48,13 @@
             $this->ShowListView();
         }
 
-        public function EditOneCinema($name, $address, $capacity, $priceTicket='',$id){
+        public function EditOneCinema($name, $address, $capacity,$id, $rooms){
                      
             
             $modify = new Cinema();
-            $modify->setName($name);
+            $modify->setCinemaName($name);
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
-            $modify->setPriceTicket($priceTicket);
             $modify->setId($id);
             
             var_dump($modify);
@@ -67,7 +66,7 @@
         }
 
    
-        public function Add($name, $address, $capacity, $priceTicket)
+        public function Add($name, $address, $capacity)
         {   
            
                 
@@ -75,7 +74,6 @@
             $cinema->setName($name);
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
-            $cinema->setPriceTicket($priceTicket);
             if(!$this->cinemaDao->exist($cinema)) 
                 $success = $this->cinemaDao->Add($cinema);
             else

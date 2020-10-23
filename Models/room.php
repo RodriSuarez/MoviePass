@@ -9,17 +9,22 @@ private $id_room;
 private $room_name;
 private $price;
 private $capacity;
+private $cinema;
+
+
+    
+    public function __construct($id_room='', $room_name='', $price='', $capacity='', $cinema='')
+    {
+        $this->id_room = $id_room;
+        $this->room_name = $room_name;
+        $this->price = $price;
+        $this->capacity = $capacity;
+        $this->cinema = $cinema;
+    }
 
 
 	
-	public function __construct($id_room, $room_name, $price, $capacity)
-	{
-		$this->id_room = $id_room;
-		$this->room_name = $room_name;
-		$this->price = $price;
-		$this->capacity = $capacity;
-	}
-
+	
     public function getName()
     {
         return $this->name;
@@ -73,6 +78,26 @@ private $capacity;
         $this->id_room = $id_room;
 
         
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCinema()
+    {
+        return $this->cinema;
+    }
+
+    /**
+     * @param mixed $cinema
+     *
+     * @return self
+     */
+    public function setCinema($cinema)
+    {
+        $this->cinema = $cinema;
+
+        return $this;
     }
 }
 
