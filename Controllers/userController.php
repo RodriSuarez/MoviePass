@@ -5,7 +5,7 @@
     //use DAO\UserDAO as userDao;
     use Models\user as User;
     use DAODB\User as userDB;
-
+    use Controllers\MovieController as MovieC;
     class UserController{
       //  private $userDao;
         private $userDB;
@@ -51,17 +51,23 @@
     
         public function login($email1, $pass1){
             
-            $user = $this->userDB->GetOne($email1, $pass1);
+            $user = $this->userDB->GetOne($email1);
 
-            if(!$user)
+            if((!$user)&&($user->getPass()!=$pass1))
             {
                 echo "asd";       
             }
             else
             {
-                
+                $movie= new MovieC();
+                if($user->getIsAdmin()==true){
                 $_SESSION['loggedUser']['firstName'] = $user->getFirstName();
-                require_once(VIEWS_PATH."movie-lastest.php");
+                $movie->ShowListMoviesViewAdm();
+            }else
+            {
+                $_SESSION['loggedUser']['firstName'] = $user->getFirstName();
+                $movie->ShowListMoviesViewClient();
+            }
             }
 
         }

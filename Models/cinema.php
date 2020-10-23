@@ -31,8 +31,7 @@
         
     }
 
-    voy a preparar el mate!!
-        
+            
         public function setAddress($address){
             $this->address = $address;
         }
@@ -48,12 +47,6 @@
             return $this->capacity;
         }
 
-        public function setPriceTicket($priceTicket){
-            $this->priceTicket = $priceTicket;
-        }
-        public function getPriceTicket(){
-            return $this->priceTicket;
-        }
 
 
         public function getId()

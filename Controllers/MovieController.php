@@ -27,6 +27,15 @@
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
             
         }
+        public function ShowListMoviesViewClient(){
+
+       
+            $movieList = $this->movieDB->GetAll();
+            $genreList = $this->genreList;
+
+            require_once(ROOT. VIEWS_PATH . 'movie-latest-client.php');
+            
+        }
 
         public function ShowListMoviesView(){
 

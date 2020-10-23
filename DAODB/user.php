@@ -63,6 +63,7 @@ namespace DAODB;
                     $user->setEmail($row["email"]);
                     $user->setPhoneNumber($row["phoneNumber"]);
                     $user->setPass($row["pass"]);
+                    $user->setIsAdmin($row["isAdmin"]);
 
                     array_push($userList, $user);
                 }
@@ -75,7 +76,7 @@ namespace DAODB;
             }
         }
 
-       public function GetOne($email, $pass)
+       public function GetOne($email)
         {
              try
             {
@@ -94,13 +95,14 @@ namespace DAODB;
                     $user->setEmail($row["email"]);
                     $user->setPhoneNumber($row["phoneNumber"]);
                     $user->setPass($row["pass"]);
-                    if($pass== $user->getPass())
-                        return $user;
+                    $user->setIsAdmin($row["isAdmin"]);
+                    return $user;
+                }
                     else{
                         return null;
                     }
                 }
-            }
+            
 
             catch(Exception $ex)
             {

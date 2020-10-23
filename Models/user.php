@@ -11,10 +11,11 @@ class user
 	private $email;
 	private $phoneNumber;
 	private $pass;
+    private $isAdmin;
 	
 
 	
-	public function __construct($firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='')
+	public function __construct($id_user='',$firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='', $isAdmin='')
 	{
 		
 		$this->id_user = $id_user;
@@ -23,6 +24,7 @@ class user
 		$this->email = $email;
 		$this->phoneNumber = $phoneNumber;
 		$this->pass = $pass;
+        $this->isAdmin = $isAdmin;
 	}
 
 
@@ -105,6 +107,20 @@ class user
     public function getPass()
     {
         return $this->pass;
+    }
+
+ 
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+   
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+
+        
     }
 }
 
