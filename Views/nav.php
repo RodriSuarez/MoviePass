@@ -12,7 +12,7 @@
       <li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowAddView'?>">Agregar Cine</a>
         </li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">Listar Cines</a>
+        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowAdmListView' ?>">Listar Cines</a>
 
         </li></li>
         <li class="nav-item">

@@ -14,7 +14,7 @@ class user
 	
 
 	
-	public function __construct($firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='', $id_user='')
+	public function __construct($firstName=' ', $lastName=' ', $email='', $phoneNumber='', $pass='')
 	{
 		
 		$this->id_user = $id_user;
@@ -26,11 +26,6 @@ class user
 	}
 
 
-
-
-
-
-   
     public function getIdUser()
     {
         return $this->id_user;

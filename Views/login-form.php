@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">¿No sos miembro? <a href="<?= VIEWS_PATH .'register.php'?>" class="text-info">Registrate</a>.</div>
+        <div class="signup-section">¿No sos miembro? <a href="<?= ROOT. VIEWS_PATH."register.php"?>" class="text-info">Registrate</a>.</div>
       </div>
     </div>
       
