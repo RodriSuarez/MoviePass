@@ -4,6 +4,21 @@
   <?php include_once('login-button.php'); ?>
 </div>
 
+  <div class="row col-3 d-flex justify-content-center align-content-center p-5">
+    <form action="<?= FRONT_ROOT . MOVIE_ROOT .'ShowByGenre' ?>" method="GET">
+      <span>Filtrar por genero</span>
+      <select name="genre" id="genre">
+        <option value="0" disabled>-- Selecciona una opcion --</option>
+      <?php foreach($genreList as $genre):?>
+
+            <option value="<?= $genre->getName() ?>"><?= $genre->getName() ?></option>
+
+      <?php endforeach;  ?>
+      </select>
+      <button type="submit">Aplicar</button>
+    </form>
+  </div>
+
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">
 

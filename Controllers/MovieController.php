@@ -58,6 +58,7 @@
         public function ShowByGenre($genre){
             
             $movieList = $this->movieDB->filterByGenre($genre);
+            $genreList = $this->genreDao->GetAll();
 
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
 
@@ -67,7 +68,8 @@
         public function RefreshLastestMovies($page='1'){
             
             $this->movieDB->GetApiMovies($page);
-            
+            $genreList = $this->genreDao->GetAll();
+
             $movieList = $this->movieDB->GetAll();
             //$genreList = $this->genreList;
             
