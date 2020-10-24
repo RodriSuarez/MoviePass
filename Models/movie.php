@@ -11,7 +11,7 @@
         private $backdrop_path;
         private $overview;
         private $vote_average;
-        private /*Genre*/ $genres;
+        private $genres;
         private $realease_date;
         private $trailer_link;
         private $id;
@@ -20,7 +20,7 @@
         private $duration;
         
         public function __construct($title='', $api_id='', $poster_path='', $backdrop_path='',
-        $overview='', $vote_average='', /*Genre*/ $genres= null, $realease_date='', $trailer_link='', $id='',
+        $overview='', $vote_average='', $genres= null, $realease_date='', $trailer_link='', $id='',
         $director ='', $rating='', $duration=''){
           
             $this->title = $title;

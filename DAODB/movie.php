@@ -100,7 +100,7 @@
                     $movie->setBackdrop_path($row["backdrop_path"]);
                     $movie->setOverview($row["overview"]);
                     $movie->setVote_average($row["vote_average"]);
-                #   $movie->setGenres(unserialize($row["genres_id"]));
+                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
                     $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);
@@ -269,10 +269,9 @@
                 throw $ex;
             }
         }
-
-        public function exist($id){
+        public function existApiId($id){
             try
-            {
+            {                                                           
                 $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
 
                 $this->connection = Connection::GetInstance();
@@ -288,6 +287,39 @@
             }
         
         }
+
+        
+        public function filterByGenre($genre){
+            $movieList = array();
+            try{
+                $query = 'SELECT g.name, gxm.id_movie, m.id_movie FROM  genre_x_movie gxm
+                            INNER JOIN movie m ON m.id_movie = gxm.id_movie
+                            INNER JOIN genre g ON g.id_genre = gxm.id_genre
+                            HAVING g.name = "' . $genre . '"
+                            ORDER BY g.name;';
+                
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+
+                #var_dump($resultSet);
+
+                //$movieList = array();
+
+                foreach($resultSet as $row){
+                    array_push($movieList, $this->GetOneById($row['id_movie']));
+                }
+
+            }catch(Exception $error){
+                throw $error;
+            }
+
+            return $movieList;
+        
+    }
+
+
+
         public function GetApiMovies($page){
            
             try{
@@ -298,7 +330,7 @@
 
             foreach($newArrivals['results'] as $movie){
                 
-               if(!$this->exist($movie['id']))
+               if(!$this->existApiId($movie['id']))
                 {
                     //https://api.themoviedb.org/3/movie/718444?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES
                     $movieCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id']  . "?" . API_KEY),true);
@@ -353,7 +385,7 @@
     
                 foreach($newArrivals['results'] as $movie){
                     
-                   if(!$this->exist($movie['id']))
+                   if(!$this->existApiId($movie['id']))
                     {    #  var_dump($movie['overview']);
                         if(!empty($movie['overview'])){
                         //https://api.themoviedb.org/3/movie/718444?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES

@@ -55,6 +55,15 @@
             
         }
 
+        public function ShowByGenre($genre){
+            
+            $movieList = $this->movieDB->filterByGenre($genre);
+
+            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+
+
+        }
+
         public function RefreshLastestMovies($page='1'){
             
             $this->movieDB->GetApiMovies($page);
