@@ -7,72 +7,78 @@
     use DAODB\User as userDB;
 
     class UserController{
-      //  private $userDao;
+        
+        //private $userDao;
         private $userDB;
 
 
-    public function __construct()
-    {
-        /*$this->userDao = new userDao();*/
-        $this->userDB = new userDB();
-    }
-
-       
-
+        public function __construct()
+        {
+            /*$this->userDao = new userDao();*/
+            $this->userDB = new userDB();
+        }
 
         public function ShowAddView()
         {
             $userList=$this->userDB->GetAll();
             require_once(VIEWS_PATH."register.php");
-            echo 'Registro con exito';
-
         }
 
-        public function ShowLogin()
-        {
-            $userList=$this->userDB->GetAll();
-            require_once(VIEWS_PATH."login-form.php");
-            //implementar session
-        }
 
         public function ShowProfileView($name)
         {
             $userList = $this->userDB->GetOne($name);
-            var_dump($user);
             require_once(VIEWS_PATH."user-profile.php");
         }
 
         public function ShowEditView($name){
 
             $userList = $this->userDB->GetOne($name);
-          //  var_dump($cinema);
             require_once(VIEWS_PATH."user-edit.php");
         }
     
         public function login($email1, $pass1){
             
-            $user = $this->userDB->GetOne($email1, $pass1);
+            $user = $this->userDB->GetOne($email1);
 
-            if(!$user)
-            {
-                echo "asd";       
+            if((!$user)&&($user->getPass()!=$pass1)){
+
+                $message= "Usuario y/o contraseña incorrecta";   
+                //REQUIRED (login.php) se tiene que preguntar si el message no esta vacio y si no se imprime
             }
-            else
-            {
+            else{
+               
+                $movie= new MovieC();
                 
-                $_SESSION['loggedUser']['firstName'] = $user->getFirstName();
-                require_once(VIEWS_PATH."movie-lastest.php");
+                if($user->getIsAdmin()==true){
+                $_SESSION['loggedUser']['first_name'] = $user->getFirstName();
+                $movie->ShowListMoviesView();
+                }
+
+                else{
+                $_SESSION['loggedUser']['first_name'] = $user->getFirstName();
+                $movie->ShowListMoviesView();
+                }
             }
 
         }
 
-/*        public function DeleteOne($key){
+        public function logout()
+        {
+            session_destroy();
+            require_once(ROOT.VIEWS_PATH."register.php");
 
-            $this->cinemaDao->DeleteOne($key);
+        }
+
+        /* (tanto delete como edite, faltan crear en DAO DB)
+       
+        public function DeleteOne($ .. ){ //determinar parametro
+
+            $this->userDB->DeleteOne($ .. );
             
             
-            $this->ShowListView();
-        }*/
+            $this->ShowProfileView();
+        }
 
         public function EditOneUser($oldname, $firstName, $lastName, $email, $phoneNumber,$pass){
                      
@@ -85,25 +91,22 @@
             $modify->setPass($pass);
             
             
-            $this->userDao->EditOne($name, $modify);
+            $this->userDB->EditOne($name, $modify);
 
             $this->ShowProfileView();
             
         }
+        */
 
         public function Add($firstName, $lastName, $email, $phoneNumber, $pass)
         {   
-  
-           
-                
             $user = new User();
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($email);
             $user->setPhoneNumber($phoneNumber);
             $user->setPass($pass);
-            
-            
+        
             $this->userDB->Add($user);
 
             $this->ShowAddView();

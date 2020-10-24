@@ -24,12 +24,12 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (name, id_api_genre)
-                 VALUES (:name, :id_api_genre);";
+                $query = "INSERT INTO ".$this->tableName." (NAME, id_api_genre)
+                 VALUES (:NAME, :id_api_genre);";
                 
            
                 
-                $parameters["name"] = $genre->getName();
+                $parameters["NAME"] = $genre->getName();
                 $parameters["id_api_genre"] = $genre->getApi_id();
        
                 $this->connection = Connection::GetInstance();
@@ -57,7 +57,7 @@
 
                 $joinGenre = new GenreModel();
 
-                $joinGenre ->setName($genre['name']);
+                $joinGenre ->setName($genre['NAME']);
                 $joinGenre ->setApi_id($genre['id']);
 
                 
@@ -111,7 +111,7 @@
                 {                
                     $genre = new GenreModel();
                
-                    $genre->setName($row["name"]);
+                    $genre->setName($row["NAME"]);
                     $genre->setApi_id($row["id_api_genre"]);
                     $genre->setId($row["id_genre"]);
 
@@ -183,7 +183,7 @@
                 }*/
                 if(!empty($resultSet)){
                     $genre = new GenreModel();
-                    $genre->setName($resultSet['0']["name"]);
+                    $genre->setName($resultSet['0']["NAME"]);
                     $genre->setApi_id($resultSet['0']["id_api_genre"]);
                     $genre->setId($resultSet['0']["id_genre"]);
                     return $genre;

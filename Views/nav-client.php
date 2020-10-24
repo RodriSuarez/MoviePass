@@ -7,21 +7,21 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?= FRONT_ROOT?>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesViewClient' ?>"> Home </a>
       </li>
+      
       <li class="nav-item">
-        
         </li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">Ver Cines</a>
-
-        </li></li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>"> Ver Peliculas </a>
+        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListViewClient' ?>">Ver Cines</a>
+      </li></li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesViewClient' ?>"> Ver Peliculas </a>
       </li>
-      <li>
-        <?php include_once('login-button.php'); ?>
-       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . USER_ROOT.'logout' ?>"> Deslogear </a>
+      </li>
     </ul>
     
   </div>

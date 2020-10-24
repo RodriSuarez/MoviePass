@@ -3,83 +3,81 @@
 
 
     class Cinema{
-
+    
+        private $id_cinema;
         private $cinema_name;
         private $address;
         private $capacity;
-        private $id;
-        private $room;
-        
-        public function __construct($name='', $address='', $capacity='',  $room='', $id=''){
-            $this->name = $name;
+        private $id_room;
+        private $id_show_cinema;
+
+        public function __construct( $id_cinema='', $cinema_name='', $address='', $capacity='', $id_room='', $id_show_cinema = ''){
+            $this->id_cinema = $id_cinema;
+            $this->cinema_name = $cinema_name;
             $this->address = $address;
             $this->capacity = $capacity;
-            $this->id = $id;
-            $this->room= $room;
-            if(empty($id)){
-                $this->id = getdate()['0'];
-            }
+            $this->id_room= $id_room;        
+            $this->id_show_cinema = $id_show_cinema;
         }
 
         public function getCinemaName()
-    {
-        return $this->cinema_name;
-    }
+        {
+            return $this->cinema_name;
+        }
 
-    public function setCinemaName($cinema_name)
-    {
-        $this->cinema_name = $cinema_name;
+        public function setCinemaName($cinema_name)
+        {
+            $this->cinema_name = $cinema_name;
+        }
 
-        
-    }
-        
-        public function setAddress($address){
+        public function setAddress($address)
+        {
             $this->address = $address;
         }
 
-        public function getAddress(){
+        public function getAddress()
+        {
             return $this->address;
         }
 
-        public function setCapacity($capacity){
+        public function setCapacity($capacity)
+        {
             $this->capacity = $capacity;
         }
-        public function getCapacity(){
+
+        public function getCapacity()
+        {
             return $this->capacity;
         }
 
-    /*    public function setPriceTicket($priceTicket){
-            $this->priceTicket = $priceTicket;
-        }
-        public function getPriceTicket(){
-            return $this->priceTicket;
-        }
-
-*/
-        public function getId()
+        public function getIdCinema()
         {
-                return $this->id;
+            return $this->id;
         }
 
-        public function setId($id)
+        public function setIdCinema($id)
         {
-                $this->id = $id;
+            $this->id = $id;
         }
- 
-    public function getRoom()
-    {
-        return $this->room;
-    }
+    
+        public function getIdRoom()
+        {
+            return $this->id_room;
+        }
 
- 
-    public function setRoom($room)
-    {
-        $this->room = $room;
+        public function setIdRoom($id_room)
+        {
+            $this->id_room = $id_room;
+        }
 
+        public function setIdShowCinema($id_show_cinema)
+        {
+            $this->id_show_cinema = $id_show_cinema;
+        }
         
+        public function getIdShowCinema()
+        {
+            return $this->id_room;
+        }
     }
-
-   
-}
-
 ?>

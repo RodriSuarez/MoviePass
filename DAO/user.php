@@ -29,21 +29,21 @@
 
             return $this->userList;
         } 
+
        public function GetOne($name)
         {
             
-                $this->RetrieveData();
+            $this->RetrieveData();
 
-                foreach($this->userList as $user){
-                    if($user->getFirstName() == $name){
-                        return $user;
-                    }
+            foreach($this->userList as $user)
+            {
+                if($user->getFirstName() == $name)
+                {
+                    return $user;
                 }
+            }
 
-                return null;
-            
-        
-
+             return null;
         }
 
         public function EditOne($name, User $userModify){
@@ -55,23 +55,25 @@
             
             $keyList = null;
             
-            foreach($this->userList as $key => $user){
-                if($user->getIdUser() == $modify->getIdUser()){
+            foreach($this->userList as $key => $user)
+            {
+                if($user->getIdUser() == $modify->getIdUser())
+                {
                     $keyList = $key;
                 }
             }
 
-
-            if($keyList != null || $keyList == 0){
+            if($keyList != null || $keyList == 0)
+            {
                 $this->userList[$keyList] = $userModify;
-            }else{
+            }else
+            {
                 echo '<h1> NOOO </h1>';
             }
            
             $this->SaveData();
-
-            
         }
+
         public function DeleteOne($key){
             $this->RetrieveData();
           
@@ -89,10 +91,10 @@
             {
             
                 $valuesArray["id_user"] = $user->getIdUser();
-                $valuesArray["firstName"] = $user->getFirstName();
-                $valuesArray["lastName"] = $user->getLastName();
+                $valuesArray["first_name"] = $user->getFirstName();
+                $valuesArray["last_name"] = $user->getLastName();
                 $valuesArray["email"] = $user->getEmail();
-                $valuesArray["phoneNumber"] = $user->getPhoneNumber();
+                $valuesArray["phone_number"] = $user->getPhoneNumber();
                 $valuesArray["pass"] = $user->getPass();
 
                 array_push($arrayToEncode, $valuesArray);
@@ -118,10 +120,10 @@
         
                     $user = new User();
                     $user->setIdUser($valuesArray["id_user"]);
-                    $user->setFirstName($valuesArray["firstName"]);
-                    $user->setLastName($valuesArray["lastName"]);
+                    $user->setFirstName($valuesArray["first_name"]);
+                    $user->setLastName($valuesArray["last_name"]);
                     $user->setEmail($valuesArray["email"]);
-                    $user->setPhoneNumber($valuesArray["phoneNumber"]);
+                    $user->setPhoneNumber($valuesArray["phone_number"]);
                     $user->setPass($valuesArray["pass"]);
                  
                     array_push($this->userList, $user);

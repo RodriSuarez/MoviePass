@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content pl-4 pb-5 pr-5">
@@ -12,7 +11,7 @@
           <h4>Login</h4>
         </div>
         <div class="d-flex flex-column text-center">
-          <form action ="<?=FRONT_ROOT.USER_ROOT."/login"?>" method="POST">
+          <form action ="<?=FRONT_ROOT.USER_ROOT."login"?>" method="POST">
             <div class="form-group">
               <input type="email" class="form-control" id="email1" name =" email1"placeholder="Your email address...">
             </div>
@@ -26,7 +25,7 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">¿No sos miembro? <a href="<?= VIEWS_PATH .'register.php'?>" class="text-info">Registrate</a>.</div>
+        <div class="signup-section">¿No sos miembro? <a href="<?= ROOT. VIEWS_PATH."register.php"?>" class="text-info">Registrate</a>.</div>
       </div>
     </div>
       

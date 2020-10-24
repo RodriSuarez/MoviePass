@@ -1,20 +1,2 @@
 [
-    {
-        "name": "Cine Aldrey",
-        "address": "Por algun lugar",
-        "capacity": "1280",
-        "priceTicket": "500"
-    },
-    {
-        "name": "Cines del Paseo Diagonal",
-        "address": "dsada",
-        "capacity": "16",
-        "priceTicket": "651"
-    },
-    {
-        "name": "Cine pepito",
-        "address": "alguna",
-        "capacity": "123",
-        "priceTicket": "654"
-    }
 ]

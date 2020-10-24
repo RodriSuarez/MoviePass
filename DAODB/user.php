@@ -1,5 +1,4 @@
 <?php
-
 namespace DAODB;
 
     use \Exception as Exception;
@@ -17,20 +16,21 @@ namespace DAODB;
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (id_user, firstName, lastName, email, phoneNumber, pass)
-                 VALUES (:id_user, :firstName, :lastName, :email, :phoneNumber, :pass);";
+                $query = "INSERT INTO ".$this->tableName." (id_user, first_name, last_name, email, phone_number, pass, is_admin)
+                 VALUES (:id_user, :first_name, :last_name, :email, :phone_number, :pass, :is_admin);";
                 
            
                 $parameters["id_user"] = $user->getIdUser();
-                $parameters["firstName"] = $user->getFirstName();
-                $parameters["lastName"] = $user->getLastName();
+                $parameters["first_name"] = $user->getFirstName();
+                $parameters["last_name"] = $user->getLastName();
                 $parameters["email"] = $user->getEmail();
-                $parameters["phoneNumber"] = $user->getPhoneNumber();
-                $parameters["pass"] = $user->getPass();
+                $parameters["phone_number"] = $user->getPhoneNumber();
+                $parameters["pass"] = $user->getPass();           
+                $parameters["is_admin"] = $user->getIsAdmin();
+
 
 
                 $this->connection = Connection::GetInstance();
-               // print_r($parameters);
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             }
@@ -58,11 +58,12 @@ namespace DAODB;
                     $user = new UserModel();
                
                     $user->setIdUser($row["id_user"]);
-                    $user->setFirstNAme($row["firstName"]);
-                    $user->setLastName($row["lastName"]);
+                    $user->setFirstNAme($row["first_name"]);
+                    $user->setLastName($row["last_name"]);
                     $user->setEmail($row["email"]);
-                    $user->setPhoneNumber($row["phoneNumber"]);
+                    $user->setPhoneNumber($row["phone_number"]);
                     $user->setPass($row["pass"]);
+                    $user->setIsAdmin($row["is_admin"]);
 
                     array_push($userList, $user);
                 }
@@ -75,9 +76,9 @@ namespace DAODB;
             }
         }
 
-       public function GetOne($email, $pass)
+       public function GetOne($email)
         {
-             try
+            try
             {
   
                 $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'.$email.'";';
@@ -89,26 +90,23 @@ namespace DAODB;
                     $row=$obj[0];
                     $user= new UserModel();
                     $user->setIdUser($row["id_user"]);
-                    $user->setFirstNAme($row["firstName"]);
-                    $user->setLastName($row["lastName"]);
+                    $user->setFirstNAme($row["first_name"]);
+                    $user->setLastName($row["last_name"]);
                     $user->setEmail($row["email"]);
-                    $user->setPhoneNumber($row["phoneNumber"]);
+                    $user->setPhoneNumber($row["phone_number"]);
                     $user->setPass($row["pass"]);
-                    if($pass== $user->getPass())
-                        return $user;
-                    else{
-                        return null;
-                    }
+                    $user->setIsAdmin($row["is_admin"]);
+                    return $user;
+                }
+                else
+                {
+                    return null;
                 }
             }
-
             catch(Exception $ex)
             {
                 throw $ex;
             }
         }
-        
-
     
-        
-        }
+    }

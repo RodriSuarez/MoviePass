@@ -10,11 +10,16 @@ namespace DAODB;
     {
         private $connection;
         private $tableName = "cinema";
-/* private $name;
+
+        /*
+        private $id_cinema;
+        private $cinema_name;
         private $address;
         private $capacity;
-        private $id;
-        private $room;*/
+        private $id_room;
+        private $id_show_cinema;
+        */
+
         public function Add(CinemaModel $cinema)
         {
             try
