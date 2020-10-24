@@ -29,6 +29,7 @@
 
             return $this->movieList;
         } 
+        
         public function GetOne($id)
         {
             $this->RetrieveData();
@@ -94,6 +95,7 @@
 
 
         }
+
 
         public function DeleteOne($key){
             $this->RetrieveData();

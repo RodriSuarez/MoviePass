@@ -1,9 +1,25 @@
-<?php require_once('nav.php'); ?>
-
+<?php require_once('nav.php');
+#var_dump($movieList); ?>
 <div class="m-5">
 
   <?php include_once('login-button.php'); ?>
 </div>
+
+  <div class="row col-3 d-flex justify-content-center align-content-center p-5">
+    <form action="<?= FRONT_ROOT . MOVIE_ROOT .'ShowByGenre' ?>" method="GET">
+      <span>Filtrar por genero</span>
+      <select name="genre" id="genre">
+        <option value="0" disabled>-- Selecciona una opcion --</option>
+      <?php foreach($genreList as $genre):?>
+
+            <option value="<?= $genre->getName() ?>"><?= $genre->getName() ?></option>
+
+      <?php endforeach;  ?>
+      </select>
+      <button type="submit">Aplicar</button>
+    </form>
+  </div>
+
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">
 
@@ -35,11 +51,12 @@
             </div>
 
             <!--Footer-->
-            <div class="modal-footer justify-content-center slider-ro">
+              <div class="modal-footer justify-content-center slider-ro">
+            <div class="row col-12 text-center">
+            </div>
+              <h3 class="mr-4 col-12"><?= $result->getTitle()?></h3>
               
-              <h3 class="mr-4"><?= $result->getTitle()?></h3>
-              
-              <div class="row d-flex justify-content-center">
+              <div class="row d-flex col-12 justify-content-center">
             
                   <div class="col-12">
                     <hr>
@@ -48,21 +65,34 @@
                             echo date_format($date, "d-m-Y");
                         ?></p>
                         <hr>
-                        <h5>Descripción</h5>
+                        <h5>Sinopsis</h5>
                     <p class="text-center"><?= $result->getOverview() ?></p>
                     <hr>
-                    <h5 class="font-style-bold" > Genero </h5>
-                    <p><?= $genreList->getOne($result->getGenres()['0'])?></p>
-                    <?php if(count($result->getGenres()) > 1){?>
+                    <h5 class="font-style-bold col-12 p-0" > Genero </h5>
+                    <p><?php  $generos = $result->getGenres();
+                                                         
+
+                            if($generos){
+                              $genero = array_shift($generos);
+                              echo $genero->getName() ?></p>
+                    <?php if(is_array($generos) && sizeof($generos) > 0 ){ ?>
                       <h6>Subgeneros</h6>
-                      <?php
-                      foreach($result->getGenres() as $index => $genre){
-                            if($index != 0){?>
-                        <p><?= $genreList->getOne($genre) ?> </p>
+                      <?php 
+                      foreach($generos as $genre){ ?>
+                          
+                        <p> <?= $genre->getName() ?> </p>
                       <?php }
-                      }
+                         }
                       } ?>
                       <hr>
+                      <h5 class="col-12 text-center p-0">Director</h5>
+                      <p><?= $result->getDirector() ?></p>
+                      <hr>
+                      <h5 class="col-12 text-center p-0">Duración</h5>
+                      <p><?= $result->getDuration() . " minutos." ?></p>
+                      <hr>
+                      <h5 class="col-12 text-center p-0">Valoracion</h5>
+                      <p><?= $result->getRating() ?></p>
                 
                   </div>
               </div>
@@ -81,7 +111,7 @@
       </div>
       
     <?php } 
-      include('login-form.php');
+
     ?> 
             
   </div>

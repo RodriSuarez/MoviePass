@@ -27,9 +27,9 @@
             require_once(VIEWS_PATH."cinema-list.php");
         }
 
-        public function ShowEditView($name){
+        public function ShowEditView($id){
 
-            $cinema = $this->cinemaDao->GetOne($name);
+            $cinema = $this->cinemaDao->GetOne($id);
           //  var_dump($cinema);
             require_once(VIEWS_PATH."cinema-edit.php");
         }
