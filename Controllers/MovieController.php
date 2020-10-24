@@ -36,10 +36,10 @@
             
         }
 
-        public function ShowSearchMoviesView($title= ''){
+        public function ShowSearchMoviesView(){
 
-            if(isset($_POST['busqueda'])){
-                $title = $_POST['busqueda'];
+            if(isset($_GET['title'])){
+                $title = $_GET['title'];
             }
        
             $movieList = $this->movieDB->SearchMovies($title);
