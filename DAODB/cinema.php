@@ -6,7 +6,7 @@ namespace DAODB;
     use Models\cinema as CinemaModel;    
     use DAODB\Connection as Connection;
 
-    class Movie 
+    class Cinema
     {
         private $connection;
         private $tableName = "cinema";

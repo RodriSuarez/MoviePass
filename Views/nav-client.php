@@ -20,7 +20,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href=""> Deslogear </a>
+        <a class="nav-link" href="<?= FRONT_ROOT . USER_ROOT.'logout' ?>"> Deslogear </a>
       </li>
     </ul>
     

@@ -4,7 +4,7 @@ namespace Models;
 
 
 
-class cinemaFunction{
+class showCinema{
 private $id_function;
 private $date;
 private $time; 

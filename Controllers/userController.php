@@ -55,7 +55,9 @@
 
             if((!$user)&&($user->getPass()!=$pass1))
             {
-                echo "asd";       
+                $message= "Usuario y/o contraseña incorrecta";   
+                //REQUIRED (login.php) se tiene que preguntar si el message no esta vacio y si no se imprime
+
             }
             else
             {
@@ -69,6 +71,12 @@
                 $movie->ShowListMoviesViewClient();
             }
             }
+
+        }
+        public function logout()
+        {
+            session_destroy();
+            require_once(ROOT.VIEWS_PATH."register.php");
 
         }
 

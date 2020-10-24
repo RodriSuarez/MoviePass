@@ -22,10 +22,9 @@
         <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Actualizar Peliculas</a>
       </li>
       
-       <li>
-        <?php include_once('login-button.php'); ?>
-       </li>
-      
+         <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . USER_ROOT.'logout' ?>"> Deslogear </a>
+      </li>
       
      
     </ul>

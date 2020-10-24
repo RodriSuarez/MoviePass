@@ -31,10 +31,7 @@
                 </td>
                 </tr>
                 <tr>
-                <th>Precio de los Tickets</th>
-                <td>
-                  <input type="number" name="priceTicket" size="10" value="<?= $cinema->getPriceTicket()?>" required>
-                </td>
+              
                 <input type="hidden" value="<?= $cinema->getId() ?>"name="id" size="30" required>
               </tr>     
               </table>

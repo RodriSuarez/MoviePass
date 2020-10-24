@@ -2,7 +2,6 @@
 
 <div class="m-5">
 
-  <?php include_once('login-button.php'); ?>
 </div>
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">

@@ -10,7 +10,6 @@
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
-                         <th>Precio</th>
                     </thead>
                     <tbody>
                          <?php
@@ -21,7 +20,6 @@
                                              <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
-                                             <td><?php echo '$'.$cinema->getPriceTicket() ?></td>
 
                                         </tr>
                                    <?php

@@ -12,7 +12,7 @@
           <h4>Login</h4>
         </div>
         <div class="d-flex flex-column text-center">
-          <form action ="<?=FRONT_ROOT.USER_ROOT."/login"?>" method="POST">
+          <form action ="<?=FRONT_ROOT.USER_ROOT."login"?>" method="POST">
             <div class="form-group">
               <input type="email" class="form-control" id="email1" name =" email1"placeholder="Your email address...">
             </div>

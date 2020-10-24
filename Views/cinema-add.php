@@ -29,10 +29,8 @@
                 </td>
                 </tr>
                 <tr>
-                <th>Precio de los Tickets</th>
-                <td>
-                  <input type="number" name="priceTicket" size="10" required>
-                </td>
+               
+             
               </tr>     
               </table>
           <br>

@@ -91,19 +91,9 @@ include_once("nav-no-login.php");
                     </div>
                     
 
-                    <!-- Divider Text -->
-                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                        <div class="border-bottom w-100 ml-5"></div>
-                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-                        <div class="border-bottom w-100 mr-5"></div>
-                    </div>
+                 
+                </div>
 
-
-                    <!-- Already Registered -->
-                    <div class="text-center w-100">
-                        <p class="text-muted font-weight-bold">¿Sos administrador y estas probando la pagina? -
-                             <a href="<?= FRONT_ROOT . MOVIE_ROOT ?>ShowListMoviesViewAdm" class="text-primary ml-2">Es por aca rey</a> -</p>
-                    </div>                </div>
             </form>
         </div>
     </div>
