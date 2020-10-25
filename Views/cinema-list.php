@@ -10,6 +10,8 @@
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
+                                                  <th>ID</th>
+
                          <th>Editar</th>
                          <th>Eliminar</th>
                     </thead>
@@ -24,14 +26,15 @@
                                              <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
-                                   
+                                             <td><?php echo $cinema->getIdCinema() ?></td>
+
                                              <td>
-                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema-> getIdCinema(); ?>" method="POST">
+                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView/<?= $cinema-> getIdCinema(); ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?=$cinema-> getIdCinema(); //ACA VA GETID?>" name="id">
+                                                  <input type="hidden" value="<?=$cinema-> getIdCinema(); //ACA VA GETID?>" name="id_cinema">
 
                                                   <!-- OJO este input es importante -->
 

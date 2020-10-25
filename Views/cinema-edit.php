@@ -4,17 +4,15 @@
      <section id="listado" class="mb-5">
         <div class="container">
         
-        <h2 class="mb-4 text-center text-white "> Editar <?= $cinema->getName() ?></h2>
-        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."EditOneCinema/". $cinema->getId() ?>" method="POST"  >
+        <h2 class="mb-4 text-center text-white "> Editar </h2>
+        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."EditOneCinema/". $cinema->getIdCinema(); ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>
-              	   
-     
 
                 <th>Nombre</th>
                  <td>
-                  <input type="text" value="<?= $cinema->getName() ?>"name="name" size="30" required>
+                  <input type="text" value="<?= $cinema->getCinemaName() ?>"name="cinema_name" size="30" required>
                 </td>
            
              </tr>
@@ -30,17 +28,15 @@
                   <input type="number" name="capacity" size="20" value="<?= $cinema->getCapacity() ?>"required>
                 </td>
                 </tr>
-                <tr>
-                <th>Cantidad de Salas</th>
-                <td>
-                  <input type="number" name="room" size="10" value="<?= $cinema->getRoom()?>" required>
-                </td>
-                <input type="hidden" value="<?= $cinema->getId() ?>"name="id" size="30" required>
-              </tr>     
+                
+                  
+                <input type ="hidden" name="id_cinema" size="20" value="<?=$cinema->getIdCinema()?>">
+                  
+
               </table>
-          <br>
+            <br>
           <div>
-            <input type="submit" class="btn btn-danger" value="Modificar" "/>
+            <input type="submit" class="btn" value="Modificar" style="background-color:#DC8E47;color:white;"/>
           </div>
         </form>
       

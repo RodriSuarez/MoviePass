@@ -52,7 +52,7 @@
             return $this->id_cinema;
         }
 
-        public function setIdCinema($id)
+        public function setIdCinema($id_cinema)
         {
             $this->id_cinema = $id_cinema;
         }

@@ -27,10 +27,10 @@
             require_once(VIEWS_PATH."cinema-list.php");
         }
 
-        public function ShowEditView($id){
+        public function ShowEditView($id_cinema){
 
-            $cinema = $this->cinemaDB->GetOne($id);
-          //  var_dump($cinema);
+            $cinema = $this->cinemaDB->GetOne($id_cinema);
+
             require_once(VIEWS_PATH."cinema-edit.php");
         }
 
@@ -42,18 +42,15 @@
             $this->ShowListView();
         }
 
-        public function EditOneCinema($name, $address, $capacity, $priceTicket='',$id){
+        public function EditOneCinema($cinema_name, $address, $capacity, $id_cinema){
                      
             
             $modify = new Cinema();
-            $modify->setName($name);
+            $modify->setCinemaName($cinema_name);
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
-            $modify->setId($id);
-            
-            var_dump($modify);
-            
-            $this->cinemaDB->EditOne($id, $modify);
+        
+            $this->cinemaDB->EditOne($id_cinema, $modify);
 
             $this->ShowListView();
             
@@ -68,6 +65,7 @@
             $cinema->setCinemaName($cinema_name);
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
+            
             if(!$this->cinemaDB->exist($cinema_name, $address)) {
                  $this->cinemaDB->Add($cinema);
                  $success=true;

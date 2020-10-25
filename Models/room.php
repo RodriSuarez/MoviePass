@@ -5,15 +5,15 @@
         private $id_room;
         private $room_name;
         private $price;
-        private $capacity;
+        private $room_capacity;
         private $id_cinema;
 
-        public function __construct($id_room='', $room_name='', $price='', $capacity='', $id_cinema='')
+        public function __construct($id_room='', $room_name='', $price='', $room_capacity='', $id_cinema='')
         {
             $this->id_room = $id_room;
             $this->room_name = $room_name;
             $this->price = $price; 
-            $this->capacity = $capacity; 
+            $this->room_capacity = $room_capacity; 
             $this->id_cinema = $id_cinema;
         }
 
@@ -47,14 +47,14 @@
             $this->price = $price;
         }
  
-        public function getCapacity()
+        public function getRoomCapacity()
         {
-            return $this->capacity;
+            return $this->room_capacity;
         }
 
-        public function setCapacity($capacity)
+        public function setRoomCapacity($capacity)
         {
-            $this->capacity = $capacity;
+            $this->room_capacity = $room_capacity;
         }
 
         public function getIdCinema()
