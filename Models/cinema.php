@@ -8,16 +8,13 @@
         private $cinema_name;
         private $address;
         private $capacity;
-        private $id_room;
-        private $id_show_cinema;
-
-        public function __construct( $id_cinema='', $cinema_name='', $address='', $capacity='', $id_room='', $id_show_cinema = ''){
+      
+        public function __construct( $id_cinema='', $cinema_name='', $address='', $capacity=''){
             $this->id_cinema = $id_cinema;
             $this->cinema_name = $cinema_name;
             $this->address = $address;
             $this->capacity = $capacity;
-            $this->id_room= $id_room;        
-            $this->id_show_cinema = $id_show_cinema;
+        
         }
 
         public function getCinemaName()
@@ -52,32 +49,14 @@
 
         public function getIdCinema()
         {
-            return $this->id;
+            return $this->id_cinema;
         }
 
         public function setIdCinema($id)
         {
-            $this->id = $id;
+            $this->id_cinema = $id_cinema;
         }
     
-        public function getIdRoom()
-        {
-            return $this->id_room;
-        }
-
-        public function setIdRoom($id_room)
-        {
-            $this->id_room = $id_room;
-        }
-
-        public function setIdShowCinema($id_show_cinema)
-        {
-            $this->id_show_cinema = $id_show_cinema;
-        }
         
-        public function getIdShowCinema()
-        {
-            return $this->id_room;
-        }
     }
 ?>

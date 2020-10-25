@@ -15,21 +15,23 @@
                     </thead>
                     <tbody>
                          <?php
+     
                               foreach($cinemaList as $key => $cinema)
                               {
+
                                    ?>
                                         <tr>
-                                             <td><?php echo $cinema->getName() ?></td>
+                                             <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
                                    
                                              <td>
-                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema->getId() ?>" method="POST">
+                                             <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema-> getIdCinema(); ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?=$cinema->getId() //ACA VA GETID?>" name="id">
+                                                  <input type="hidden" value="<?=$cinema-> getIdCinema(); //ACA VA GETID?>" name="id">
 
                                                   <!-- OJO este input es importante -->
 
@@ -65,7 +67,7 @@
                                                                  </button>
                                                                  </div>
                                                                  <div class="modal-body text-dark">
-                                                                      ¿Esta seguro que desea eliminar <?= $cinema->getName() ?> ?
+                                                                      ¿Esta seguro que desea eliminar <?= $cinema->getCinemaName() ?> ?
                                                                  </div>
                                                                  <div class="modal-footer">
                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

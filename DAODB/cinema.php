@@ -11,21 +11,14 @@ namespace DAODB;
         private $connection;
         private $tableName = "cinema";
 
-        /*
-        private $id_cinema;
-        private $cinema_name;
-        private $address;
-        private $capacity;
-        private $id_room;
-        private $id_show_cinema;
-        */
+
 
         public function Add(CinemaModel $cinema)
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (cinema_name, address, capacity,  id_room, id_show_cinema)
-                 VALUES (:cinema_name, :address, :capacity, :id_room, id_show_cinema);";
+                $query = "INSERT INTO ".$this->tableName." (cinema_name, address, capacity)
+                 VALUES (:cinema_name, :address, :capacity);";
                 
            
                 
@@ -62,10 +55,7 @@ namespace DAODB;
                     $cinema->setCinemaName($row["cinema_name"]);
                     $cinema->setAddress($row["address"]);
                     $cinema->setCapacity($row["capacity"]);
-
-
-                    
-                    array_push($cinmeaList, $cinema);
+                    array_push($cinemaList, $cinema);
                 }
 
                 return $cinemaList;

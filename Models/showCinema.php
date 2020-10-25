@@ -5,18 +5,16 @@ namespace Models;
 
 
 class showCinema{
-private $id_show_cinema;
-private $show_time;
-private $show_hour;
-private $id_movie;
-private $id_room;
+    private $id_show_cinema;
+    private $show_time;
+    private $show_hour;
+    private $id_room;
 
-    public function __construct($id_show_cinema='', $show_time='', $show_hour='', $id_movie='', $id_room='')
+    public function __construct($id_show_cinema='', $show_time='', $show_hour='',  $id_room='')
 	{
 		$this->id_show_cinema = $id_show_cinema;
 		$this->show_time = $show_time;
 		$this->show_hour = $show_hour;
-        $this->id_movie = $id_movie;
         $this->id_room = $id_room;
 	}
 
@@ -49,16 +47,6 @@ private $id_room;
     public function setTime($show_hour)
     {
         $this->show_hour = $show_hour;
-    }
-
-    public function getIdMovie()
-    {
-        return $this->id_movie;
-    }
-
-    public function setIdMovie($id_movie)
-    {
-        $this->id_movie = $id_movie;
     }
 
     public function getIdRoom()

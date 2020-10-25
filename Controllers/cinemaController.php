@@ -68,17 +68,18 @@
             $cinema->setCinemaName($cinema_name);
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
-            if(!$this->cinemaDB->exist($cinema_name, $address)) 
+            if(!$this->cinemaDB->exist($cinema_name, $address)) {
                  $this->cinemaDB->Add($cinema);
                  $success=true;
+             }
             else
                 $success = false;
            
             if($success){
-                $message = '¡Se ha agregado a ' . $name . ' con exito!';
+                $message = '¡Se ha agregado a ' . $cinema_name . ' con exito!';
                 
             }else{
-                $message = '¡Error inesperado! No se ha podido agregar a ' . $name;
+                $message = '¡Error inesperado! No se ha podido agregar a ' . $cinema_name;
             }
             
 
