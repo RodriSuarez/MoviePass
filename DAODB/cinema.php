@@ -6,7 +6,7 @@ namespace DAODB;
     use Models\cinema as CinemaModel;    
     use DAODB\Connection as Connection;
 
-    class Movie 
+    class cinema
     {
         private $connection;
         private $tableName = "cinema";
@@ -24,19 +24,15 @@ namespace DAODB;
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (cinema_name, address, capacity,  id_room)
-                 VALUES (:cinema_name, :address, :capacity, :id_room);";
+                $query = "INSERT INTO ".$this->tableName." (cinema_name, address, capacity,  id_room, id_show_cinema)
+                 VALUES (:cinema_name, :address, :capacity, :id_room, id_show_cinema);";
                 
            
                 
                 $parameters["cinema_name"] = $cinema->getCinemaName();
                 $parameters["address"] = $cinema->getAddress();
                 $parameters["capacity"] = $cinema->getCapacity();
-                $parameters["id_room"] = serialize($cinema->getRoom());
-
-
                 $this->connection = Connection::GetInstance();
-               // print_r($parameters);
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             }
@@ -66,7 +62,6 @@ namespace DAODB;
                     $cinema->setCinemaName($row["cinema_name"]);
                     $cinema->setAddress($row["address"]);
                     $cinema->setCapacity($row["capacity"]);
-                    $cinema->setRoom(unserialize($row["id_room"]));
 
 
                     
@@ -81,12 +76,12 @@ namespace DAODB;
             }
         }
 
-      /*  public function exist($id){
+        public function exist($cinema_name, $address){
             try
             {
                 
 
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
+                $query = 'SELECT * FROM '.$this->tableName . ' WHERE cinema_name = "' . $cinema_name .'" and address = "'.$address.'";';
 
                 $this->connection = Connection::GetInstance();
 
@@ -101,7 +96,7 @@ namespace DAODB;
             }
         
         }
-        public function GetApiMovies(){
+      /*  public function GetApiMovies(){
            
             try{
             $newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE), true );

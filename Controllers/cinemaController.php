@@ -3,19 +3,19 @@
 
     use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
-    use DAOBD\cinema as cinemaDB;
+    use DAODB\cinema as cinemaDB;
    
     class CinemaController{
-        private $cinemaDao;
+        private $cinemaDB;
 
         public function __construct()
         {
-            $this->cinemaDao = new CinemaDao();
+            $this->cinemaDB = new cinemaDB();
         }
 
         public function ShowAddView($message='', $success='')
         {
-            $cinemaList=$this->cinemaDao->GetAll();
+            $cinemaList=$this->cinemaDB->GetAll();
             require_once(VIEWS_PATH."cinema-add.php");
         }
 
@@ -23,20 +23,20 @@
 
         public function ShowListView()
         {
-            $cinemaList = $this->cinemaDao->GetAll();
+            $cinemaList = $this->cinemaDB->GetAll();
             require_once(VIEWS_PATH."cinema-list.php");
         }
 
         public function ShowEditView($id){
 
-            $cinema = $this->cinemaDao->GetOne($id);
+            $cinema = $this->cinemaDB->GetOne($id);
           //  var_dump($cinema);
             require_once(VIEWS_PATH."cinema-edit.php");
         }
 
         public function DeleteOne($key){
 
-            $this->cinemaDao->DeleteOne($key);
+            $this->cinemaDB->DeleteOne($key);
             
             
             $this->ShowListView();
@@ -49,29 +49,28 @@
             $modify->setName($name);
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
-            $modify->setPriceTicket($priceTicket);
             $modify->setId($id);
             
             var_dump($modify);
             
-            $this->cinemaDao->EditOne($id, $modify);
+            $this->cinemaDB->EditOne($id, $modify);
 
             $this->ShowListView();
             
         }
 
    
-        public function Add($name, $address, $capacity, $priceTicket)
+        public function Add($cinema_name, $address, $capacity)
         {   
            
                 
             $cinema = new Cinema();
-            $cinema->setName($name);
+            $cinema->setCinemaName($cinema_name);
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
-            $cinema->setPriceTicket($priceTicket);
-            if(!$this->cinemaDao->exist($cinema)) 
-                $success = $this->cinemaDao->Add($cinema);
+            if(!$this->cinemaDB->exist($cinema_name, $address)) 
+                 $this->cinemaDB->Add($cinema);
+                 $success=true;
             else
                 $success = false;
            

@@ -23,7 +23,8 @@
       </li>
       
        <li>
-        <?php include_once('login-button.php'); ?>
+  
+      <a class="nav-link" href="<?= FRONT_ROOT . USER_ROOT.'logout' ?>"> Deslogear </a>
        </li>
            
      

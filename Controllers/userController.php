@@ -5,7 +5,7 @@
     //use DAO\UserDAO as userDao;
     use Models\user as User;
     use DAODB\User as userDB;
-
+    use Controllers\MovieController as MovieC;
     class UserController{
         
         //private $userDao;
@@ -18,7 +18,7 @@
             $this->userDB = new userDB();
         }
 
-        public function ShowAddView()
+        public function ShowAddView($message, $success)
         {
             $userList=$this->userDB->GetAll();
             require_once(VIEWS_PATH."register.php");
@@ -100,17 +100,36 @@
 
         public function Add($firstName, $lastName, $email, $phoneNumber, $pass)
         {   
+            
+               
+              
             $user = new User();
             $user->setFirstName($firstName);
             $user->setLastName($lastName);
             $user->setEmail($email);
             $user->setPhoneNumber($phoneNumber);
             $user->setPass($pass);
-        
-            $this->userDB->Add($user);
+            if(!$this->userDB->existEmail($email)){
+                $this->userDB->Add($user);
+                $success = true;  
+            }
+            else{
+                   $success = false;          
+            }
+            if($success)
+            {
+                $message = 'Usuario creado con exito!';
 
-            $this->ShowAddView();
-        }
+            }
+            else{
+                $message = ' Email en uso!';
+            }
+            $this->ShowAddView($message, $success);
+            
+
+            }
+    
     }
+
 
 ?>

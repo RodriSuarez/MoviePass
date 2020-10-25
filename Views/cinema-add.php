@@ -5,14 +5,14 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Agregar nuevo cine</h2>
-        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."/Add" ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT.CINEMA_ROOT."Add" ?>" method="GET"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>
 
                 <th>Nombre</th>
                  <td>
-                  <input type="text" name="name" size="30" required>
+                  <input type="text" name="cinema_name" size="30" required>
                 </td>
            
              </tr>
@@ -29,10 +29,10 @@
                 </td>
                 </tr>
                 <tr>
-                <th>Precio de los Tickets</th>
+               <!-- <th>Cantidad de Salas</th>
                 <td>
-                  <input type="number" name="priceTicket" size="10" required>
-                </td>
+                  <input type="number" name="room" size="10" required>
+                </td>-->
               </tr>     
               </table>
           <br>

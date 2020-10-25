@@ -16,7 +16,7 @@ else {require_once('nav-no-login.php'); }
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action=" <?php echo FRONT_ROOT.USER_ROOT."/Add" ?>" method="POST">
+            <form action=" <?php echo FRONT_ROOT.USER_ROOT."Add" ?>" method="POST">
                 <div class="row">
 
                     <!-- First Name -->
@@ -95,6 +95,17 @@ else {require_once('nav-no-login.php'); }
                 </div>
 
             </form>
+
+             <?php  if(!empty($message) && $success) {?>
+  
+      <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-success" role="alert">
+            <?= $message ?>
+      </div>    
+      <?php }elseif(!empty($message)){ ?>
+        <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-danger" role="alert">
+            <?= $message ?>
+      </div>    
+      <?php } ?>
         </div>
     </div>
 </div>

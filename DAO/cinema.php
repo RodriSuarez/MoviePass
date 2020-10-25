@@ -91,7 +91,6 @@
                 $valuesArray["name"] = $cinema->getName();
                 $valuesArray["address"] = $cinema->getAddress();
                 $valuesArray["capacity"] = $cinema->getCapacity();
-                $valuesArray["priceTicket"] = $cinema->getPriceTicket();
 
                 array_push($arrayToEncode, $valuesArray);
             }
@@ -117,7 +116,6 @@
                     $cinema->setName($valuesArray["name"]);
                     $cinema->setAddress($valuesArray["address"]);
                     $cinema->setCapacity($valuesArray["capacity"]);
-                    $cinema->setPriceTicket($valuesArray["priceTicket"]);
                  
 
                     array_push($this->cinemaList, $cinema);

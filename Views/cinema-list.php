@@ -10,7 +10,6 @@
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
-                         <th>Precio</th>
                          <th>Editar</th>
                          <th>Eliminar</th>
                     </thead>
@@ -23,7 +22,7 @@
                                              <td><?php echo $cinema->getName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
-                                             <td><?php echo '$'.$cinema->getPriceTicket() ?></td>
+                                   
                                              <td>
                                              <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView\<?=  $cinema->getId() ?>" method="POST">
 

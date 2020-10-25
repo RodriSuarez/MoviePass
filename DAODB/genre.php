@@ -24,12 +24,12 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (NAME, id_api_genre)
-                 VALUES (:NAME, :id_api_genre);";
+                $query = "INSERT INTO ".$this->tableName." (name, id_api_genre)
+                 VALUES (:name, :id_api_genre);";
                 
            
                 
-                $parameters["NAME"] = $genre->getName();
+                $parameters["name"] = $genre->getName();
                 $parameters["id_api_genre"] = $genre->getApi_id();
        
                 $this->connection = Connection::GetInstance();
@@ -57,7 +57,7 @@
 
                 $joinGenre = new GenreModel();
 
-                $joinGenre ->setName($genre['NAME']);
+                $joinGenre ->setName($genre['name']);
                 $joinGenre ->setApi_id($genre['id']);
 
                 

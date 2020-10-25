@@ -108,5 +108,23 @@ namespace DAODB;
                 throw $ex;
             }
         }
+        public function existEmail($email){
+            try
+            {
+            
+
+                $query = 'SELECT * FROM '.$this->tableName . ' WHERE email = "' . $email .'";';
+                $this->connection = Connection::GetInstance();
+
+                $resultEmail = $this->connection->Execute($query);
+
+                return $resultEmail;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        
+        }
     
     }
