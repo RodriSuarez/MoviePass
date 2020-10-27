@@ -49,7 +49,7 @@
             $modify->setCinemaName($cinema_name);
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
-        
+            
             $this->cinemaDB->EditOne($id_cinema, $modify);
 
             $this->ShowListView();

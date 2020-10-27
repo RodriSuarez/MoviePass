@@ -23,7 +23,7 @@ create table if not exists room(
                         #constraint unq_cinema_name unique (room_name, id_cinema)
                         );
          */
-        public function Add(RoomModel $room)
+        public function Add($id_cinema, RoomModel $room)
         {
             try
             {
@@ -134,7 +134,7 @@ create table if not exists room(
                     return $room;
 
                 }
-                else return 'Habitacion no encontrado';
+                else return 'Sala no encontrada';
             }
             catch(Exception $ex)
             {

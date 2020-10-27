@@ -134,17 +134,7 @@ namespace DAODB;
 
                 $modifyIdCinema=$modify->getIdCinema();
 
-                $query =  ' UPDATE '.$this->tableName.' SET cinema_name = "'.$cinemaModify->getCinemaName().'" WHERE id_cinema= "'.$modifyIdCinema.'";';
-
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
- 
-                $query =  ' UPDATE '.$this->tableName.' SET address = "'.$cinemaModify->getAddress().'"  WHERE id_cinema= "'.$modifyIdCinema.'";';
-                
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-
-                $query =  ' UPDATE '.$this->tableName.' SET capacity = "'.$cinemaModify->getCapacity().'"  WHERE id_cinema= "'.$modifyIdCinema.'";'; 
+                $query =  ' UPDATE '.$this->tableName.' SET cinema_name = "'.$cinemaModify->getCinemaName().'", address = "'.$cinemaModify->getAddress().'", capacity = "'.$cinemaModify->getCapacity().'" WHERE id_cinema= "'.$modifyIdCinema.'";';
 
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
