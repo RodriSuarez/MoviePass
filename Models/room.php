@@ -1,7 +1,7 @@
 <?php
     namespace Models;
 
-    class Room {
+    class room {
         private $id_room;
         private $room_name;
         private $price;
@@ -32,7 +32,7 @@
             return $this->room_name;
         }
     
-        public function setName($room_name)
+        public function setRoomName($room_name)
         {
             $this->room_name = $room_name;
         }
@@ -52,7 +52,7 @@
             return $this->room_capacity;
         }
 
-        public function setRoomCapacity($capacity)
+        public function setRoomCapacity($room_capacity)
         {
             $this->room_capacity = $room_capacity;
         }

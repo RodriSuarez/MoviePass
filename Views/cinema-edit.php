@@ -37,6 +37,7 @@
             <br>
           <div>
             <input type="submit" class="btn" value="Modificar" style="background-color:#DC8E47;color:white;"/>
+
           </div>
         </form>
       

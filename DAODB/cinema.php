@@ -5,6 +5,7 @@ namespace DAODB;
    
     use Models\cinema as CinemaModel;    
     use DAODB\Connection as Connection;
+    use Controllers\roomController as rControl;
 
     class cinema
     {
@@ -139,8 +140,7 @@ namespace DAODB;
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
                 
-                //$query ='UPDATE'   (completar con room);
-              
+                            
             }
         }
 

@@ -11,8 +11,8 @@
                          <th>Capacidad</th>
                          <th>Dirección</th>
                                                   <th>ID</th>
-
                          <th>Editar</th>
+                         <th>Agregar Sala</th>
                          <th>Eliminar</th>
                     </thead>
                     <tbody>
@@ -43,7 +43,20 @@
                                                        <span uk-icon="icon: trash">+</span>
                                                   </button>
                                                   </form>
-                                             </td>  
+                                             </td> 
+
+                                             <td>
+                                                  <form action ="<?=FRONT_ROOT . ROOM_ROOT ?>ShowAddViewRoom/<?=$cinema->getIdCinema(); ?>" method="POST">
+
+                                                       <input type="hidden" value="<?=$cinema->getIdCinema();?>"
+                                                       name ="id_cinema">
+
+                                                  <button type="submit" class="btn btn-danger">
+                                                       <span uk-icon="icon: trash">+</span>
+                                                       </button>
+                                                       </form>   
+                                             </td>
+
                                               <td>
                                              <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\<?= ($key)  ?>" method="POST">
 

@@ -6,6 +6,7 @@ define("FRONT_ROOT", "\\MoviePass\\");
 /*
 define("ROOT_MANUAL","lab/MoviePass/");
 */
+define("ROOM_ROOT", "room\\");
 define("CINEMA_ROOT", "cinema\\");
 define("MOVIE_ROOT", "movie\\");
 define("VIEWS_PATH", "Views\\");

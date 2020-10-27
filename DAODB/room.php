@@ -23,7 +23,7 @@ create table if not exists room(
                         #constraint unq_cinema_name unique (room_name, id_cinema)
                         );
          */
-        public function Add($id_cinema, RoomModel $room)
+        public function Add(RoomModel $room)
         {
             try
             {
@@ -34,8 +34,8 @@ create table if not exists room(
                 
                 $parameters["room_name"] = $room->getRoomName();
                 $parameters["price"] = $room->getPrice();
-                $parameters["id_cinema"] = serialize($room->getIdCinema());
                 $parameters["room_capacity"] = $room->getRoomCapacity();
+                $parameters["id_cinema"] = $room->getIdCinema();
        
                 $this->connection = Connection::GetInstance();
 
@@ -134,7 +134,7 @@ create table if not exists room(
                     return $room;
 
                 }
-                else return 'Sala no encontrada';
+                else return null;
             }
             catch(Exception $ex)
             {
