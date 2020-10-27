@@ -5,7 +5,6 @@ else {require_once('nav-no-login.php'); }
 #var_dump($movieList); ?>
 <div class="m-5">
 
-  <?php include_once('login-button.php'); ?>
 </div>
 
   <div class="row col-3 d-flex justify-content-center align-content-center p-5">

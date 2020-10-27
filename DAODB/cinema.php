@@ -149,4 +149,17 @@ namespace DAODB;
         }  
     }
 
+    public function DeleteOne($id_cinema){   
+    
+    try{
+        $query='DELETE FROM '.$this->tableName.' WHERE id_cinema = "'.$id_cinema.'";';
+        $this->connection = Connection::GetInstance();
+        $this->connection->ExecuteNonQuery($query);
+    }
+
+    catch(Exception $ex){
+        throw $ex;
+    }  
+}       
+
 }

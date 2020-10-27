@@ -1,6 +1,5 @@
 <?php 
 require_once('nav.php'); 
-var_dump($cinema);
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
@@ -43,6 +42,7 @@ var_dump($cinema);
           <br>
           <div>
             <input type="submit" class="btn" value="Agregar" style="background-color:#DC8E47;color:white;"/>
+            <a href="<?= FRONT_ROOT . CINEMA_ROOT . 'ShowListView' ?>"> Volver </a>
           </div>
         </form>
 

@@ -34,11 +34,10 @@
             require_once(VIEWS_PATH."cinema-edit.php");
         }
 
-        public function DeleteOne($key){
+        public function DeleteOne($id_cinema){
 
-            $this->cinemaDB->DeleteOne($key);
-            
-            
+            $this->cinemaDB->DeleteOne($id_cinema);
+
             $this->ShowListView();
         }
 

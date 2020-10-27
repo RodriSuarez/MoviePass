@@ -126,39 +126,6 @@
             }
         }
 
-        public function Delete($key)
-        {
-            $this->RetrieveData();
-           // echo $key;
-            unset($this->genreList[$key]);
-
-            $this->SaveData();
-        }
-
-        
-  /*   
-        private function RetrieveData()
-        {
-            $this->genreList = array();
-
-            if(file_exists($this->fileName))
-            {
-                $jsonContent = file_get_contents($this->fileName);
-
-                $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
-
-                foreach($arrayToDecode as $valuesArray)
-                {
-                    $genre = new GenreModel();
-                    $genre->setID($valuesArray["id"]);
-                    $genre->setName($valuesArray["name"]);
-                 
-
-                    array_push($this->genreList, $genre);
-                }
-            }
-        }*/
-
         public function getOne($id){
 
             try
@@ -170,17 +137,7 @@
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
-              /*  
-                foreach ($resultSet as $row)
-                {                
-                    $genre = new GenreModel();
-               
-                    $genre->setName($row["name"]);
-                    $genre->setApi_id($row["id_api_genre"]);
-                    $genre->setId($row["id_genre"]);
 
-                    array_push($genreList, $genre);
-                }*/
                 if(!empty($resultSet)){
                     $genre = new GenreModel();
                     $genre->setName($resultSet['0']["NAME"]);

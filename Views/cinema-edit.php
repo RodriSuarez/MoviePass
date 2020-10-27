@@ -37,7 +37,7 @@
             <br>
           <div>
             <input type="submit" class="btn" value="Modificar" style="background-color:#DC8E47;color:white;"/>
-
+            <a href="<?= FRONT_ROOT . CINEMA_ROOT . 'ShowListView' ?>"> Volver </a>
           </div>
         </form>
       

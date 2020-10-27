@@ -1,5 +1,4 @@
 <?php require_once('nav.php'); ?>
-<?php include_once('login-button.php'); ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
           <div class="container">
@@ -58,26 +57,26 @@
                                              </td>
 
                                               <td>
-                                             <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\<?= ($key)  ?>" method="POST">
+                                             <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\<?= $cinema->getIdCinema();  ?>" method="POST">
 
                                     
                                                   <!-- OJO este input es importante -->
 
-                                                  <input type="hidden" value="<?= ($key) //ACA VA GETID?>" name="delete">
+                                                  <input type="hidden" value="<?= $cinema->getIdCinema(); //ACA VA GETID?>" name="delete">
 
                                                   <!-- OJO este input es importante -->
 
 
-                                                       <button type="button" class="btn btn-danger" id="button<?= $key?>" data-toggle="modal" data-target="#exampleModal<?=$key?>">
+                                                       <button type="button" class="btn btn-danger" id="button<?=$cinema->getIdCinema();?>" data-toggle="modal" data-target="#exampleModal<?=$cinema->getIdCinema();?>">
                                                             x
                                                             </button>
 
                                                             <!-- Modal -->
-                                                            <div class="modal fade" id="exampleModal<?=$key?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal fade" id="exampleModal<?=$cinema->getIdCinema();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                  <div class="modal-header">
-                                                                 <h5 class="modal-title text-dark" id="exampleModalLabel<?=$key?>">¡Alerta!</h5>
+                                                                 <h5 class="modal-title text-dark" id="exampleModalLabel<?=$cinema->getIdCinema();?>">¡Alerta!</h5>
                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                       <span aria-hidden="true">&times;</span>
                                                                  </button>
@@ -88,9 +87,9 @@
                                                                  <div class="modal-footer">
                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                                  
-                                                                 <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\<?= ($key)  ?>" method="POST">
+                                                                 <form action="<?= FRONT_ROOT . CINEMA_ROOT?>DeleteOne\ <?=$cinema->getIdCinema(); ?>" method="POST">
 
-                                                                      <input type="hidden" value="<?= ($key) //ACA VA GETID?>" name="delete">
+                                                                      <input type="hidden" value="<?=$cinema->getIdCinema(); //ACA VA GETID?>" name="delete">
 
                                                                       <button type="submit" class="btn btn-danger">
                                                                       <span uk-icon="icon: trash">Eliminar</span>
