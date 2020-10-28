@@ -49,15 +49,15 @@ else {require_once('nav-no-login.php'); }
                         <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
                     </div>
 
-                    <!-- Phone Number -->
+                    <!-- DNI -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-phone-square text-muted"></i>
+                            <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
                       
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input id="dni" type="number" name="dni" placeholder="DNI" class="form-control bg-white border-md border-left-0 pl-3">
                     </div>
 
 

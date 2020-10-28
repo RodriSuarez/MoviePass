@@ -3,9 +3,16 @@
     namespace Controllers;
     
     //use DAO\UserDAO as userDao;
-    use Models\user as User;
+
+    use Models\user as UserModel;
+    use Models\userProfile as UserProfile;
+    use Models\userRole as UserRole;
+
+
     use DAODB\User as userDB;
+
     use Controllers\MovieController as MovieC;
+
     class UserController{
         
         //private $userDao;
@@ -127,7 +134,7 @@
             $this->ShowAddView($message, $success);
             
 
-            }
+        }
     
     }
 
