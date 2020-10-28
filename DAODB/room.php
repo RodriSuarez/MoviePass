@@ -53,14 +53,16 @@ create table if not exists room(
         public function exist($room_name, $id_cinema){
             try
             {
-                 $query = 'SELECT * FROM '.$this->tableName . ' WHERE room_name = "' . $room_name .'" and id_cinema = ".$id_cinema.";';
+                 $query = 'SELECT * FROM '.$this->tableName . ' WHERE room_name = "' . $room_name .'" and id_cinema = "'.$id_cinema.'";';
 
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
                 
+                var_dump($resultSet);
 
                 return $resultSet;
+
             }
             catch(Exception $ex)
             {

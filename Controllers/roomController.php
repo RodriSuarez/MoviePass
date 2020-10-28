@@ -18,7 +18,7 @@
 
         public function ShowAddViewRoom($id_cinema, $message='', $success='')
         {
-            var_dump($id_cinema);
+            
             $cinema=$this->cinemaDB->GetOne($id_cinema);
             $roomList=$this->roomDB->GetAll();
             require_once(VIEWS_PATH."room-add.php");
@@ -35,6 +35,7 @@
             var_dump($room);
             
             if(!$this->roomDB->exist($room_name, $id_cinema)) {
+                 echo "tuvi";
                  $this->roomDB->Add($room);
                  $success=true;
              }
