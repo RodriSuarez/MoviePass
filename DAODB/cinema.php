@@ -60,6 +60,7 @@ namespace DAODB;
                     $cinema->setAddress($row["address"]);
                    // $cinema->setCapacity($row["capacity"]);
                     $cinema->setRooms($this->GetRoomCinema($row["id_cinema"]));
+                    $cinema->setCapacity($this->getCapacityCinema($cinema->getRooms()));
                     array_push($cinemaList, $cinema);
                 }
 
@@ -193,6 +194,17 @@ namespace DAODB;
                 throw $error;
             }
         
+        }
+        public function getCapacityCinema($roomList)
+        {
+            $room= new room();
+            $cinemaCapacity= null;
+            foreach ($roomList as $room ) {
+                $roomCapacity = $room->getRoomCapacity();
+                $cinemaCapacity =$cinemaCapacity + $roomCapacity;
+            }
+            return $cinemaCapacity;
+
         }    
 
 }
