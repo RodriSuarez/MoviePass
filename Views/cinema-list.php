@@ -9,10 +9,12 @@
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
-                                                  <th>ID</th>
+                         <th>ID</th>
+                         <th>salas </th>
                          <th>Editar</th>
                          <th>Agregar Sala</th>
                          <th>Eliminar</th>
+
                     </thead>
                     <tbody>
                          <?php
@@ -26,6 +28,21 @@
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo $cinema->getIdCinema() ?></td>
+                                             <td><?php  $rooms = $cinema->getRooms();
+                            if($rooms){
+                              $room = array_shift($rooms);
+                              echo $room->getRoomName();
+                         }
+                              if(is_array($rooms) && sizeof($rooms) > 0 ){ 
+                       
+                      foreach($rooms as $room){ 
+                          
+                          $room->getRoomName();
+                    
+                       }
+                         }
+                                             ?>
+                                        </td>
 
                                              <td>
                                              <form action="<?=FRONT_ROOT. CINEMA_ROOT?>ShowEditView/<?= $cinema-> getIdCinema(); ?>" method="POST">
@@ -45,10 +62,10 @@
                                              </td> 
 
                                              <td>
-                                                  <form action ="<?=FRONT_ROOT . ROOM_ROOT ?>ShowAddViewRoom/<?=$cinema->getIdCinema(); ?>" method="POST">
+                                                  <form action ="<?=FRONT_ROOT . ROOM_ROOT ?>ShowAddViewRoom/<?= $cinema->getIdCinema();?> ?>" method="POST">
 
-                                                       <input type="hidden" value="<?=$cinema->getIdCinema();?>"
-                                                       name ="id_cinema">
+                                                       <input type="hidden" value=" <?= $cinema->getIdCinema();?>"
+                                                       name ="cinema">
 
                                                   <button type="submit" class="btn btn-danger">
                                                        <span uk-icon="icon: trash">+</span>

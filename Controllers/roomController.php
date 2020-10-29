@@ -9,34 +9,28 @@
         private $roomDB;
         private $cinemaDB;
 
-
         public function __construct()
         {
             $this->roomDB = new roomDB();
             $this->cinemaDB = new cinemaDB();
+            $cinema = new Cinema();
         }
 
         public function ShowAddViewRoom($id_cinema, $message='', $success='')
         {
-            
+          
             $cinema=$this->cinemaDB->GetOne($id_cinema);
             $roomList=$this->roomDB->GetAll();
             require_once(VIEWS_PATH."room-add.php");
         }
-        public function Add($room_name, $price,$room_capacity,$id_cinema)
+        public function Add($room_name, $price, $room_capacity, $id_cinema)
         {   
-            
-            $room = new Room();
-           
+            $room = new Room(); 
             $room->setRoomName($room_name);
             $room->setPrice($price);
             $room->setRoomCapacity($room_capacity);
-            $room->setIdCinema($id_cinema);
-            var_dump($room);
-            
             if(!$this->roomDB->exist($room_name, $id_cinema)) {
-                 echo "tuvi";
-                 $this->roomDB->Add($room);
+                 $this->roomDB->Add($room, $id_cinema);
                  $success=true;
              }
             else

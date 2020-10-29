@@ -23,19 +23,19 @@ create table if not exists room(
                         #constraint unq_cinema_name unique (room_name, id_cinema)
                         );
          */
-        public function Add(RoomModel $room)
+        public function Add(RoomModel $room, $id_cinema)
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (room_name, price, id_cinema, room_capacity)
-                 VALUES (:room_name, :price, :id_cinema, :room_capacity);";
+                $query = "INSERT INTO ".$this->tableName." ( room_name, price,  room_capacity, id_cinema)
+                 VALUES ( :room_name, :price,  :room_capacity, :id_cinema);";
                 
            
                 
                 $parameters["room_name"] = $room->getRoomName();
                 $parameters["price"] = $room->getPrice();
                 $parameters["room_capacity"] = $room->getRoomCapacity();
-                $parameters["id_cinema"] = $room->getIdCinema();
+                $parameters["id_cinema"]=$id_cinema;
        
                 $this->connection = Connection::GetInstance();
 
@@ -59,7 +59,6 @@ create table if not exists room(
 
                 $resultSet = $this->connection->Execute($query);
                 
-                var_dump($resultSet);
 
                 return $resultSet;
 
@@ -90,7 +89,6 @@ create table if not exists room(
 
                     $room->setRoomName($row["room_name"]);
                     $room->setPrice($row["price"]);
-                    $room->setIdCinema($row["id_cinema"]);
                     $room->setRoomCapacity($row["room_capacity"]);
 
                     array_push($roomList, $room);
@@ -130,7 +128,6 @@ create table if not exists room(
                     $room = new RoomModel();
                     $room->setRoomName($resultSet['0']["room_name"]);
                     $room->setPrice($resultSet['0']["price"]);
-                    $room->setIdCinema($resultSet['0']["id_cinema"]);
                     $room->setRoomCapacity($resultSet['0']["room_capacity"]);
 
                     return $room;

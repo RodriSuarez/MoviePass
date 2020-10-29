@@ -6,12 +6,14 @@ namespace DAODB;
     use Models\cinema as CinemaModel;    
     use DAODB\Connection as Connection;
     use Controllers\roomController as rControl;
+    use DAODB\room as roomDB;
+    use Models\room as RoomModel;
 
     class cinema
     {
         private $connection;
         private $tableName = "cinema";
-
+        private $room_table = "room";
 
 
         public function Add(CinemaModel $cinema)
@@ -26,6 +28,7 @@ namespace DAODB;
                 $parameters["cinema_name"] = $cinema->getCinemaName();
                 $parameters["address"] = $cinema->getAddress();
                 $parameters["capacity"] = $cinema->getCapacity();
+                #$parameters["rooms"]= serialize($cinema->getRooms());
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -56,6 +59,7 @@ namespace DAODB;
                     $cinema->setCinemaName($row["cinema_name"]);
                     $cinema->setAddress($row["address"]);
                     $cinema->setCapacity($row["capacity"]);
+                    $cinema->setRooms($this->GetRoomCinema($row["id_cinema"]));
                     array_push($cinemaList, $cinema);
                 }
 
@@ -66,6 +70,7 @@ namespace DAODB;
                 throw $ex;
             }
         }
+
 
         public function exist($cinema_name, $address){
             try
@@ -109,6 +114,7 @@ namespace DAODB;
                     $cinema->setCinemaName($row["cinema_name"]);
                     $cinema->setAddress($row["address"]);
                     $cinema->setCapacity($row["capacity"]);
+                    $cinema->setRooms($this->GetRoomCinema($row["id_cinema"]));
 
                     return $cinema;
                 }
@@ -160,6 +166,33 @@ namespace DAODB;
     catch(Exception $ex){
         throw $ex;
     }  
-}       
+} 
+
+        public function GetRoomCinema($id_Cinema){
+
+            try{
+                     $query = 'SELECT * FROM '.$this->room_table .' WHERE id_cinema = "'.$id_Cinema.'";';
+            
+                    $obj = $this->connection->Execute($query);
+
+                    $roomList = array();
+                     if($obj){
+                        $room = $obj['0'];
+
+                      $roomList =  array_map(function($room){
+                            return new RoomModel($room['room_name'], $room['price'], $room['room_capacity']);
+                        }, $obj);
+
+                       return $roomList;
+                     }
+
+                    
+                
+                
+            }catch(Exception $error){
+                throw $error;
+            }
+        
+        }    
 
 }

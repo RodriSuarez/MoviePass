@@ -1,12 +1,13 @@
 <?php 
-require_once('nav.php'); 
+require_once('nav.php');
+
 ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Agregar nueva sala</h2>
-        <form action="<?php echo FRONT_ROOT.ROOM_ROOT."Add/". $cinema->getIdCinema();?>" method="POST"  >
+        <form action="<?php echo FRONT_ROOT.ROOM_ROOT."Add/". $cinema->getIdCinema(); ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
               <tr>
    <!--$this->id_room = $id_room;
@@ -35,7 +36,7 @@ require_once('nav.php');
                 </tr>
                 <tr>
             
-                  <input type="hidden" name="id_cinema" size="10" value="<?= $cinema->getIdCinema(); ?>" >
+                  <input type="hidden" name="cinema" size="10" value="<?= $cinema->getIdCinema(); ?>" >
               
               </tr>     
               </table>
