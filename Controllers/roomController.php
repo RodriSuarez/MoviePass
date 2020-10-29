@@ -18,10 +18,7 @@
 
         public function ShowAddViewRoom($id_cinema, $message='', $success='')
         {
-          
-            $cinema=$this->cinemaDB->GetOne($id_cinema);
-            $roomList=$this->roomDB->GetAll();
-            require_once(VIEWS_PATH."room-add.php");
+          require_once(VIEWS_PATH."room-add.php");
         }
         public function Add($room_name, $price, $room_capacity, $id_cinema)
         {   

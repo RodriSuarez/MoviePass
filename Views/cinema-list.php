@@ -30,17 +30,11 @@
                                              <td><?php echo $cinema->getIdCinema() ?></td>
                                              <td><?php  $rooms = $cinema->getRooms();
                             if($rooms){
-                              $room = array_shift($rooms);
-                              echo $room->getRoomName();
-                         }
-                              if(is_array($rooms) && sizeof($rooms) > 0 ){ 
-                       
-                      foreach($rooms as $room){ 
-                          
-                          $room->getRoomName();
-                    
-                       }
-                         }
+                              foreach($rooms as $room){ 
+                                   echo $room->getRoomName();
+                                   }
+                              }
+                         
                                              ?>
                                         </td>
 

@@ -58,7 +58,7 @@ namespace DAODB;
                     $cinema->setIdCinema($row["id_cinema"]);
                     $cinema->setCinemaName($row["cinema_name"]);
                     $cinema->setAddress($row["address"]);
-                    $cinema->setCapacity($row["capacity"]);
+                   // $cinema->setCapacity($row["capacity"]);
                     $cinema->setRooms($this->GetRoomCinema($row["id_cinema"]));
                     array_push($cinemaList, $cinema);
                 }
@@ -180,9 +180,9 @@ namespace DAODB;
                         $room = $obj['0'];
 
                       $roomList =  array_map(function($room){
-                            return new RoomModel($room['room_name'], $room['price'], $room['room_capacity']);
+                            return new RoomModel($room['id_room'], $room['room_name'], $room['price'], $room['room_capacity']);
                         }, $obj);
-
+                     
                        return $roomList;
                      }
 

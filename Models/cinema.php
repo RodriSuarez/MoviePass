@@ -7,10 +7,10 @@
         private $id_cinema;
         private $cinema_name;
         private $address;
-        private $capacity;
+        private $capacity;// suma de las rooms;
         private $rooms;
       
-        public function __construct( $id_cinema='', $cinema_name='', $address='', $capacity='',$rooms=''){
+        public function __construct( $id_cinema='', $cinema_name='', $address='', $capacity= 0, $rooms=array() ){
             $this->id_cinema = $id_cinema;
             $this->cinema_name = $cinema_name;
             $this->address = $address;

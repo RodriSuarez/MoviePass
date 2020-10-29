@@ -1,21 +1,21 @@
 <?php
 
 namespace Models;
-
+use Models/movie as MovieModel;
 
 
 class showCinema{
     private $id_show_cinema;
     private $show_time;
     private $show_hour;
-    private $id_room;
+    private MovieModel $movie;
 
-    public function __construct($id_show_cinema='', $show_time='', $show_hour='',  $id_room='')
+    public function __construct($id_show_cinema='', $show_time='', $show_hour='',  $movie= null)
 	{
 		$this->id_show_cinema = $id_show_cinema;
 		$this->show_time = $show_time;
 		$this->show_hour = $show_hour;
-        $this->id_room = $id_room;
+        $this->movie = $movie;
 	}
 
     public function getIdShowCinema()
@@ -49,14 +49,14 @@ class showCinema{
         $this->show_hour = $show_hour;
     }
 
-    public function getIdRoom()
+    public function getMovie()
     {
-        return $this->id_room;
+        return $this->movie;
     }
 
-    public function setIdRoom($id_room)
+    public function setMovie($movie)
     {
-        $this->id_room = $id_room;
+        $this->movie = $movie;
     }
 }
 

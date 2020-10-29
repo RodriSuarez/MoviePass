@@ -6,6 +6,7 @@
         private $room_name;
         private $price;
         private $room_capacity;
+        //private $showCinema;
 
         public function __construct($id_room='', $room_name='', $price='', $room_capacity='')
         {
