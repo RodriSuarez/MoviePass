@@ -27,26 +27,28 @@
 
         public function ShowAddView($message, $success)
         {
-            $userList=$this->userDB->GetAll();
+            //$userList=$this->userDB->GetAll();
             require_once(VIEWS_PATH."register.php");
         }
 
 
-        public function ShowProfileView($name)
+        /*public function ShowProfileView($name)
         {
             $userList = $this->userDB->GetOne($name);
             require_once(VIEWS_PATH."user-profile.php");
         }
-
-        public function ShowEditView($name){
+        */
+        
+        /*public function ShowEditView($name){
 
             $userList = $this->userDB->GetOne($name);
             require_once(VIEWS_PATH."user-edit.php");
         }
-    
+        */
+
         public function login($email1, $pass1){
             
-            $user = $this->userDB->GetOne($email1);
+            $user = $this->userDB->GetUserByEmail($email1);
 
             if((!$user)&&($user->getPass()!=$pass1)){
 
@@ -57,13 +59,13 @@
                
                 $movie= new MovieC();
                 
-                if($user->getIsAdmin()==true){
-                $_SESSION['loggedUser']['first_name'] = $user->getFirstName();
+                if($this->userDB->GetDescriptionById($user->getIdUser())){
+                $_SESSION['loggedUser']['email'] = $user->getEmail(); //crear funcion que retorne el nombre del usuario por el email, maybe
                 $movie->ShowListMoviesView();
                 }
 
                 else{
-                $_SESSION['loggedUser']['first_name'] = $user->getFirstName();
+                $_SESSION['loggedUser']['email'] = $user->getEmail();
                 $movie->ShowListMoviesView();
                 }
             }
@@ -105,19 +107,24 @@
         }
         */
 
-        public function Add($firstName, $lastName, $email, $phoneNumber, $pass)
+        public function Add($firstName, $lastName, $email, $dni, $pass)
         {   
             
                
               
-            $user = new User();
-            $user->setFirstName($firstName);
-            $user->setLastName($lastName);
-            $user->setEmail($email);
-            $user->setPhoneNumber($phoneNumber);
-            $user->setPass($pass);
-            if(!$this->userDB->existEmail($email)){
-                $this->userDB->Add($user);
+            $userModel = new UserModel();
+            $userProfile= new UserProfile();
+            $userRole = new UserRole();
+
+            $userModel->setEmail($email);
+            $userModel->setPass($pass);
+
+            $userProfile->setFirstName($firstName);
+            $userProfile->setDni($dni);
+            $userProfile->setLastName($lastName);
+
+            if((!$this->userDB->existDNI($dni)) && (!$this->userDB->existEmail($email))){
+                $this->userDB->Add($userModel, $userProfile, $userRole);
                 $success = true;  
             }
             else{
@@ -129,7 +136,7 @@
 
             }
             else{
-                $message = ' Email en uso!';
+                $message = ' DNI - Email en uso!';
             }
             $this->ShowAddView($message, $success);
             

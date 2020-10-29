@@ -5,7 +5,7 @@ class userRole{
     private $description;
 
     public function __construct($description = 'user'){
-        $this->first_name = $first_name;
+        $this->description = $description;
     }
 
     public function getDescription()
