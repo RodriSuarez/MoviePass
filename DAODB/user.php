@@ -45,8 +45,8 @@ namespace DAODB;
                 
             }
         }
-/*
-        public function GetAll()
+     
+     /*   public function GetAll()
         {
             try
             {
@@ -76,7 +76,7 @@ namespace DAODB;
                     
                     $userRole->setDescription($row["description"]);
 
-                  //  array_push($userList, $user); ???
+                    array_push($userList ['users'], $user); ???
                 }
 
                 return $userList;
@@ -86,27 +86,29 @@ namespace DAODB;
                 throw $ex;
             }
         }
-
-       public function GetOne($email)
+        */
+       
+       public function GetUserByEmail($email)
         {
             try
             {
   
                 $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'.$email.'";';
+                
                 $this->connection = Connection::GetInstance();
                 $obj=$this->connection->Execute($query); 
-                $user=null;
+                
+                $userProfile=null;
+
                 if($obj)
                 {
                     $row=$obj[0];
                     $user= new UserModel();
+
                     $user->setIdUser($row["id_user"]);
-                    $user->setFirstNAme($row["first_name"]);
-                    $user->setLastName($row["last_name"]);
                     $user->setEmail($row["email"]);
-                    $user->setPhoneNumber($row["phone_number"]);
                     $user->setPass($row["pass"]);
-                    $user->setIsAdmin($row["is_admin"]);
+                   
                     return $user;
                 }
                 else
@@ -120,16 +122,66 @@ namespace DAODB;
             }
         }
 
-        */
-        
-        public function existEmail($email){
+               public function GetDescriptionById($id_user) //return true if isAdmin
+        {
             try
             {
-            
-
-                $query = 'SELECT * FROM '.$this->tableName . ' WHERE email = "' . $email .'";';
+  
+                $query = "SELECT * FROM ".$this->tableName .' WHERE id_user = "'.$id_user.'";';
+                
                 $this->connection = Connection::GetInstance();
+                $obj=$this->connection->Execute($query); 
+                
 
+                if($obj)
+                {
+                    $row=$obj[0];
+
+                    $userRole = new UserRole();
+
+                    $userRole->setDescription($row["description"]);
+
+                    if($userRole->getDescription() == "admin")
+                    {
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+        public function existDNI($dni)
+        {
+            try
+            {
+                $query = 'SELECT * FROM '.$this->tableName . ' WHERE dni = "' . $dni .'";';
+                
+                $this->connection = Connection::GetInstance();
+                $resultDNI = $this->connection->Execute($query);
+
+                return $resultDNI;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        
+        }
+        
+        public function existEmail($email)
+        {
+            try
+            {
+                $query = 'SELECT * FROM '.$this->tableName . ' WHERE email = "' . $email .'";';
+                
+                $this->connection = Connection::GetInstance();
                 $resultEmail = $this->connection->Execute($query);
 
                 return $resultEmail;

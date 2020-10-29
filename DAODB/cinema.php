@@ -136,7 +136,6 @@ namespace DAODB;
             
             $modify = $this->GetOne($id_cinema);
             if($modify==null){
-            return "hola";
             }
             else{
 
