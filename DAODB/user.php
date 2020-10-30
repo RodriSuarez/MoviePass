@@ -4,8 +4,9 @@ namespace DAODB;
     use \Exception as Exception;
    
     use Models\user as UserModel;    
-    use Models\userProfile as UserProfile;        
+    use Models\userProfile as UserProfile;    
     use Models\userRole as UserRole;    
+
 
     use DAODB\Connection as Connection;
 
@@ -15,7 +16,7 @@ namespace DAODB;
         private $connection;
         private $tableName = "user";
 
-        public function Add(UserModel $userModel, UserProfile $userProfile, UserRole $userRole)
+        public function Add(UserModel $userModel)
         {
             try
             {
@@ -27,11 +28,11 @@ namespace DAODB;
                 $parameters["email"] = $userModel->getEmail();
                 $parameters["pass"] = $userModel->getPass();           
 
-                $parameters["first_name"] = $userProfile->getFirstName();
-                $parameters["dni"] = $userProfile->getDni();
-                $parameters["last_name"] = $userProfile->getLastName();
+                $parameters["first_name"] = $userModel->getFirstName();
+                $parameters["dni"] = $userModel->getProfile()->getDni();
+                $parameters["last_name"] = $userModel->getProfile()->getLastName();
                 
-                $parameters["description"] = $userRole->getDescription();
+                $parameters["description"] = $userModel->getRole()->getDescription();
 
 
 

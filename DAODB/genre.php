@@ -111,7 +111,7 @@
                 {                
                     $genre = new GenreModel();
                
-                    $genre->setName($row["NAME"]);
+                    $genre->setName($row["name"]);
                     $genre->setApi_id($row["id_api_genre"]);
                     $genre->setId($row["id_genre"]);
 
@@ -140,7 +140,7 @@
 
                 if(!empty($resultSet)){
                     $genre = new GenreModel();
-                    $genre->setName($resultSet['0']["NAME"]);
+                    $genre->setName($resultSet['0']["name"]);
                     $genre->setApi_id($resultSet['0']["id_api_genre"]);
                     $genre->setId($resultSet['0']["id_genre"]);
                     return $genre;

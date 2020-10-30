@@ -75,7 +75,8 @@
         public function logout()
         {
             session_destroy();
-            require_once(ROOT.VIEWS_PATH."register.php");
+            session_start();
+            include(ROOT.VIEWS_PATH."register.php");
 
         }
 
