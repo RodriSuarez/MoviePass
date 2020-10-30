@@ -85,9 +85,11 @@
         public function GetOneById($id){
 
             try{
-                $query = "SELECT * FROM " . $this->tableName ." WHERE id_movie = " . $id . ";";
+               $query = "SELECT * FROM " . $this->tableName ." WHERE id_movie = " . $id . ";";
+               $this->connection = Connection::GetInstance();
+
                 $obj = $this->connection->Execute($query);
-                var_dump($obj);
+
                 $movie = null;
 
                 if($obj){
@@ -107,7 +109,6 @@
                     $movie->setDirector($row['director']);
                     $movie->setDuration($row['duration']);
                 }
-                var_dump($movie);
                 return $movie;
             }catch(Exception $error)
             {

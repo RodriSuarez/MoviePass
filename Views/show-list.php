@@ -25,8 +25,10 @@ else {require_once('nav-no-login.php'); }
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">
 
-    <?php foreach($showList as $key => $result) { ?>
-
+    <?php foreach($showList as $key => $resultado) { 
+        $result = $resultado -> getMovie();
+      ?>
+      
       <!-- Grid column -->
       <div class="col-lg-2 col-md-12 m-4">  
         <!--Modal: Name-->

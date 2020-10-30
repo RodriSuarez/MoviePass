@@ -73,6 +73,26 @@ class showCinema{
 
         return $this;
     }
+
+    /**
+     * Get the value of movie
+     */ 
+    public function getMovie()
+    {
+        return $this->movie;
+    }
+
+    /**
+     * Set the value of movie
+     *
+     * @return  self
+     */ 
+    public function setMovie($movie)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
 }
 
 

@@ -5,12 +5,13 @@
     use DAODB\Connection as Connection;
     use DAODB\Movie as MovieDB;
     use Models\ShowCinema as ShowModel;
-    use Models\Movie as Movie;
+    use Models\Movie as MovieModel;
 
     class ShowCinema
     {        
         private $connection;
         private $tableName = "show_cinema";
+        private $movieTableName = "movie";
  
 
         public function Add(ShowModel $show, $idRoom)
@@ -74,6 +75,7 @@
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
+
                 $movieDB = new MovieDB();
 
                 foreach ($resultSet as $row)
@@ -84,11 +86,12 @@
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
                     $show->setIdRoom($row['id_room']);
-                    $movie = $movieDB->GetOneById($row['id_movie']);
-                    $show->setMovie($movie);
-                    
+                    $show ->setMovie($movieDB->GetOneById($row['id_movie']));
+                  //  var_dump($show);
                     array_push($showList, $show);
                 }
+
+             
 
                 return $showList;
             }
@@ -97,6 +100,44 @@
                 throw $ex;
             }
         }
+
+      /*  public function GetMovieById($id){
+
+            try{
+                
+                $query = "SELECT * FROM " . $this->movieTableName ." WHERE id_movie = " . $id . ";";
+                $this->connection = Connection::GetInstance();
+
+                $obj = $this->connection->Execute($query);
+
+                $movie = null;
+
+                if($obj){
+                    $row = $obj['0'];
+                    $movie = new MovieModel();
+                    $movie->setTitle($row["title"]);
+                    $movie->setApi_id($row["id_api_movie"]);
+                    $movie->setPoster_path($row["poster_path"]);
+                    $movie->setBackdrop_path($row["backdrop_path"]);
+                    $movie->setOverview($row["overview"]);
+                    $movie->setVote_average($row["vote_average"]);
+                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
+                    $movie->setRealease_date($row["release_date"]);
+                    $movie->setTrailer_link($row["trailer_link"]);
+                    $movie->setId($row["id_movie"]);
+                    $movie->setRating($row['rating']);
+                    $movie->setDirector($row['director']);
+                    $movie->setDuration($row['duration']);
+                }
+                return $movie;                
+
+            }
+            catch(Exception $error){
+             
+                throw $error;
+            }
+
+        }*/
 
         public function GetByRoom($roomId)
         {
@@ -119,7 +160,7 @@
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
                     $show->setIdRoom($row['id_room']);
-                    $movie = $MovieDB->getOneById($row['id_movie']);
+                    $movie = $movieDB->getOneById($row['id_movie']);
                     $show->setMovie($movie);
 
                     array_push($showList, $show);
@@ -152,9 +193,8 @@
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
                     $show->setIdRoom($row['id_room']);
-                    $movie = $MovieDB->getOneById($row['id_movie']);
+                    $movie = $movieDB->getOneById($row['id_movie']);
                     $show->setMovie($movie);
-                    
                     return $show;
                 }
                 else return 'Funcion no encontrado';
