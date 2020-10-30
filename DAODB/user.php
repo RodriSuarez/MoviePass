@@ -140,7 +140,7 @@ namespace DAODB;
 
                     $userRole = new UserRole();
 
-                    $userRole->setDescription($row["description"]);
+                  //  $userRole->setDescription($row["description"]);
 
                     if($userRole->getDescription() == "admin")
                     {

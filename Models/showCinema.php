@@ -1,35 +1,27 @@
 <?php
 
-namespace Models;
+    namespace Models;
 
-use Models\Movie as Movie;
+    use Models\Movie as Movie;
 
 class showCinema{
-    private $id_show_cinema;
+
+    private $id;
     private $show_time;
     private $show_hour;
     private $movie;
     private $id_room;
 
-    public function __construct($id_show_cinema='', $show_time='', $show_hour='', $movie = null, $id_room='')
+    public function __construct($id='', $show_time='', $show_hour='', $movie = null, $id_room='')
 	{
-		$this->id_show_cinema = $id_show_cinema;
+		$this->id = $id;
 		$this->show_time = $show_time;
 		$this->show_hour = $show_hour;
         $this->id_room = $id_room;
         $this->movie = $movie;
-        
+
 	}
 
-    public function getIdShowCinema()
-    {
-        return $this->id_show_cinema;
-    }
-
-       public function setIdShowCinema($id_show_cinema)
-    {
-        $this->id_show_cinema = $id_show_cinema;
-    }
 
     public function getShowTime()
     {
@@ -47,7 +39,7 @@ class showCinema{
         return $this->show_hour;
     }
 
-    public function setTime($show_hour)
+    public function setShowHour($show_hour)
     {
         $this->show_hour = $show_hour;
     }
@@ -60,6 +52,26 @@ class showCinema{
     public function setIdRoom($id_room)
     {
         $this->id_room = $id_room;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }
 
