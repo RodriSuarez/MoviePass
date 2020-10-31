@@ -70,7 +70,8 @@
             {
                 $showList = array();
                 $today = date_format(new DateTime('now'), "Y-m-d");
-                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= " . $today .";";
+      
+                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= '" . $today ."';";
 
                 $this->connection = Connection::GetInstance();
 

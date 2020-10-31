@@ -27,7 +27,9 @@
   
       <a class="nav-link" href="<?= FRONT_ROOT . USER_ROOT.'logout' ?>"> Deslogear </a>
        </li>
-           
+       <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'ShowListShowsView' ?>"> Cartelera </a>
+      </li>
      
     </ul>
     <form action="<?=FRONT_ROOT . MOVIE_ROOT .'ShowSearchMoviesView' ?>" class="form-inline my-2 my-lg-0" method="GET">

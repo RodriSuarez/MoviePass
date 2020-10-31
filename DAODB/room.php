@@ -5,7 +5,7 @@
     use DAODB\Connection as Connection;
     use Models\Room as RoomModel;
 
-    class room
+    class Room
     {        
         private $connection;
         private $tableName = "room";
@@ -90,6 +90,7 @@ create table if not exists room(
                     $room->setRoomName($row["room_name"]);
                     $room->setPrice($row["price"]);
                     $room->setRoomCapacity($row["room_capacity"]);
+                    $room->setIdRoom($row["id_room"]);
 
                     array_push($roomList, $room);
                 }
@@ -126,6 +127,8 @@ create table if not exists room(
             
                 if(!empty($resultSet)){
                     $room = new RoomModel();
+                    $room->setIdRoom($resultSet['0']["id_room"]);
+
                     $room->setRoomName($resultSet['0']["room_name"]);
                     $room->setPrice($resultSet['0']["price"]);
                     $room->setRoomCapacity($resultSet['0']["room_capacity"]);

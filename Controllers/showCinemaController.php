@@ -2,31 +2,67 @@
     namespace Controllers;
 
     use Models\Movie as Movie;
+    use Models\ShowCinema as ShowCinema;
+
     use DAO\Movie as MovieDao;
+
     use DAODB\Genre as GenreDao;
     use DAODB\Movie as MovieDB;
-    use DAODB\showCinema as ShowCinemaDao;
+    use DAODB\showCinema as ShowCinemaDB;
+    use DAODB\Cinema as CinemaDB;
+    use DAODB\Room as RoomDB;
 
     class ShowCinemaController{
 
-        private $movieDao;
+        private $roomDB;
         private $genreDao;
         private $movieDB;
+        private $cinemaDB;
         private $showCinemaDB;
         
         public function __construct(){
-            $this->movieDao = new MovieDAO();
+            $this->roomDB = new RoomDB();
+            $this->cinemaDB = new CinemaDB();
             $this->genreDao = new GenreDao();
             $this->movieDB = new MovieDB();
-            $this->showCinemaDB = new ShowCinemaDao();
+            $this->showCinemaDB = new ShowCinemaDB();
           
         }
 
+        /*
+        array (size=4)
+  'movieId' => string '22' (length=2)
+  'roomId' => string '1' (length=1)
+  'date' => string '2020-10-30' (length=10)
+  'hora' => string '08:06' (length=5)
+        */
+        public function Add(){
+
     
+            if(isset($_GET)){
+            
+                $cinema = new ShowCinema();
+                $cinema->setShowTime($_GET['date']);
+                $cinema->setShowHour($_GET['hora']);
+                $cinema->setMovie($this->movieDB->getOneById($_GET['movieId']));
+                
+                $result = $this->showCinemaDB->Add($cinema, $_GET['roomId']);
+
+                if($result){
+                    $message = "¡Se ha añadido la funcion correctamente!";
+                }else{
+                    $message = "¡Error al cargar la funcion!";
+
+                }
+                require_once(ROOT. VIEWS_PATH . 'show-list.php');
+
+            }
+        }
 
         public function ShowListShowsView(){
             $genreList = $this->genreDao->GetAll();
             $showList = $this->showCinemaDB->GetAll();
+            $roomDB = $this->roomDB; //ToDo modificar esta parte, le estamos dando contro a la vista, ERROR
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
             
         }
@@ -71,10 +107,14 @@
 
    
 
-        public function addFunction($movieID){
+        public function ShowAddView($movieID){
+            #var_dump($movieID);
+            $cinemaList = $this->cinemaDB->GetAll();
+            $roomList = $this->roomDB->GetAll();
+            $newMovie = $this->movieDB->GetOneById($movieID);
+          //  $showList = $this->showCinemaDB->GetAll();
+            require_once(ROOT. VIEWS_PATH . 'show-add.php');
 
-            $newMovie = $this->showCinemaDB->GetOne($movieID);
-            $this->showCinemaDB->Add($newMovie);
         }
 
         

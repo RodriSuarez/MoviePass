@@ -16,7 +16,7 @@
 
         </li></li>
         <li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>"> Ver Peliculas </a>
+        <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'ShowListShowsView' ?>"> Cartelera </a>
       </li>
       <li>
         <?php include_once('login-button.php'); ?>

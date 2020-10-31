@@ -3,9 +3,7 @@ if(isset($_SESSION['loggedUser'])){ require_once('nav.php'); }
 else {require_once('nav-no-login.php'); }
 
 #var_dump($movieList); ?>
-<div class="m-5">
 
-</div>
 
   <div class="row col-3 d-flex justify-content-center align-content-center p-5">
     <form action="<?= FRONT_ROOT . MOVIE_ROOT .'ShowByGenre' ?>" method="GET">
@@ -98,7 +96,7 @@ else {require_once('nav-no-login.php'); }
                 
                   </div>
               </div>
-              <form action="">
+              <form action="<?= FRONT_ROOT . SHOW_ROOT ?>ShowAddView/<?= $result->getId()?>" method="get" >
                 <button class="btn btn-success " type=submit>Agregar pelicula a la cartelera</button>
       
               </form>
