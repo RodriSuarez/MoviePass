@@ -1,6 +1,6 @@
 <?php
      namespace DAODB;
-
+    use \DateTime as DateTime;
     use \Exception as Exception;  
     use DAODB\Connection as Connection;
     use DAODB\Movie as MovieDB;
@@ -69,8 +69,8 @@
             try
             {
                 $showList = array();
-
-                $query = "SELECT * FROM ".$this->tableName;
+                $today = date_format(new DateTime('now'), "Y-m-d");
+                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= " . $today .";";
 
                 $this->connection = Connection::GetInstance();
 
@@ -101,6 +101,91 @@
             }
         }
 
+        public function filterByGenre($genre){
+            $showList = array();
+            try{
+                $query = 'SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
+                INNER JOIN genre g ON g.id_genre = gxm.id_genre
+                INNER JOIN show_cinema s ON s.id_movie =  gxm.id_movie
+                HAVING g.name =  "' . $genre . '"
+                            ORDER BY s.id_room;';
+                
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                
+                
+
+                foreach($resultSet as $row){
+                    array_push($showList, $this->GetOneById($row['id_show_cinema']));
+                }
+            }catch(Exception $error){
+                throw $error;
+            }
+
+            return $showList;
+        
+        }
+
+        public function filterByDate($date){
+            $showList = array();
+            try{
+                $query = 'SELECT * FROM show_cinema WHERE show_time =  "' . $date . '"
+                            ORDER BY id_room;';
+                
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+                #var_dump($resultSet);
+                
+
+                foreach($resultSet as $row){
+                    array_push($showList, $this->GetOneById($row['id_show_cinema']));
+                }
+            }catch(Exception $error){
+                throw $error;
+            }
+
+            return $showList;
+        
+    }
+        public function GetOneById($id)
+        {
+            try
+            {
+                $showList = array();
+
+                $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id.";";
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+
+                $movieDB = new MovieDB();
+                $show = null;
+                if($resultSet)
+                {   
+                    $row = $resultSet['0'];
+                    $show = new ShowModel();
+               
+                    $show->setShowTime($row["show_time"]);
+                    $show->setShowHour($row["show_hour"]);
+                    $show->setId($row["id_show_cinema"]);
+                    $show->setIdRoom($row['id_room']);
+                    $show ->setMovie($movieDB->GetOneById($row['id_movie']));
+                   #var_dump($show);
+                }
+
+             
+
+                return $show;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+    
       /*  public function GetMovieById($id){
 
             try{

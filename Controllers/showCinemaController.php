@@ -25,13 +25,13 @@
     
 
         public function ShowListShowsView(){
-
+            $genreList = $this->genreDao->GetAll();
             $showList = $this->showCinemaDB->GetAll();
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
             
         }
 
-        public function ShowSearchMoviesView(){
+        public function ShowSearchShowsView(){
 
             if(isset($_GET['title'])){
                 $title = $_GET['title'];
@@ -39,52 +39,46 @@
        
             $movieList = $this->movieDB->SearchMovies($title);
             $genreList = $this->genreDao->GetAll();
-            //var_dump($movieList);
             if(!$movieList){
                 $movieList = $this->movieDB->getApiMoviesByName($title);
                 $movieList = $this->movieDB->SearchMovies($title);
                
             }
 
-            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            require_once(ROOT. VIEWS_PATH . 'show-list.php');
             
         }
 
         public function ShowByGenre($genre){
-            
-            $movieList = $this->movieDB->filterByGenre($genre);
+            if(isset($_GET['genre'])){
+                $title = $_GET['genre'];
+            }
+            $showList = $this->showCinemaDB->filterByGenre($genre);
             $genreList = $this->genreDao->GetAll();
-
-            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
+            require_once(ROOT. VIEWS_PATH . 'show-list.php');
 
 
         }
 
-        public function RefreshLastestMovies($page='1'){
-            
-            $this->movieDB->GetApiMovies($page);
+        public function ShowByDate($date){
+            if(isset($_GET['date'])){
+                $title = $_GET['date'];
+            }
+            $showList = $this->showCinemaDB->filterByDate($date);
             $genreList = $this->genreDao->GetAll();
-
-            $movieList = $this->movieDB->GetAll();
-            //$genreList = $this->genreList;
-            
-            require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
-
+            require_once(ROOT. VIEWS_PATH . 'show-list.php');
         }
 
-        public function addOneMovie($movieID){
+   
 
-            var_dump($this->movieDB->exist($movieID));
-          /*  $newMovie = $this->movieDao->GetOne($movieID);
-            $this->movieDB->Add($newMovie);*/
+        public function addFunction($movieID){
+
+            $newMovie = $this->showCinemaDB->GetOne($movieID);
+            $this->showCinemaDB->Add($newMovie);
         }
 
         
-        public function GetAll(){
-
-            //$newMovie = $this->movieDao->GetOne($movieID);
-            return $this->movieDB->GetAll();
-        }
+  
     }
 
 ?>

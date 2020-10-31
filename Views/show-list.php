@@ -3,14 +3,12 @@ if(isset($_SESSION['loggedUser'])){ require_once('nav.php'); }
 else {require_once('nav-no-login.php'); }
 
 #var_dump($movieList); ?>
-<div class="m-5">
 
-</div>
 
   <div class="row col-3 d-flex justify-content-center align-content-center p-5">
-    <form action="<?= FRONT_ROOT . MOVIE_ROOT .'ShowByGenre' ?>" method="GET">
+    <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowByGenre' ?>" method="GET">
       <span>Filtrar por genero</span>
-      <select name="genre" id="genre">
+      <select class="form-group custom-select" name="genre" id="genre">
         <option value="0" disabled>-- Selecciona una opcion --</option>
       <?php foreach($genreList as $genre):?>
 
@@ -18,13 +16,20 @@ else {require_once('nav-no-login.php'); }
 
       <?php endforeach;  ?>
       </select>
-      <button type="submit">Aplicar</button>
+      
+      <button class="btn btn-success"type="submit">Aplicar</button>
+    </form>
+        
+    <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowByDate' ?>" method="GET">
+        <span>Filtrar por Fecha</span>
+        <input class="form-control" type="date" name="date" id="date">
+        <button type="submit" class="btn btn-success mt-2">Aplicar</button>
+
     </form>
   </div>
 
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">
-
     <?php foreach($showList as $key => $resultado) { 
         $result = $resultado -> getMovie();
       ?>
@@ -101,7 +106,7 @@ else {require_once('nav-no-login.php'); }
                   </div>
               </div>
               <form action="">
-                <button class="btn btn-success " type=submit>Agregar pelicula a la cartelera</button>
+                <button class="btn btn-success " type=submit>Comprar tickets</button>
       
               </form>
               <button type="button" class="btn btn-danger btn-rounded btn-md ml-4" data-dismiss="modal">Cerrar</button>

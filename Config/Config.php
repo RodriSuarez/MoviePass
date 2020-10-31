@@ -9,6 +9,7 @@ define("ROOT_MANUAL","lab/MoviePass/");
 define("ROOM_ROOT", "room\\");
 define("CINEMA_ROOT", "cinema\\");
 define("MOVIE_ROOT", "movie\\");
+define("SHOW_ROOT", "showCinema\\");
 define("VIEWS_PATH", "Views\\");
 define("USER_ROOT", "user\\");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css\\");
