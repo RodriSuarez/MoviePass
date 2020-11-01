@@ -48,12 +48,8 @@
                 
                 $result = $this->showCinemaDB->Add($cinema, $_GET['roomId']);
 
-                if($result){
-                    $message = "¡Se ha añadido la funcion correctamente!";
-                }else{
-                    $message = "¡Error al cargar la funcion!";
-
-                }
+                $message = $result;
+                
                 $showList = $this->showCinemaDB->GetAll();
 
                 require_once(ROOT. VIEWS_PATH . 'show-list.php');

@@ -4,15 +4,16 @@ else {require_once('nav-no-login.php'); }
 
 #var_dump($movieList); ?>
 
+<div class="row d-flex justify-content-center align-content-center ">
 
-  <div class="row col-3 d-flex justify-content-center align-content-center p-5">
+  <div class="col-12 d-flex justify-content-center align-content-center p-5">
    <nav class="navbar navbar-dark bg-dark">
     <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowFilterList' ?>" method="GET">
    
-    <p class="text-white">Filtrar por Fecha</p>
+    <span class="text-white ">Filtrar por Fecha</span>
         <input class="" type="date" name="date" id="date">
         
-      <p class="text-white">Filtrar por genero</p>
+      <span class="ml-5 text-white">Filtrar por genero</span>
       <select class="form-group" name="genre" id="genre">
         <option value="">-- Selecciona una opcion --</option>
       <?php foreach($genreList as $genre):?>
@@ -21,7 +22,7 @@ else {require_once('nav-no-login.php'); }
 
       <?php endforeach;  ?>
       </select>
-      <button type="submit" class="btn btn-success mt-2">Aplicar</button>
+      <button type="submit" class="btn btn-success ml-3">Aplicar</button>
         
         
  
@@ -31,10 +32,19 @@ else {require_once('nav-no-login.php'); }
     
   </div>
   
+  </div>
 
 <div class="text-center mt-5"  id="appContainer">
+<?php 
+          if(!empty($message))?>
+            <div class="row d-flex justify-content-center align-content-center ">
+              <p class="text-center  alert-danger col-4 p-3"> <?= $message ?></p>
+              </div>
   <div class="row d-flex justify-content-center align-content-center ">
-    <?php foreach($showList as $key => $resultado) { 
+        
+
+    <?php
+      foreach($showList as $key => $resultado) { 
         $result = $resultado -> getMovie();
       ?>
       <!-- Grid column -->

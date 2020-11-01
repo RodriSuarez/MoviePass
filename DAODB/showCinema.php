@@ -17,37 +17,43 @@
         public function Add(ShowModel $show, $idRoom)
         {
             try
-            {
-                $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
-                 VALUES (:show_time, :show_hour, :id_room, :id_movie);";
-                
-           
-                
-                $parameters["show_time"] = $show->getShowTime();
-                $parameters["show_hour"] = $show->getShowHour();
-                $parameters["id_room"] = $idRoom;
-                $parameters["id_movie"] = $show->getMovie()->getId();
-       
-                $this->connection = Connection::GetInstance();
+            {   
+                if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime())){
+                    $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
+                    VALUES (:show_time, :show_hour, :id_room, :id_movie);";
+                    
+            
+                    
+                    $parameters["show_time"] = $show->getShowTime();
+                    $parameters["show_hour"] = $show->getShowHour();
+                    $parameters["id_room"] = $idRoom;
+                    $parameters["id_movie"] = $show->getMovie()->getId();
+        
+                    $this->connection = Connection::GetInstance();
 
-                $this->connection->ExecuteNonQuery($query, $parameters);
-
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+                    $message = "La función se ha agregado correctamente";
+                }else{
+                    $message = "¡Error! Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() . "</strong>!";
+                }
             }
             catch(Exception $ex)
             {
                 throw $ex;
                 
             }
+
+            return $message;
         }
 
         
         
 
         //Modificar 
-        public function exist($id){
+        public function existMovieXdate($movie,$date){
             try
             {
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_genre = " . $id .";";
+                $query = "SELECT * FROM " . $this->tableName . " WHERE id_movie = " . $movie ." AND show_time = '" .$date ."';";
 
                 $this->connection = Connection::GetInstance();
 
@@ -152,7 +158,7 @@
         }
 
         public function filterByGengreXdate($genre, $date){
-            
+
             $showList = array();
             try{
                 $query = "SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
@@ -214,43 +220,7 @@
             }
         }
     
-      /*  public function GetMovieById($id){
 
-            try{
-                
-                $query = "SELECT * FROM " . $this->movieTableName ." WHERE id_movie = " . $id . ";";
-                $this->connection = Connection::GetInstance();
-
-                $obj = $this->connection->Execute($query);
-
-                $movie = null;
-
-                if($obj){
-                    $row = $obj['0'];
-                    $movie = new MovieModel();
-                    $movie->setTitle($row["title"]);
-                    $movie->setApi_id($row["id_api_movie"]);
-                    $movie->setPoster_path($row["poster_path"]);
-                    $movie->setBackdrop_path($row["backdrop_path"]);
-                    $movie->setOverview($row["overview"]);
-                    $movie->setVote_average($row["vote_average"]);
-                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
-                    $movie->setRealease_date($row["release_date"]);
-                    $movie->setTrailer_link($row["trailer_link"]);
-                    $movie->setId($row["id_movie"]);
-                    $movie->setRating($row['rating']);
-                    $movie->setDirector($row['director']);
-                    $movie->setDuration($row['duration']);
-                }
-                return $movie;                
-
-            }
-            catch(Exception $error){
-             
-                throw $error;
-            }
-
-        }*/
 
         public function GetByRoom($roomId)
         {
