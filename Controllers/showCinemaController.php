@@ -48,8 +48,9 @@
                 
                 $result = $this->showCinemaDB->Add($cinema, $_GET['roomId']);
 
-                $message = $result;
-                
+                $message = $result['message'];
+                $status = $result['state'];
+
                 $showList = $this->showCinemaDB->GetAll();
 
                 require_once(ROOT. VIEWS_PATH . 'show-list.php');
@@ -57,7 +58,7 @@
             }
         }
 
-        public function ShowListShowsView(){
+        public function ShowListShowsView($message='', $state=''){
             $genreList = $this->genreDao->GetAll();
             $showList = $this->showCinemaDB->GetAll();
             $roomDB = $this->roomDB; //ToDo modificar esta parte, le estamos dando contro a la vista, ERROR
@@ -103,9 +104,9 @@
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
         }
 
-        public function ShowFilterList(){
+        public function ShowFilterList($message='', $state = ''){
             $genreList = $this->genreDao->GetAll();
-          #  var_dump($_GET);
+            
             if( (isset($_GET['date']) && !empty($_GET['date']))  || isset($_GET['genre']) && !empty($_GET['genre'])){    
                 if(isset($_GET['date']) && !empty($_GET['date']) &&
                      isset($_GET['genre']) && !empty($_GET['genre']) ){
@@ -119,7 +120,7 @@
                         echo 'entra aca';
                     }
             }else{
-                $this->ShowListShowsView();
+                $this->ShowListShowsView($message, $state);
             }
 
 

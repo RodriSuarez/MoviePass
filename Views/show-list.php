@@ -36,10 +36,15 @@ else {require_once('nav-no-login.php'); }
 
 <div class="text-center mt-5"  id="appContainer">
 <?php 
-          if(!empty($message))?>
+          if(!empty($message)&& $status){?>
+            <div class="row d-flex justify-content-center align-content-center ">
+              <p class="text-center  alert-success col-4 p-3"> <?= $message ?></p>
+              </div>
+          <?php }else if(!empty($message)){?>
             <div class="row d-flex justify-content-center align-content-center ">
               <p class="text-center  alert-danger col-4 p-3"> <?= $message ?></p>
               </div>
+      <?php    } ?>
   <div class="row d-flex justify-content-center align-content-center ">
         
 

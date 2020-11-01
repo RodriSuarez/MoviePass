@@ -32,9 +32,15 @@
                     $this->connection = Connection::GetInstance();
 
                     $this->connection->ExecuteNonQuery($query, $parameters);
-                    $message = "La función se ha agregado correctamente";
+                   $dest= array( 'message' =>"La función se ha agregado correctamente",
+                                'state' => true
+                              );
                 }else{
-                    $message = "¡Error! Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() . "</strong>!";
+                    $message = 
+
+                    $dest= array( 'message' =>"¡Error! Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() . "</strong>!",
+                                'state' => false
+                             );
                 }
             }
             catch(Exception $ex)
@@ -43,7 +49,7 @@
                 
             }
 
-            return $message;
+            return $dest;
         }
 
         
