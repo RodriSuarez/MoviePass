@@ -4,8 +4,10 @@
     use \Exception as Exception;  
     use DAODB\Connection as Connection;
     use DAODB\Movie as MovieDB;
+    use DAODB\Room as RoomDB;
     use Models\ShowCinema as ShowModel;
     use Models\Movie as MovieModel;
+    use Models\Room as RoomModel;
 
     class ShowCinema
     {        
@@ -75,15 +77,14 @@
         
         }
 
-        
-        public function GetAll()
-        {
+        public function checkTime($date, $roomID){
+        /*
             try
             {
                 $showList = array();
-                $today = date_format(new DateTime('now'), "Y-m-d");
+               
       
-                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= '" . $today ."';";
+                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time = '" . $date ."';";
 
                 $this->connection = Connection::GetInstance();
 
@@ -99,6 +100,48 @@
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
                     $show->setIdRoom($row['id_room']);
+                    $show ->setMovie($movieDB->GetOneById($row['id_movie']));
+                    array_push($showList, $show);
+                }
+
+             
+
+                return $showList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+
+        */
+
+        }
+
+        
+        public function GetAll()
+        {
+            try
+            {
+                $showList = array();
+                $today = date_format(new DateTime('now'), "Y-m-d");
+      
+                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= '" . $today ."';";
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+
+                $movieDB = new MovieDB();
+                $roomDB =  new RoomDB();
+
+                foreach ($resultSet as $row)
+                {                
+                    $show = new ShowModel();
+                    $room = new RoomModel();
+                    $show->setShowTime($row["show_time"]);
+                    $show->setShowHour($row["show_hour"]);
+                    $show->setId($row["id_show_cinema"]);
+                    $show->setRoom($roomDB->getOne($row['id_room']));
                     $show ->setMovie($movieDB->GetOneById($row['id_movie']));
                   //  var_dump($show);
                     array_push($showList, $show);
@@ -202,6 +245,8 @@
                 $resultSet = $this->connection->Execute($query);
 
                 $movieDB = new MovieDB();
+                $roomDB =  new RoomDB();
+
                 $show = null;
                 if($resultSet)
                 {   
@@ -211,7 +256,7 @@
                     $show->setShowTime($row["show_time"]);
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
-                    $show->setIdRoom($row['id_room']);
+                    $show->setRoom($roomDB->getOne($row['id_room']));
                     $show ->setMovie($movieDB->GetOneById($row['id_movie']));
                    #var_dump($show);
                 }
@@ -240,7 +285,9 @@
 
                 $resultSet = $this->connection->Execute($query);
                 $movieDB = new MovieDB();
-                var_dump($movieDB);
+                $roomDB =  new RoomDB();
+
+            #    var_dump($movieDB);
                 foreach ($resultSet as $row)
                 {                
                     $show = new ShowModel();
@@ -248,7 +295,7 @@
                     $show->setShowTime($row["show_time"]);
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
-                    $show->setIdRoom($row['id_room']);
+                    $show->setRoom($roomDB->getOne($row['id_room']));
                     $movie = $movieDB->getOneById($row['id_movie']);
                     $show->setMovie($movie);
 
@@ -274,6 +321,7 @@
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
+                $roomDB =  new RoomDB();
 
                 if(!empty($resultSet)){
                     $show = new ShowModel();
@@ -281,7 +329,7 @@
                     $show->setShowTime($row["show_time"]);
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
-                    $show->setIdRoom($row['id_room']);
+                    $show->setRoom($row['id_room']);
                     $movie = $movieDB->getOneById($row['id_movie']);
                     $show->setMovie($movie);
                     return $show;

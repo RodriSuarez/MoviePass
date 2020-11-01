@@ -104,6 +104,7 @@
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
         }
 
+
         public function ShowFilterList($message='', $state = ''){
             $genreList = $this->genreDao->GetAll();
             

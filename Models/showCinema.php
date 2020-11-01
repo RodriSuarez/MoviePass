@@ -10,14 +10,14 @@ class showCinema{
     private $show_time;
     private $show_hour;
     private $movie;
-    private $id_room;
+    private $room;
 
-    public function __construct($id='', $show_time='', $show_hour='', $movie = null, $id_room='')
+    public function __construct($id='', $show_time='', $show_hour='', $movie = null, $room='')
 	{
 		$this->id = $id;
 		$this->show_time = $show_time;
 		$this->show_hour = $show_hour;
-        $this->id_room = $id_room;
+        $this->room = $room;
         $this->movie = $movie;
 
 	}
@@ -44,14 +44,14 @@ class showCinema{
         $this->show_hour = $show_hour;
     }
 
-    public function getIdRoom()
+    public function getRoom()
     {
-        return $this->id_room;
+        return $this->room;
     }
 
-    public function setIdRoom($id_room)
+    public function setRoom($room)
     {
-        $this->id_room = $id_room;
+        $this->room = $room;
     }
 
     /**
