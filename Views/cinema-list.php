@@ -28,14 +28,41 @@
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
                                              <td><?php echo $cinema->getIdCinema() ?></td>
-                                             <td><?php  $rooms = $cinema->getRooms();
-                            if($rooms){
-                              foreach($rooms as $room){ 
-                                   echo $room->getRoomName();
-                                   }
-                              }
-                         
-                                             ?>
+                                             <td> 
+                                             <?php    if($cinema->getRooms()){?>
+
+                                                  <table class="table text-white bg-oscuro">
+                                                       <thead>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Capacidad</th>
+                                                            <th>Agregar funcion</th>
+                                                            <th>Editar</th>
+                                                            <th>Eliminar</th>
+
+
+                                                       </thead>
+                                             <?php  
+                                                            
+                                                            foreach($cinema->getRooms() as $room): ?>
+                                                            <tr>
+                                                            <td><?= $room->getRoomName()?></td>
+                                                            <td><?= $room->getPrice()?></td>
+                                                            <td><?= $room->getRoomCapacity()?></td>
+                                                            <td>btn</td>
+                                                            <td>btn</td>
+                                                            <td>btn</td>
+                                                            </tr>
+
+                                                            
+                                                            <?php endforeach;?>
+                                                  </table>
+                                                            <?php 
+                                                            }else{
+                                                                 echo "No hay salas disponibles";
+                                                            }    ?>
+                              
+                                             
                                         </td>
 
                                              <td>
