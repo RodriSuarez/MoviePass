@@ -7,29 +7,30 @@ else {require_once('nav-no-login.php'); }
 
   <div class="row col-3 d-flex justify-content-center align-content-center p-5">
    <nav class="navbar navbar-dark bg-dark">
-    <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowByGenre' ?>" method="GET">
+    <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowFilterList' ?>" method="GET">
+   
+    <p class="text-white">Filtrar por Fecha</p>
+        <input class="" type="date" name="date" id="date">
+        
       <p class="text-white">Filtrar por genero</p>
       <select class="form-group" name="genre" id="genre">
-        <option value="0" disabled>-- Selecciona una opcion --</option>
+        <option value="">-- Selecciona una opcion --</option>
       <?php foreach($genreList as $genre):?>
 
             <option value="<?= $genre->getName() ?>"><?= $genre->getName() ?></option>
 
       <?php endforeach;  ?>
       </select>
-      
-      <button class="btn btn-success"type="submit">Aplicar</button>
-    </form>
+      <button type="submit" class="btn btn-success mt-2">Aplicar</button>
         
-    <form action="<?= FRONT_ROOT . SHOW_ROOT .'ShowByDate' ?>" method="GET">
-        <p class="text-white">Filtrar por Fecha</p>
-        <input class="" type="date" name="date" id="date">
-        <button type="submit" class="btn btn-success mt-2">Aplicar</button>
+        
+ 
 
     </form>
     </nav>
     
   </div>
+  
 
 <div class="text-center mt-5"  id="appContainer">
   <div class="row d-flex justify-content-center align-content-center ">

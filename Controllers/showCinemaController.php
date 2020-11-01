@@ -54,6 +54,8 @@
                     $message = "¡Error al cargar la funcion!";
 
                 }
+                $showList = $this->showCinemaDB->GetAll();
+
                 require_once(ROOT. VIEWS_PATH . 'show-list.php');
 
             }
@@ -87,7 +89,7 @@
 
         public function ShowByGenre($genre){
             if(isset($_GET['genre'])){
-                $title = $_GET['genre'];
+                $genre = $_GET['genre'];
             }
             $showList = $this->showCinemaDB->filterByGenre($genre);
             $genreList = $this->genreDao->GetAll();
@@ -98,11 +100,33 @@
 
         public function ShowByDate($date){
             if(isset($_GET['date'])){
-                $title = $_GET['date'];
+                $date = $_GET['date'];
             }
             $showList = $this->showCinemaDB->filterByDate($date);
             $genreList = $this->genreDao->GetAll();
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
+        }
+
+        public function ShowFilterList(){
+            $genreList = $this->genreDao->GetAll();
+          #  var_dump($_GET);
+            if( (isset($_GET['date']) && !empty($_GET['date']))  || isset($_GET['genre']) && !empty($_GET['genre'])){    
+                if(isset($_GET['date']) && !empty($_GET['date']) &&
+                     isset($_GET['genre']) && !empty($_GET['genre']) ){
+                    $showList = $this->showCinemaDB->filterByGengreXdate($_GET['genre'], $_GET['date']);
+                    require_once(ROOT. VIEWS_PATH . 'show-list.php');
+                }
+                elseif (isset($_GET['date']) && !empty($_GET['date']))
+                    $this->ShowByDate($_GET['date']);
+                elseif (isset($_GET['genre']) &&  !empty($_GET['genre'])){
+                    $this->ShowByGenre($_GET['genre']);
+                        echo 'entra aca';
+                    }
+            }else{
+                $this->ShowListShowsView();
+            }
+
+
         }
 
    

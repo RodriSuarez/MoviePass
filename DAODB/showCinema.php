@@ -149,7 +149,34 @@
 
             return $showList;
         
-    }
+        }
+
+        public function filterByGengreXdate($genre, $date){
+            
+            $showList = array();
+            try{
+                $query = "SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
+                            INNER JOIN genre g ON g.id_genre = gxm.id_genre
+                            INNER JOIN show_cinema s ON s.id_movie =  gxm.id_movie
+                            HAVING g.name = '" . $genre . "' AND s.show_time = '". $date ."'
+                            ORDER BY s.id_room;";
+                    $this->connection = Connection::GetInstance();
+
+                    $resultSet = $this->connection->Execute($query);
+                    
+    
+                    foreach($resultSet as $row){
+                        array_push($showList, $this->GetOneById($row['id_show_cinema']));
+                    }
+
+            }catch(Exception $error){
+                throw $error;
+            }
+
+            return $showList;
+
+        }
+
         public function GetOneById($id)
         {
             try

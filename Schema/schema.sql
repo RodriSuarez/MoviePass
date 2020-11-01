@@ -49,9 +49,6 @@ CONSTRAINT fk_movie FOREIGN KEY (id_movie) REFERENCES movie(id_movie)
 
 );
 
-SELECT * FROM show_cinema INNER JOIN movie m WHERE m.id_movie = 1
-
-SELECT 
 
 CREATE TABLE IF NOT EXISTS cinema(
 				id_cinema INT AUTO_INCREMENT NOT NULL,
