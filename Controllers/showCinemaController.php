@@ -72,7 +72,7 @@
         public function checkShowsTime(ShowModel $show, $inicDate, $LastDate){
 
             $show = $this->showCinemaDB->getOneById(1);
-           # var_dump($show);
+
             $this->showCinemaDB->checkTime($show, 1);
 
         }
