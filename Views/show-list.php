@@ -49,6 +49,7 @@ else {require_once('nav-no-login.php'); }
         
 
     <?php
+    var_dump($showList);
       foreach($showList as $key => $show) { 
         $result = $show -> getMovie();
       ?>

@@ -65,8 +65,50 @@
                                                                  </button>
                                                                  </form>
                                                                  </td>
-                                                            <td>btn</td>
-                                                            <td>btn</td>
+                                                            <td>
+                                                             <form action ="<?= FRONT_ROOT.ROOM_ROOT ?> ShowListShowsView/<?=$room->getIdRoom();?>" method="GET" >
+                                                                   <input type="hidden" value = "<?= $room->getIdRoom();?>" name = "id_room">
+                                                               <button type="submit" class="btn btn-danger">
+                                                                      <span uk-icon="icon: trash">+</span>
+                                                                 </button>
+                                                                 </form>
+                                                            </td>
+                                                            <td>
+                                                                 <from action ="<?= FRONT_ROOT.ROOM_ROOT ?>DeleteOne/<?=$room->getIdRoom();?>" method ="POST">
+                                                       <input type="hidden" value="<?=$room->getIdRoom(); //ACA VA GETID?>" name="id_room">
+
+                                                  <!-- OJO este input es importante -->
+
+
+                                                 <button type="button" class="btn btn-danger" id="button<?=$room->getIdroom();?>" data-toggle="modal" data-target="#exampleModal<?=$room->getIdroom();?>">
+                                                            x
+                                                            </button>
+
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModal<?=$room->getIdroom();?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                 <div class="modal-header">
+                                                                 <h5 class="modal-title text-dark" id="exampleModalLabel<?=$room->getIdroom();?>">¡Alerta!</h5>
+                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                                 </button>
+                                                                 </div>
+                                                                 <div class="modal-body text-dark">
+                                                                      ¿Esta seguro que desea eliminar <?= $room->getroomName() ?> ?
+                                                                 </div>
+                                                                 <div class="modal-footer">
+                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                 
+                                                                 <form action="<?= FRONT_ROOT . ROOM_ROOT?>DeleteOne\ <?=$room->getIdRoom(); ?>" method="POST">
+
+                                                                      <input type="hidden" value="<?=$room->getIdRoom(); //ACA VA GETID?>" name="delete">
+
+                                                                      <button type="submit" class="btn btn-danger">
+                                                                      <span uk-icon="icon: trash">Eliminar</span>
+                                                                      </button>
+                                                                  </form>
+                                                                 </td>
                                                             </tr>
 
                                                             

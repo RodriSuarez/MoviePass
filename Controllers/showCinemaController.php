@@ -47,7 +47,7 @@
                     $cinema->setShowTime($beginShow->format('Y-m-d'));
                     $cinema->setShowHour($time);
                     $cinema->setMovie($this->movieDB->getOneById($moveId));
-              //      $result = $this->showCinemaDB->Add($cinema, $roomId);
+                    $result = $this->showCinemaDB->Add($cinema, $roomId);
                     $beginShow->modify('+1 day');
 
                 }
