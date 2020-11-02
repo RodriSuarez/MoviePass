@@ -28,6 +28,7 @@
             $this->cinemaCL = new CinemaCL();
         }
 
+    
         public function ShowAddViewRoom($id_cinema, $message='', $success='')
         {
           require_once(VIEWS_PATH."room-add.php");
@@ -93,4 +94,11 @@
             $this->cinemaCL->ShowListView();
             
         }
+         public function DeleteOne($id_room){
+
+            $this->roomDB->DeleteOne($id_room);
+
+            $this->cinemaCL->ShowListView();
+        }
+    
 }
