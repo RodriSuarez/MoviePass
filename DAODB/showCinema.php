@@ -77,43 +77,56 @@
         
         }
 
-        public function checkTime($date, $roomID){
-        /*
-            try
-            {
-                $showList = array();
-               
-      
-                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time = '" . $date ."';";
-
+        public function checkTime(ShowModel $show, $roomID){
+            
+            try{
+            
+                $query = "SELECT * FROM ". $this->tableName . " WHERE show_time = '" . $show->getShowTime() ."';";
+                
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
 
                 $movieDB = new MovieDB();
+                $roomDB =  new RoomDB();
 
+                $RealShow = new DateTime($show->getShowHour()); //Horario en el que empieza la pelicula
+                 # var_dump($RealShow) ;
+                $RealShowEnd = new DateTime($show->getShowHour()); //Horario en el que termina la pelicula
+               
+                $RealShowEnd->modify('+' . $show->getMovie()->getDuration() . ' minute');
+                $RealShowEnd->modify('+ 15 minute');
+                $dif = '00:15';
+                
                 foreach ($resultSet as $row)
                 {                
-                    $show = new ShowModel();
-               
-                    $show->setShowTime($row["show_time"]);
-                    $show->setShowHour($row["show_hour"]);
-                    $show->setId($row["id_show_cinema"]);
-                    $show->setIdRoom($row['id_room']);
-                    $show ->setMovie($movieDB->GetOneById($row['id_movie']));
-                    array_push($showList, $show);
+                    $showInit = $row["show_hour"];
+                 
+                    $showDuration = $movieDB->getOneById($row['id_room'])->getDuration();
+                 
+                    $showAuxStart = new DateTime($showInit);
+                 
+                    $showEnd = new DateTime($showInit);
+                 
+              
+
+                    $showEnd->modify('+' . $showDuration .' minute'); //Se le suma la cantidad de minutos de la pelicula
+                    $showEnd->modify('+ 15 minute'); //Se le suman 15 minutos
+                    #var_dump($dif);
+                   # var_dump(date_diff($RealShow,$showAuxStart)->format('%H:%S'));
+                    if(date_diff($RealShow,$showAuxStart)->format('%H:%S') <= $dif || date_diff($RealShowEnd, $showAuxStart)->format('%H:%S') <= $dif
+                    || date_diff($RealShowEnd, $showEnd)->format('%H:%S') <= $dif || date_diff($RealShow, $ShowEnd))
+                        return false;
+
+                    #$interval = date_diff($showAuxStart, $RealShow);
+                    
+                    
+                             
                 }
-
-             
-
-                return $showList;
+                             return true;
+            }catch(Exception $error){
+                throw $error;
             }
-            catch(Exception $ex)
-            {
-                throw $ex;
-            }
-
-        */
 
         }
 
@@ -310,37 +323,7 @@
             }
         }
 
-        public function getOne($id){
-
-            try
-            {
-                $genreList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id ." ;";
-
-                $this->connection = Connection::GetInstance();
-
-                $resultSet = $this->connection->Execute($query);
-                $roomDB =  new RoomDB();
-
-                if(!empty($resultSet)){
-                    $show = new ShowModel();
-               
-                    $show->setShowTime($row["show_time"]);
-                    $show->setShowHour($row["show_hour"]);
-                    $show->setId($row["id_show_cinema"]);
-                    $show->setRoom($row['id_room']);
-                    $movie = $movieDB->getOneById($row['id_movie']);
-                    $show->setMovie($movie);
-                    return $show;
-                }
-                else return 'Funcion no encontrado';
-            }
-            catch(Exception $ex)
-            {
-                throw $ex;
-            }
-        }
+      
         
     }
 ?>

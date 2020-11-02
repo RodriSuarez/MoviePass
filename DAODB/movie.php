@@ -20,8 +20,8 @@
         {
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link)
-                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link);";
+                $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link, duration)
+                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link, :duration);";
                 
            
                 
@@ -34,10 +34,10 @@
                 $parameters["genres_id"] = serialize($movie->getGenres());
                 $parameters["release_date"] = $movie->getRealease_date();
                 $parameters["trailer_link"] = $movie->getTrailer_link();
-
+                $parameters["duration"] = $movie->getDuration();
 
                 $this->connection = Connection::GetInstance();
-               // print_r($parameters);
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
             }
@@ -67,6 +67,7 @@
                     $movie->setOverview($row["overview"]);
                     $movie->setVote_average($row["vote_average"]);
                 #   $movie->setGenres(unserialize($row["genres_id"]));
+                    $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
                     $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);

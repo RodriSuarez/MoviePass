@@ -41,12 +41,13 @@
             $endShow = new DateTime($finalDate);
             $beginShow = new DateTime($date);
             if(isset($_GET)){
+               
                 while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
                     $cinema = new ShowCinema();
                     $cinema->setShowTime($beginShow->format('Y-m-d'));
                     $cinema->setShowHour($time);
                     $cinema->setMovie($this->movieDB->getOneById($moveId));
-                    $result = $this->showCinemaDB->Add($cinema, $roomId);
+              //      $result = $this->showCinemaDB->Add($cinema, $roomId);
                     $beginShow->modify('+1 day');
 
                 }
@@ -66,6 +67,14 @@
             $roomDB = $this->roomDB; //ToDo modificar esta parte, le estamos dando contro a la vista, ERROR
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
             
+        }
+
+        public function checkShowsTime(ShowModel $show, $inicDate, $LastDate){
+
+            $show = $this->showCinemaDB->getOneById(1);
+           # var_dump($show);
+            $this->showCinemaDB->checkTime($show, 1);
+
         }
 
         public function ShowSearchShowsView(){
