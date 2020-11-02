@@ -25,7 +25,11 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">¿No sos miembro? <a href="<?= ROOT. VIEWS_PATH."register.php"?>" class="text-info">Registrate</a>.</div>
+      <form action ="<?=FRONT_ROOT.USER_ROOT."ShowRegisterView"?>" method="POST">
+
+        <div class="signup-section">¿No sos miembro? <a href="<?=FRONT_ROOT.USER_ROOT."ShowRegisterView"?>" class="text-info">Registrate</a>.</div>
+        </form>
+
       </div>
     </div>
       

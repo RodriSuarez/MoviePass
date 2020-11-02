@@ -5,6 +5,7 @@
     use DAO\Movie as MovieDao;
     use DAODB\Genre as GenreDao;
     use DAODB\Movie as MovieDB;
+    use DAODB\ShowCinema as ShowDB;
 
     class MovieController{
 
@@ -16,6 +17,7 @@
             $this->movieDao = new MovieDAO();
             $this->genreDao = new GenreDao();
             $this->movieDB = new MovieDB();
+            $this->ShowCinema = new ShowDB();
         }
 
         public function UpdateGenres(){

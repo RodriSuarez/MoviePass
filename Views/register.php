@@ -26,7 +26,7 @@ else {require_once('nav-no-login.php'); }
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                        <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- Last Name -->
@@ -36,7 +36,7 @@ else {require_once('nav-no-login.php'); }
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div>
-                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
+                        <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- Email Address -->
@@ -46,7 +46,7 @@ else {require_once('nav-no-login.php'); }
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                        <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- DNI -->
@@ -57,7 +57,7 @@ else {require_once('nav-no-login.php'); }
                             </span>
                         </div>
                       
-                        <input id="dni" type="number" name="dni" placeholder="DNI" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input id="dni" type="number" name="dni" placeholder="dni" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
 
@@ -70,7 +70,7 @@ else {require_once('nav-no-login.php'); }
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- Password Confirmation -->
@@ -80,7 +80,7 @@ else {require_once('nav-no-login.php'); }
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                        <input id="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- Submit Button -->

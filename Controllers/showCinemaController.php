@@ -49,7 +49,7 @@
                 $result = $this->showCinemaDB->Add($cinema, $_GET['roomId']);
 
                 $message = $result['message'];
-                $status = $result['state'];
+                $state = $result['state'];
 
                 $showList = $this->showCinemaDB->GetAll();
 

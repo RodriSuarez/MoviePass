@@ -6,10 +6,10 @@
                <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
                <table class="table text-white bg-oscuro">
                     <thead>
+                         <th>#</th>
                          <th>Nombre</th>
                          <th>Capacidad</th>
                          <th>Dirección</th>
-                         <th>ID</th>
                          <th>salas </th>
                          <th>Editar</th>
                          <th>Agregar Sala</th>
@@ -24,10 +24,10 @@
 
                                    ?>
                                         <tr>
+                                             <td><?php echo $cinema->getIdCinema() ?></td>
                                              <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $cinema->getCapacity()?></td>
                                              <td><?php echo $cinema->getAddress() ?></td>
-                                             <td><?php echo $cinema->getIdCinema() ?></td>
                                              <td> 
                                              <?php    if($cinema->getRooms()){?>
 

@@ -56,9 +56,11 @@ else {require_once('nav-no-login.php'); }
       <div class="col-lg-2 col-md-12 m-4">  
         <!--Modal: Name-->
           <div class="clickeable bg-oscuro rounded" alt="video" data-toggle="modal" data-target="#modal<?=$key?>">
+          <p class="text-white text-center">Cine: <?= $show->getRoom()->getCinema()->getCinemaName() ?></p>     
           <p class="text-white text-center">Sala: <?= $show->getRoom()->getRoomName() ?></p>     
           <p class="text-white text-center">Dia: <?= date_format(new DateTime($show->getShowTime()), "d-m-Y") ?> </p>     
           <p class="text-white text-center">Horario: <?= $show->getShowHour()?></p>     
+          <p class="text-white text-center">Precio: $<?= $show->getRoom()->getPrice() ?></p>     
 
             <img class="img-fluid rounded   shadow-sm z-depth-1" src="<?= API_IMG . $result->getPoster_path();?>" alt="video" data-toggle="modal" data-target="#modal<?=$key?>">
             <h5 class="text-white rounded-bottom   pt-2 pb-2 p-1"><?= $result->getTitle()?></h5>

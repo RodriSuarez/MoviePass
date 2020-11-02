@@ -33,24 +33,30 @@ $key = 0;
                 <th>Sala</th>
                  <td>
                 
-                  <select name="roomId" id="roomId">
+                  <select class="text-center" name="roomId" id="roomId">
                     <?php foreach($roomList as $room){?>
-                        <option value="<?= $room->getIdRoom() ?>"><?= $room->getRoomName() ?></option>
+                        <option class="text-center" value="<?= $room->getIdRoom() ?>"><?= 'Sala: ' . $room->getRoomName() . '  || Cine: ' . $room->getCinema()->getCinemaName() ?></option>
                     <?php } ?>
                   </select>
                 </td>
                         
              </tr>
              <tr>
-                <th>Dia</th>
+                <th>Desde</th>
             <td>
                   <input type="date" name="date" size="30" required>
                 </td>
             </tr>
             <tr>
+                <th>Hasta</th>
+            <td>
+                  <input type="date" name="dateLate" size="30" required>
+                </td>
+            </tr>
+            <tr>
                 <th>Hora</th>
                 <td>
-                    <input class="form" type="time" name="hora" id="hora">
+                    <input class="form" type="time" name="hora" id="hora" required>
                 </td>
                 </tr>
                 <tr>

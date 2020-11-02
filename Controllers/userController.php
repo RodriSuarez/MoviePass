@@ -8,7 +8,7 @@
     use Models\userProfile as UserProfile;
     use Models\userRole as UserRole;
 
-
+    use Controllers\showCinemaController as ShowC;
     use DAODB\User as userDB;
 
     use Controllers\MovieController as MovieC;
@@ -17,11 +17,13 @@
         
         //private $userDao;
         private $userDB;
+        private $showController;
 
 
         public function __construct()
         {
             /*$this->userDao = new userDao();*/
+            $this->showController = new ShowC();
             $this->userDB = new userDB();
         }
 
@@ -76,8 +78,7 @@
         {
             session_destroy();
             session_start();
-            include(ROOT.VIEWS_PATH."register.php");
-
+            $this->showController->ShowListShowsView();
         }
 
         /* (tanto delete como edite, faltan crear en DAO DB)
@@ -107,7 +108,10 @@
             
         }
         */
+        public function ShowRegisterView(){
 
+            require_once(ROOT.VIEWS_PATH."register.php");
+        }
         public function Add($firstName, $lastName, $email, $dni, $pass)
         {   
             
