@@ -3,7 +3,7 @@
 
     use Models\Movie as Movie;
     use Models\ShowCinema as ShowCinema;
-
+    use DateTime as DateTime;
     use DAO\Movie as MovieDao;
 
     use DAODB\Genre as GenreDao;
@@ -36,18 +36,20 @@
   'date' => string '2020-10-30' (length=10)
   'hora' => string '08:06' (length=5)
         */
-        public function Add(){
+        public function Add($moveId, $roomId, $date, $finalDate, $time){
 
-    
+            $endShow = new DateTime($finalDate);
+            $beginShow = new DateTime($date);
             if(isset($_GET)){
-            
-                $cinema = new ShowCinema();
-                $cinema->setShowTime($_GET['date']);
-                $cinema->setShowHour($_GET['hora']);
-                $cinema->setMovie($this->movieDB->getOneById($_GET['movieId']));
-                
-                $result = $this->showCinemaDB->Add($cinema, $_GET['roomId']);
+                while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+                    $cinema = new ShowCinema();
+                    $cinema->setShowTime($beginShow->format('Y-m-d'));
+                    $cinema->setShowHour($time);
+                    $cinema->setMovie($this->movieDB->getOneById($moveId));
+                    $result = $this->showCinemaDB->Add($cinema, $roomId);
+                    $beginShow->modify('+1 day');
 
+                }
                 $message = $result['message'];
                 $state = $result['state'];
 

@@ -36,8 +36,8 @@
                                                             <th>Nombre</th>
                                                             <th>Precio</th>
                                                             <th>Capacidad</th>
-                                                            <th>Agregar funcion</th>
                                                             <th>Editar</th>
+                                                            <th>Ver funciones</th>
                                                             <th>Eliminar</th>
 
 
@@ -49,7 +49,22 @@
                                                             <td><?= $room->getRoomName()?></td>
                                                             <td><?= $room->getPrice()?></td>
                                                             <td><?= $room->getRoomCapacity()?></td>
-                                                            <td>btn</td>
+                                                            <td> 
+                                                                 <form action="<?=FRONT_ROOT. ROOM_ROOT?>ShowEditView/<?= $room->getIdRoom(); ?>" method="POST">
+
+                                    
+                                                                 <!-- OJO este input es importante -->
+
+                                                                 <input type="hidden" value="<?=$room->getIdRoom(); //ACA VA GETID?>" name="id_room">
+
+                                                                 <!-- OJO este input es importante -->
+
+
+                                                                 <button type="submit" class="btn btn-danger">
+                                                                      <span uk-icon="icon: trash">+</span>
+                                                                 </button>
+                                                                 </form>
+                                                                 </td>
                                                             <td>btn</td>
                                                             <td>btn</td>
                                                             </tr>

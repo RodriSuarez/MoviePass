@@ -4,10 +4,10 @@
     use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
     use DAODB\cinema as cinemaDB;
-   
+
     class CinemaController{
         private $cinemaDB;
-
+        private $showC;
         public function __construct()
         {
             $this->cinemaDB = new cinemaDB();
@@ -43,7 +43,6 @@
 
         public function EditOneCinema($cinema_name, $address, $capacity, $id_cinema){
                      
-            
             $modify = new Cinema();
             $modify->setCinemaName($cinema_name);
             $modify->setAddress($address);

@@ -182,6 +182,27 @@ create table if not exists room(
                 throw $ex;
             }
         }
+        
+        public function EditOne(RoomModel $roomModify){
 
+            try{
+                
+    
+    
+                    $query =  ' UPDATE '.$this->tableName.' SET room_name = "' .$roomModify->getRoomName() .
+                                        '", price = "' . $roomModify->getPrice().
+                                        '", room_capacity = "' . $roomModify->getRoomCapacity() .
+                                        '" WHERE id_room = "' . $roomModify->getIdRoom().'";';
+    
+                    $this->connection = Connection::GetInstance();
+                   $state =  $this->connection->ExecuteNonQuery($query);
+                    #var_dump($state);
+                                
+                
+            }    
+            catch(Exception $ex){
+                throw $ex;
+            }  
+        }
     }
 ?>

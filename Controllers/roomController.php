@@ -1,19 +1,23 @@
 <?php
   namespace Controllers;
 
-    use Models\room as Room;
     use DAODB\room as roomDB;
     use DAODB\cinema as cinemaDB;
-    use Models\cinema as Cinema;
-    use Models\showCinema as Show;
     use DAODB\ShowCinema as ShowDB;
     use DAODB\Genre as GenreDB;
 
+    use Models\room as Room;
+    use Models\cinema as Cinema;
+    use Models\showCinema as Show;
+
+    use Controllers\CinemaController as CinemaCL;
 
     class RoomController{
         private $roomDB;
         private $cinemaDB;
         private $showDB;
+        private $genreDB;
+        private $cinemaCL;
 
         public function __construct()
         {
@@ -21,6 +25,7 @@
             $this->cinemaDB = new cinemaDB();
             $this->showDB = new ShowDB();
             $this->genreDB = new GenreDB();
+            $this->cinemaCL = new CinemaCL();
         }
 
         public function ShowAddViewRoom($id_cinema, $message='', $success='')
@@ -62,5 +67,30 @@
             
 
             $this->ShowAddViewRoom($id_cinema, $message, $success);
+        }
+
+        public function ShowEditView($id_room){
+            $room = $this->roomDB->getOne($id_room);
+
+            require_once(VIEWS_PATH."room-edit.php");
+
+
+        }
+
+        public function EditOne($room_name, $price, $room_capacity, $id_room, $id_cinema){
+            #var_dump($_POST);
+            
+            $modify = new Room();
+            $modify->setIdRoom($id_room);
+            $modify->setRoomName($room_name);
+            $modify->setPrice($price);
+            $modify->setRoomCapacity($room_capacity);
+            $modify->setCinema($this->cinemaDB->GetOne($id_cinema));
+            
+            $this->roomDB->EditOne($modify);
+
+
+            $this->cinemaCL->ShowListView();
+            
         }
 }
