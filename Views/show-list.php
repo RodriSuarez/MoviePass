@@ -61,7 +61,8 @@
       <div class="col-lg-2 col-md-12 m-4">  
         <!--Modal: Name-->
           <div class="clickeable bg-oscuro rounded" alt="video" data-toggle="modal" data-target="#modal<?=$key?>">
-          <p class="text-white text-center"><strong>Cine: </strong> <?= $show->getRoom()->getRoomName() ?></p>     
+          <p class="text-white text-center"><strong>Cine: </strong> <?= $show->getRoom()->getCinema()->getCinemaName() ?></p>     
+          <p class="text-white text-center"><strong>Sala: </strong> <?= $show->getRoom()->getRoomName() ?></p>     
           <p class="text-white text-center"><strong>Dia: </strong> <?= date_format(new DateTime($show->getShowTime()), "d-m-Y") ?> </p>     
           <p class="text-white text-center"><strong>Horario: </strong> <?= $show->getShowHour()?></p>     
           <p class="text-white text-center"><strong>Precio: </strong> $<?= $show->getRoom()->getPrice() ?></p>     
