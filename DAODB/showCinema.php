@@ -20,7 +20,7 @@
         {
             try
             {   
-                if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime())){
+                if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime(), $idRoom)){
                     $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
                     VALUES (:show_time, :show_hour, :id_room, :id_movie);";
                     
@@ -38,9 +38,9 @@
                                 'state' => true
                               );
                 }else{
-                    $message = 
-
-                    $dest= array( 'message' =>"¡Error! Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() . "</strong>!",
+                    
+                    $dest= array( 'message' =>"<strong>¡Error!</strong> Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() 
+                    . "</strong> en la sala <strong>". $show->getRoom()->getRoomName()."</strong>!",
                                 'state' => false
                              );
                 }
@@ -58,15 +58,16 @@
         
 
         //Modificar 
-        public function existMovieXdate($movie,$date){
+        public function existMovieXdate($movie,$date, $idRoom){
             try
             {
-                $query = "SELECT * FROM " . $this->tableName . " WHERE id_movie = " . $movie ." AND show_time = '" .$date ."';";
+                $query = "SELECT * FROM " . $this->tableName . " WHERE id_movie = " . $movie ." AND show_time = '" .$date ."' AND id_room != " .$idRoom .";";
 
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
                 
+               
 
                 return $resultSet;
             }

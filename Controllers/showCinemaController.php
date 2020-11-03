@@ -57,6 +57,10 @@
                             $result = $this->showCinemaDB->Add($cinema, $roomId);
                             $message = $result['message'];
                             $state = $result['state'];
+                            }else{
+                                $result = $this->showCinemaDB->Add($cinema, $roomId);
+                                $message = $result['message'];
+                                $state = $result['state'];
                             }
                     
 
@@ -122,8 +126,7 @@
 
             
             $dif = date_diff(new DateTime($LastDate), new DateTime($inicDate));
-            echo $dif->format('%D');
-
+           
            return $this->showCinemaDB->checkTime($show, $show->getRoom()->getIdRoom());
 
         }
