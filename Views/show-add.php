@@ -35,7 +35,7 @@ $key = 0;
                 
                   <select class="text-center" name="roomId" id="roomId">
                     <?php foreach($roomList as $room){?>
-                        <option class="text-center" value="<?= $room->getIdRoom() ?>"><?= 'Sala: ' . $room->getRoomName() . '  || Cine: ' . $room->getCinema()->getCinemaName() ?></option>
+                        <option class="text-center" value="<?= $room->getIdRoom() ?>"><?= 'Sala: ' . $room->getRoomName() . '    ||   Cine: ' . $room->getCinema()->getCinemaName() ?></option>
                     <?php } ?>
                   </select>
                 </td>

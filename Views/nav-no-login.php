@@ -11,10 +11,8 @@
       </li>
       <li class="nav-item">
         
-        </li><li class="nav-item">
-        <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">Ver Cines</a>
-
-        </li></li>
+        </li>
+        </li>
         <li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'ShowListShowsView' ?>"> Cartelera </a>
       </li>

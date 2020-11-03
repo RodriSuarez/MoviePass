@@ -40,40 +40,67 @@
 
             $endShow = new DateTime($finalDate);
             $beginShow = new DateTime($date);
+            
             if(isset($_GET)){
-               
-                if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) == 0){
-                    $cinema = new ShowCinema();
-                    $cinema->setShowTime($beginShow->format('Y-m-d'));
-                    $cinema->setShowHour($time);
-                    $cinema->setMovie($this->movieDB->getOneById($moveId));
-                    $cinema->setRoom($this->roomDB->getOne($roomId));
-                    #var_dump($cinema);
-                    $this->checkShowsTime($cinema, $date, $finalDate);
-
-               }else{
-                    while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+            
+                if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) < 0){
+                    if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) == 0){
                         $cinema = new ShowCinema();
                         $cinema->setShowTime($beginShow->format('Y-m-d'));
                         $cinema->setShowHour($time);
-                        $cinema->setRoom($this->roomDB->getOne($roomId));
                         $cinema->setMovie($this->movieDB->getOneById($moveId));
-                        var_dump($this->checkShowsTime($cinema, $beginShow->format('Y-m-d'), $finalDate));
+                        $cinema->setRoom($this->roomDB->getOne($roomId));
+                        #var_dump($cinema);
+                         $this->checkShowsTime($cinema, $date, $finalDate);
 
-                       #$result = $this->showCinemaDB->Add($cinema, $roomId);
-                        $beginShow->modify('+1 day');
+                     }else{
+                        while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+                            $cinema = new ShowCinema();
+                            $cinema->setShowTime($beginShow->format('Y-m-d'));
+                            $cinema->setShowHour($time);
+                            $cinema->setRoom($this->roomDB->getOne($roomId));
+                            $cinema->setMovie($this->movieDB->getOneById($moveId));
+                            $statusShows = $this->checkShowsTime($cinema, $beginShow->format('Y-m-d'), $finalDate);
 
+                            $beginShow->modify('+1 day');
+
+                            }
+                            
+                            if($statusShows){
+                                $endShow = new DateTime($finalDate);
+                                $beginShow = new DateTime($date);
+                            while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+                                $cinema = new ShowCinema();
+                                $cinema->setShowTime($beginShow->format('Y-m-d'));
+                                $cinema->setShowHour($time);
+                                $cinema->setRoom($this->roomDB->getOne($roomId));
+                                $cinema->setMovie($this->movieDB->getOneById($moveId));
+                                
+
+                                $result = $this->showCinemaDB->Add($cinema, $roomId);
+                                $beginShow->modify('+1 day');
+                        
+                    
+                                $message = $result['message'];
+                                $state = $result['state'];
+                            }
+                        }
+                    }
                 }
+            }else{
+                $message = "Las fechas deben ser ascendentes para poder insertar las funciones";
+                $state = false;
+                
             }
-                #$message = $result['message'];
-                #$state = $result['state'];
+                    $showList = $this->showCinemaDB->GetAll();
+                    $genreList = $this->genreDao->GetAll();
+                    require_once(ROOT. VIEWS_PATH . 'show-list.php');
 
-                $showList = $this->showCinemaDB->GetAll();
-
-                require_once(ROOT. VIEWS_PATH . 'show-list.php');
-
+                
             }
-        }
+        
+    
+
 
         public function ShowListShowsView($message='', $state=''){
             $genreList = $this->genreDao->GetAll();
