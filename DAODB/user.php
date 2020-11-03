@@ -28,7 +28,7 @@ namespace DAODB;
                 $parameters["email"] = $userModel->getEmail();
                 $parameters["pass"] = $userModel->getPass();           
 
-                $parameters["first_name"] = $userModel->getFirstName();
+                $parameters["first_name"] = $userModel->getProfile()->getFirstName();
                 $parameters["dni"] = $userModel->getProfile()->getDni();
                 $parameters["last_name"] = $userModel->getProfile()->getLastName();
                 

@@ -25,6 +25,7 @@
             /*$this->userDao = new userDao();*/
             $this->showController = new ShowC();
             $this->userDB = new userDB();
+
         }
 
         public function ShowAddView($message, $success)
@@ -60,17 +61,17 @@
             else{
                
                 $movie= new MovieC();
-                
-                if($this->userDB->GetDescriptionById($user->getIdUser())){
                 $_SESSION['loggedUser']['email'] = $user->getEmail(); //crear funcion que retorne el nombre del usuario por el email, maybe
-                $movie->ShowListMoviesView();
+                
+                if($this->userDB->GetDescriptionById($user->getIdUser() === "admin")){
+                    $_SESSION['loggedUser']['type'] = 'admin';
                 }
 
-                else{
-                $_SESSION['loggedUser']['email'] = $user->getEmail();
-                $movie->ShowListMoviesView();
-                }
+                 
+
             }
+            $this->showController->ShowListShowsView();
+
 
         }
 
@@ -124,9 +125,9 @@
             $userModel->setEmail($email);
             $userModel->setPass($pass);
 
-            $userProfile->setFirstName($firstName);
-            $userProfile->setDni($dni);
-            $userProfile->setLastName($lastName);
+            $userModel->getProfile()->setFirstName($firstName);
+            $userModel->getProfile()->setDni($dni);
+            $userModel->getProfile()->setLastName($lastName);
 
             if((!$this->userDB->existDNI($dni)) && (!$this->userDB->existEmail($email))){
                 $this->userDB->Add($userModel, $userProfile, $userRole);

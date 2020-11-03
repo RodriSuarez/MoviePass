@@ -1,6 +1,10 @@
 <?php
-if(isset($_SESSION['loggedUser'])){ require_once('nav.php'); }
-else {require_once('nav-no-login.php'); }
+  if(isset($_SESSION['loggedUser']) &&  isset($_SESSION['loggedUser']['type']) && $_SESSION['loggedUser']['type'] == 'admin') 
+      require_once('nav.php');
+  else if (isset($_SESSION['loggedUser']))
+      require_once('nav-client.php');
+  else 
+      require_once('nav-no-login.php'); 
 
 #var_dump($movieList); ?>
 
