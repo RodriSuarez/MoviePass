@@ -52,7 +52,7 @@
         public function login($email1, $pass1){
             
             $user = $this->userDB->GetUserByEmail($email1);
-
+           # var_dump($user);
             if((!$user)&&($user->getPass()!=$pass1)){
 
                 $message= "Usuario y/o contraseña incorrecta";   
@@ -60,10 +60,9 @@
             }
             else{
                
-                $movie= new MovieC();
                 $_SESSION['loggedUser']['email'] = $user->getEmail(); //crear funcion que retorne el nombre del usuario por el email, maybe
                 
-                if($this->userDB->GetDescriptionById($user->getIdUser() === "admin")){
+                if($user->getRole()->getDescription() === "admin"){
                     $_SESSION['loggedUser']['type'] = 'admin';
                 }
 

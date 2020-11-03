@@ -22,11 +22,12 @@
     
     
     </ul>
+    
     <ul class="navbar-nav ml-auto">
     <li class="nav-item navbar-right">
         <a class="nav-link " href="#"> <?= $_SESSION['loggedUser']['email']?> </a>
       </li>
-</ul>
+    </ul>
       
    
      

@@ -36,6 +36,12 @@
       <input class="form-control mr-sm-2" type="text" id="title" name="title" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item navbar-right">
+        <a class="nav-link " href="#"> <?= $_SESSION['loggedUser']['email']?> </a>
+      </li>
+    </ul>
     
   </div>
 </nav>

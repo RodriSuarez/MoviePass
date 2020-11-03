@@ -94,7 +94,7 @@ namespace DAODB;
             try
             {
   
-                $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'.$email.'";';
+                $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'. $email .'";';
                 
                 $this->connection = Connection::GetInstance();
                 $obj=$this->connection->Execute($query); 
@@ -109,7 +109,10 @@ namespace DAODB;
                     $user->setIdUser($row["id_user"]);
                     $user->setEmail($row["email"]);
                     $user->setPass($row["pass"]);
-                   
+                    $user->setRole(new UserRole());
+                    $user->getRole()->setDescription($row['description']);
+                    ##var_dump($row);
+                  ##  $user->setProfile()->setDescription($row['description']);
                     return $user;
                 }
                 else
