@@ -4,13 +4,16 @@
     use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
     use DAODB\cinema as cinemaDB;
+    use DAODB\room as RoomDB;
 
     class CinemaController{
         private $cinemaDB;
         private $showC;
+        private $roomDB;
         public function __construct()
         {
             $this->cinemaDB = new cinemaDB();
+            $this->roomDB = new RoomDB();
         }
 
         public function ShowAddView($message='', $success='')
@@ -35,9 +38,15 @@
         }
 
         public function DeleteOne($id_cinema){
+            $cinema = $this->cinemaDB->GetOne($id_cinema);
 
+            if($cinema->getRooms()){
+                foreach($cinema->getRooms() as $room){
+                    $this->roomDB->DeleteOne($room->getIdRoom());
+                }
+            }
             $this->cinemaDB->DeleteOne($id_cinema);
-
+            
             $this->ShowListView();
         }
 
@@ -55,7 +64,7 @@
         }
 
    
-        public function Add($cinema_name, $address, $capacity)
+        public function Add($cinema_name, $address, $capacity='')
         {   
            
                 

@@ -66,7 +66,7 @@
                                                                  </form>
                                                                  </td>
                                                             <td>
-                                                             <form action ="<?= FRONT_ROOT.ROOM_ROOT ?> ShowListShowsView/<?=$room->getIdRoom();?>" method="GET" >
+                                                             <form action ="<?= FRONT_ROOT.ROOM_ROOT ?>ShowListShowsView/<?=$room->getIdRoom();?>" method="GET" >
                                                                    <input type="hidden" value = "<?= $room->getIdRoom();?>" name = "id_room">
                                                                <button type="submit" class="btn btn-danger">
                                                                       <span uk-icon="icon: trash">+</span>
@@ -95,7 +95,8 @@
                                                                  </button>
                                                                  </div>
                                                                  <div class="modal-body text-dark">
-                                                                      ¿Esta seguro que desea eliminar <?= $room->getroomName() ?> ?
+                                                                      ¿Esta seguro que desea eliminar <?= $room->getroomName() ?> ?<br>
+                                                                      <strong>Se eliminaran todas las funciones que se esten dando en esta sala.</strong>
                                                                  </div>
                                                                  <div class="modal-footer">
                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -176,8 +177,9 @@
                                                                       <span aria-hidden="true">&times;</span>
                                                                  </button>
                                                                  </div>
-                                                                 <div class="modal-body text-dark">
-                                                                      ¿Esta seguro que desea eliminar <?= $cinema->getCinemaName() ?> ?
+                                                                 <div class="modal-body text-dark text-center">
+                                                                      ¿Esta seguro que desea eliminar <?= $cinema->getCinemaName() ?> ?<br>
+                                                                      <strong>Se eliminaran todas las salas que se esten dando en esta cine y sus funciones correspondientes.</strong>
                                                                  </div>
                                                                  <div class="modal-footer">
                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

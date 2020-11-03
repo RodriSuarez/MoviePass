@@ -22,7 +22,7 @@
                   <input type="text" name="address" size="30" required>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <th>Capacidad</th>
                 <td>
                   <input type="number" name="capacity" size="20" required>

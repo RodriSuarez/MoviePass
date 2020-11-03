@@ -286,7 +286,18 @@
             }
         }
     
-
+        public function DeleteOne($id_room){   
+    
+            try{
+                $query='DELETE FROM '.$this->tableName.' WHERE id_room = "'.$id_room.'";';
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+            }
+    
+        catch(Exception $ex){
+            throw $ex;
+            }
+        }  
 
         public function GetByRoom($roomId)
         {

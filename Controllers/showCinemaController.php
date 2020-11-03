@@ -43,7 +43,7 @@
             
             if(isset($_GET)){
             
-                if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) < 0){
+                if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) <= 0){
                     if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) == 0){
                         $cinema = new ShowCinema();
                         $cinema->setShowTime($beginShow->format('Y-m-d'));
@@ -51,7 +51,14 @@
                         $cinema->setMovie($this->movieDB->getOneById($moveId));
                         $cinema->setRoom($this->roomDB->getOne($roomId));
                         #var_dump($cinema);
-                         $this->checkShowsTime($cinema, $date, $finalDate);
+                        $statusShow = $this->checkShowsTime($cinema, $date, $finalDate);
+
+                        if($statusShow){
+                            $result = $this->showCinemaDB->Add($cinema, $roomId);
+                            $message = $result['message'];
+                            $state = $result['state'];
+                            }
+                    
 
                      }else{
                         while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
@@ -103,9 +110,10 @@
 
 
         public function ShowListShowsView($message='', $state=''){
+            
             $genreList = $this->genreDao->GetAll();
             $showList = $this->showCinemaDB->GetAll();
-            $roomDB = $this->roomDB; //ToDo modificar esta parte, le estamos dando contro a la vista, ERROR
+      
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
             
         }
@@ -144,6 +152,11 @@
             }
             $showList = $this->showCinemaDB->filterByGenre($genre);
             $genreList = $this->genreDao->GetAll();
+
+            if(!$showList){
+                $state = false;
+                $message = '¡No se han encontrado funciones con el genero '. $genre. '!';
+            }
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
 
 
@@ -155,6 +168,11 @@
             }
             $showList = $this->showCinemaDB->filterByDate($date);
             $genreList = $this->genreDao->GetAll();
+
+            if(!$showList){
+                $state = false;
+                $message = '¡No se han encontrado funciones con el fecha '. $date. '!';
+            }
             require_once(ROOT. VIEWS_PATH . 'show-list.php');
         }
 
@@ -167,13 +185,17 @@
                 if(isset($_GET['date']) && !empty($_GET['date']) &&
                      isset($_GET['genre']) && !empty($_GET['genre']) ){
                     $showList = $this->showCinemaDB->filterByGengreXdate($_GET['genre'], $_GET['date']);
+
+                    if(!$showList){
+                        $state = false;
+                        $message = '¡No se han encontrado funciones con el genero <strong>'. $_GET['genre']. '</strong> el día '. $_GET['date'] .'!' ;
+                    }
                     require_once(ROOT. VIEWS_PATH . 'show-list.php');
                 }
                 elseif (isset($_GET['date']) && !empty($_GET['date']))
                     $this->ShowByDate($_GET['date']);
                 elseif (isset($_GET['genre']) &&  !empty($_GET['genre'])){
                     $this->ShowByGenre($_GET['genre']);
-                        //echo 'entra aca';
                     }
             }else{
                 $this->ShowListShowsView($message, $state);
@@ -197,5 +219,6 @@
         
   
     }
+    
 
 ?>

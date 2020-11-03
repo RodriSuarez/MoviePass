@@ -25,13 +25,13 @@ require_once('nav.php');
              <tr>
                 <th>Valor del boleto</th>
             <td>
-                  <input type="text" name="price" size="30" required>
+                  <input type="text" min=0 name="price" size="30" required>
                 </td>
             </tr>
             <tr>
                 <th>Capacidad de la sala</th>
                 <td>
-                  <input type="number" name="room_capacity" size="20" required>
+                  <input type="number" min=0 name="room_capacity" size="20" required>
                 </td>
                 </tr>
                 <tr>

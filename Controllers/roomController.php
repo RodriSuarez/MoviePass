@@ -27,6 +27,7 @@
             $this->showDB = new ShowDB();
             $this->genreDB = new GenreDB();
             $this->cinemaCL = new CinemaCL();
+            
         }
 
     
@@ -39,8 +40,12 @@
         public function ShowListShowsView($idRoom){
 
             $showList = $this->showDB->GetByRoom($idRoom);
+            $room = $this->roomDB->getOne($idRoom);
             $genreList = $this->genreDB->GetAll();
-
+            if(!$showList){
+                $state = false;
+                $message = '¡No se han encontrado funciones en la sala '. $room->getRoomName() . '!';
+            }
           require_once(VIEWS_PATH."show-list.php");
 
 
@@ -97,6 +102,7 @@
         }
          public function DeleteOne($id_room){
 
+            $this->showDB->DeleteOne($id_room);
             $this->roomDB->DeleteOne($id_room);
 
             $this->cinemaCL->ShowListView();

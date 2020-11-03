@@ -11,6 +11,7 @@
     use Controllers\showCinemaController as ShowC;
     use DAODB\User as userDB;
 
+
     use Controllers\MovieController as MovieC;
 
     class UserController{
@@ -18,13 +19,15 @@
         //private $userDao;
         private $userDB;
         private $showController;
-
+      
 
         public function __construct()
         {
             /*$this->userDao = new userDao();*/
             $this->showController = new ShowC();
             $this->userDB = new userDB();
+           
+
 
         }
 

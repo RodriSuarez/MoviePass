@@ -19,13 +19,13 @@
              <tr>
                 <th>Precio</th>
             <td>
-                  <input type="text" name="price" size="30" value="<?= $room->getPrice()?>" required>
+                  <input type="text" name="price" min=0 size="30" value="<?= $room->getPrice()?>" required>
                 </td>
             </tr>
             <tr>
                 <th>Capacidad</th>
                 <td>
-                  <input type="number" name="room_capacity" size="20" value="<?= $room->getRoomCapacity() ?>"required>
+                  <input type="number" name="room_capacity" min=0 size="20" value="<?= $room->getRoomCapacity() ?>"required>
                 </td>
                 </tr>
                 
