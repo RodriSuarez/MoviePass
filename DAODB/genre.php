@@ -29,7 +29,7 @@
                 
            
                 
-                $parameters["NAME"] = $genre->getName();
+                $parameters["name"] = $genre->getName();
                 $parameters["id_api_genre"] = $genre->getApi_id();
        
                 $this->connection = Connection::GetInstance();
@@ -57,7 +57,7 @@
 
                 $joinGenre = new GenreModel();
 
-                $joinGenre ->setName($genre['NAME']);
+                $joinGenre ->setName($genre['name']);
                 $joinGenre ->setApi_id($genre['id']);
 
                 
@@ -111,7 +111,7 @@
                 {                
                     $genre = new GenreModel();
                
-                    $genre->setName($row["NAME"]);
+                    $genre->setName($row["name"]);
                     $genre->setApi_id($row["id_api_genre"]);
                     $genre->setId($row["id_genre"]);
 
@@ -140,7 +140,7 @@
 
                 if(!empty($resultSet)){
                     $genre = new GenreModel();
-                    $genre->setName($resultSet['0']["NAME"]);
+                    $genre->setName($resultSet['0']["name"]);
                     $genre->setApi_id($resultSet['0']["id_api_genre"]);
                     $genre->setId($resultSet['0']["id_genre"]);
                     return $genre;

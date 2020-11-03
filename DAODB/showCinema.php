@@ -80,44 +80,61 @@
         public function checkTime(ShowModel $show, $roomID){
             
             try{
-            
                 $query = "SELECT * FROM ". $this->tableName . " WHERE show_time = '" . $show->getShowTime() ."';";
-                
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
-
+                #var_dump($resultSet);
                 $movieDB = new MovieDB();
                 $roomDB =  new RoomDB();
 
-                $RealShow = new DateTime($show->getShowHour()); //Horario en el que empieza la pelicula
-                 # var_dump($RealShow) ;
+                $RealShowStart = new DateTime($show->getShowHour()); //Horario en el que empieza la pelicula
                 $RealShowEnd = new DateTime($show->getShowHour()); //Horario en el que termina la pelicula
-               
-                $RealShowEnd->modify('+' . $show->getMovie()->getDuration() . ' minute');
-                $RealShowEnd->modify('+ 15 minute');
-                $dif = '00:15';
-                
+                $RealShowEnd->modify('+' . $show->getMovie()->getDuration() . ' minute'); //Se le suman la duracion de la pelicula
+                $RealShowEnd->modify('+ 15 minute');  // se le suman los 15 minutos entre funciones
+
+                $dif = new DateTime('00:15');
+                $nulo = new DateTime('00:00');
                 foreach ($resultSet as $row)
                 {                
                     $showInit = $row["show_hour"];
-                 
-                    $showDuration = $movieDB->getOneById($row['id_room'])->getDuration();
-                 
-                    $showAuxStart = new DateTime($showInit);
+
+                    $showDuration = $movieDB->getOneById($row['id_movie'])->getDuration();
+                    #var_dump($showDuration);
+                    $showStart = new DateTime($showInit);
                  
                     $showEnd = new DateTime($showInit);
                  
-              
-
-                    $showEnd->modify('+' . $showDuration .' minute'); //Se le suma la cantidad de minutos de la pelicula
+                    $showEnd->modify('+ ' . $showDuration .' minute'); //Se le suma la cantidad de minutos de la pelicula
                     $showEnd->modify('+ 15 minute'); //Se le suman 15 minutos
-                    #var_dump($dif);
-                   # var_dump(date_diff($RealShow,$showAuxStart)->format('%H:%S'));
-                    if(date_diff($RealShow,$showAuxStart)->format('%H:%S') <= $dif || date_diff($RealShowEnd, $showAuxStart)->format('%H:%S') <= $dif
-                    || date_diff($RealShowEnd, $showEnd)->format('%H:%S') <= $dif || date_diff($RealShow, $ShowEnd))
-                        return false;
+              
+                  # var_dump($RealShowStart);
+                  #var_dump($showAuxStart);
+                   //Pregunto si la funcion es antes o despues de la funcion que me llega por la BD
+                  if(strcmp($RealShowStart->format('%H:%S'), $showStart->format('%H:%S')) == 1){
+                  
+                    echo 'La peli empieza ante <br>';
 
+                        if( new DateTime(date_diff($showEnd, $RealShowStart)->format('%H:%S')) >= $dif
+                         || new DateTime(date_diff($RealShowEnd, $showStart)->format('%H:%S')) >= $dif) 
+                            return false;
+                        
+
+                   
+                
+                  }else{
+              
+                    echo 'La peli empieza despue <br>';
+                    var_dump($RealShowEnd);
+                 ##   $RealShowEnd->modify('+ 15 minute');
+                    var_dump($RealShowEnd);
+                    var_dump($showStart);
+                    
+                    if( $dif >= new DateTime(date_diff($showStart, $RealShowEnd)->format('%H:%S'))){ 
+                        var_dump(new DateTime(date_diff($RealShowEnd, $showStart)->format('%H:%S')));
+                        return false;
+                    }
+                  }
                     #$interval = date_diff($showAuxStart, $RealShow);
                     
                     
@@ -252,7 +269,7 @@
                 $showList = array();
 
                 $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id.";";
-
+                var_dump($id);
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);

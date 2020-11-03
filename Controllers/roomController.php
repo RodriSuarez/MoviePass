@@ -13,6 +13,7 @@
     use Controllers\CinemaController as CinemaCL;
 
     class RoomController{
+       
         private $roomDB;
         private $cinemaDB;
         private $showDB;

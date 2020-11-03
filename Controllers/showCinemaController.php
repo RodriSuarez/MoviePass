@@ -42,17 +42,31 @@
             $beginShow = new DateTime($date);
             if(isset($_GET)){
                
-                while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+                if(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) == 0){
                     $cinema = new ShowCinema();
                     $cinema->setShowTime($beginShow->format('Y-m-d'));
                     $cinema->setShowHour($time);
                     $cinema->setMovie($this->movieDB->getOneById($moveId));
-                    $result = $this->showCinemaDB->Add($cinema, $roomId);
-                    $beginShow->modify('+1 day');
+                    $cinema->setRoom($this->roomDB->getOne($roomId));
+                    #var_dump($cinema);
+                    $this->checkShowsTime($cinema, $date, $finalDate);
+
+               }else{
+                    while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
+                        $cinema = new ShowCinema();
+                        $cinema->setShowTime($beginShow->format('Y-m-d'));
+                        $cinema->setShowHour($time);
+                        $cinema->setRoom($this->roomDB->getOne($roomId));
+                        $cinema->setMovie($this->movieDB->getOneById($moveId));
+                        var_dump($this->checkShowsTime($cinema, $beginShow->format('Y-m-d'), $finalDate));
+
+                       #$result = $this->showCinemaDB->Add($cinema, $roomId);
+                        $beginShow->modify('+1 day');
 
                 }
-                $message = $result['message'];
-                $state = $result['state'];
+            }
+                #$message = $result['message'];
+                #$state = $result['state'];
 
                 $showList = $this->showCinemaDB->GetAll();
 
@@ -69,11 +83,13 @@
             
         }
 
-        public function checkShowsTime(ShowModel $show, $inicDate, $LastDate){
+        public function checkShowsTime(ShowCinema $show, $inicDate, $LastDate){
 
-            $show = $this->showCinemaDB->getOneById(1);
+            
+            $dif = date_diff(new DateTime($LastDate), new DateTime($inicDate));
+            echo $dif->format('%D');
 
-            $this->showCinemaDB->checkTime($show, 1);
+           return $this->showCinemaDB->checkTime($show, $show->getRoom()->getIdRoom());
 
         }
 
@@ -117,6 +133,7 @@
 
 
         public function ShowFilterList($message='', $state = ''){
+         
             $genreList = $this->genreDao->GetAll();
             
             if( (isset($_GET['date']) && !empty($_GET['date']))  || isset($_GET['genre']) && !empty($_GET['genre'])){    
@@ -129,7 +146,7 @@
                     $this->ShowByDate($_GET['date']);
                 elseif (isset($_GET['genre']) &&  !empty($_GET['genre'])){
                     $this->ShowByGenre($_GET['genre']);
-                        echo 'entra aca';
+                        //echo 'entra aca';
                     }
             }else{
                 $this->ShowListShowsView($message, $state);
