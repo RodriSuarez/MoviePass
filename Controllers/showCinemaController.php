@@ -55,14 +55,13 @@
 
                         if($statusShow){
                             $result = $this->showCinemaDB->Add($cinema, $roomId);
-                            $message = $result['message'];
-                            $state = $result['state'];
+                         
                             }else{
                                 $result = $this->showCinemaDB->Add($cinema, $roomId);
-                                $message = $result['message'];
-                                $state = $result['state'];
+                                
                             }
-                    
+                            $message = $result['message'];
+                            $state = $result['state'];
 
                      }else{
                         while(strcmp($beginShow->format('d-m-Y'), $endShow->format('d-m-Y')) != 0){
@@ -131,11 +130,8 @@
 
         }
 
-        public function ShowSearchShowsView(){
+        public function ShowSearchShowsView($title=''){
 
-            if(isset($_GET['title'])){
-                $title = $_GET['title'];
-            }
        
             $movieList = $this->movieDB->SearchMovies($title);
             $genreList = $this->genreDao->GetAll();
@@ -149,10 +145,8 @@
             
         }
 
-        public function ShowByGenre($genre){
-            if(isset($_GET['genre'])){
-                $genre = $_GET['genre'];
-            }
+        public function ShowByGenre($genre = ''){
+            
             $showList = $this->showCinemaDB->filterByGenre($genre);
             $genreList = $this->genreDao->GetAll();
 
@@ -165,10 +159,8 @@
 
         }
 
-        public function ShowByDate($date){
-            if(isset($_GET['date'])){
-                $date = $_GET['date'];
-            }
+        public function ShowByDate($date = ''){
+            
             $showList = $this->showCinemaDB->filterByDate($date);
             $genreList = $this->genreDao->GetAll();
 
@@ -180,25 +172,24 @@
         }
 
 
-        public function ShowFilterList($message='', $state = ''){
+        public function ShowFilterList($date='', $genre='', $message='', $state = ''){
          
             $genreList = $this->genreDao->GetAll();
             
-            if( (isset($_GET['date']) && !empty($_GET['date']))  || isset($_GET['genre']) && !empty($_GET['genre'])){    
-                if(isset($_GET['date']) && !empty($_GET['date']) &&
-                     isset($_GET['genre']) && !empty($_GET['genre']) ){
-                    $showList = $this->showCinemaDB->filterByGengreXdate($_GET['genre'], $_GET['date']);
+            if( (!empty($date) && !empty($genre) ) ){    
+                if( !empty($date) && !empty($genre) ){
+                    $showList = $this->showCinemaDB->filterByGengreXdate($genre, $date);
 
                     if(!$showList){
                         $state = false;
-                        $message = '¡No se han encontrado funciones con el genero <strong>'. $_GET['genre']. '</strong> el día '. $_GET['date'] .'!' ;
+                        $message = '¡No se han encontrado funciones con el genero <strong>'. $genre . '</strong> el día '. $date .'!' ;
                     }
                     require_once(ROOT. VIEWS_PATH . 'show-list.php');
                 }
-                elseif (isset($_GET['date']) && !empty($_GET['date']))
-                    $this->ShowByDate($_GET['date']);
-                elseif (isset($_GET['genre']) &&  !empty($_GET['genre'])){
-                    $this->ShowByGenre($_GET['genre']);
+                elseif (!empty($date))
+                    $this->ShowByDate($date);
+                elseif (!empty($genre)){
+                    $this->ShowByGenre($genre);
                     }
             }else{
                 $this->ShowListShowsView($message, $state);

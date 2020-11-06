@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS movie(
 
 CREATE TABLE IF NOT EXISTS genre(
         id_genre INT AUTO_INCREMENT NOT NULL,
-        NAME VARCHAR(50) NOT NULL,
+        name VARCHAR(50) NOT NULL,
         id_api_genre INT NOT NULL,
         CONSTRAINT pk_genre PRIMARY KEY (id_genre),
         CONSTRAINT unq_id_api UNIQUE (id_api_genre)

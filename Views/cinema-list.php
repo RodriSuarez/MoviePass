@@ -1,7 +1,8 @@
 <?php require_once('nav.php'); ?>
 <main class="py-5">
      <section id="listado" class="mb-5">
-          <div class="container">
+        <div class="col-11 justify-content-center">
+          <div class="container-fluid">
                
                <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
                <table class="table text-white bg-oscuro">
@@ -208,6 +209,7 @@
                          </tr>
                     </tbody>
                </table>
+          </div>
           </div>
      </section>
 </main>

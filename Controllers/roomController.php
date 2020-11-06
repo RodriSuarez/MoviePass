@@ -7,8 +7,7 @@
     use DAODB\Genre as GenreDB;
 
     use Models\room as Room;
-    use Models\cinema as Cinema;
-    use Models\showCinema as Show;
+
 
     use Controllers\CinemaController as CinemaCL;
 
@@ -23,10 +22,10 @@
         public function __construct()
         {
             $this->roomDB = new roomDB();
-            $this->cinemaDB = new cinemaDB();
+           $this->cinemaDB = new cinemaDB();
             $this->showDB = new ShowDB();
-            $this->genreDB = new GenreDB();
-            $this->cinemaCL = new CinemaCL();
+           $this->genreDB = new GenreDB();
+            #$this->cinemaCL = new CinemaCL();
             
         }
 
@@ -105,7 +104,7 @@
             $this->showDB->DeleteOne($id_room);
             $this->roomDB->DeleteOne($id_room);
 
-            $this->cinemaCL->ShowListView();
+            #$this->cinemaCL->ShowListView();
         }
     
 }

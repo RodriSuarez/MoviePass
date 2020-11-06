@@ -23,7 +23,6 @@
         public function UpdateGenres(){
 
             $this->genreDao->GetApiGenres();
-            echo '<h1 class"text-white">Generos actualiados</h1>';
         }
 
         public function ShowListMoviesView(){
@@ -38,11 +37,8 @@
             
         }
 
-        public function ShowSearchMoviesView(){
+        public function ShowSearchMoviesView($title=''){
 
-            if(isset($_GET['title'])){
-                $title = $_GET['title'];
-            }
        
             $movieList = $this->movieDB->SearchMovies($title);
             $genreList = $this->genreDao->GetAll();
@@ -77,13 +73,6 @@
             
             require_once(ROOT. VIEWS_PATH . 'movie-lastest.php');
 
-        }
-
-        public function addOneMovie($movieID){
-
-            var_dump($this->movieDB->exist($movieID));
-          /*  $newMovie = $this->movieDao->GetOne($movieID);
-            $this->movieDB->Add($newMovie);*/
         }
 
         

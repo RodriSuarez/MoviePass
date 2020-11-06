@@ -1,19 +1,22 @@
 <?php
     namespace Controllers;
 
-    use DAO\cinema as CinemaDao;
+ #   use DAO\cinema as CinemaDao;
     use Models\Cinema as Cinema;
     use DAODB\cinema as cinemaDB;
-    use DAODB\room as RoomDB;
+ #   use DAODB\room as RoomDB;
+    use Controllers\roomController as RoomC;
 
     class CinemaController{
         private $cinemaDB;
-        private $showC;
-        private $roomDB;
+        #private $showC;
+       # private $roomDB;
+       # private $roomC;
+
         public function __construct()
         {
             $this->cinemaDB = new cinemaDB();
-            $this->roomDB = new RoomDB();
+           # $this->roomC = new RoomC();
         }
 
         public function ShowAddView($message='', $success='')
@@ -41,8 +44,9 @@
             $cinema = $this->cinemaDB->GetOne($id_cinema);
 
             if($cinema->getRooms()){
-                foreach($cinema->getRooms() as $room){
-                    $this->roomDB->DeleteOne($room->getIdRoom());
+                foreach($cinema->getRooms() as $room){                   
+                    
+                    $this->roomC->DeleteOne($room->getIdRoom());
                 }
             }
             $this->cinemaDB->DeleteOne($id_cinema);
