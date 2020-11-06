@@ -99,6 +99,7 @@
             $this->cinemaCL->ShowListView();
             
         }
+        
          public function DeleteOne($id_room){
 
             $this->showDB->DeleteOne($id_room);

@@ -11,7 +11,7 @@
     use DAODB\showCinema as ShowCinemaDB;
     use DAODB\Cinema as CinemaDB;
     use DAODB\Room as RoomDB;
-
+    
     class ShowCinemaController{
 
         private $roomDB;
@@ -194,10 +194,30 @@
                 $this->ShowListShowsView($message, $state);
             }
 
-
         }
 
-   
+        public function makeQr(){
+            require_once(ROOT. 'phpqrcode/qrlib.php');
+          
+            $dir = ROOT .VIEWS_PATH . 'img\qr\\';
+            $show = $this->showCinemaDB->GetOneById(1);
+            if(!file_exists(($dir)))
+                mkdir($dir);
+            
+            $filename = $dir . $show->getMovie()->getTitle() . ' - '.$show->getRoom()->getRoomName().'.png';
+    
+            $tam = 10;
+            $level = 'H';
+            $frameSize = 2;
+            $content = 'Cine: ' . $show->getRoom()->getCinema()->getCinemaName() .'
+            ';
+            $content.= 'Sala: ' . $show->getRoom()->getRoomName() . '
+            ';
+    
+           \QRcode::png($content, $filename, $level, $tam, $frameSize);
+
+           echo '<img src="' . $filename .'" alt="">';
+        }
 
         public function ShowAddView($movieID){
             #var_dump($movieID);
@@ -215,3 +235,5 @@
     
 
 ?>
+
+<img src="" alt="">
