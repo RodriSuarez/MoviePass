@@ -50,7 +50,6 @@
                         $cinema->setShowHour($time);
                         $cinema->setMovie($this->movieDB->getOneById($moveId));
                         $cinema->setRoom($this->roomDB->getOne($roomId));
-                        #var_dump($cinema);
                         $statusShow = $this->checkShowsTime($cinema, $date, $finalDate);
 
                         if($statusShow){
@@ -173,10 +172,10 @@
 
 
         public function ShowFilterList($date='', $genre='', $message='', $state = ''){
-         
+            
             $genreList = $this->genreDao->GetAll();
             
-            if( (!empty($date) && !empty($genre) ) ){    
+            if( (!empty($date) || !empty($genre) ) ){    
                 if( !empty($date) && !empty($genre) ){
                     $showList = $this->showCinemaDB->filterByGengreXdate($genre, $date);
 
