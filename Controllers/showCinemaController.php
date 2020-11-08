@@ -222,13 +222,7 @@
 
         public function sendMail(ShowCinema $show, $qr, $sendingTo){
        
-            include_once('PHPMailer/PHPMailer/PHPMailer.php');
-            include_once('PHPMailer/PHPMailer/SMTP.php');
-            include_once('PHPMailer/PHPMailer/Exception.php');
-        
-            // Load Composer's autoloader
-
-            // Instantiation and passing `true` enables exceptions
+      
             $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
 
             try {
