@@ -51,25 +51,15 @@ CONSTRAINT fk_movie FOREIGN KEY (id_movie) REFERENCES movie(id_movie)
 
 
 CREATE TABLE IF NOT EXISTS cinema(
-				id_cinema INT AUTO_INCREMENT NOT NULL,
+		id_cinema INT AUTO_INCREMENT NOT NULL,
                 cinema_name VARCHAR (50),
-				address VARCHAR(50),
+		address VARCHAR(50),
                 capacity INT,
                 CONSTRAINT pk_cinema PRIMARY KEY(id_cinema),
                 CONSTRAINT unq_cinema_name UNIQUE( cinema_name, address)
                 );
                 
-CREATE TABLE IF NOT EXISTS  USER(
-					id_user INT AUTO_INCREMENT NOT NULL,
-                    first_name VARCHAR (50),
-                    last_name VARCHAR (50),
-                    email VARCHAR (50),
-                    phone_number VARCHAR(50),
-                    pass VARCHAR (50),
-                    is_admin BOOLEAN ,
-                    CONSTRAINT pk_user PRIMARY KEY ( id_user),
-                    CONSTRAINT unq_email UNIQUE (email)	
-		);
+
 		
 CREATE TABLE IF NOT EXISTS room(
 			id_room INT AUTO_INCREMENT NOT NULL,
@@ -81,3 +71,36 @@ CREATE TABLE IF NOT EXISTS room(
                         CONSTRAINT fk_cinema FOREIGN KEY (id_cinema) REFERENCES cinema(id_cinema),
                         CONSTRAINT unq_cinema_name UNIQUE (room_name, id_cinema)
                         );
+CREATE TABLE IF NOT EXISTS  USER(
+    			id_user INT AUTO_INCREMENT NOT NULL,
+    			email VARCHAR (50),
+      			pass VARCHAR (50),
+        		first_name VARCHAR (50),
+        		dni INT NOT NULL,
+        		last_name VARCHAR (50),
+        		description VARCHAR (50),
+        		CONSTRAINT pk_user PRIMARY KEY (id_user),
+        		CONSTRAINT unq_email UNIQUE (email),
+        		CONSTRAINT unq_dni UNIQUE (dni)
+);
+create table if not exists ticket(
+			id_ticket int auto_increment not null,
+			id_show_cinema int not null,
+			number_ticket int,
+			constraint pk_ticket primary key (id_ticket),
+			constraint fk_show_cinema foreign key (id_show_cinema) references show_cinema(id_show_cinema),
+			constraint unq_qr unique (qr),
+			constraint unq_show_name unique (number_ticket, id_show_cinema)
+);
+create table if not exists buy(
+			id_buy int auto_increment not null,
+			id_ticket int not null,
+			id_user int not null,
+			fecha date,
+			total float,
+			#descuento int,
+			Constraint pk_buy primary key (id_buy),
+			constraint fk_ticket foreign key (id_ticket) references ticket(id_ticket),
+			constraint fk_user foreign key (id_user) references user(id_user)
+);
+	
