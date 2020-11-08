@@ -19,9 +19,10 @@
               <input type="password" class="form-control" id="password1" name="pass1" placeholder="Your password...">
             </div>
             <button type="submit" class="btn btn-info btn-block btn-round">Ingresar</button>
+  
           </form>
           
-        
+       
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -29,9 +30,11 @@
 
         <div class="signup-section">¿No sos miembro? <a href="<?=FRONT_ROOT.USER_ROOT."ShowRegisterView"?>" class="text-info">Registrate</a>.</div>
         </form>
-
+          
+   
       </div>
+
     </div>
-      
+  
   </div>
 </div>

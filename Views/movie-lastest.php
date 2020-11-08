@@ -1,6 +1,7 @@
 <?php
-if(isset($_SESSION['loggedUser'])){ require_once('nav.php'); }
-else {require_once('nav-no-login.php'); }
+if(isset($_SESSION['loggedUser'])){ 
+  require_once('nav.php');
+} 
 
 #var_dump($movieList); ?>
 

@@ -112,7 +112,7 @@ namespace DAODB;
                     $user->setRole(new UserRole());
                     $user->getRole()->setDescription($row['description']);
                     ##var_dump($row);
-                  ##  $user->setProfile()->setDescription($row['description']);
+                    #$user->setProfile()->setDescription($row['description']);
                     return $user;
                 }
                 else

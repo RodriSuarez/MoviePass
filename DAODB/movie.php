@@ -255,7 +255,7 @@
                     $movie->setOverview($row["overview"]);
                     $movie->setVote_average($row["vote_average"]);
                     $movie->setGenres(($this->GetGenreMovie($row["id_movie"])));       
-                        $movie->setRealease_date($row["release_date"]);
+                    $movie->setRealease_date($row["release_date"]);
                     $movie->setTrailer_link($row["trailer_link"]);
                     $movie->setId($row["id_movie"]);
                     $movie->setRating($row['rating']);
