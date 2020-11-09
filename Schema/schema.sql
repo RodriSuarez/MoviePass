@@ -90,7 +90,7 @@ create table if not exists ticket(
 			constraint pk_ticket primary key (id_ticket),
 			constraint fk_show_cinema foreign key (id_show_cinema) references show_cinema(id_show_cinema),
 			constraint unq_qr unique (qr),
-			constraint unq_show_name unique (number_ticket, id_show_cinema)
+			constraint unq_ticket_show unique (number_ticket, id_show_cinema)
 );
 create table if not exists buy(
 			id_buy int auto_increment not null,
