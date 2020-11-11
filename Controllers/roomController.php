@@ -10,6 +10,7 @@
 
 
     use Controllers\CinemaController as CinemaCL;
+    use Controllers\ticketController as TicketCL;
 
     class RoomController{
        
@@ -18,6 +19,7 @@
         private $showDB;
         private $genreDB;
         private $cinemaCL;
+        private $ticketCL;
 
         public function __construct()
         {
@@ -26,7 +28,7 @@
             $this->showDB = new ShowDB();
            $this->genreDB = new GenreDB();
             #$this->cinemaCL = new CinemaCL();
-            
+            $this->ticketCL = new TicketCL();
         }
 
     
@@ -34,7 +36,13 @@
         {
           require_once(VIEWS_PATH."room-add.php");
         }
-        
+            
+        public function RemainTicketsByMovie($id_show_cinema)
+        {
+         $ticketList=$this->ticketCl->TicketByShowCinema($id_show_cinema);
+            
+
+        }
 
         public function ShowListShowsView($idRoom){
 

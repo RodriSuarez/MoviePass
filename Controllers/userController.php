@@ -37,6 +37,11 @@
             require_once(VIEWS_PATH."register.php");
         }
 
+        public function loginError($message, $success)
+        {
+            require_once(VIEWS_PATH. "register.php");
+
+        }
 
         /*public function ShowProfileView($name)
         {
@@ -55,24 +60,31 @@
         public function login($email1, $pass1){
             
             $user = $this->userDB->GetUserByEmail($email1);
-           # var_dump($user);
-            if((!$user)&&($user->getPass()!=$pass1)){
+            var_dump($user);
+            if((!$user)||($user->getPass()!= $pass1))
+            {
 
+                   $success = false; 
                 $message= "Usuario y/o contraseña incorrecta";   
-                //REQUIRED (login.php) se tiene que preguntar si el message no esta vacio y si no se imprime
+                $this->loginError($message, $success);
+            
             }
-            else{
+            else 
+            {
                
                 $_SESSION['loggedUser']['email'] = $user->getEmail(); //crear funcion que retorne el nombre del usuario por el email, maybe
                 
                 if($user->getRole()->getDescription() === "admin"){
                     $_SESSION['loggedUser']['type'] = 'admin';
                 }
+                if($user->getRole()->getDescription() === "user"){
+                    $_SESSION['loggedUser']['type'] = 'user';
+                }
 
                  
-
+                $this->showController->ShowListShowsView();
             }
-            $this->showController->ShowListShowsView();
+            
 
 
         }
@@ -81,7 +93,7 @@
         {
             session_destroy();
             session_start();
-            $this->showController->ShowListShowsView();
+            require_once(VIEWS_PATH. "register.php");
         }
 
         /* (tanto delete como edite, faltan crear en DAO DB)
@@ -114,6 +126,14 @@
         public function ShowRegisterView(){
 
             require_once(ROOT.VIEWS_PATH."register.php");
+        }
+        public function UserById($id_user)
+        {
+
+            $user=$this->userDB->GetUserById($id_user);
+
+            return $user;
+
         }
         public function Add($firstName, $lastName, $email, $dni, $pass)
         {   
