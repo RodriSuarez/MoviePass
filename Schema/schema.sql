@@ -43,6 +43,7 @@ show_time DATE,
 show_hour VARCHAR(20),
 id_room INT NOT NULL,
 id_movie INT NOT NULL,
+remaining_tickets INT,
 CONSTRAINT pk_show_cinema PRIMARY KEY (id_show_cinema),
 CONSTRAINT fk_room FOREIGN KEY (id_room) REFERENCES room(id_room),
 CONSTRAINT fk_movie FOREIGN KEY (id_movie) REFERENCES movie(id_movie)
