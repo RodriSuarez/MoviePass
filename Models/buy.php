@@ -4,21 +4,25 @@
 
     class Buy{
 
+        private $id_buy;
+        private $user;
         private $cant_tickets;
         private $date;
         private $total;
         private $discount;
 
-        
-        public function __construct($cant_tickets= '', $date = '', $total = '', $discount = 0)
-        {
-            $this->cant_tickets = $cant_tickets;
-            $this->date = $date;
-            $this->total = $total;
-            $this->discount = $discount;
 
-        }
+    public function __construct($id_buy, $user, $cant_tickets, $date, $total, $discount)
+    {
+        $this->id_buy = $id_buy;
+        $this->user = $user;
+        $this->cant_tickets = $cant_tickets;
+        $this->date = $date;
+        $this->total = $total;
+        $this->discount = $discount;
+    }
 
+    
 
         /**
          * Get the value of discount
@@ -99,7 +103,47 @@
 
                 return $this;
         }
+    
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
+
+    /**
+     * @param mixed $user
+     *
+     * @return self
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdBuy()
+    {
+        return $this->id_buy;
+    }
+
+    /**
+     * @param mixed $id_buy
+     *
+     * @return self
+     */
+    public function setIdBuy($id_buy)
+    {
+        $this->id_buy = $id_buy;
+
+        return $this;
+    }
+}
 
 
 

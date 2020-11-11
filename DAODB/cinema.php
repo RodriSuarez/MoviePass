@@ -196,7 +196,7 @@ namespace DAODB;
         }
         public function getCapacityCinema($roomList)
         {
-            $room = new room();
+            $room = new RoomModel();
             $cinemaCapacity= null;
             if($roomList){
                 foreach ($roomList as $room ) {

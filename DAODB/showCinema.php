@@ -286,6 +286,43 @@
                 throw $ex;
             }
         }
+
+        public function GetRoomByIdShowCinema($id_show_cinema)
+        {
+            try
+            {
+                $showList = array();
+
+                $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id_show_cinema.";";
+               # var_dump($id);
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+
+                $room =  new RoomModel();
+            
+    
+                $room = null;
+
+                if($resultSet)
+                {  
+
+                  
+                    $row = $resultSet['0'];
+               
+                    $room = $roomDB->getOne($['id_room'])
+
+                }
+
+             row
+
+                return $room;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
     
         public function DeleteOne($id_room){   
     

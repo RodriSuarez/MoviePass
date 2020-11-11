@@ -127,6 +127,14 @@
 
             require_once(ROOT.VIEWS_PATH."register.php");
         }
+        public function UserById($id_user)
+        {
+
+            $user=$this->userDB->GetUserById($id_user);
+
+            return $user;
+
+        }
         public function Add($firstName, $lastName, $email, $dni, $pass)
         {   
             

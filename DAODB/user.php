@@ -47,47 +47,48 @@ namespace DAODB;
             }
         }
      
-     /*   public function GetAll()
+    public function GetUserById($id_user)
         {
             try
             {
-                $userList = array();
-
-                $query = "SELECT * FROM ".$this->tableName;
-
-                $this->connection = Connection::GetInstance();
-
-                $resultSet = $this->connection->Execute($query);
-
+  
+                $query = "SELECT * FROM ".$this->tableName .' WHERE id_user = "'. $id_user .'";';
                 
-                foreach ($resultSet as $row)
-                {                
-                    $userModel = new UserModel();
-                    $userProfile = new UserProfile();
-                    $userRole = new UserRole();
+                $this->connection = Connection::GetInstance();
+                $obj=$this->connection->Execute($query); 
+                
+                $userProfile=null;
 
-               
-                    $userModel->setIdUser($row["id_user"]);
-                    $userModel->setEmail($row["email"]);
-                    $userModel->setPass($row["pass"]);
+                if($obj)
+                {
+                    $row=$obj[0];
+                    $user= new UserModel();
 
-                    $userProfile->setFirstName($row["first_name"]);
-                    $userProfile->setDni($row["dni"]);
-                    $userProfile->setLastName($row["last_name"]);
-                    
-                    $userRole->setDescription($row["description"]);
+                    $user->setIdUser($row["id_user"]);
+                    $user->setEmail($row["email"]);
+                    $user->setPass($row["pass"]);
 
-                    array_push($userList ['users'], $user); ???
+                    $user->setProfile(new UserProfile());
+                    $user->getProfile()->setFirstName($row['first_name']);
+                    $user->getProfile()->setDni($row['dni']);
+                    $user->getProfile()->setLastName($row['last_name']);
+
+                    $user->setRole(new UserRole());
+                    $user->getRole()->setDescription($row['description']);
+                    ##var_dump($row);
+                    #$user->setProfile()->setDescription($row['description']);
+                    return $user;
                 }
-
-                return $userList;
+                else
+                {
+                    return null;
+                }
             }
             catch(Exception $ex)
             {
                 throw $ex;
             }
         }
-        */
        
        public function GetUserByEmail($email)
         {
