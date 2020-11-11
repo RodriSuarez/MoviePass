@@ -83,14 +83,17 @@ CREATE TABLE IF NOT EXISTS  USER(
         		CONSTRAINT unq_email UNIQUE (email),
         		CONSTRAINT unq_dni UNIQUE (dni)
 );
-create table if not exists ticket(
-			id_ticket int auto_increment not null,
-			id_show_cinema int not null,
-			number_ticket int,
-			constraint pk_ticket primary key (id_ticket),
-			constraint fk_show_cinema foreign key (id_show_cinema) references show_cinema(id_show_cinema),
-			constraint unq_qr unique (qr),
-			constraint unq_ticket_show unique (number_ticket, id_show_cinema)
+CREATE TABLE IF NOT EXISTS ticket(
+			id_ticket INT AUTO_INCREMENT NOT NULL,
+			id_show_cinema INT NOT NULL,
+			id_user INT NOT NULL,
+			ticket_number INT NOT NULL,
+			qr TEXT,
+			CONSTRAINT pk_ticket PRIMARY KEY (id_ticket),
+			CONSTRAINT fk_show FOREIGN KEY (id_show_cinema) REFERENCES show_cinema(id_show_cinema),
+			CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES USER(id_user),
+			CONSTRAINT unq_ticket UNIQUE (id_ticket, id_show_cinema)
+
 );
 create table if not exists buy(
 			id_buy int auto_increment not null,
