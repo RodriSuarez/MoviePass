@@ -18,24 +18,24 @@
 
         public function Add(MovieModel $movie)
         {
+            $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link, duration)
+            VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link, :duration);";
+            
+            
+            
+            $parameters["title"] = $movie->getTitle();
+            $parameters["id_api_movie"] = $movie->getApi_id();
+            $parameters["poster_path"] = $movie->getPoster_path();
+            $parameters["backdrop_path"] = $movie->getBackdrop_path();
+            $parameters["overview"] = $movie->getOverview();
+            $parameters["vote_average"] = $movie->getVote_average();
+            $parameters["genres_id"] = serialize($movie->getGenres());
+            $parameters["release_date"] = $movie->getRealease_date();
+            $parameters["trailer_link"] = $movie->getTrailer_link();
+            $parameters["duration"] = $movie->getDuration();
+            
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average, genres_id, release_date, trailer_link, duration)
-                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average, :genres_id, :release_date, :trailer_link, :duration);";
-                
-           
-                
-                $parameters["title"] = $movie->getTitle();
-                $parameters["id_api_movie"] = $movie->getApi_id();
-                $parameters["poster_path"] = $movie->getPoster_path();
-                $parameters["backdrop_path"] = $movie->getBackdrop_path();
-                $parameters["overview"] = $movie->getOverview();
-                $parameters["vote_average"] = $movie->getVote_average();
-                $parameters["genres_id"] = serialize($movie->getGenres());
-                $parameters["release_date"] = $movie->getRealease_date();
-                $parameters["trailer_link"] = $movie->getTrailer_link();
-                $parameters["duration"] = $movie->getDuration();
-
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -50,10 +50,10 @@
 
         public function GetOneByApiID($apiId){
 
+            
+            $query = "SELECT * FROM " . $this->tableName ." WHERE id_api_movie = " . $apiId . ";";
             try{
-
-                $query = "SELECT * FROM " . $this->tableName ." WHERE id_api_movie = " . $apiId . ";";
-                $obj = $this->connection->Execute($query);
+            $obj = $this->connection->Execute($query);
             
                 $movie = null;
 
@@ -85,8 +85,8 @@
 
         public function GetOneById($id){
 
+            $query = "SELECT * FROM " . $this->tableName ." WHERE id_movie = " . $id . ";";
             try{
-               $query = "SELECT * FROM " . $this->tableName ." WHERE id_movie = " . $id . ";";
                $this->connection = Connection::GetInstance();
 
                 $obj = $this->connection->Execute($query);
@@ -120,17 +120,17 @@
 
         public function addGenreXmovie($idMovie, $genreList){
 
+            $genres = new GenreDB();
+            
+            
+            
             try{
-                $genres = new GenreDB();
-                
-          
-
-
+            
                 if(!$genres->GetAll()){
                     $genres->GetApiGenres();
                     $genres = new GenreDB();
                 }
-
+            
                 $movie = $this->GetOneByApiID($idMovie);
          
 
@@ -160,13 +160,13 @@
 
         public function GetGenreMovie($idMovie){
 
-            try{
-                    $query = "SELECT g.name, g.id_genre, m.id_movie FROM  genre_x_movie gxm
+            $query = "SELECT g.name, g.id_genre, m.id_movie FROM  genre_x_movie gxm
                         INNER JOIN movie m ON m.id_movie = gxm.id_movie
                         INNER JOIN genre g ON g.id_genre = gxm.id_genre
                         WHERE m.id_movie = ". $idMovie ." ORDER BY m.id_movie;";
             
-                    $obj = $this->connection->Execute($query);
+            try{
+                     $obj = $this->connection->Execute($query);
                     $genreList = array();
                      if($obj){
                         $genres = $obj['0'];
@@ -189,12 +189,12 @@
 
         public function GetAll()
         {
+            $movieList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName;
+            
             try
             {
-                $movieList = array();
-
-                $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -272,10 +272,10 @@
             }
         }
         public function existApiId($id){
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
+            
             try
             {                                                           
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_movie = " . $id .";";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -293,14 +293,14 @@
         
         public function filterByGenre($genre){
             $movieList = array();
-            try{
-                $query = 'SELECT g.name, gxm.id_movie, m.id_movie FROM  genre_x_movie gxm
+            $query = 'SELECT g.name, gxm.id_movie, m.id_movie FROM  genre_x_movie gxm
                             INNER JOIN movie m ON m.id_movie = gxm.id_movie
                             INNER JOIN genre g ON g.id_genre = gxm.id_genre
                             HAVING g.name = "' . $genre . '"
                             ORDER BY g.name;';
-                
-                $this->connection = Connection::GetInstance();
+                            
+            try{
+                            $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
 
@@ -324,52 +324,51 @@
 
         public function GetApiMovies($page){
            
-            try{
             $newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE . "&page=" . $page), true );
-           
+            
             $query = "INSERT INTO ".$this->tableName." (title, id_api_movie, poster_path, backdrop_path, overview, vote_average,  release_date, trailer_link, director, duration, rating)
-                 VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average,  :release_date, :trailer_link, :director, :duration, :rating);";
-
+            VALUES (:title, :id_api_movie, :poster_path, :backdrop_path, :overview, :vote_average,  :release_date, :trailer_link, :director, :duration, :rating);";
+            
             foreach($newArrivals['results'] as $movie){
                 
-               if(!$this->existApiId($movie['id']))
-                {
-                    //https://api.themoviedb.org/3/movie/718444?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES
-                    $movieCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id']  . "?" . API_KEY),true);
-                    $directorCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id'] . "/credits?" . API_KEY),true);
+                try{
+                    if(!$this->existApiId($movie['id']))
+                    {
+                        //https://api.themoviedb.org/3/movie/718444?api_key=5c5be0bb9aae8be870e50088603452ef&language=es-ES
+                        $movieCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id']  . "?" . API_KEY),true);
+                        $directorCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id'] . "/credits?" . API_KEY),true);
+                    
+                        foreach($directorCall['crew'] as $crew){
+                            if($crew['job'] == "Director")
+                                $director = $crew['name'];
+                        }
+
+                        
+                        $parameters["title"] = $movie['title'];
+                        $parameters["id_api_movie"] = $movie['id'];
+                        $parameters["poster_path"] = $movie['poster_path'];
+                        $parameters["backdrop_path"] = $movie['backdrop_path'];
+                        $parameters["overview"] = $movie['overview'];
+                        $parameters["vote_average"] = $movie['vote_average'];
                 
-                     foreach($directorCall['crew'] as $crew){
-                        if($crew['job'] == "Director")
-                            $director = $crew['name'];
+                        $parameters["release_date"] = $movie['release_date'];
+                        $parameters["rating"] = $movie['vote_average'];
+                        $video = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results'];
+                        $parameters["trailer_link"] = !empty($video)  ? $video['0']['key'] : 'Video no disponible';
+                        
+                        $parameters["director"] = !empty($director) ? $director : 'Director no disponible';
+                        $parameters["duration"] = $movieCall['runtime'];
+
+                        $this->connection = Connection::GetInstance();
+                        $this->connection->ExecuteNonQuery($query, $parameters);
+                        
+                        $this->addGenreXmovie($movie['id'], $movie['genre_ids']);
                     }
-
-                    
-                    $parameters["title"] = $movie['title'];
-                    $parameters["id_api_movie"] = $movie['id'];
-                    $parameters["poster_path"] = $movie['poster_path'];
-                    $parameters["backdrop_path"] = $movie['backdrop_path'];
-                    $parameters["overview"] = $movie['overview'];
-                    $parameters["vote_average"] = $movie['vote_average'];
-               
-                    $parameters["release_date"] = $movie['release_date'];
-                    $parameters["rating"] = $movie['vote_average'];
-                    $video = json_decode(file_get_contents(API_URL .'/movie/'. $movie['id'] .'/videos?'. API_KEY), true)['results'];
-                    $parameters["trailer_link"] = !empty($video)  ? $video['0']['key'] : 'Video no disponible';
-                    
-                    $parameters["director"] = !empty($director) ? $director : 'Director no disponible';
-                    $parameters["duration"] = $movieCall['runtime'];
-
-                    $this->connection = Connection::GetInstance();
-                    $this->connection->ExecuteNonQuery($query, $parameters);
-                    
-                    $this->addGenreXmovie($movie['id'], $movie['genre_ids']);
-                }
                    
-                }
-
+            }catch(Exception $ex){
+                        throw $ex;
             }
-            catch(Exception $ex){
-                throw $ex;
+
             }
 
 
@@ -394,7 +393,7 @@
                         
                             try{
                                 $movieCall = json_decode(file_get_contents(API_URL. '/movie/' . $movie['id']  . "?" . API_KEY),true);
-                            }catch(Exeption $error){
+                            }catch(Exception $error){
                                 echo "Errorsuli";
                             }
                          
@@ -421,11 +420,14 @@
                         $parameters["trailer_link"] = !empty($video)  ? $video['0']['key'] : 'Video no disponible';
                         $parameters["director"] = $director;
                         $parameters["duration"] = $movieCall['runtime'];
-    
-                        $this->connection = Connection::GetInstance();
-                        $this->connection->ExecuteNonQuery($query, $parameters);
+                        try{
+                            $this->connection = Connection::GetInstance();
+                            $this->connection->ExecuteNonQuery($query, $parameters);
 
-                        $this->addGenreXmovie($movie['id'], $movie['genre_ids']);
+                            $this->addGenreXmovie($movie['id'], $movie['genre_ids']);
+                        }catch(Exception $e){
+                            throw $e;
+                        }
 
     
                     }

@@ -18,24 +18,24 @@ namespace DAODB;
 
         public function Add(UserModel $userModel)
         {
+            $query = "INSERT INTO ".$this->tableName." (id_user, email, pass, first_name, dni, last_name,description)
+            VALUES (:id_user, :email, :pass, :first_name, :dni, :last_name, :description);";
+            
+            
+            $parameters["id_user"] = $userModel->getIdUser();
+            $parameters["email"] = $userModel->getEmail();
+            $parameters["pass"] = $userModel->getPass();           
+            
+            $parameters["first_name"] = $userModel->getProfile()->getFirstName();
+            $parameters["dni"] = $userModel->getProfile()->getDni();
+            $parameters["last_name"] = $userModel->getProfile()->getLastName();
+            
+            $parameters["description"] = $userModel->getRole()->getDescription();
+            
+            
+            
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (id_user, email, pass, first_name, dni, last_name,description)
-                 VALUES (:id_user, :email, :pass, :first_name, :dni, :last_name, :description);";
-                
-           
-                $parameters["id_user"] = $userModel->getIdUser();
-                $parameters["email"] = $userModel->getEmail();
-                $parameters["pass"] = $userModel->getPass();           
-
-                $parameters["first_name"] = $userModel->getProfile()->getFirstName();
-                $parameters["dni"] = $userModel->getProfile()->getDni();
-                $parameters["last_name"] = $userModel->getProfile()->getLastName();
-                
-                $parameters["description"] = $userModel->getRole()->getDescription();
-
-
-
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -91,11 +91,11 @@ namespace DAODB;
        
        public function GetUserByEmail($email)
         {
+            
+            $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'. $email .'";';
+            
             try
             {
-  
-                $query = "SELECT * FROM ".$this->tableName .' WHERE email = "'. $email .'";';
-                
                 $this->connection = Connection::GetInstance();
                 $obj=$this->connection->Execute($query); 
                 
@@ -128,12 +128,12 @@ namespace DAODB;
 
                public function GetDescriptionById($id_user) //return true if isAdmin
         {
+            $query = "SELECT * FROM ".$this->tableName .' WHERE id_user = "'.$id_user.'";';
+            
             try
             {
   
-                $query = "SELECT * FROM ".$this->tableName .' WHERE id_user = "'.$id_user.'";';
-                
-                $this->connection = Connection::GetInstance();
+            $this->connection = Connection::GetInstance();
                 $obj=$this->connection->Execute($query); 
                 
 
@@ -163,10 +163,10 @@ namespace DAODB;
 
         public function existDNI($dni)
         {
+            $query = 'SELECT * FROM '.$this->tableName . ' WHERE dni = "' . $dni .'";';
+            
             try
             {
-                $query = 'SELECT * FROM '.$this->tableName . ' WHERE dni = "' . $dni .'";';
-                
                 $this->connection = Connection::GetInstance();
                 $resultDNI = $this->connection->Execute($query);
 
@@ -181,10 +181,10 @@ namespace DAODB;
         
         public function existEmail($email)
         {
+            $query = 'SELECT * FROM '.$this->tableName . ' WHERE email = "' . $email .'";';
+            
             try
             {
-                $query = 'SELECT * FROM '.$this->tableName . ' WHERE email = "' . $email .'";';
-                
                 $this->connection = Connection::GetInstance();
                 $resultEmail = $this->connection->Execute($query);
 

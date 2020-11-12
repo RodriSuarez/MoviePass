@@ -3,7 +3,16 @@
      <section id="listado" class="mb-5">
         <div class="col-11 justify-content-center">
           <div class="container-fluid">
-               
+          <?php 
+          if(!empty($message)&& $state){?>
+            <div class="row d-flex justify-content-center align-content-center ">
+              <p class="text-center  alert-success col-4 p-3"> <?= $message ?></p>
+              </div>
+          <?php }else if(!empty($message)){?>
+            <div class="row d-flex justify-content-center align-content-center ">
+              <p class="text-center  alert-danger col-4 p-3"> <?= $message ?></p>
+              </div>
+      <?php    } ?>
                <h2 class="mb-4 text-center text-white">Listado de Cines</h2>
                <table class="table text-white bg-oscuro">
                     <thead>

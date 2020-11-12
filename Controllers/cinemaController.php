@@ -20,27 +20,45 @@
         }
 
         public function ShowAddView($message='', $success='')
-        {
+        {   try{
             $cinemaList=$this->cinemaDB->GetAll();
+            }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+            }finally{
             require_once(VIEWS_PATH."cinema-add.php");
+            }
         }
 
 
 
         public function ShowListView()
         {
+            try{
             $cinemaList = $this->cinemaDB->GetAll();
+            }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+                $cinemaList = new Cinema();
+            }finally{
             require_once(VIEWS_PATH."cinema-list.php");
+            }
         }
 
         public function ShowEditView($id_cinema){
-
-            $cinema = $this->cinemaDB->GetOne($id_cinema);
-
-            require_once(VIEWS_PATH."cinema-edit.php");
+            try{
+                $cinema = $this->cinemaDB->GetOne($id_cinema);
+            }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+                $cinemaList = new Cinema();
+            }finally{
+                require_once(VIEWS_PATH."cinema-edit.php");
+            }
         }
 
         public function DeleteOne($id_cinema){
+           try{
             $cinema = $this->cinemaDB->GetOne($id_cinema);
 
             if($cinema->getRooms()){
@@ -49,9 +67,17 @@
                     $this->roomC->DeleteOne($room->getIdRoom());
                 }
             }
-            $this->cinemaDB->DeleteOne($id_cinema);
+                $this->cinemaDB->DeleteOne($id_cinema);
+             
+          }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+                $cinemaList = new Cinema();
+            }finally{
             
-            $this->ShowListView();
+                $this->ShowListView();
+            }
+
         }
 
         public function EditOneCinema($cinema_name, $address, $capacity, $id_cinema){
@@ -60,11 +86,15 @@
             $modify->setCinemaName($cinema_name);
             $modify->setAddress($address);
             $modify->setCapacity($capacity);
-            
-            $this->cinemaDB->EditOne($id_cinema, $modify);
-
-            $this->ShowListView();
-            
+            try{
+                 $this->cinemaDB->EditOne($id_cinema, $modify);
+            }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+                $cinemaList = new Cinema();
+            }finally{
+                $this->ShowListView();
+            }
         }
 
    
@@ -76,23 +106,29 @@
             $cinema->setCinemaName($cinema_name);
             $cinema->setAddress($address);
             $cinema->setCapacity($capacity);
+         
+            try{
+                if(!$this->cinemaDB->exist($cinema_name, $address)) {
+                    $this->cinemaDB->Add($cinema);
+                    $success=true;
+                }
+                else
+                    $success = false;
             
-            if(!$this->cinemaDB->exist($cinema_name, $address)) {
-                 $this->cinemaDB->Add($cinema);
-                 $success=true;
-             }
-            else
-                $success = false;
-           
-            if($success){
-                $message = '¡Se ha agregado a ' . $cinema_name . ' con exito!';
-                
-            }else{
-                $message = '¡Error inesperado! No se ha podido agregar a ' . $cinema_name;
-            }
-            
+                if($success){
+                    $message = '¡Se ha agregado a ' . $cinema_name . ' con exito!';
+                    
+                }else{
+                    $message = '¡Error inesperado! No se ha podido agregar a ' . $cinema_name;
+                }
+             }catch(\Exception $e){
+                $message = 'Se produjo un error al comunicarse con la base de datos.';
+                $state = false;
+                $cinemaList = new Cinema();
+            }finally{
 
-            $this->ShowAddView($message, $success);
+              $this->ShowAddView($message, $success);
+            }
         }
     }
 

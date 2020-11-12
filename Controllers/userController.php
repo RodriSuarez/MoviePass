@@ -57,7 +57,8 @@
         */
 
   public function login($email1, $pass1){
-            
+          
+    try{
             $user = $this->userDB->GetUserByEmail($email1);
             if((!$user)||($user->getPass()!= $pass1))
             {
@@ -78,10 +79,14 @@
                 if($user->getRole()->getDescription() === "user"){
                     $_SESSION['loggedUser']['type'] = 'user';
                 }
-
+            }
+        }catch(\Exception $e){
+            $success = false; 
+            $message= "No se ha podido acceder a la base de datos, intente nuevamente mas";   
+        }
                  
                 $this->showController->ShowListShowsView();
-            }
+            
         }
 
         public function logout()

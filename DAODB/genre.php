@@ -22,16 +22,16 @@
          */
         public function Add(GenreModel $genre)
         {
+            $query = "INSERT INTO ".$this->tableName." (name, id_api_genre)
+            VALUES (:name, :id_api_genre);";
+            
+            
+            
+            $parameters["name"] = $genre->getName();
+            $parameters["id_api_genre"] = $genre->getApi_id();
+            
             try
             {
-                $query = "INSERT INTO ".$this->tableName." (name, id_api_genre)
-                 VALUES (:name, :id_api_genre);";
-                
-           
-                
-                $parameters["name"] = $genre->getName();
-                $parameters["id_api_genre"] = $genre->getApi_id();
-       
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -51,6 +51,7 @@
 
             #$newArrivals = json_decode( file_get_contents(API_URL . NOW_PLAYING . API_KEY . LANGUAGE), true );
             #https://api.themoviedb.org/3/genre/movie/list?api_key=5c5be0bb9aae8be870e50088603452ef&language=en-US
+          try{
             $newArrivals = json_decode(file_get_contents(API_URL . "/genre/movie/list?".API_KEY . LANGUAGE),true);
             foreach($newArrivals['genres'] as $genre){
                 
@@ -70,16 +71,19 @@
                 }
 
             }
+        }catch(Exception $ex){
+            throw $ex;
+        }
 
 
         }
 
         
         public function exist($id){
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_genre = " . $id .";";
+            
             try
             {
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_genre = " . $id .";";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -97,12 +101,12 @@
         
         public function GetAll()
         {
+            $genreList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName;
+            
             try
             {
-                $genreList = array();
-
-                $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -128,12 +132,12 @@
 
         public function getOne($id){
 
+            $genreList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_genre = " . $id ." ;";
+            
             try
             {
-                $genreList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_api_genre = " . $id ." ;";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);

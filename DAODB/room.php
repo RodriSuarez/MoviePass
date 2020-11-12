@@ -27,18 +27,18 @@ create table if not exists room(
          */
         public function Add(RoomModel $room)
         {
+            $query = "INSERT INTO ".$this->tableName." ( room_name, price,  room_capacity, id_cinema)
+            VALUES ( :room_name, :price,  :room_capacity, :id_cinema);";
+            
+            
+            
+            $parameters["room_name"] = $room->getRoomName();
+            $parameters["price"] = $room->getPrice();
+            $parameters["room_capacity"] = $room->getRoomCapacity();
+            $parameters["id_cinema"]= $room->getCinema()->getIdCinema();
+            
             try
             {
-                $query = "INSERT INTO ".$this->tableName." ( room_name, price,  room_capacity, id_cinema)
-                 VALUES ( :room_name, :price,  :room_capacity, :id_cinema);";
-                
-           
-                
-                $parameters["room_name"] = $room->getRoomName();
-                $parameters["price"] = $room->getPrice();
-                $parameters["room_capacity"] = $room->getRoomCapacity();
-                $parameters["id_cinema"]= $room->getCinema()->getIdCinema();
-       
                 $this->connection = Connection::GetInstance();
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
@@ -53,10 +53,11 @@ create table if not exists room(
 
         
         public function exist($room_name, $id_cinema){
+          
+            $query = 'SELECT * FROM '.$this->tableName . ' WHERE room_name = "' . $room_name .'" and id_cinema = "'.$id_cinema.'";';
+            
             try
             {
-                 $query = 'SELECT * FROM '.$this->tableName . ' WHERE room_name = "' . $room_name .'" and id_cinema = "'.$id_cinema.'";';
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -75,12 +76,12 @@ create table if not exists room(
         
         public function GetAll()
         {
+            $roomList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName;
+            
             try
             {
-                $roomList = array();
-
-                $query = "SELECT * FROM ".$this->tableName;
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -108,12 +109,12 @@ create table if not exists room(
 
         public function getByCinemaId($cinemaID){
 
+            $roomList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_cinema = " . $cinemaID . ";";
+            
             try
             {
-                $roomList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_cinema = " . $cinemaID . ";";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -153,12 +154,12 @@ create table if not exists room(
         
           public function getOne($id_room){
 
-            try
-            {
-                $roomList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_room = " . $id_room ." ;";
-
+              $roomList = array();
+              
+              $query = "SELECT * FROM ".$this->tableName . " WHERE id_room = " . $id_room ." ;";
+              
+              try
+              {
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -185,15 +186,15 @@ create table if not exists room(
         
         public function EditOne(RoomModel $roomModify){
 
+            
+            
+            
+            $query =  ' UPDATE '.$this->tableName.' SET room_name = "' .$roomModify->getRoomName() .
+            '", price = "' . $roomModify->getPrice().
+            '", room_capacity = "' . $roomModify->getRoomCapacity() .
+            '" WHERE id_room = "' . $roomModify->getIdRoom().'";';
+            
             try{
-                
-    
-    
-                    $query =  ' UPDATE '.$this->tableName.' SET room_name = "' .$roomModify->getRoomName() .
-                                        '", price = "' . $roomModify->getPrice().
-                                        '", room_capacity = "' . $roomModify->getRoomCapacity() .
-                                        '" WHERE id_room = "' . $roomModify->getIdRoom().'";';
-    
                     $this->connection = Connection::GetInstance();
                    $state =  $this->connection->ExecuteNonQuery($query);
                     #var_dump($state);
@@ -206,8 +207,8 @@ create table if not exists room(
         }
      public function DeleteOne($id_room){   
     
-        try{
-            $query='DELETE FROM '.$this->tableName.' WHERE id_room = "'.$id_room.'";';
+         $query='DELETE FROM '.$this->tableName.' WHERE id_room = "'.$id_room.'";';
+            try{
             $this->connection = Connection::GetInstance();
             $this->connection->ExecuteNonQuery($query);
     }

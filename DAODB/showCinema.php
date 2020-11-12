@@ -18,40 +18,42 @@
 
         public function Add(ShowModel $show, $idRoom)
         {
-            try
-            {   
-                if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime(), $idRoom)){
-                    $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
-                    VALUES (:show_time, :show_hour, :id_room, :id_movie);";
-                    
-            
-                    
-                    $parameters["show_time"] = $show->getShowTime();
-                    $parameters["show_hour"] = $show->getShowHour();
-                    $parameters["id_room"] = $idRoom;
-                    $parameters["id_movie"] = $show->getMovie()->getId();
-        
+            if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime(), $idRoom)){
+                $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
+                VALUES (:show_time, :show_hour, :id_room, :id_movie);";
+                
+                
+                
+                $parameters["show_time"] = $show->getShowTime();
+                $parameters["show_hour"] = $show->getShowHour();
+                $parameters["id_room"] = $idRoom;
+                $parameters["id_movie"] = $show->getMovie()->getId();
+                
+                try
+                {   
                     $this->connection = Connection::GetInstance();
 
                     $this->connection->ExecuteNonQuery($query, $parameters);
-                   $dest= array( 'message' =>"La función se ha agregado correctamente",
-                                'state' => true
-                              );
+               /*    $dest= array( 'message' =>"La función se ha agregado correctamente",
+               'state' => true
+            );*/
+                }catch(Exception $ex)
+                {
+                    throw $ex;
+                    
+                }
+                              $state = true;
                 }else{
                     
-                    $dest= array( 'message' =>"<strong>¡Error!</strong> Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() 
+                 /*   $dest= array( 'message' =>"<strong>¡Error!</strong> Ya existe una función en el día <strong>" . date_format(new DateTime($show->getShowTime()), "d-m-Y") . "</strong> con la pelicula <strong>" . $show->getMovie()->getTitle() 
                     . "</strong> en la sala <strong>". $show->getRoom()->getRoomName()."</strong>!",
                                 'state' => false
-                             );
+                             );*/
+                             $state = false;
                 }
-            }
-            catch(Exception $ex)
-            {
-                throw $ex;
-                
-            }
+            
 
-            return $dest;
+            return $state;
         }
 
         
@@ -59,10 +61,10 @@
 
         //Modificar 
         public function existMovieXdate($movie,$date, $idRoom){
+            $query = "SELECT * FROM " . $this->tableName . " WHERE id_movie = " . $movie ." AND show_time = '" .$date ."' AND id_room != " .$idRoom .";";
+            
             try
             {
-                $query = "SELECT * FROM " . $this->tableName . " WHERE id_movie = " . $movie ." AND show_time = '" .$date ."' AND id_room != " .$idRoom .";";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -80,8 +82,8 @@
 
         public function checkTime(ShowModel $show, $roomID){
             
-            try{
-                $query = "SELECT * FROM ". $this->tableName . " WHERE show_time = '" . $show->getShowTime() ."' ;";
+            $query = "SELECT * FROM ". $this->tableName . " WHERE show_time = '" . $show->getShowTime() ."' ;";
+                try{
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -136,13 +138,13 @@
         
         public function GetAll()
         {
+            $showList = array();
+            $today = date_format(new DateTime('now'), "Y-m-d");
+            
+            $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= '" . $today ."';";
+            
             try
             {
-                $showList = array();
-                $today = date_format(new DateTime('now'), "Y-m-d");
-      
-                $query = "SELECT * FROM ".$this->tableName . " WHERE show_time >= '" . $today ."';";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -175,13 +177,13 @@
 
         public function filterByGenre($genre){
             $showList = array();
-            try{
-                $query = 'SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
+            $query = 'SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
                 INNER JOIN genre g ON g.id_genre = gxm.id_genre
                 INNER JOIN show_cinema s ON s.id_movie =  gxm.id_movie
                 HAVING g.name =  "' . $genre . '"
                             ORDER BY s.id_room;';
-                
+                            
+                            try{
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -201,9 +203,9 @@
 
         public function filterByDate($date){
             $showList = array();
-            try{
-                $query = 'SELECT * FROM show_cinema WHERE show_time =  "' . $date . '"
-                            ORDER BY id_room;';
+            $query = 'SELECT * FROM show_cinema WHERE show_time =  "' . $date . '"
+            ORDER BY id_room;';
+                    try{
                 
                 $this->connection = Connection::GetInstance();
 
@@ -225,12 +227,12 @@
         public function filterByGengreXdate($genre, $date){
 
             $showList = array();
-            try{
-                $query = "SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
+            $query = "SELECT g.name, gxm.id_movie, s.* FROM  genre_x_movie gxm
                             INNER JOIN genre g ON g.id_genre = gxm.id_genre
                             INNER JOIN show_cinema s ON s.id_movie =  gxm.id_movie
                             HAVING g.name = '" . $genre . "' AND s.show_time = '". $date ."'
                             ORDER BY s.id_room;";
+                try{
                     $this->connection = Connection::GetInstance();
 
                     $resultSet = $this->connection->Execute($query);
@@ -250,12 +252,12 @@
 
         public function GetOneById($id)
         {
+            $showList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id.";";
+            # var_dump($id);
             try
             {
-                $showList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id.";";
-               # var_dump($id);
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
@@ -289,8 +291,8 @@
     
         public function DeleteOne($id_room){   
     
+            $query='DELETE FROM '.$this->tableName.' WHERE id_room = "'.$id_room.'";';
             try{
-                $query='DELETE FROM '.$this->tableName.' WHERE id_room = "'.$id_room.'";';
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
             }
@@ -302,12 +304,12 @@
 
         public function GetByRoom($roomId)
         {
+            $showList = array();
+            
+            $query = "SELECT * FROM ".$this->tableName . " WHERE id_room = " . $roomId . ";";
+            
             try
             {
-                $showList = array();
-
-                $query = "SELECT * FROM ".$this->tableName . " WHERE id_room = " . $roomId . ";";
-
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
