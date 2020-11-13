@@ -17,8 +17,8 @@
 
         public function Add(CreditCard $creditCard){
 
-            $query = "INSERT INTO creditcards (company, number_card, propietary, expiration)
-                            VALUES (:company, :number, :propietary, :expiration)";
+            $query = "INSERT INTO ".$this->tableName." (company, number_card, propietary, expiration)
+                            VALUES (:company, :number_card, :propietary, :expiration)";
             
             $parameters['company']=$creditCard->getCompany();
             $parameters['number_card']=$creditCard->getNumber();
@@ -37,7 +37,7 @@
         //retorna todas las tarjetas de credito creadas hasta el momento
         public function getAll(){
 
-            $cardList = array();
+            $creditCardsList = array();
     
             $query = "SELECT * FROM ".$this->tableName;
     
@@ -57,15 +57,15 @@
                         $creditCard->setPropietary($row["propietary"]);
                         $creditCard->setExpiration($row["expiration"]);
                         
-                        array_push($cardList, $creditCard);
+                        array_push($creditCardsList, $creditCard);
                     }
-                    return $cardList;   
+                    return $creditCardsList;   
                 }
                 else{
                     return null;
                 }
             }
-            catch(\PDOException $ex)
+            catch(PDOException $ex)
             {
                 throw $ex;
             }  
