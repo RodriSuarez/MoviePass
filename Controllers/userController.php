@@ -96,33 +96,7 @@
             $this->showController->ShowListShowsView();
         }
 
-        /* (tanto delete como edite, faltan crear en DAO DB)
-       
-        public function DeleteOne($ .. ){ //determinar parametro
-
-            $this->userDB->DeleteOne($ .. );
-            
-            
-            $this->ShowProfileView();
-        }
-
-        public function EditOneUser($oldname, $firstName, $lastName, $email, $phoneNumber,$pass){
-                     
-            
-            $modify = new User();
-            $modify->setFirstName($firstName);
-            $modify->setLastName($lastName);
-            $modify->setEmail($email);
-            $modify->setPhoneNumber($phoneNumber);
-            $modify->setPass($pass);
-            
-            
-            $this->userDB->EditOne($name, $modify);
-
-            $this->ShowProfileView();
-            
-        }
-        */
+  
         public function ShowRegisterView(){
 
             require_once(ROOT.VIEWS_PATH."register.php");
