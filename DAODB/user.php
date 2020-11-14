@@ -47,48 +47,7 @@ namespace DAODB;
             }
         }
      
-     /*   public function GetAll()
-        {
-            try
-            {
-                $userList = array();
 
-                $query = "SELECT * FROM ".$this->tableName;
-
-                $this->connection = Connection::GetInstance();
-
-                $resultSet = $this->connection->Execute($query);
-
-                
-                foreach ($resultSet as $row)
-                {                
-                    $userModel = new UserModel();
-                    $userProfile = new UserProfile();
-                    $userRole = new UserRole();
-
-               
-                    $userModel->setIdUser($row["id_user"]);
-                    $userModel->setEmail($row["email"]);
-                    $userModel->setPass($row["pass"]);
-
-                    $userProfile->setFirstName($row["first_name"]);
-                    $userProfile->setDni($row["dni"]);
-                    $userProfile->setLastName($row["last_name"]);
-                    
-                    $userRole->setDescription($row["description"]);
-
-                    array_push($userList ['users'], $user); ???
-                }
-
-                return $userList;
-            }
-            catch(Exception $ex)
-            {
-                throw $ex;
-            }
-        }
-        */
-       
        public function GetUserByEmail($email)
         {
             

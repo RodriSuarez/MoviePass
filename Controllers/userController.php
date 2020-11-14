@@ -123,6 +123,7 @@
             
         }
         */
+        
         public function ShowRegisterView(){
 
             require_once(ROOT.VIEWS_PATH."register.php");
