@@ -79,11 +79,13 @@ CREATE TABLE IF NOT EXISTS  USER(
         		first_name VARCHAR (50),
         		dni INT NOT NULL,
         		last_name VARCHAR (50),
+                number_card bigint(22),
         		description VARCHAR (50),
         		CONSTRAINT pk_user PRIMARY KEY (id_user),
         		CONSTRAINT unq_email UNIQUE (email),
         		CONSTRAINT unq_dni UNIQUE (dni)
 );
+
 CREATE TABLE IF NOT EXISTS ticket(
 			id_ticket INT AUTO_INCREMENT NOT NULL,
 			id_show_cinema INT NOT NULL,
@@ -107,4 +109,22 @@ create table if not exists buy(
 			constraint fk_ticket foreign key (id_ticket) references ticket(id_ticket),
 			constraint fk_user foreign key (id_user) references user(id_user)
 );
-	
+
+
+CREATE TABLE IF NOT EXISTS credit_cards(
+		company varchar(50) NOT NULL,
+		number_card bigint(22) NOT NULL,
+		propietary varchar(50) DEFAULT NULL,
+		expiration date DEFAULT NULL,
+		CONSTRAINT pk_credit_card PRIMARY KEY (company, number_card)
+);
+    
+CREATE TABLE IF NOT EXISTS cards_payments (
+	  id_cards_payments int NOT NULL AUTO_INCREMENT,
+	  number_card bigint(22) NOT NULL,
+	  company varchar(50) NOT NULL,
+	  date_payment datetime NOT NULL,
+	  total double NOT NULL,
+	  CONSTRAINT pk_cards_payments PRIMARY KEY (id_cards_payments),
+	  CONSTRAINT fk_credit_card_x_payments FOREIGN KEY (company) REFERENCES credit_cards(company)
+);
