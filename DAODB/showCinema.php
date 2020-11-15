@@ -338,6 +338,44 @@
                 throw $ex;
             }
         }
+           public function updateRemainingTicktes( $buy, $showCinema)
+        {
+            
+                            
+                $query =  ' UPDATE '.$this->tableName.' SET remaining_tickets = "'. $showCinema->getRemaining_tickets()
+                -$buy->getCant_tickets().'"  WHERE id_show_cinema = "' . $showCinema->getId() . '" ;';
+
+            try
+            {
+                $this->connection = Connection::GetInstance();
+            
+                $this->connection->ExecuteNonQuery($query);       
+
+            }catch(Exception $ex){
+                throw $ex;
+            }  
+        }
+
+        public function updateWithoutBuy($id_show_cinema, $room)
+        {   
+            $query = 'UPDATE'.$this->tableName.'SET remaining_tickets ="'.$room->getRoom_Capacity().'" WHERE id_show_cinema=
+            "'.$id_show_cinema.'";';
+            try
+            {
+            $this->connection = Connection::GetInstance();
+            
+                $this->connection->ExecuteNonQuery($query);
+            }
+            catch(Exception $ex){
+
+                throw $ex;
+                
+            }
+
+
+        }
+
+
 
       
         

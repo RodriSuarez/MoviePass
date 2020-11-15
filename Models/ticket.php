@@ -9,14 +9,18 @@
         private $id_ticket;
         private $show_cinema;
         private $qr;
+        private $number_ticket;
+
+
+    public function __construct($id_ticket, $show_cinema, $qr, $number_ticket)
+    {
+        $this->id_ticket = $id_ticket;
+        $this->show_cinema = $show_cinema;
+        $this->qr = $qr;
+        $this->number_ticket = $number_ticket;
+    }
         
-        public function __construct($id_ticket='', $show_cinema = '', $qr=''){
-
-            $this->id_ticket = $id_ticket;
-            $this->show_cinema = $show_cinema;
-            $this->qr= $qr;
-
-        }
+       
         
         /**
          * Get the value of qr
@@ -77,7 +81,27 @@
 
                 return $this;
         }
+    
+    /**
+     * @return mixed
+     */
+    public function getNumberTicket()
+    {
+        return $this->number_ticket;
     }
+
+    /**
+     * @param mixed $number_ticket
+     *
+     * @return self
+     */
+    public function setNumberTicket($number_ticket)
+    {
+        $this->number_ticket = $number_ticket;
+
+        return $this;
+    }
+}
 
 
 
