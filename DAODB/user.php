@@ -46,6 +46,12 @@ namespace DAODB;
                 
             }
         }
+      /*  public function updateCreditCard($number_card, $id_user)
+        {
+
+            $query = 'UPDATE'.$this->tableName.'SET number_card ="'.$'"
+
+        }*/
      
      /*   public function GetAll()
         {
