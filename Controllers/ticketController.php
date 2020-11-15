@@ -42,5 +42,23 @@
 
 
        }
+       public function AddBuy()
+       {
 
-        }
+
+
+
+
+       }
+       public function ShowTicketView($id)
+       { 
+
+   
+        $show = $this->showCinemaDB->GetOneById($id);
+        
+        
+        include_once(ROOT . VIEWS_PATH . 'buy-add.php');
+    
+    }
+ }
+

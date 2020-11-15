@@ -131,10 +131,15 @@
                 
                   </div>
               </div>
-              <form action="">
-                <button class="btn btn-success " type=submit>Comprar tickets</button>
+                           <form action="<?php echo FRONT_ROOT. TICKET_ROOT ?>ShowTicketView/<?php $result->getId();?>" method="GET" >  
+                                <?php var_dump($result)?>
+                         <button class="btn btn-success " type=submit>Comprar Tickets</button>
+
+                          </form> 
+              
+            
+
       
-              </form>
               <button type="button" class="btn btn-danger btn-rounded btn-md ml-4" data-dismiss="modal">Cerrar</button>
 
             </div>
