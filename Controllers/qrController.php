@@ -6,7 +6,7 @@
     class QrController{
 
 
-        public function makeQr($ticket, $user){
+    public function makeQr($ticket, $user){
           
             $dir = ROOT .VIEWS_PATH . 'img\qr\\';
             $show = $ticket->getShow_cinema();
@@ -29,6 +29,7 @@
            // $this->sendMail($show, $filename, $_SESSION['loggedUser']['email']);
             return $filename;
         }
+
 
     }
 
