@@ -7,7 +7,7 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Agregar nueva Compra</h2>
-        <form action=" <?php echo FRONT_ROOT.BUY_ROOT."Add" ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT. TICKET_ROOT."controlTicket" ?>" method="GET"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>

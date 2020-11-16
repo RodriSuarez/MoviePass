@@ -13,6 +13,7 @@ define("SHOW_ROOT", "showCinema\\");
 define("VIEWS_PATH", "Views\\");
 define("USER_ROOT", "user\\");
 define("BUY_ROOT", "buy\\");
+define("TICKET_ROOT", "ticket\\");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css\\");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js\\");
 //Config of API 

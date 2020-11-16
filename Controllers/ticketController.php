@@ -15,8 +15,10 @@
     use DAODB\Buy as BuyDB;
     use DAODB\User as UserDB;
     use DAODB\CreditCard as CreditCardDaoB;
+    use DAODB\Ticket as TicketDB;
+    use Models\Ticket as Ticket;
 
-    class TicketController{
+class TicketController{
 
         private $roomDB;
         private $genreDao;
@@ -39,12 +41,30 @@
           $this->buyDB = new BuyDB();
           $this->userDB = new UserDB();
           $this->creditCardDB = new creditCardDaoB();
+          $this->creditCardDB = new creditCardDaoB();
+
         }
 
 
-        public function controlTicket($ticket, $id_show, $id_room, $price, $creditcard){
+        public function controlTicket($ticket, $id_show, $id_room='', $price='', $creditcard=''){
 
+            $show = $this->showCinemaDB->GetOneById($id_show);
             
+            if($show->getRemaining_tickets() >= $ticket){
+                        
+                        $user = $this->userDB->GetOneById($_SESSION['loggedUser']['id']);
+                        $qrCont = new QrController();
+                        $newTicket = new Ticket();
+                        $newTicket->setShow_cinema($show);
+
+                        $qr = $qrCont->makeQr($newTicket, $user);
+
+                        $newTicket->setQr($qr);
+                        
+
+
+            }
+
 
 
         }

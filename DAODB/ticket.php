@@ -10,6 +10,7 @@
     use Models\Cinema as CinemaModel;
     use Models\showCinema as sCinemaModel;
     use Models\ticket as TicketModel;
+    use DAOBD\User as UserDB;
 
 
 
@@ -18,6 +19,37 @@
     	private $connection;
     	private $tableTicket= "ticket";
         private $tableRooms = "room";   
+
+        public function Add(TicketModel $ticket)
+        {
+             
+                    $query = "INSERT INTO ".$this->tableName." (id_show_cinema, id_user, ticket_number, qr)
+                    VALUES (:id_show_cinema, :id_user, :ticket_number, :qr);";
+                    
+            
+                    
+                    $parameters["id_show_cinema"] = $ticket->getShow()->getId();
+                    $parameters["id_user"] = $ticket->getUser()->getId();
+                    $parameters["ticket_number"] = $ticket->getNumberTicket();
+                    $parameters["qr"] = $ticket->getQr();
+
+                    try
+                    {
+                    $this->connection = Connection::GetInstance();
+
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+               
+                    }catch(Exception $ex)
+                    {
+                    throw $ex;
+                    
+                             
+                
+                    }
+           
+
+           return true;
+        }
 
 
         public function GetTicketByMovie($id_show_cinema)
@@ -34,9 +66,9 @@
                 $ticketList = array();
                  if($obj){
                 
-
+                    $userDB = new User();
                     $ticketList =  array_map(function($ticket){
-                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket']);
+                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket'], $userDB->GetOneById($ticket['id_user']));
                     }, $obj);
                 } 
                      return $ticketList;
