@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS room(
 
 CREATE TABLE IF NOT EXISTS ticket(
 			id_ticket INT AUTO_INCREMENT NOT NULL,
+            id_buy int not null,
 			id_show_cinema INT NOT NULL,
 			id_user INT NOT NULL,
 			ticket_number INT NOT NULL,
@@ -79,21 +80,17 @@ CREATE TABLE IF NOT EXISTS ticket(
 			CONSTRAINT pk_ticket PRIMARY KEY (id_ticket),
 			CONSTRAINT fk_show FOREIGN KEY (id_show_cinema) REFERENCES show_cinema(id_show_cinema),
 			CONSTRAINT fk_user FOREIGN KEY (id_user) REFERENCES USER(id_user),
+			CONSTRAINT fk_buy FOREIGN KEY (id_buy) REFERENCES buy(id_buy),
 			CONSTRAINT unq_ticket UNIQUE (id_ticket, id_show_cinema)
-
 );
+
 create table if not exists buy(
 			id_buy int auto_increment not null,
-			id_ticket int not null,
-			id_user int not null,
 			fecha date,
 			total float,
 			#descuento int,
-			Constraint pk_buy primary key (id_buy),
-			constraint fk_ticket foreign key (id_ticket) references ticket(id_ticket),
-			constraint fk_user foreign key (id_user) references user(id_user)
+			Constraint pk_buy primary key (id_buy)
 );
-
 
 CREATE TABLE IF NOT EXISTS credit_cards(
 		id_user int not null,
