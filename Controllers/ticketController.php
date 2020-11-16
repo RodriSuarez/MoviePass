@@ -61,8 +61,14 @@ class TicketController{
 
                         $newTicket->setQr($qr);
                         
+                        #$sendMail = //mandar mail
+
+                        #ir a mensaje de exito y muestra de ticket + qr
 
 
+            }else{
+
+                #mostrar mensaje de error y mandar de nuevo a buycontroller.
             }
 
 
