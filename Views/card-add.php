@@ -7,7 +7,7 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Ingrese su tarjeta</h2>
-        <form action=" <?php echo FRONT_ROOT.TICKET_ROOT."AddCreditCard/" ?>" method="POST"  >
+        <form action=" <?php echo FRONT_ROOT. BUY_ROOT."AddCreditCard/" ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
             
             
@@ -30,7 +30,8 @@
                   <input type="date" name="expiration" size="30" placeholder="Fecha de expiracion"  required>
                 </td>
               </tr>
-                  <input type ="hidden" name = "id_user" value = "<?= $id_user ?>"> 
+              <input type ="hidden" name = "id_user" value = "<?= $id_user ?>"> 
+              <input type ="hidden" name = "id_show" value = "<?= $id_show ?>"> 
             </table>
           <br>
           <div>

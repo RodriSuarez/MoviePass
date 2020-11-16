@@ -7,7 +7,7 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Agregar nueva Compra</h2>
-        <form action=" <?php echo FRONT_ROOT.TICKET_ROOT."Add" ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT.BUY_ROOT."Add" ?>" method="GET"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>
@@ -38,7 +38,12 @@
                   <tr> 
               <th>Tarjeta</th>
             <td>
-                  <input type="text" name="" size="30" placeholder="<?php echo $user->getCreditCard()->getNumberCard() ?>"  readonly="readonly" >
+              <select name="creditCard" id="creditCard">
+                    <?php foreach($creditList as $credCard):  ?>
+                      <option value="<?= $credCard->getIdCard() ?>"><?= $credCard->getCompany() . ' terminada en ' . $credCard->getSubNumber() ?></option>
+                    <?php endforeach; ?>
+              </select>
+
                 </td>
               </tr>
 
@@ -49,7 +54,7 @@
           </div>
         </form>
 
-      <?php  if(!empty($message) && $success) {?>
+      <?php  if(!empty($message) && $status) {?>
   
       <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-success" role="alert">
             <?= $message ?>

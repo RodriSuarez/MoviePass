@@ -20,33 +20,37 @@
         private $tableRooms = "room";   
 
 
-   public function GetTicketByMovie($id_show_cinema)
+        public function GetTicketByMovie($id_show_cinema)
         {
             
-                     $query = 'SELECT * FROM '.$this->tableTicket .' WHERE id_show_cinema = "'.$id_show_cinema.'";';
-            try{
-                    $obj = $this->connection->Execute($query);
-                    
-                    $ticketList = array();
-                     if($obj){
-                        $ticket = $obj['0'];
+            $query = 'SELECT * FROM '.$this->tableTicket .' WHERE id_show_cinema = "'.$id_show_cinema.'";';
 
-                      $ticketList =  array_map(function($ticket){
-                            return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['number_ticket']);
-                        }, $obj);
-                     
-                       return $ticketList;
-                     }
+            try{    
+                $this->connection = Connection::GetInstance();
+                $obj = $this->connection->Execute($query);
+            }catch(\PDOException $error){
+                throw $error;
+            }                
+                $ticketList = array();
+                 if($obj){
+                
 
-
-
+                    $ticketList =  array_map(function($ticket){
+                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket']);
+                    }, $obj);
+                } 
+                     return $ticketList;
         }
-    }
+
+
+
+    
+    
 
     public function GetTicketById($id_ticket)
     {
 
-        $query = 'SELECT*FROM'.$this->tableTicket.'WHERE id_cinema"'.$id_ticket.'";';
+        $query = 'SELECT * FROM '.$this->tableTicket.' WHERE id_cinema '.$id_ticket.';';
         try
         {
            $ticketList = array();
@@ -59,19 +63,16 @@
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
-                $showCinemaDB = new showCinemaDB();
-
+                
                 foreach ($resultSet as $row)
                 {                
-                    $ticket = new ticketModel();
-                    $ticket->setId_ticket($row["id_ticket"]);
-                    $ticket->setShow_cinema($showCinemaDb->GetOneById($row["id_show_cinema"]));
-                    $ticket->setRoomCapacity($row["room_capacity"]);
+                    $ticket = new TicketModel($row['id_ticket'], $row['id_show_cinema'], $row['qr'], $row['number_ticket']);
+           
                 
-                    array_push($roomList, $room);
+                    array_push($ticketList, $ticket);
                 }
 
-                return $roomList;
+                return $ticketList;
             }
             catch(Exception $ex)
             {
@@ -79,13 +80,13 @@
             }
 
 
-        }
+        
 
 
 
     }
 
-        public function GetTicketByCinema($id_cinema)
+       /* public function GetTicketByCinema($id_cinema)
         {
 
             $query = 'SELECT * FROM '.$this->tableRoom.'WHERE id_cinema="'.$id_cinema.'";';
@@ -112,7 +113,7 @@
 
 
             }
-
+*/
         
 
     }

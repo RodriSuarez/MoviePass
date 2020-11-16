@@ -25,17 +25,20 @@
             if( $array [0] == 5 )
             {
                 $card = 'master';
+                $status = true;
             } 
             else if($array [0] == 4)
             {
                 $card = 'visa';
+                $status = true;
+
             }
             else 
             {
-                $card = 'error';
+                $status = false;
             }
             
-            if($card != 'error')
+            if($status)
             {
                 $parameters['company']=$card;
                 $parameters['number_card']=$creditCard->getNumber();
@@ -46,16 +49,16 @@
                     $this->connection = Connection::getInstance();
                     $this->connection->executeNonQuery($query, $parameters);
                 }
-                catch(PDOException $ex){
+                catch(\PDOException $ex){
                     throw $ex;
                 }
-            if($card == 'error')
-            {
-                return $card;
             }
             
+                return $status;
+            
+            
         }
-    }
+    
         
         //retorna todas las tarjetas de credito creadas hasta el momento
         public function getAll(){
@@ -88,7 +91,7 @@
                     return null;
                 }
             }
-            catch(PDOException $ex)
+            catch(\PDOException $ex)
             {
                 throw $ex;
             }  
@@ -96,9 +99,9 @@
 
 
         //retorna la lista tarjeta de credito buscada segun usuario 
-        public function searchCreditCard($id_user){
+        public function GetAllByUserId($id_user){
 
-
+            
             $query = 'SELECT * FROM ' . $this->tableName. ' WHERE id_user = "' .$id_user . '";';
               
         
@@ -111,11 +114,12 @@
                 $resultSet = $this->connection->execute($query);
                 
             }
-            catch(PDOException $ex)
+            catch(\PDOException $ex)
             {
                 throw $ex;
             }
-    
+            $userDB = new UserDB();
+            
             if(!empty($resultSet)){
 
                foreach ($resultSet as $row) {
@@ -129,7 +133,7 @@
                 $creditCard->setCompany($row["company"]);
                 $creditCard->setPropietary($row["propietary"]);
                 $creditCard->setExpiration($row["expiration"]);
-                $creditCard->setUser($this->userDB->GetOneById($row["id_user"]));
+                $creditCard->setUser($userDB->GetOneById($row["id_user"]));
                 array_push($cardList, $creditCard);    
                 }
                 return $cardList;

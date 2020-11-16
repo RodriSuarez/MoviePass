@@ -151,7 +151,7 @@ namespace DAODB;
 
                     $user->setIdUser($row["id_user"]);
                     $user->setEmail($row["email"]);
-                    $user->setPass($row["pass"]);
+                  #  $user->setPass($row["pass"]);
                     $user->setRole(new UserRole());
                     $user->getRole()->setDescription($row['description']);
                     ##var_dump($row);

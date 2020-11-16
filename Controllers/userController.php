@@ -60,15 +60,7 @@
           
     try{
             $user = $this->userDB->GetUserByEmail($email1);
-            if((!$user)||($user->getPass()!= $pass1))
-            {
-
-                   $success = false; 
-                $message= "Usuario y/o contraseña incorrecta";   
-                $this->loginError($message, $success);
-            
-            }
-            else 
+            if(($user) && ($user->getPass() == $pass1))
             {
                
                 $_SESSION['loggedUser']['email'] = $user->getEmail(); //crear funcion que retorne el nombre del usuario por el email, maybe
@@ -79,7 +71,18 @@
                 if($user->getRole()->getDescription() === "user"){
                     $_SESSION['loggedUser']['type'] = 'user';
                 }
+
+                $_SESSION['loggedUser']['id'] = $user->getIdUser();
+                
+            }else
+            {
+
+                   $success = false; 
+                $message= "Usuario y/o contraseña incorrecta";   
+                $this->loginError($message, $success);
+            
             }
+            
         }catch(\Exception $e){
             $success = false; 
             $message= "No se ha podido acceder a la base de datos, intente nuevamente mas";   

@@ -34,6 +34,8 @@
         public function getCompany(){return $this->company;}
         public function setNumber($number){$this->number=$number;}
         public function getNumber(){return $this->number;}
+        public function getSubNumber(){return substr($this->number, 12,4);}
+
         public function setPropietary($propietary){$this->propietary=$propietary;}
         public function getPropietary(){return $this->propietary;}
         public function setExpiration($expiration){$this->expiration=$expiration;}
