@@ -7,7 +7,7 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Ingrese su tarjeta</h2>
-        <form action=" <?php echo FRONT_ROOT.TICKET_ROOT."add" ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT.TICKET_ROOT."AddCreditCard/" ?>" method="POST"  >
           <table class="table text-white bg-oscuro"> 
             
             
@@ -27,10 +27,10 @@
             <tr> 
             <th>Fecha de expiracion</th>
             <td>
-                  <input type="date" name="expiration" size="30" placeholder="Fecha de expiracion"  readonly="readonly" >
+                  <input type="date" name="expiration" size="30" placeholder="Fecha de expiracion"  required>
                 </td>
               </tr>
-                  <input type ="hidden" name = "id_user" value = "<?php $user->getIdUser()?>"> 
+                  <input type ="hidden" name = "id_user" value = "<?= $id_user ?>"> 
             </table>
           <br>
           <div>
@@ -42,7 +42,8 @@
       <?php  if(!empty($status) ) {?>
   
       <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-success" role="alert">
-            <?= $status ?>
+            <?php echo $status;
+             }?>
       </div>    
 
     </section>

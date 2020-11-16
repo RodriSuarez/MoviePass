@@ -43,9 +43,11 @@
       
 
 
-        public function ShowAddViewRoom($status = '')
+        public function ShowAddViewCard($id_user, $status = '')
         {
+          var_dump($id_user);
            require_once(VIEWS_PATH . "card-add.php");
+
         }
 
        public function mostrarTickets($id_buy)
@@ -59,9 +61,10 @@
       public function AddCreditCard($card_number, $propietary , $expiration, $id_user)
       {
         $CreditCard = new CreditCard();
-        $CreditCard->setCardNumber($card_number);
+        $CreditCard->setNumber($card_number);
         $CreditCard->setPropietary($propietary);
         $CreditCard->setExpiration($expiration);
+        $CreditCard->setUser($this->userDB->GetOneById($id_user));
 
         $status = $this->creditCardDB->Add($CreditCard,$id_user);
 
@@ -78,19 +81,18 @@
       }
 
       
-      public function ShowTicketView($id)
+      public function ShowBuyView($id)
        { 
 
          
         if(isset($_SESSION['loggedUser'])){
 
-          $email= $_SESSION['loggedUser']['email'];
-          $user = $this->userDB->GetUserByEmail($email);
-
-          if($user->getCreditCard() != null){
+          
+            if(true){
+          
             $show = $this->showCinemaDB->GetOneById($id);
 
-          
+            #var_dump();
             include_once(ROOT . VIEWS_PATH . 'buy-add.php');
           }
           else
@@ -98,11 +100,8 @@
 
             $this->ShowAddViewRoom($status);
           }
-      }else
-      {
-
-               
       }
+
     
     }
  }

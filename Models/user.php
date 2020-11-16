@@ -2,7 +2,7 @@
     namespace Models;
     use Models\UserProfile as UserProfile;
     use Models\UserRole as UserRole;
-    use Models\CreditCard as CreditCard;
+
 
 class user{
 	private $id_user;
@@ -10,18 +10,18 @@ class user{
     private $pass;
     private $profile;
     private $role;
-	private $credit_card;
+
 
 
    
-    public function __construct($id_user='', $email='', $pass='', $profile=null, $role=null, $credit_card=null)
+    public function __construct($id_user='', $email='', $pass='', $profile=null, $role=null)
     {
         $this->id_user = $id_user;
         $this->email = $email;
         $this->pass = $pass;
         $this->profile = $profile;
         $this->role = $role;
-        $this->credit_card = $credit_card;
+        
             if(!$profile)
             $this->profile = new UserProfile();
         else
@@ -105,24 +105,6 @@ class user{
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreditCard()
-    {
-        return $this->credit_card;
-    }
-
-    /**
-     * @param mixed $credit_card
-     *
-     * @return self
-     */
-    public function setCreditCard($credit_card)
-    {
-        $this->credit_card = $credit_card;
-
-        return $this;
-    }
+   
 }
 ?>

@@ -131,7 +131,7 @@
                 
                   </div>
               </div>
-                           <form action= "<?php echo FRONT_ROOT. TICKET_ROOT ?>ShowTicketView/<?= $show->getId(); ?>" method="GET" >  
+                           <form action= "<?php echo FRONT_ROOT. TICKET_ROOT ?>ShowBuyView/<?= $show->getId(); ?>" method="GET" >  
                          <button class="btn btn-success " type=submit>Comprar Tickets</button>
 
                           </form> 

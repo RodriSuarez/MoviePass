@@ -46,20 +46,12 @@ namespace DAODB;
                 
             }
         }
-        public function updateCreditCard($number_card, $id_user)
-        {
+   
 
-            $query = 'UPDATE'.$this->tableName.'SET number_card ='.$number_card.'WHERE id_user  ='.$id_user.';';
-            try{
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-            }
-         catch (Exception $ex) {
-            throw $ex;
-        }
+     
 
 
-        }
+        
      
      /*   public function GetAll()
         {
@@ -103,6 +95,7 @@ namespace DAODB;
         }
         */
        
+
        public function GetUserByEmail($email)
         {
             
@@ -139,6 +132,44 @@ namespace DAODB;
                 throw $ex;
             }
         }
+        public function GetOneById($id_user)
+        {
+            
+            $query = "SELECT * FROM ".$this->tableName .' WHERE id_user = "'. $id_user .'";';
+            
+            try
+            {
+                $this->connection = Connection::GetInstance();
+                $obj=$this->connection->Execute($query); 
+                
+                $userProfile=null;
+
+                if($obj)
+                {
+                    $row=$obj[0];
+                    $user= new UserModel();
+
+                    $user->setIdUser($row["id_user"]);
+                    $user->setEmail($row["email"]);
+                    $user->setPass($row["pass"]);
+                    $user->setRole(new UserRole());
+                    $user->getRole()->setDescription($row['description']);
+                    ##var_dump($row);
+                  ##  $user->setProfile()->setDescription($row['description']);
+                    return $user;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+        }
+
+
 
                public function GetDescriptionById($id_user) //return true if isAdmin
         {

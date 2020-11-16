@@ -19,8 +19,8 @@
         public function Add(ShowModel $show, $idRoom)
         {
             if(!$this->existMovieXdate($show->getMovie()->getId(), $show->getShowTime(), $idRoom)){
-                $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie)
-                VALUES (:show_time, :show_hour, :id_room, :id_movie);";
+                $query = "INSERT INTO ".$this->tableName." (show_time, show_hour, id_room, id_movie, remaining_tickets)
+                VALUES (:show_time, :show_hour, :id_room, :id_movie, :remaining_tickets);";
                 
                 
                 

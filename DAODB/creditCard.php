@@ -1,25 +1,24 @@
 <?php
      namespace DAODB;
 
-     use Models\CreditCard as CreditCard;
+     use Models\CreditCard as CreditCardModel;
 
      use \Exception as Exception;  
      use DAODB\Connection as Connection;
      use DAODB\User as userDB;
 
      
-    class creditCard{
+    class CreditCard{
         
         private $connection;
         private $tableName = "credit_cards";
 
 
 
-        public function Add(CreditCard $creditCard, $id_user){
+        public function Add(CreditCardModel $creditCard, $id_user){
 
-            $query = "INSERT INTO ".$this->tableName." (company, number_card, propietary, expiration)
-                            VALUES (:company, :number_card, :propietary, :expiration)";
-            
+            $query = "INSERT INTO ".$this->tableName." (company, number_card, propietary, expiration, id_user)
+                            VALUES (:company, :number_card, :propietary, :expiration, :id_user)";
             $number_card = $creditCard->getNumber();
             $array = str_split($number_card);
 
@@ -42,7 +41,7 @@
                 $parameters['number_card']=$creditCard->getNumber();
                 $parameters['propietary']=$creditCard->getPropietary();
                 $parameters['expiration']=$creditCard->getExpiration(); 
-                $this->userDB->updateCardCredit($creditCard->getNumber(), $id_user);
+                $parameters['id_user'] = $id_user;
                 try{
                     $this->connection = Connection::getInstance();
                     $this->connection->executeNonQuery($query, $parameters);
@@ -74,8 +73,8 @@
                 if($resulSet){
                     foreach($resulSet as $row){
 
-                        $creditCard = new CreditCard();
-
+                        $creditCard = new CreditCardModel();
+                        $creditCard->setIdCard($row['id_card']);
                         $creditCard->setNumber($row["number_card"]);
                         $creditCard->setCompany($row["company"]);
                         $creditCard->setPropietary($row["propietary"]);
@@ -96,21 +95,20 @@
         }
 
 
-        //retorna la tarjeta de credito buscada segun numero y compañia
-        public function searchCreditCard($number_card, $company){
+        //retorna la lista tarjeta de credito buscada segun usuario 
+        public function searchCreditCard($id_user){
 
 
-            $query = 'SELECT * FROM ' . $this->tableName. ' WHERE number_card = "' . $numberCard . '" AND company = "' .$company . '";';
-               #$query = 'SELECT * FROM ' . $this->room_table . ' WHERE id_cinema = "' . $id_Cinema . '";';
+            $query = 'SELECT * FROM ' . $this->tableName. ' WHERE id_user = "' .$id_user . '";';
+              
         
-            $parameters["number_card"] = $number_card ;
-            $parameters["company"] = $company ;
+                $cardList=array();
             
             try{   
                 
                 $this->connection = Connection::getInstance();
     
-                $resultSet = $this->connection->execute($query, $parameters);
+                $resultSet = $this->connection->execute($query);
                 
             }
             catch(PDOException $ex)
@@ -120,16 +118,21 @@
     
             if(!empty($resultSet)){
 
-                $row = $resultSet['0'];
+               foreach ($resultSet as $row) {
+                    
+                 
 
-                $creditCard = new CreditCard();
-
+                $creditCard = new CreditCardModel();
+                
+                $creditCard->setIdCard($row["id_card"]);
                 $creditCard->setNumber($row["number_card"]);
                 $creditCard->setCompany($row["company"]);
                 $creditCard->setPropietary($row["propietary"]);
                 $creditCard->setExpiration($row["expiration"]);
-        
-                return $creditCard;
+                $creditCard->setUser($this->userDB->GetOneById($row["id_user"]));
+                array_push($cardList, $creditCard);    
+                }
+                return $cardList;
 
             }else{
                 return null;
