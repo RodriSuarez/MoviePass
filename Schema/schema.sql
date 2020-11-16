@@ -79,7 +79,6 @@ CREATE TABLE IF NOT EXISTS  USER(
         		first_name VARCHAR (50),
         		dni INT NOT NULL,
         		last_name VARCHAR (50),
-                number_card bigint(22),
         		description VARCHAR (50),
         		CONSTRAINT pk_user PRIMARY KEY (id_user),
         		CONSTRAINT unq_email UNIQUE (email),
@@ -112,19 +111,22 @@ create table if not exists buy(
 
 
 CREATE TABLE IF NOT EXISTS credit_cards(
-		company varchar(50) NOT NULL,
-		number_card bigint(22) NOT NULL,
+		id_user int not null,
+        id_card int  auto_increment not null,
+        company varchar(50) NOT NULL,
+		number_card int(16) NOT NULL,
 		propietary varchar(50) DEFAULT NULL,
 		expiration date DEFAULT NULL,
-		CONSTRAINT pk_credit_card PRIMARY KEY (company, number_card)
+		CONSTRAINT pk_credit_card PRIMARY KEY (number_card, id_card),
+        constraint fk_id_user foreign key (id_user) references user(id_user)
 );
     
 CREATE TABLE IF NOT EXISTS cards_payments (
 	  id_cards_payments int NOT NULL AUTO_INCREMENT,
-	  number_card bigint(22) NOT NULL,
+	  id_card int NOT NULL,
 	  company varchar(50) NOT NULL,
 	  date_payment datetime NOT NULL,
 	  total double NOT NULL,
 	  CONSTRAINT pk_cards_payments PRIMARY KEY (id_cards_payments),
-	  CONSTRAINT fk_credit_card_x_payments FOREIGN KEY (company) REFERENCES credit_cards(company)
+	  CONSTRAINT fk_credit_card_x_payments FOREIGN KEY (id_card) REFERENCES credit_cards(id_card)
 );
