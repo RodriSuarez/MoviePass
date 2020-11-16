@@ -12,7 +12,7 @@
      {
         private $connection;
         private $tableName = "cards_payments";
-        function __construct(){}
+      
 
 
         public function Add(CreditPayment $credit_payment){

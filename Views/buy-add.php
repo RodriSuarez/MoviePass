@@ -1,4 +1,6 @@
-<?php require_once('nav.php'); ?>
+<?php require_once('nav.php');
+
+ ?>
 
 <main class="py-5">
      <section id="listado" class="mb-5">
@@ -9,7 +11,7 @@
           <table class="table text-white bg-oscuro"> 
             
               <tr>
-                <th>Cant de tickets</th>
+                <th>Tickets</th>
                  <td>
                   <input type="text" name="QuantTicket" size="30" required>
                 </td>
@@ -18,22 +20,28 @@
              <tr>
                 <th>Show</th>
             <td>
-                  <input type="text" name="" size="3-" placeholder="<?php echo $show->getMovie()->getTitle() ?>" readonly="readonly" >
+                  <input type="text" name="" size="30" placeholder="<?php echo $show->getMovie()->getTitle() ?>" readonly="readonly" >
                 </td>
             </tr>
            <tr> 
             <th>Room</th>
             <td>
-                  <input type="text" name="" size="3-" placeholder="<?php echo $show->getRoom()->getRoomName() ?>" readonly="readonly" >
+                  <input type="text" name="" size="30" placeholder="<?php echo $show->getRoom()->getRoomName() ?>" readonly="readonly" >
                 </td>
               </tr>
             <tr> 
               <th>Price</th>
             <td>
-                  <input type="text" name="" size="3-" placeholder="<?php echo $show->getRoom()->getPrice() ?>"  readonly="readonly" >
+                  <input type="text" name="" size="30" placeholder="<?php echo $show->getRoom()->getPrice() ?>"  readonly="readonly" >
                 </td>
               </tr>
-                  
+                  <tr> 
+              <th>Tarjeta</th>
+            <td>
+                  <input type="text" name="" size="30" placeholder="<?php echo $user->getCreditCard()->getNumberCard() ?>"  readonly="readonly" >
+                </td>
+              </tr>
+
               </table>
           <br>
           <div>

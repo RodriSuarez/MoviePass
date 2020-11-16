@@ -28,7 +28,7 @@
                 $parameters["show_hour"] = $show->getShowHour();
                 $parameters["id_room"] = $idRoom;
                 $parameters["id_movie"] = $show->getMovie()->getId();
-                
+                $parameters["remaining_tickets"]=$show->getRoom()->getRoomCapacity();
                 try
                 {   
                     $this->connection = Connection::GetInstance();
@@ -161,6 +161,7 @@
                     $show->setId($row["id_show_cinema"]);
                     $show->setRoom($roomDB->getOne($row['id_room']));
                     $show ->setMovie($movieDB->GetOneById($row['id_movie']));
+                    $show->setRemaining_tickets($row["remaining_tickets"]);
                   //  var_dump($show);
                     array_push($showList, $show);
                 }
@@ -252,16 +253,16 @@
 
         public function GetOneById($id)
         {
-            $showList = array();
             
-            $query = "SELECT * FROM ".$this->tableName . " WHERE id_show_cinema = " . $id.";";
-            # var_dump($id);
+            
+            $query = 'SELECT * FROM '.$this->tableName . ' WHERE id_show_cinema = ' .$id.';';
+            
             try
             {
                 $this->connection = Connection::GetInstance();
 
                 $resultSet = $this->connection->Execute($query);
-
+              
                 $movieDB = new MovieDB();
                 $roomDB =  new RoomDB();
 
@@ -270,13 +271,15 @@
                 {   
                     $row = $resultSet['0'];
                     $show = new ShowModel();
-               
+                    
                     $show->setShowTime($row["show_time"]);
                     $show->setShowHour($row["show_hour"]);
                     $show->setId($row["id_show_cinema"]);
                     $show->setRoom($roomDB->getOne($row['id_room']));
                     $show ->setMovie($movieDB->GetOneById($row['id_movie']));
-                   #var_dump($show);
+                    $show->setRemaining_tickets($row["remaining_tickets"]);
+
+            
                 }
 
              
@@ -327,6 +330,7 @@
                     $show->setRoom($roomDB->getOne($row['id_room']));
                     $movie = $movieDB->getOneById($row['id_movie']);
                     $show->setMovie($movie);
+                    $show->setRemaining_tickets($row["remaining_tickets"]);
 
                     array_push($showList, $show);
                 }

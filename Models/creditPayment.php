@@ -1,5 +1,4 @@
 <?php 
-    
     namespace Models;
 
     use Models\CreditCard as creditCard;

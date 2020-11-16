@@ -5,34 +5,58 @@
 
      use \Exception as Exception;  
      use DAODB\Connection as Connection;
-
+     use DAODB\User as userDB;
 
      
-    class CreditCard{
+    class creditCard{
         
         private $connection;
         private $tableName = "credit_cards";
-        function __construct(){}
 
 
-        public function Add(CreditCard $creditCard){
+
+        public function Add(CreditCard $creditCard, $id_user){
 
             $query = "INSERT INTO ".$this->tableName." (company, number_card, propietary, expiration)
                             VALUES (:company, :number_card, :propietary, :expiration)";
             
-            $parameters['company']=$creditCard->getCompany();
-            $parameters['number_card']=$creditCard->getNumber();
-            $parameters['propietary']=$creditCard->getPropietary();
-            $parameters['expiration']=$creditCard->getExpiration(); 
-    
-            try{
-                $this->connection = Connection::getInstance();
-                $this->connection->executeNonQuery($query, $parameters);
+            $number_card = $creditCard->getNumber();
+            $array = str_split($number_card);
+
+            if( $array [0] == 5 )
+            {
+                $card = 'master';
+            } 
+            else if($array [0] == 4)
+            {
+                $card = 'visa';
             }
-            catch(PDOException $ex){
-                throw $ex;
+            else 
+            {
+                $card = 'error';
             }
+            
+            if($card != 'error')
+            {
+                $parameters['company']=$card;
+                $parameters['number_card']=$creditCard->getNumber();
+                $parameters['propietary']=$creditCard->getPropietary();
+                $parameters['expiration']=$creditCard->getExpiration(); 
+                $this->userDB->updateCardCredit($creditCard->getNumber(), $id_user);
+                try{
+                    $this->connection = Connection::getInstance();
+                    $this->connection->executeNonQuery($query, $parameters);
+                }
+                catch(PDOException $ex){
+                    throw $ex;
+                }
+            if($card == 'error')
+            {
+                return $card;
+            }
+            
         }
+    }
         
         //retorna todas las tarjetas de credito creadas hasta el momento
         public function getAll(){
@@ -76,8 +100,9 @@
         public function searchCreditCard($number_card, $company){
 
 
-            $query = "SELECT * FROM " . $this->tableName();. " WHERE number_card = " . $numberCard . " AND company = " . $company . ";";
-               
+            $query = 'SELECT * FROM ' . $this->tableName. ' WHERE number_card = "' . $numberCard . '" AND company = "' .$company . '";';
+               #$query = 'SELECT * FROM ' . $this->room_table . ' WHERE id_cinema = "' . $id_Cinema . '";';
+        
             $parameters["number_card"] = $number_card ;
             $parameters["company"] = $company ;
             
