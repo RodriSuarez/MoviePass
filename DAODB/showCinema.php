@@ -381,7 +381,50 @@
 
 
 
-      
+        public function getTotalSoldByDateXCinema($show_cinema)
+        {
+
+            $showsList = filterByDate($show_cinema->getShowTime());
+
+            $sales = 0;
+
+            foreach($showList as $show)
+            {
+                $sales = $sales + $show->getRemaining_tickets();
+
+            }
+            
+            $cinemaCapacity = $show_cinema->getRoom()->getCinema()->getCapacity();
+            
+            $result = $cinemaCapacity - $sales;
+
+            $sold = $result * $show_cinema->getRoom()->getPrice();
+
+            return $sold;
+        }
+
+
+        public function getTotalSoldByDateXRoom($show_cinema)
+        {
+
+            $showsList = filterByDate($show_cinema->getShowTime());
+
+            $sales = 0;
+
+            foreach($showList as $show)
+            {
+                $sales = $sales + $show->getRemaining_tickets();
+
+            }
+            
+            $roomCapacity = $show_cinema->getRoom()->getRoomCapacity();
+            
+            $result = $roomCapacity - $sales;
+
+            $sold = $result * $show_cinema->getRoom()->getPrice();
+
+            return $sold;
+        }
         
     }
 ?>

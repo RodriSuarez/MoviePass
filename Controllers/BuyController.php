@@ -58,6 +58,7 @@
 
 
        }
+       
       public function AddCreditCard($card_number, $propietary , $expiration, $id_user, $id_show)
       {
         $CreditCard = new CreditCard();

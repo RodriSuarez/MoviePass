@@ -226,6 +226,7 @@ class ShowCinemaController
         }
     }
 
+
     public function ShowByDate($date = '')
     {
         try {
@@ -268,7 +269,6 @@ class ShowCinemaController
             $this->ShowListShowsView($message, $state);
         }
     }
-
 
 
 
