@@ -55,6 +55,7 @@ class ShowCinemaController
             } catch (\Exception $error) {
                 $message = 'Se produjo un error al comunicarse con la base de datos.';
                 $state = false;
+                var_dump($error);
             }
         } else {
             $message = "Las fechas deben ser ascendentes para poder insertar las funciones";
@@ -66,6 +67,7 @@ class ShowCinemaController
         } catch (\Exception $error) {
             $message = 'Se produjo un error al comunicarse con la base de datos.';
             $state = false;
+            
         } finally {
             //incluir vista de error
             require_once(ROOT . VIEWS_PATH . 'show-list.php');
@@ -86,6 +88,7 @@ class ShowCinemaController
                 $cinema->setShowHour($time);
                 $cinema->setMovie($this->movieDB->getOneById($moveId));
                 $cinema->setRoom($this->roomDB->getOne($roomId));
+                $cinema->setRemaining_tickets($cinema->getRoom()->getRoomCapacity());
                 $statusShow = $this->checkShowsTime($cinema, $date, $finalDate);
 
                 if ($statusShow) {
@@ -122,6 +125,7 @@ class ShowCinemaController
             $cinema->setShowHour($time);
             $cinema->setRoom($this->roomDB->getOne($roomId));
             $cinema->setMovie($this->movieDB->getOneById($moveId));
+            $cinema->setRemaining_tickets($cinema->getRoom()->getRoomCapacity());
             $statusShows = $this->checkShowsTime($cinema, $beginShow->format('Y-m-d'), $finalDate);
 
             $beginShow->modify('+1 day');
@@ -136,7 +140,7 @@ class ShowCinemaController
                 $cinema->setShowHour($time);
                 $cinema->setRoom($this->roomDB->getOne($roomId));
                 $cinema->setMovie($this->movieDB->getOneById($moveId));
-
+                $cinema->setRemaining_tickets($cinema->getRoom()->getRoomCapacity());
 
                 $result = $this->showCinemaDB->Add($cinema, $roomId);
                 $beginShow->modify('+1 day');
@@ -154,6 +158,7 @@ class ShowCinemaController
             $cinema->setShowHour($time);
             $cinema->setRoom($this->roomDB->getOne($roomId));
             $cinema->setMovie($this->movieDB->getOneById($movieId));
+            $cinema->setRemaining_tickets($cinema->getRoom()->getRoomCapacity());
             $statusShows = $this->checkShowsTime($cinema, $beginShow->format('Y-m-d'), $finalDate);
 
             $beginShow->modify('+1 day');

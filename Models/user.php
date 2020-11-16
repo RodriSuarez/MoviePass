@@ -3,19 +3,26 @@
     use Models\UserProfile as UserProfile;
     use Models\UserRole as UserRole;
 
+
 class user{
 	private $id_user;
 	private $email;
     private $pass;
     private $profile;
     private $role;
-	
-	public function __construct($id_user = null , $email = '', $pass = '', $profile = null, $role = null)
-	{
-		$this->id_user = $id_user;
-		$this->email = $email;
+
+
+
+   
+    public function __construct($id_user='', $email='', $pass='', $profile=null, $role=null)
+    {
+        $this->id_user = $id_user;
+        $this->email = $email;
         $this->pass = $pass;
-       if(!$profile)
+        $this->profile = $profile;
+        $this->role = $role;
+        
+            if(!$profile)
             $this->profile = new UserProfile();
         else
             $this->profile = $profile;
@@ -24,7 +31,8 @@ class user{
             $this->role = new UserRole();
         else
             $this->role = $role;
-	}
+    }
+    
 
     public function getIdUser()
     {
@@ -96,5 +104,7 @@ class user{
 
         return $this;
     }
+
+   
 }
 ?>

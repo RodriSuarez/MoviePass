@@ -12,6 +12,7 @@ define("MOVIE_ROOT", "movie\\");
 define("SHOW_ROOT", "showCinema\\");
 define("VIEWS_PATH", "Views\\");
 define("USER_ROOT", "user\\");
+define("TICKET_ROOT", "ticket\\");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "css\\");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js\\");
 //Config of API 
@@ -25,7 +26,7 @@ define("YOUTUBE_URL", "https://www.youtube.com/watch?v=");
 
 //DataBase constantes
 
-define("DB_HOST", "localhost:3308");
+define("DB_HOST", "localhost:3306");
 define("DB_NAME", "movie_pass");
 define("DB_USER", "root");
 define("DB_PASS", "");

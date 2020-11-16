@@ -105,7 +105,7 @@
                     <hr>
                     <h5 class="font-style-bold col-12 p-0" > Genero </h5>
                     <p><?php  $generos = $result->getGenres();
-                                                         
+                                                     
 
                             if($generos){
                               $genero = array_shift($generos);
@@ -131,10 +131,14 @@
                 
                   </div>
               </div>
-              <form action="">
-                <button class="btn btn-success " type=submit>Comprar tickets</button>
+                           <form action= "<?php echo FRONT_ROOT. TICKET_ROOT ?>ShowBuyView/<?= $show->getId(); ?>" method="GET" >  
+                         <button class="btn btn-success " type=submit>Comprar Tickets</button>
+
+                          </form> 
+              
+            
+
       
-              </form>
               <button type="button" class="btn btn-danger btn-rounded btn-md ml-4" data-dismiss="modal">Cerrar</button>
 
             </div>
