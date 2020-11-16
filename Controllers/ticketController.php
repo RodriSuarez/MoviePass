@@ -42,6 +42,12 @@
         }
 
 
+        public function controlTicket($ticket, $id_show, $id_room, $price, $creditcard){
+
+            
+
+
+        }
 
 
 
