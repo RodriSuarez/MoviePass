@@ -27,7 +27,7 @@ define("YOUTUBE_URL", "https://www.youtube.com/watch?v=");
 
 //DataBase constantes
 
-define("DB_HOST", "localhost:3306");
+define("DB_HOST", "localhost:3308");
 define("DB_NAME", "movie_pass");
 define("DB_USER", "root");
 define("DB_PASS", "");

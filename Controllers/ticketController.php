@@ -16,7 +16,8 @@
     use DAODB\User as UserDB;
     use DAODB\CreditCard as CreditCardDaoB;
     use DAODB\Ticket as TicketDB;
-    use Models\Ticket as Ticket;
+use MailController;
+use Models\Ticket as Ticket;
 
 class TicketController{
 
@@ -56,11 +57,11 @@ class TicketController{
                         $qrCont = new QrController();
                         $newTicket = new Ticket();
                         $newTicket->setShow_cinema($show);
-
+                        $mail = new \Controllers\MailController();
                         $qr = $qrCont->makeQr($newTicket, $user);
 
                         $newTicket->setQr($qr);
-                        
+                        $mail->sendMail($newTicket, $_SESSION['loggedUser']['email'], $qr);
                         #$sendMail = //mandar mail
 
                         #ir a mensaje de exito y muestra de ticket + qr
