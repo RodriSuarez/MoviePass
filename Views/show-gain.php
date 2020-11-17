@@ -33,27 +33,70 @@
 
                 <input type="date" name="last" id="last">
                 <select class="text-center" name="roomId" id="roomId">
-                    <?php foreach($movieList as $movie){
+                    <?php foreach($movieList as $movies){
                      ?>
-                        <option class="text-center" value="<?= $movie->getId() ?> "> <?= $movie->getTitle()?></option>
+                        <option class="text-center" value="<?= $movies->getId() ?> "> <?= $movies->getTitle()?></option>
                     <?php } ?>
                   </select>
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>
             </form>
         </nav>
+
+        <nav class="mt-5 navbar navbar-dark bg-dark">
+            <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowMovieCount">
+                <select class="text-center" name="roomId" id="roomId">
+                    <?php foreach($movieList as $movies){
+                     ?>
+                        <option class="text-center" value="<?= $movies->getId() ?> "> <?= $movies->getTitle()?></option>
+                    <?php } ?>
+                  </select>
+                <button class="btn btn-success rounded "type="submit">Aplicar</button>
+            </form>
+        </nav>
+
+        <nav class=" mt-5 navbar navbar-dark bg-dark">
+            <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowCinemaCount">
+          
+                <select class="text-center" name="roomId" id="roomId">
+                    <?php foreach($cinemaList as $cinema){
+                     ?>
+                        <option class="text-center" value="<?= $cinema->getIdCinema() ?> "> <?= $cinema->getCinemaName()?></option>
+                    <?php } ?>
+                  </select>
+                <button class="btn btn-success rounded "type="submit">Aplicar</button>
+            </form>
+        </nav>               
+
+
     </div>
     <?php if(isset($sold)){?>
     <div class="col-10">
-        <h2 class="text-white">La cantidad total en pesos vendida en <?=$cinema->getCinemaName() ?> es de $<?=$sold?></h2>
+        <h2 class="text-white">La cantidad total en pesos vendida en <strong><?=$cinema->getCinemaName() ?></strong> es de $<?=$sold?></h2>
     </div>
     <?php }?>
 
     <?php if(isset($soldMovie)){?>
     <div class="col-10">
-        <h2 class="text-white">La cantidad total en pesos vendida con la pelicula <?=$movie->getTitle() ?> es de $<?=$soldMovie?></h2>
+        <h2 class="text-white">La cantidad total en pesos vendida con la pelicula <strong><?=$movie->getTitle() ?></strong> es de $<?=$soldMovie?></h2>
     </div>
     <?php }?>
     </div>
 
+    <?php if(isset($result)){?>
+    <div class="col-10">
+        <h2 class="text-white">La pelicula <strong><?= $movie->getTitle() ?></strong> vendio <?=$result['sales']?> cantidad de entradas</h2>
+        <h2 class="text-white">Y quedo un remanente de <?=$result['remaing']?> entradas </h2>
+    </div>
+    <?php }?>
+    </div>
+    <?php if(isset($resultCinema)){?>
+    <div class="col-10">
+        <h2 class="text-white">El cine:  <strong><?= $cinema->getCinemaName() ?></strong> vendio <?=$resultCinema['sales']?> cantidad de entradas</h2>
+        <h2 class="text-white">Y quedo un remanente de <?=$resultCinema['remaing']?> entradas </h2>
+    </div>
+    <?php }?>
+    </div>
+
+    
 </main>
 

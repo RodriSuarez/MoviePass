@@ -535,6 +535,105 @@
     
             return $sold;
         }
+
+        public function getTotalCantSoldByDateXMovie($movie)
+        {
+            
+            $query  = "SELECT * FROM show_cinema c
+            INNER JOIN movie m ON c.id_movie = m.id_movie
+            INNER JOIN room r ON  c.id_room = r.id_room
+            WHERE c.id_movie = " .$movie->getId().";";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            $roomDB = new RoomDB();
+            $movieDB = new MovieDB();
+
+            $sales = 0;
+            $sold = 0;
+            $rm=0;
+          #  var_dump($resultSet);
+          if($resultSet)
+                    {
+                        $room = $roomDB->GetOne($resultSet['0']['id_room']);
+
+                        foreach ($resultSet as $row)
+                        {
+                           
+                            if($movie->getId() == $row['id_movie']){
+                                 $show = new ShowModel();
+                            $show->setShowTime($row["show_time"]);
+                            $show->setShowHour($row["show_hour"]);
+                            $show->setId($row["id_show_cinema"]);
+                            $show->setRoom($roomDB->getOne($row['id_room']));
+                            $movie = $movieDB->getOneById($row['id_movie']);
+                            $show->setMovie($movie);
+                            $show->setRemaining_tickets($row["remaining_tickets"]);
+                           
+                                $sales+= ($show->getRoom()->getRoomCapacity() - $row['remaining_tickets']);
+                                $rm+= $row['remaining_tickets'];
+                            }
+
+
+                        }
+                    }
+            
+                    $result = array(
+                        'sales' => $sales,
+                        'remaing' => $rm
+                    );
+            return $result;
+        }
         
+        public function getTotalCantSoldByDateXCinema($cinema)
+        {
+            
+            $query  = "SELECT * FROM show_cinema c
+            INNER JOIN movie m ON c.id_movie = m.id_movie
+            INNER JOIN room r ON  c.id_room = r.id_room
+            WHERE r.id_cinema = " .$cinema->getIdCinema().";";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            $roomDB = new RoomDB();
+            $movieDB = new MovieDB();
+
+            $sales = 0;
+            $sold = 0;
+            $rm=0;
+          #  var_dump($resultSet);
+          if($resultSet)
+                    {
+                        $room = $roomDB->GetOne($resultSet['0']['id_room']);
+
+                        foreach ($resultSet as $row)
+                        {
+                           
+                            if($cinema->getIdCinema() == $row['id_cinema']){
+                                 $show = new ShowModel();
+                            $show->setShowTime($row["show_time"]);
+                            $show->setShowHour($row["show_hour"]);
+                            $show->setId($row["id_show_cinema"]);
+                            $show->setRoom($roomDB->getOne($row['id_room']));
+                            $movie = $movieDB->getOneById($row['id_movie']);
+                            $show->setMovie($movie);
+                            $show->setRemaining_tickets($row["remaining_tickets"]);
+                           
+                                $sales+= ($show->getRoom()->getRoomCapacity() - $row['remaining_tickets']);
+                                $rm+= $row['remaining_tickets'];
+                            }
+
+
+                        }
+                    }
+            
+                    $result = array(
+                        'sales' => $sales,
+                        'remaing' => $rm
+                    );
+            return $result;
+        }
     }
 ?>

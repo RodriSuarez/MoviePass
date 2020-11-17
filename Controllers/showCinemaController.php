@@ -323,9 +323,38 @@ class ShowCinemaController
         $roomList = $this->roomDB->GetAll();
         $showList = $this->showCinemaDB->GetAll();
         $movieList = $this->movieDB->getAll();
-        var_dump($soldMovie);
+      #  var_dump($soldMovie);
         require_once(VIEWS_PATH . 'show-gain.php');
 
 
     }
+
+    public function ShowMovieCount($idMovie){
+        $movie = $this->movieDB->GetOneById($idMovie);
+
+         $result = $this->showCinemaDB->getTotalCantSoldByDateXMovie($movie);
+
+         $cinemaList = $this->cinemaDB->GetAll();
+         $roomList = $this->roomDB->GetAll();
+         $showList = $this->showCinemaDB->GetAll();
+         $movieList = $this->movieDB->getAll();
+
+         require_once(VIEWS_PATH . 'show-gain.php');
+ 
+ 
+     }
+     public function ShowCinemaCount($idCinema){
+        $cinema = $this->cinemaDB->GetOne($idCinema);
+  
+        $resultCinema = $this->showCinemaDB->getTotalCantSoldByDateXCinema($cinema);
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+
+        require_once(VIEWS_PATH . 'show-gain.php');
+
+
+    }
+     
 }
