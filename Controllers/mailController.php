@@ -275,7 +275,7 @@
                                                                                                                         <p>Reserva</p>
                                                                                                                     </td>
                                                                                                                     <td style="padding: 5px 0" width="20%" align="left">
-                                                                                                                        <p>$50.00</p>
+                                                                                                                        <p>$50</p>
                                                                                                                     </td>
                                                                                                                 </tr>
                                                                                                                 
