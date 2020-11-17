@@ -356,5 +356,18 @@ class ShowCinemaController
 
 
     }
+
+    public function ShowDetailView(){
+        
+  
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+
+        require_once(VIEWS_PATH . 'show-gain.php');
+
+
+    }
      
 }

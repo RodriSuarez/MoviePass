@@ -19,11 +19,18 @@ if(isset($_SESSION['loggedUser']['type']) && $_SESSION['loggedUser']['type'] == 
         </li><li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT.CINEMA_ROOT.'ShowListView' ?>">Listar Cines</a>
 
+    
+
         </li></li>
         <li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'ShowListMoviesView' ?>">Listar Peliculas</a>
       </li>   
      
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'    ShowDetailView' ?>">Detalle</a>
+      </li>   
+
       <li class="nav-item bg-danger rounded">
         <a class="nav-link" href="<?= FRONT_ROOT . MOVIE_ROOT .'RefreshLastestMovies' ?>">Actualizar Peliculas</a>
       </li>
