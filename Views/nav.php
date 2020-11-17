@@ -35,6 +35,9 @@ if(isset($_SESSION['loggedUser']['type']) && $_SESSION['loggedUser']['type'] == 
        <li class="nav-item">
         <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'ShowListShowsView' ?>"> Cartelera </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= FRONT_ROOT . SHOW_ROOT .'ShowCustomView' ?>"> Control  </a>
+      </li>
      
     </ul>
     <form action="<?=FRONT_ROOT . MOVIE_ROOT .'ShowSearchMoviesView' ?>" class="form-inline my-2 my-lg-0" method="GET">

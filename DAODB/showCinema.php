@@ -380,68 +380,7 @@
         }
 
 
-        public function getTotalCinemaSell($show)
-        {               
-                        $roomId = $show->getRoom->getIdRoom();
-                        $query = 'SELECT'.$this->tableName.'  WHERE id_room = ' . $roomId . ';';
-            try {
-                    $this->connection = Connection::GetInstance();
-                    $resultSet = $this->connection->Execute($query);
-
-                    if($resultSet)
-                    {
-                        foreach ($resultSet as $row)
-                        {
-                            $showQuery = new ShowModel();
-
-
-
-                        }
-                    }
-
-
-
-
-                }
-                catch(Exception $ex)
-                {
-
-                    throw $ex;
-                }
-                            }
-            
-
-                public function getTotatMovieSell($show)
-                    {
-
-
-
-                                }
-            
-
-
-
-        public function getTotalSoldByDateXCinema($show_cinema)
-        {
-
-            $showsList = filterByDate($show_cinema->getShowTime());
-
-            $sales = 0;
-
-            foreach($showList as $show)
-            {
-                $sales = $sales + $show->getRemaining_tickets();
-
-            }
-            
-            $cinemaCapacity = $show_cinema->getRoom()->getCinema()->getCapacity();
-            
-            $result = $cinemaCapacity - $sales;
-
-            $sold = $result * $show_cinema->getRoom()->getPrice();
-
-            return $sold;
-        }
+      
 
 
         public function getTotalSoldByDateXRoom($cinema, $firstDate, $lastDate)
@@ -635,5 +574,81 @@
                     );
             return $result;
         }
+        public function getTotalCantSoldByDateXTurn($turn)
+        {
+            
+            if($turn <= 12 ){
+                $Horario=13;
+                $turnWrite = 'Mañana';
+            $query  = 'SELECT * FROM show_cinema c
+            WHERE c.show_hour < ' .$Horario.';';
+        }
+        if($turn==19){
+            $Horario=13;
+            $HorarioFinal = 19;
+            $turnWrite = 'Tarde';
+       
+            $query  = 'SELECT*FROM ' .$this->tableName.'
+            WHERE show_hour BETWEEN "'.$Horario.'"AND"'.$HorarioFinal.'";';
+          }
+          if ($turn > 19){
+            $horario = 19;
+            $turnWrite = 'Noche';
+              $query  = 'SELECT * FROM show_cinema c
+            WHERE c.show_hour > ' .$horario. ';';
+        }
+          try{
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            $roomDB = new RoomDB();
+            $movieDB = new MovieDB();
+
+            $sales = 0;
+            $sold = 0;
+            $rm=0;
+            
+            
+          if($resultSet)
+                    {
+                        $room = $roomDB->GetOne($resultSet['0']['id_room']);
+
+                        foreach ($resultSet as $row)
+                        {
+                           
+                           
+                                 $show = new ShowModel();
+                            $show->setShowTime($row["show_time"]);
+                            $show->setShowHour($row["show_hour"]);
+                            $show->setId($row["id_show_cinema"]);
+                            $show->setRoom($roomDB->getOne($row['id_room']));
+                            $movie = $movieDB->getOneById($row['id_movie']);
+                            $show->setMovie($movie);
+                            $show->setRemaining_tickets($row["remaining_tickets"]);
+                           
+                                $sales+= ($show->getRoom()->getRoomCapacity() - $row['remaining_tickets']);
+                                $rm+= $row['remaining_tickets'];
+                            
+
+
+                        }
+                    }
+            
+                    $result = array(
+                        'sales' => $sales,
+                        'remaing' => $rm,
+                        'turn'=>$turnWrite
+                    );
+                   
+            return $result;
+        }
+    catch(Exception $error)
+    {
+        throw $error;
+        
+    }
+    }
+
     }
 ?>

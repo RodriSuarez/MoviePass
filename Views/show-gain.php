@@ -24,8 +24,11 @@
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>
             </form>
         </nav>
-        
+    </div>
+      <div class="text-white mt-5 ml-5 col-6 aling-content-center justify-content-center"> 
+       <p> Busqueda por Pelicula</p>
         <nav class="mt-5 navbar navbar-dark bg-dark">
+
             <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowMovieGain">
                 <label for="">Fecha Inicio:</label>
                 <input type="date" name="first" id="first">
@@ -41,7 +44,9 @@
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>
             </form>
         </nav>
-
+    </div>
+    <div class="text-white mt-5 ml-5 col-6 aling-content-center justify-content-center">
+    <p>Vendidos y Remanentes por Pelicula </p>
         <nav class="mt-5 navbar navbar-dark bg-dark">
             <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowMovieCount">
                 <select class="text-center" name="roomId" id="roomId">
@@ -53,9 +58,11 @@
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>
             </form>
         </nav>
-
-        <nav class=" mt-5 navbar navbar-dark bg-dark">
-            <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowCinemaCount">
+        </div>
+        <div class="text-white mt-5 ml-5 col-6 aling-content-center justify-content-center">
+        <p>Vendidos y Remanentes por Cine </p>
+            <nav class=" mt-5 navbar navbar-dark bg-dark">
+                <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowCinemaCount">
           
                 <select class="text-center" name="roomId" id="roomId">
                     <?php foreach($cinemaList as $cinema){
@@ -65,9 +72,23 @@
                   </select>
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>
             </form>
-        </nav>               
-
-
+        </nav>  
+        </div>             
+      <div class="text-white mt-5 ml-5 col-6 aling-content-center justify-content-center">
+       <p>Vendidos y Remanentes por turno </p>
+         <nav class=" mt-5 navbar navbar-dark bg-dark">
+             <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowTurnCount">
+          
+                <select class="text-center" name="roomId" id="roomId">
+                    <option class="text-center" value="12"> Mañana</option>
+                        <option class="text-center" value="19"> Tarde</option>
+                        <option class="text-center" value="20"> Noche</option>
+                   
+                  </select>
+                <button class="btn btn-success rounded "type="submit">Aplicar</button>
+            </form>
+        </nav>
+</div>
     </div>
     <?php if(isset($sold)){?>
     <div class="col-10">
@@ -93,6 +114,13 @@
     <div class="col-10">
         <h2 class="text-white">El cine:  <strong><?= $cinema->getCinemaName() ?></strong> vendio <?=$resultCinema['sales']?> cantidad de entradas</h2>
         <h2 class="text-white">Y quedo un remanente de <?=$resultCinema['remaing']?> entradas </h2>
+    </div>
+    <?php }?>
+    </div>
+      <?php if(isset($resultTurn)){?>
+    <div class="col-10">
+        <h2 class="text-white">En el Turno:  <strong> <?= $resultTurn['turn']?> </strong> vendio <?=$resultTurn['sales']?> cantidad de entradas</h2>
+        <h2 class="text-white">Y quedo un remanente de <?=$resultTurn['remaing']?> entradas </h2>
     </div>
     <?php }?>
     </div>
