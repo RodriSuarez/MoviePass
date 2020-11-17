@@ -6,7 +6,7 @@
     class QrController{
 
 
-    public function makeQr($ticket, $user){
+    public function makeQr($ticket, $user, $numberTicket){
             require_once(ROOT. 'phpqrcode/qrlib.php');
 
             $dir = ROOT .VIEWS_PATH . 'img\qr\\';
@@ -14,7 +14,7 @@
             if(!file_exists(($dir)))
                 mkdir($dir);
             
-            $filename = $dir . $user->getIdUser() . $show->getMovie()->getId() .  $show->getRoom()->getIdRoom()  . $ticket->getNumberTicket() .'.png';
+            $filename = $dir . $user->getIdUser() . $show->getMovie()->getId() .  $show->getRoom()->getIdRoom()  . $ticket->getNumberTicket() . $numberTicket.'.png';
             $tam = 10;
             $level = 'H';
             $frameSize = 2;

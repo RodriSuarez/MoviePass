@@ -143,6 +143,48 @@
             }
         }
 
+        public function GetById($id_card){
 
+            
+            $query = 'SELECT * FROM ' . $this->tableName. ' WHERE id_card =  :id_card;';
+              
+                $parameters['id_card'] = $id_card;
+                $cardList=array();
+            
+            try{   
+                
+                $this->connection = Connection::getInstance();
+    
+                $resultSet = $this->connection->execute($query, $parameters);
+                
+            }
+            catch(\PDOException $ex)
+            {
+                throw $ex;
+            }
+            $userDB = new UserDB();
+            
+            if(!empty($resultSet)){
+
+               foreach ($resultSet as $row) {
+                    
+                 
+
+                $creditCard = new CreditCardModel();
+                
+                $creditCard->setIdCard($row["id_card"]);
+                $creditCard->setNumber($row["number_card"]);
+                $creditCard->setCompany($row["company"]);
+                $creditCard->setPropietary($row["propietary"]);
+                $creditCard->setExpiration($row["expiration"]);
+                $creditCard->setUser($userDB->GetOneById($row["id_user"]));
+                array_push($cardList, $creditCard);    
+                }
+                return $cardList;
+
+            }else{
+                return null;
+            }
+        }
 
     }

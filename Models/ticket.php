@@ -126,7 +126,7 @@
     }
      public function getBuy()
     {
-            return $this->Buy;
+            return $this->buy;
     }
 
     /**

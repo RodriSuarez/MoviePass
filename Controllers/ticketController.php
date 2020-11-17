@@ -29,6 +29,7 @@ class TicketController{
         private $buyDB;
         private $userDB;
         private $creditCardDB;
+        private $ticketDB;
 
 
 
@@ -42,54 +43,42 @@ class TicketController{
           $this->buyDB = new BuyDB();
           $this->userDB = new UserDB();
           $this->creditCardDB = new creditCardDaoB();
-          $this->creditCardDB = new creditCardDaoB();
-
+          $this->ticketDB = new TicketDB();
         }
 
 
-        public function controlTicket($id_show, $id_room='', $price='', $creditcard=''){
-            var_dump($id_show);
-            $show = $this->showCinemaDB->GetOneById($id_show);
-            var_dump($show);
-            if($show->getRemaining_tickets() >= $QuantTicket){
+        public function controlTicket($id_show, $id_room='', $price='', $creditcard='', $buy='', $i){
+          
+                        $show = $this->showCinemaDB->GetOneById($id_show);
+          
                         
                         $user = $this->userDB->GetOneById($_SESSION['loggedUser']['id']);
                         $qrCont = new QrController();
-                        
+
                        
                         
                         $newTicket = new Ticket();
                         $newTicket->setShow_cinema($show);
-
-                        $mail = new \Controllers\MailController();
                         
-
-                        $qr = $qrCont->makeQr($newTicket, $user);
+                        $mail = new \Controllers\MailController();
+                        $numberTicket = ($show->getRoom()->getRoomCapacity() - $show->getRemaining_tickets()  + $i + 1);                        
+                        
+                        $newTicket->setNumberTicket($numberTicket);
+                        $newTicket->setBuy($buy);
+                        $newTicket->setUser($this->userDB->GetOneById($_SESSION['loggedUser']['id']));
+                        $qr = $qrCont->makeQr($newTicket, $user, $numberTicket);
 
                         $newTicket->setQr($qr);
                         $mail->sendMail($newTicket, $_SESSION['loggedUser']['email'], $qr);
-                        #$sendMail = //mandar mail
-
-                        #ir a mensaje de exito y muestra de ticket + qr
-                        
-
-            }else{
-
-                #mostrar mensaje de error y mandar de nuevo a buycontroller.
-            }
-
-
+                        var_dump($newTicket);
+                        $this->ticketDB->Add($newTicket);
 
         }
 
+    
 
-
-
-    }
-
-
-
-
+  
+}
 
 
 

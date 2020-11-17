@@ -32,6 +32,10 @@
 
             return self::$instance;
         }
+      
+        public function GetLastId( $param = null ){
+            return $this->pdo->lastInsertId( $param );
+        }
 
         public function Execute($query, $parameters = array(), $queryType = QueryType::Query)
 	    {

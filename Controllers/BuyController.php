@@ -50,7 +50,7 @@
       
 
 
-        public function ShowAddViewCard($id_user, $id_show, $message, $status = '')
+        public function ShowAddViewCard($id_user, $id_show, $message='', $status = '')
         {
           
            require_once(VIEWS_PATH . "card-add.php");
@@ -68,28 +68,32 @@
 
         }*/
 
-     public function controlBuy($id_show, $QuantTicket, $id_room='', $price='', $creditcard=''){
+     public function controlBuy($id_show, $QuantTicket, $price, $id_card){
         $ticketList = array();
           $show = $this->showCinemaDB->GetOneById($id_show);
 
 
-            $Buy = new BuyModel();
-            $Buy->setCant_tickets($QuantTicket);
-            $Buy->setDate(new \DateTime());
-            $Buy->setTotal($QuantTicket * $show->getRoom()->getPrice());
-            $this->buyDB->Add($Buy);
             if($show->getRemaining_tickets() >= $QuantTicket){
+
+              $Buy = new BuyModel();
+              $Buy->setCant_tickets($QuantTicket);
+              $today = new \DateTime();
+              $Buy->setDate($today->format('Y-m-d'));
+              $Buy->setTotal($QuantTicket * $show->getRoom()->getPrice());
+              $creditCard = $this->creditCardDB->GetById($id_card);
+              $this->buyDB->Add($Buy);
+              $Buy->setIdBuy($this->buyDB->getLastId());
               for( $i = 0; $i < $QuantTicket; $i++)
               {
-                 $ticket = $this->ticketController->controlTicket($id_show, $id_room, $price, $creditCard);
+                 $ticket = $this->ticketController->controlTicket($id_show, $show->getRoom()->getIdRoom(), $price, $creditCard, $Buy, $i);
 
                   array_push($ticketList, $ticket);
               }   
 
+              $this->showCinemaDB->updateRemainingTicktes($QuantTicket, $show);
 
 
             }
-            $this->showCinemaDB->updateRemainingTicktes($QuantTicket, $show);
 
 
        }  

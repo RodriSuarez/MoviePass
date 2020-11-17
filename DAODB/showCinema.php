@@ -342,12 +342,12 @@
                 throw $ex;
             }
         }
-           public function updateRemainingTicktes( $QuantTickets, $showCinema)
+           public function updateRemainingTicktes($QuantTickets, $showCinema)
         {
             
-                            
-                $query =  ' UPDATE '.$this->tableName.' SET remaining_tickets = "'. $showCinema->getRemaining_tickets()
-                -$QuantTickets.'"  WHERE id_show_cinema = "' . $showCinema->getId() . '" ;';
+                       
+                $query =  ' UPDATE '.$this->tableName.' SET remaining_tickets = "'. ($showCinema->getRemaining_tickets()
+                -$QuantTickets).'"  WHERE id_show_cinema = "' . $showCinema->getId() . '" ;';
 
             try
             {

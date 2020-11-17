@@ -17,7 +17,7 @@
     class ticket
     {
     	private $connection;
-    	private $tableTicket= "ticket";
+    	private $tableName = "ticket";
         private $tableRooms = "room";   
 
         public function Add(TicketModel $ticket)
@@ -27,9 +27,9 @@
                     VALUES (:id_buy, :id_show_cinema, :id_user, :ticket_number, :qr);";
          
             
-                    $parameters["id_buy"] = $ticket->getBuy->getIdBuy();
-                    $parameters["id_show_cinema"] = $ticket->getShow()->getId();
-                    $parameters["id_user"] = $ticket->getUser()->getId();
+                    $parameters["id_buy"] = $ticket->getBuy()->getIdBuy();
+                    $parameters["id_show_cinema"] = $ticket->getShow_cinema()->getId();
+                    $parameters["id_user"] = $ticket->getUser()->getIdUser();
                     $parameters["ticket_number"] = $ticket->getNumberTicket();
                     $parameters["qr"] = $ticket->getQr();
 
