@@ -444,25 +444,95 @@
         }
 
 
-        public function getTotalSoldByDateXRoom($show_cinema)
+        public function getTotalSoldByDateXRoom($cinema, $firstDate, $lastDate)
         {
+            
+            $query  = "SELECT * FROM show_cinema c
+            INNER JOIN movie m ON c.id_movie = m.id_movie
+            INNER JOIN room r ON  c.id_room = r.id_room
+            WHERE r.id_cinema = " .$cinema->getIdCinema()." AND show_time BETWEEN '" . $firstDate . "' AND '" . $lastDate . "';";
 
-            $showsList = filterByDate($show_cinema->getShowTime());
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            $roomDB = new RoomDB();
+            $movieDB = new MovieDB();
 
             $sales = 0;
+            $sold = 0;
+          #  var_dump($resultSet);
+          if($resultSet)
+                    {
+                        $room = $roomDB->GetOne($resultSet['0']['id_room']);
 
-            foreach($showList as $show)
-            {
-                $sales = $sales + $show->getRemaining_tickets();
+                        foreach ($resultSet as $row)
+                        {
+                           
+                            if($cinema->getIdCinema() == $row['id_cinema']){
+                                 $show = new ShowModel();
+                            $show->setShowTime($row["show_time"]);
+                            $show->setShowHour($row["show_hour"]);
+                            $show->setId($row["id_show_cinema"]);
+                            $show->setRoom($roomDB->getOne($row['id_room']));
+                            $movie = $movieDB->getOneById($row['id_movie']);
+                            $show->setMovie($movie);
+                            $show->setRemaining_tickets($row["remaining_tickets"]);
+                           
+                                $sales = ($show->getRoom()->getRoomCapacity() - $row['remaining_tickets']);
+                                $sold+= $sales * $show->getRoom()->getPrice();
+                            }
 
-            }
+
+                        }
+                    }
             
-            $roomCapacity = $show_cinema->getRoom()->getRoomCapacity();
+    
+            return $sold;
+        }
+
+        public function getTotalSoldByDateXMovie($movie, $firstDate, $lastDate)
+        {
             
-            $result = $roomCapacity - $sales;
+            $query  = "SELECT * FROM show_cinema c
+            INNER JOIN movie m ON c.id_movie = m.id_movie
+            INNER JOIN room r ON  c.id_room = r.id_room
+            WHERE c.id_movie = " .$movie->getId()." AND show_time BETWEEN '" . $firstDate . "' AND '" . $lastDate . "';";
 
-            $sold = $result * $show_cinema->getRoom()->getPrice();
+            $this->connection = Connection::GetInstance();
 
+            $resultSet = $this->connection->Execute($query);
+            $roomDB = new RoomDB();
+            $movieDB = new MovieDB();
+
+            $sales = 0;
+            $sold = 0;
+          #  var_dump($resultSet);
+          if($resultSet)
+                    {
+                        $room = $roomDB->GetOne($resultSet['0']['id_room']);
+
+                        foreach ($resultSet as $row)
+                        {
+                           
+                            if($movie->getId() == $row['id_movie']){
+                                 $show = new ShowModel();
+                            $show->setShowTime($row["show_time"]);
+                            $show->setShowHour($row["show_hour"]);
+                            $show->setId($row["id_show_cinema"]);
+                            $show->setRoom($roomDB->getOne($row['id_room']));
+                            $movie = $movieDB->getOneById($row['id_movie']);
+                            $show->setMovie($movie);
+                            $show->setRemaining_tickets($row["remaining_tickets"]);
+                           
+                                $sales = ($show->getRoom()->getRoomCapacity() - $row['remaining_tickets']);
+                                $sold+= $sales * $show->getRoom()->getPrice();
+                            }
+
+
+                        }
+                    }
+            
+    
             return $sold;
         }
         

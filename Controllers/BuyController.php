@@ -95,6 +95,7 @@
 
             }
 
+            require_once(VIEWS_PATH . "show-ticket.php");
 
        }  
        

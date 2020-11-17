@@ -281,19 +281,50 @@ class ShowCinemaController
         //  $showList = $this->showCinemaDB->GetAll();
         require_once(ROOT . VIEWS_PATH . 'show-add.php');
     }
-    public function ShowTotalSale($idShowCinema)
+    public function ShowTotalSale($idShowCinema = '')
     {
-            $show = $this->showCinemaDB->GetOneById($idShowCinema);
+           /* $show = $this->showCinemaDB->GetOneById($idShowCinema);
             $CinemaTotalSell = $this->showCinemaDB->getTotalCinemaSell($show);
             $MovieTotalSell = $this->showCinemaDB->getTotatMovieSell($show);
             $CinemaTotalSale = $this->showCinemaDB->getTotalSoldByDateXCinema($show);
-            $RoomTotalSale = $this->showCinemaDB->getTotalSoldByDateXRoom($show);
+            $RoomTotalSale = $this->showCinemaDB->getTotalSoldByDateXRoom($show);*/
             require_once('show-ticket.php ');
 
       
+    }
+
+    public function ShowCustomView(){
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+        require_once(VIEWS_PATH . 'show-gain.php');
+    }
+
+    public function ShowRoomGain($first, $last, $idCinema){
+        $cinema = $this->cinemaDB->GetOne($idCinema);
+  
+        $sold = $this->showCinemaDB->getTotalSoldByDateXRoom($cinema,$first, $last);
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+
+        require_once(VIEWS_PATH . 'show-gain.php');
 
 
+    }
 
+    public function ShowMovieGain($first, $last, $idMovie){
+       $movie = $this->movieDB->GetOneById($idMovie);
+        
+        $soldMovie = $this->showCinemaDB->getTotalSoldByDateXMovie($movie,$first, $last);
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+        var_dump($soldMovie);
+        require_once(VIEWS_PATH . 'show-gain.php');
 
 
     }

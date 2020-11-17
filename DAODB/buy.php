@@ -118,7 +118,7 @@ try{
                 $this->connection = Connection::GetInstance();
   
                 $obj = $this->connection->Execute($query);
-                
+                $row = $obj['0'];
                 $buy= null;
                     if($obj)
                     {
