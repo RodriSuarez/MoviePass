@@ -27,7 +27,7 @@
             
             
             
-            $parameters["NAME"] = $genre->getName();
+            $parameters["name"] = $genre->getName();
             $parameters["id_api_genre"] = $genre->getApi_id();
             
             try
@@ -58,7 +58,7 @@
 
                 $joinGenre = new GenreModel();
 
-                $joinGenre ->setName($genre['NAME']);
+                $joinGenre ->setName($genre['name']);
                 $joinGenre ->setApi_id($genre['id']);
 
                 

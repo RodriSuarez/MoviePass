@@ -47,17 +47,23 @@ class TicketController{
         }
 
 
-        public function controlTicket($ticket, $id_show, $id_room='', $price='', $creditcard=''){
-
+        public function controlTicket($id_show, $id_room='', $price='', $creditcard=''){
+            var_dump($id_show);
             $show = $this->showCinemaDB->GetOneById($id_show);
-            
-            if($show->getRemaining_tickets() >= $ticket){
+            var_dump($show);
+            if($show->getRemaining_tickets() >= $QuantTicket){
                         
                         $user = $this->userDB->GetOneById($_SESSION['loggedUser']['id']);
                         $qrCont = new QrController();
+                        
+                       
+                        
                         $newTicket = new Ticket();
                         $newTicket->setShow_cinema($show);
+
                         $mail = new \Controllers\MailController();
+                        
+
                         $qr = $qrCont->makeQr($newTicket, $user);
 
                         $newTicket->setQr($qr);
@@ -65,7 +71,7 @@ class TicketController{
                         #$sendMail = //mandar mail
 
                         #ir a mensaje de exito y muestra de ticket + qr
-
+                        
 
             }else{
 

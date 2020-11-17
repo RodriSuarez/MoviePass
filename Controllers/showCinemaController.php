@@ -281,4 +281,20 @@ class ShowCinemaController
         //  $showList = $this->showCinemaDB->GetAll();
         require_once(ROOT . VIEWS_PATH . 'show-add.php');
     }
+    public function ShowTotalSale($idShowCinema)
+    {
+            $show = $this->showCinemaDB->GetOneById($idShowCinema);
+            $CinemaTotalSell = $this->showCinemaDB->getTotalCinemaSell($show);
+            $MovieTotalSell = $this->showCinemaDB->getTotatMovieSell($show);
+            $CinemaTotalSale = $this->showCinemaDB->getTotalSoldByDateXCinema($show);
+            $RoomTotalSale = $this->showCinemaDB->getTotalSoldByDateXRoom($show);
+            require_once('show-ticket.php ');
+
+      
+
+
+
+
+
+    }
 }

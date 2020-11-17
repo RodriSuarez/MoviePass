@@ -4,8 +4,9 @@
     use Models\Movie as Movie;
     use Models\ShowCinema as ShowCinema;
     use Models\CreditCard as CreditCard;
-    use DateTime as DateTime;
+    use Models\Buy as BuyModel;
     use DAO\Movie as MovieDao;
+
 
     use DAODB\Genre as GenreDao;
     use DAODB\Movie as MovieDB;
@@ -15,6 +16,8 @@
     use DAODB\Buy as BuyDB;
     use DAODB\User as UserDB;
     use DAODB\CreditCard as CreditCardDaoB;
+    use DAODB\Ticket as TicketDB;
+    use Controllers\TicketController as tController;
 
     class BuyController{
 
@@ -26,6 +29,8 @@
         private $buyDB;
         private $userDB;
         private $creditCardDB;
+        private $ticketDB;
+        private $ticketController;
 
 
   public function __construct()
@@ -38,6 +43,8 @@
     $this->buyDB = new BuyDB();
     $this->userDB = new UserDB();
     $this->creditCardDB = new creditCardDaoB();
+    $this->ticketDB = new TicketDB();
+    $this->ticketController = new tController();
   }
 
       
@@ -45,19 +52,47 @@
 
         public function ShowAddViewCard($id_user, $id_show, $message, $status = '')
         {
-          var_dump($id_user);
+          
            require_once(VIEWS_PATH . "card-add.php");
 
         }
 
-       public function mostrarTickets($id_buy)
-       {
-        
+
+      /*  public function ShowBuyList($id_user)
+        {
+
+        $ticketList=$this->ticketDB->GetTicketsByUser($id_user);
+        $Buy = $this->buyDB->
 
 
 
+        }*/
 
-       }
+     public function controlBuy($id_show, $QuantTicket, $id_room='', $price='', $creditcard=''){
+        $ticketList = array();
+          $show = $this->showCinemaDB->GetOneById($id_show);
+
+
+            $Buy = new BuyModel();
+            $Buy->setCant_tickets($QuantTicket);
+            $Buy->setDate(new \DateTime());
+            $Buy->setTotal($QuantTicket * $show->getRoom()->getPrice());
+            $this->buyDB->Add($Buy);
+            if($show->getRemaining_tickets() >= $QuantTicket){
+              for( $i = 0; $i < $QuantTicket; $i++)
+              {
+                 $ticket = $this->ticketController->controlTicket($id_show, $id_room, $price, $creditCard);
+
+                  array_push($ticketList, $ticket);
+              }   
+
+
+
+            }
+            $this->showCinemaDB->updateRemainingTicktes($QuantTicket, $show);
+
+
+       }  
        
       public function AddCreditCard($card_number, $propietary , $expiration, $id_user, $id_show)
       {

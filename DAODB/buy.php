@@ -18,17 +18,39 @@
     {
     	private $connection;
     	private $tableBuy= "buy";
+        private $tableTicket = "ticket";
 
 
-    public function addBuy()
-    {
+        public function Add(BuyModel $buy)
+        {
+             
+                    $query = "INSERT INTO ".$this->tableBuy." (id_buy, date, cant_tickets, total  )
+                    VALUES (:id_buy, :date, :cant_tickets, :total);";
+      
+            
+                    $parameters["id_buy"] = $buy->getIdBuy();
+                    $parameters["fecha"] = $buy->getDate();
+                    $parameters["cant_tickets"] = $buy->getCant_tickets();
+                    $parameters["total"] = $buy->getTotal();
 
+                    try
+                    {
+                    $this->connection = Connection::GetInstance();
 
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+               
+                    }catch(Exception $ex)
+                    {
+                    throw $ex;
+                    
+                             
+                
+                    }
+           
 
-
-
-    }
-   /* public function getAllBuys()
+           return true;
+        }
+  /* public function getAllBuys()
     {
 
         $buyList= array();
@@ -61,43 +83,57 @@
             }
     }*/
 
-  /*public function getBuy($id_buy, $id_ticket, $id_user){
-            
-                $query = "SELECT * FROM " . $this->tableBuy . " WHERE id_buy = " . $id_buy ." AND id_ticket = '" .$id_ticket ."' AND id_user = " .$id_user .";";
+
+/*public function GetOneByIdUser()
+{
+  $query = "SELECT * FROM " . $this->tableTicket . " WHERE id_user = " . $id_user .";";
+    try
+     {
 
                 $this->connection = Connection::GetInstance();
+                $ticket = $this->connection->Execute($query);
+                if($ticket)
+                {
 
-            try
-                {  
+                    $this->GetOneById($ticket->)
+
+                }
+                
+
+
+        }
+
+
+
+}*/
+
+ public function GetOneById($id_buy){
+            
+                $query = "SELECT * FROM " . $this->tableBuy . " WHERE id_buy = " . $id_buy .";";
+try{
+                $this->connection = Connection::GetInstance();
+  
                 $obj = $this->connection->Execute($query);
                 
                 $buy= null;
-                     if($obj)
-
-
-                {
-                    $row=$obj[0];
-
+                    if($obj)
+                    {
                     $buy= new BuyModel();
                     $buy->setIdBuy($row["id_buy"]);
-                    $buy->setUser($this->uControl->UserById($row["id_user"]));
-                    $buy->setCant_tickets($this->->TicketsById($row["id_ticket"]));
+                    $buy->setCant_tickets(($row["cant_tickets"]));
                     $buy->setDate($row["buy_date"]);
                     $buy->setTotal($row["total"]);
 
                     return $buy;
                 }
-                else
-                {
-                return $resultSet;
-            }
+              }
             catch(Exception $ex)
             {
                 throw $ex;
             }
         
         }
-        public function TicketsBuys($BuyList, $id_show_cinema)
+       /* public function TicketsBuys($BuyList, $id_show_cinema)
         {       
 
              $buy = new BuyModel();

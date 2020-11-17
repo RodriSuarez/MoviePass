@@ -11,15 +11,17 @@
         private $qr;
         private $number_ticket;
         private $user;
+        private $buy;
 
 
-    public function __construct($id_ticket ='', $show_cinema='', $qr='', $number_ticket='', $user = '')
+    public function __construct($id_ticket ='', $show_cinema='', $buy='',$qr='', $number_ticket='', $user = '')
     {
         $this->id_ticket = $id_ticket;
         $this->show_cinema = $show_cinema;
         $this->qr = $qr;
         $this->number_ticket = $number_ticket;
         $this->user = $user;
+        $this->buy = $buy;
     }
         
        
@@ -119,6 +121,22 @@
     public function setUser($user)
     {
             $this->user = $user;
+
+            return $this;
+    }
+     public function getBuy()
+    {
+            return $this->Buy;
+    }
+
+    /**
+     * Set the value of qr
+     *
+     * @return  self
+     */ 
+    public function setBuy($buy)
+    {
+            $this->buy = $buy;
 
             return $this;
     }

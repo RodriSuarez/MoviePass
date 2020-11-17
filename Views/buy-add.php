@@ -7,12 +7,13 @@
         <div class="container">
         
         <h2 class="mb-4 text-center text-white ">Agregar nueva Compra</h2>
-        <form action=" <?php echo FRONT_ROOT. TICKET_ROOT."controlTicket" ?>" method="GET"  >
+        <form action=" <?php echo FRONT_ROOT. BUY_ROOT."controlBuy" ?>" method="GET"  >
           <table class="table text-white bg-oscuro"> 
             
               <tr>
                 <th>Tickets</th>
                  <td>
+                  <input type ="hidden" name = "id_show" value = " <?= $show->getId()?>" > 
                   <input type="text" name="QuantTicket" size="30" required>
                 </td>
            
@@ -21,6 +22,7 @@
                 <th>Show</th>
             <td>
                   <input type="text" name="" size="30" placeholder="<?php echo $show->getMovie()->getTitle() ?>" readonly="readonly" >
+         
                 </td>
             </tr>
            <tr> 

@@ -11,7 +11,7 @@
     use Models\showCinema as sCinemaModel;
     use Models\ticket as TicketModel;
     use DAOBD\User as UserDB;
-
+    use DAOBD\Buy as BuyDB;
 
 
     class ticket
@@ -23,11 +23,11 @@
         public function Add(TicketModel $ticket)
         {
              
-                    $query = "INSERT INTO ".$this->tableName." (id_show_cinema, id_user, ticket_number, qr)
-                    VALUES (:id_show_cinema, :id_user, :ticket_number, :qr);";
-                    
+                    $query = "INSERT INTO ".$this->tableName." (id_buy, id_show_cinema, id_user, ticket_number, qr)
+                    VALUES (:id_buy, :id_show_cinema, :id_user, :ticket_number, :qr);";
+         
             
-                    
+                    $parameters["id_buy"] = $ticket->getBuy->getIdBuy();
                     $parameters["id_show_cinema"] = $ticket->getShow()->getId();
                     $parameters["id_user"] = $ticket->getUser()->getId();
                     $parameters["ticket_number"] = $ticket->getNumberTicket();
@@ -68,7 +68,7 @@
                 
                     $userDB = new User();
                     $ticketList =  array_map(function($ticket){
-                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket'], $userDB->GetOneById($ticket['id_user']));
+                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket'], $userDB->GetOneById($ticket['id_user']), $buyDB->GetOneById($ticket['id_buy']));
                     }, $obj);
                 } 
                      return $ticketList;
@@ -76,10 +76,30 @@
 
 
 
-    
+     public function GetTicketsByUser($id_user)
+        {
+            
+            $query = 'SELECT * FROM '.$this->tableTicket .' WHERE id_user = "'.$id_user.'";';
+
+            try{    
+                $this->connection = Connection::GetInstance();
+                $obj = $this->connection->Execute($query);
+            }catch(\PDOException $error){
+                throw $error;
+            }                
+                $ticketList = array();
+                 if($obj){
+                
+                    $userDB = new User();
+                    $ticketList =  array_map(function($ticket){
+                    return new TicketModel($ticket['id_ticket'], $ticket['id_show_cinema'], $ticket['qr'], $ticket['number_ticket'], $userDB->GetOneById($ticket['id_user']), $buyDB->GetOneById($ticket['id_buy']));
+                    }, $obj);
+                } 
+                     return $ticketList;
+        }
     
 
-    public function GetTicketById($id_ticket)
+    public function GetTicketsById($id_ticket)
     {
 
         $query = 'SELECT * FROM '.$this->tableTicket.' WHERE id_cinema '.$id_ticket.';';
@@ -98,7 +118,7 @@
                 
                 foreach ($resultSet as $row)
                 {                
-                    $ticket = new TicketModel($row['id_ticket'], $row['id_show_cinema'], $row['qr'], $row['number_ticket']);
+                    $ticket = new TicketModel($row['id_ticket'], $row['id_show_cinema'], $row['qr'], $row['number_ticket'], $row['id_buy']);
            
                 
                     array_push($ticketList, $ticket);
@@ -111,9 +131,39 @@
                 throw $ex;
             }
 
-
+}
         
+public function GetTicketsByIdBuy($id_buy)
+    {
 
+        $query = 'SELECT * FROM '.$this->tableTicket.' WHERE id_buy '.$id_buy.';';
+        try
+        {
+           $ticketList = array();
+
+
+
+                $this->connection = Connection::GetInstance();
+
+                $resultSet = $this->connection->Execute($query);
+
+                $userdb = new UserDB();
+
+                foreach ($resultSet as $row)
+                {
+                    $ticket = new TicketModel($row['id_ticket'], $row['id_show_cinema'], $row['qr'], $row['number_ticket'], $userDB->getOneById($row['id_user']),);
+
+
+                    array_push($ticketList, $ticket);
+                }
+
+                return $ticketList;
+            }
+            catch(Exception $ex)
+            {
+                throw $ex;
+            }
+    }
 
 
     }
@@ -148,4 +198,4 @@
 */
         
 
-    }
+    

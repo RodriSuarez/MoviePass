@@ -8,14 +8,15 @@
         private $date;
         private $total;
         private $discount;
-
+        private $id_buy;
         
-        public function __construct($cant_tickets= '', $date = '', $total = '', $discount = 0)
+        public function __construct($id_buy ='' ,$cant_tickets= '', $date = '', $total = '', $discount = 0)
         {
             $this->cant_tickets = $cant_tickets;
             $this->date = $date;
             $this->total = $total;
             $this->discount = $discount;
+            $this->id_buy=$id_buy;
 
         }
 
@@ -96,6 +97,24 @@
         public function setCant_tickets($cant_tickets)
         {
                 $this->cant_tickets = $cant_tickets;
+
+                return $this;
+
+        }
+              
+        public function getIdBuy()
+        {
+                return $this->id_buy;
+        }
+
+        /**
+         * Set the value of cant_tickets
+         *
+         * @return  self
+         */ 
+        public function setIdBuy($id_buy)
+        {
+                $this->id_buy = $id_buy;
 
                 return $this;
         }

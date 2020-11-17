@@ -342,12 +342,12 @@
                 throw $ex;
             }
         }
-           public function updateRemainingTicktes( $buy, $showCinema)
+           public function updateRemainingTicktes( $QuantTickets, $showCinema)
         {
             
                             
                 $query =  ' UPDATE '.$this->tableName.' SET remaining_tickets = "'. $showCinema->getRemaining_tickets()
-                -$buy->getCant_tickets().'"  WHERE id_show_cinema = "' . $showCinema->getId() . '" ;';
+                -$QuantTickets.'"  WHERE id_show_cinema = "' . $showCinema->getId() . '" ;';
 
             try
             {
@@ -378,6 +378,46 @@
 
 
         }
+
+
+        public function getTotalCinemaSell($show)
+        {               
+                        $roomId = $show->getRoom->getIdRoom();
+                        $query = 'SELECT'.$this->tableName.'  WHERE id_room = ' . $roomId . ';';
+            try {
+                    $this->connection = Connection::GetInstance();
+                    $resultSet = $this->connection->Execute($query);
+
+                    if($resultSet)
+                    {
+                        foreach ($resultSet as $row)
+                        {
+                            $showQuery = new ShowModel();
+
+
+
+                        }
+                    }
+
+
+
+
+                }
+                catch(Exception $ex)
+                {
+
+                    throw $ex;
+                }
+                            }
+            
+
+                public function getTotatMovieSell($show)
+                    {
+
+
+
+                                }
+            
 
 
 
