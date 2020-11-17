@@ -293,13 +293,13 @@ class ShowCinemaController
       
     }
 
-    public function ShowCustomView(){
+   /* public function ShowCustomView(){
         $cinemaList = $this->cinemaDB->GetAll();
         $roomList = $this->roomDB->GetAll();
         $showList = $this->showCinemaDB->GetAll();
         $movieList = $this->movieDB->getAll();
         require_once(VIEWS_PATH . 'show-gain.php');
-    }
+    }*/
 
     public function ShowRoomGain($first, $last, $idCinema){
         $cinema = $this->cinemaDB->GetOne($idCinema);
@@ -368,6 +368,19 @@ class ShowCinemaController
 
     }
 
-    
+
+    public function ShowDetailView(){
+        
+  
+        $cinemaList = $this->cinemaDB->GetAll();
+        $roomList = $this->roomDB->GetAll();
+        $showList = $this->showCinemaDB->GetAll();
+        $movieList = $this->movieDB->getAll();
+
+        require_once(VIEWS_PATH . 'show-gain.php');
+
+
+    }
+
      
 }

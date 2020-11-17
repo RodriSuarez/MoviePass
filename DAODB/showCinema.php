@@ -574,6 +574,7 @@
                     );
             return $result;
         }
+
         public function getTotalCantSoldByDateXTurn($turn)
         {
             
@@ -649,6 +650,7 @@
         
     }
     }
+
 
     }
 ?>
