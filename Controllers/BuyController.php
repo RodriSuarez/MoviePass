@@ -18,6 +18,8 @@
     use DAODB\CreditCard as CreditCardDaoB;
     use DAODB\Ticket as TicketDB;
     use Controllers\TicketController as tController;
+    use Controllers\UserController as uController;
+
 
     class BuyController{
 
@@ -31,6 +33,7 @@
         private $creditCardDB;
         private $ticketDB;
         private $ticketController;
+        private $userController;
 
 
   public function __construct()
@@ -45,6 +48,7 @@
     $this->creditCardDB = new creditCardDaoB();
     $this->ticketDB = new TicketDB();
     $this->ticketController = new tController();
+    $this->userController = new uController();
   }
 
       
@@ -68,7 +72,7 @@
 
         }*/
 
-     public function controlBuy($id_show, $QuantTicket, $price, $id_card){
+      public function controlBuy($id_show, $QuantTicket, $price, $id_card){
         $ticketList = array();
           $show = $this->showCinemaDB->GetOneById($id_show);
 
@@ -94,7 +98,6 @@
 
 
             }
-
             require_once(VIEWS_PATH . "show-ticket.php");
 
        }  
@@ -144,6 +147,12 @@
             $message = 'Agregue una tarjeta para poder continuar con la compra!';
             $this->ShowAddViewCard($_SESSION['loggedUser']['id'], $id_show, $message);
           }
+      }else
+      {
+        $message = 'Por favor, Loguese';
+        $success = false;
+        $this->userController->loginError($message, $success);
+
       }
 
     

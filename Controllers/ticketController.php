@@ -70,7 +70,7 @@ class TicketController{
 
                         $newTicket->setQr($qr);
                         $mail->sendMail($newTicket, $_SESSION['loggedUser']['email'], $qr);
-                        var_dump($newTicket);
+                        #var_dump($newTicket);
                         $this->ticketDB->Add($newTicket);
 
         }

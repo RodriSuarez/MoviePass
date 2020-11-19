@@ -93,9 +93,9 @@
              <form action="<?= FRONT_ROOT . SHOW_ROOT?>ShowTurnCount">
           
                 <select class="text-center" name="roomId" id="roomId">
-                    <option class="text-center" value="12"> Mañana</option>
-                        <option class="text-center" value="19"> Tarde</option>
-                        <option class="text-center" value="20"> Noche</option>
+                    <option class="text-center" value="12"> Mañana de 6 a 12</option>
+                        <option class="text-center" value="19"> Tarde de 13 a 19</option>
+                        <option class="text-center" value="20"> Noche de 19 a 6</option>
                    
                   </select>
                 <button class="btn btn-success rounded "type="submit">Aplicar</button>

@@ -578,40 +578,41 @@
         public function getTotalCantSoldByDateXTurn($turn)
         {
             
-            if($turn <= 12 ){
-                $Horario=13;
-                $turnWrite = 'Mañana';
-            $query  = 'SELECT * FROM show_cinema c
-            WHERE c.show_hour < ' .$Horario.';';
-        }
-        if($turn==19){
-            $Horario=13;
-            $HorarioFinal = 19;
-            $turnWrite = 'Tarde';
-       
-            $query  = 'SELECT*FROM ' .$this->tableName.'
-            WHERE show_hour BETWEEN "'.$Horario.'"AND"'.$HorarioFinal.'";';
-          }
-          if ($turn > 19){
-            $horario = 19;
-            $turnWrite = 'Noche';
-              $query  = 'SELECT * FROM show_cinema c
-            WHERE c.show_hour > ' .$horario. ';';
-        }
+                if($turn == 12 ){
+                    
+                 
+                    $turnWrite = 'Mañana';
+                    $query  = 'SELECT*FROM '.$this->tableName.'
+                    WHERE show_hour BETWEEN "06:00" AND "13:00";';
+                }
+                if($turn==19){
+                  
+                    $turnWrite = 'Tarde';
+               
+                   $query  = 'SELECT*FROM '.$this->tableName.'
+                    WHERE show_hour BETWEEN "13:00" AND "19:00";';
+                  
+                  }
+                  if ($turn == 20){
+                    $turnWrite = 'Noche';
+                     $query  = 'SELECT*FROM '.$this->tableName.'
+                    WHERE show_hour BETWEEN "06:00" AND "13:00" UNION ALL  SELECT*FROM '.$this->tableName.'
+                    WHERE show_hour BETWEEN "00:00" AND "06:00";';
+                }
           try{
-            $this->connection = Connection::GetInstance();
+                $this->connection = Connection::GetInstance();
 
-            $resultSet = $this->connection->Execute($query);
+                $resultSet = $this->connection->Execute($query);
 
-            $roomDB = new RoomDB();
-            $movieDB = new MovieDB();
+                            $roomDB = new RoomDB();
+                            $movieDB = new MovieDB();
 
-            $sales = 0;
-            $sold = 0;
-            $rm=0;
+                            $sales = 0;
+                            $sold = 0;
+                            $rm=0;
+                            
             
-            
-          if($resultSet)
+                if($resultSet)
                     {
                         $room = $roomDB->GetOne($resultSet['0']['id_room']);
 

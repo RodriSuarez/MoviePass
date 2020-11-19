@@ -21,13 +21,15 @@
         private $tableTicket = "ticket";
 
 
+        
+      
         public function Add(BuyModel $buy)
         {
              
                     $query = "INSERT INTO ".$this->tableBuy." (fecha, cant_tickets, total)
                     VALUES (:fecha, :cant_tickets, :total);";
       
-                    var_dump($buy);
+                   
                     $parameters["fecha"] = $buy->getDate();
                     $parameters["cant_tickets"] = $buy->getCant_tickets();
                     $parameters["total"] = $buy->getTotal();
@@ -49,6 +51,8 @@
 
            return true;
         }
+
+
 
         public function getLastId(){
             $this->connection = Connection::GetInstance();

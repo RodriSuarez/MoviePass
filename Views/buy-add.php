@@ -1,8 +1,9 @@
-<?php require_once('nav.php');
+<?php 
+require_once('nav.php');
 
  ?>
-<!--      public function controlBuy($id_show, $QuantTicket,  $price='', $creditCard=''){
--->
+
+
 <main class="py-5">
      <section id="listado" class="mb-5">
         <div class="container">
@@ -73,7 +74,7 @@
         <div class="col-4 d-flex align-self-center mt-3 rounded p-3 text-center alert-danger" role="alert">
             <?= $message ?>
       </div>    
-      <?php } ?>
+      <?php }?>
     </div>
 
   
